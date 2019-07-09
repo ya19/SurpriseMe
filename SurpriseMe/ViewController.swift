@@ -26,6 +26,7 @@ class ViewController: UIViewController {
     func newTest(){
         print("hi")
     }
+    func shahaf(){}
     
     func setBackground(){
         view.addSubview(backgroundImageView)
