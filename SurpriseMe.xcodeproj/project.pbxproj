@@ -21,6 +21,8 @@
 		7BAF23D422D362E200E83A89 /* SurpriseMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF23D222D362E200E83A89 /* SurpriseMe.xcdatamodeld */; };
 		7BAF23D622D362E400E83A89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BAF23D522D362E400E83A89 /* Assets.xcassets */; };
 		7BAF23D922D362E400E83A89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BAF23D722D362E400E83A89 /* LaunchScreen.storyboard */; };
+		7BEC607A22D4D5DB0040D6CF /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BEC607922D4D5DB0040D6CF /* Register.storyboard */; };
+		7BEC607C22D4D6870040D6CF /* ShopsCollection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BEC607B22D4D6870040D6CF /* ShopsCollection.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		7BAF23D522D362E400E83A89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7BAF23D822D362E400E83A89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7BAF23DA22D362E400E83A89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7BEC607922D4D5DB0040D6CF /* Register.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
+		7BEC607B22D4D6870040D6CF /* ShopsCollection.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ShopsCollection.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,8 @@
 		7BAF23CA22D362E200E83A89 /* SurpriseMe */ = {
 			isa = PBXGroup;
 			children = (
+				7BEC607B22D4D6870040D6CF /* ShopsCollection.storyboard */,
+				7BEC607922D4D5DB0040D6CF /* Register.storyboard */,
 				7B1E1FE722D38E25007922E9 /* Custom Views */,
 				7BAF23CB22D362E200E83A89 /* AppDelegate.swift */,
 				7BAF23CD22D362E200E83A89 /* ViewController.swift */,
@@ -158,8 +164,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BAF23D922D362E400E83A89 /* LaunchScreen.storyboard in Resources */,
+				7BEC607C22D4D6870040D6CF /* ShopsCollection.storyboard in Resources */,
 				7BAF23D622D362E400E83A89 /* Assets.xcassets in Resources */,
 				7BAF23D122D362E200E83A89 /* Main.storyboard in Resources */,
+				7BEC607A22D4D5DB0040D6CF /* Register.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
