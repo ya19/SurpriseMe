@@ -19,6 +19,10 @@ class ViewController: UIViewController {
         
     }
     
+    func yossi(){
+        print("is in love with him self")
+    }
+    
     func setBackground(){
         view.addSubview(backgroundImageView)
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
