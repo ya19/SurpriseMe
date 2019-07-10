@@ -18,6 +18,15 @@ class BaseViewController: UIViewController{
         view.endEditing(true)
     }
     
+    override var shouldAutorotate: Bool{
+        return false
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        
+        return .portrait
+    }
+    
     func keyboardHandler(){
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -36,5 +45,7 @@ class BaseViewController: UIViewController{
             self.view.frame.origin.y = 0
         }
     }
+    
+
 }
 

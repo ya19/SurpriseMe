@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -56,7 +56,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1lj-14-lvd">
                                 <rect key="frame" x="93" y="381" width="83" height="89.5"/>
-                                <state key="normal" title="Button" image="facebook"/>
+                                <state key="normal" title="Button" image="Facebook-logo"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HFG-gZ-oRc">
                                 <rect key="frame" x="238" y="381" width="83" height="89.5"/>
@@ -119,10 +119,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="b1B-0E-jB5"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="113.04347826086958" y="218.97321428571428"/>
+            <point key="canvasLocation" x="1023.1884057971015" y="218.97321428571428"/>
         </scene>
         <!--ShopsCollection-->
         <scene sceneID="AL1-7X-Nsy">
@@ -130,7 +131,7 @@
                 <viewControllerPlaceholder storyboardName="ShopsCollection" id="mxJ-mB-Ult" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xx6-SZ-Gbx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="851" y="94"/>
+            <point key="canvasLocation" x="1641.304347826087" y="201.5625"/>
         </scene>
         <!--Register-->
         <scene sceneID="XWB-8L-LQJ">
@@ -138,12 +139,12 @@
                 <viewControllerPlaceholder storyboardName="Register" id="gzT-vI-xGP" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kyZ-7r-XzM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="912" y="228"/>
+            <point key="canvasLocation" x="1676.0869565217392" y="235.71428571428569"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Facebook-logo" width="200" height="198"/>
         <image name="Instagram_icon" width="599" height="600"/>
-        <image name="facebook" width="225" height="225"/>
         <image name="surprise" width="202" height="150"/>
     </resources>
 </document>
