@@ -1,35 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2TY-TH-Sqe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2TY-TH-Sqe">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Collection View Controller-->
+        <!--Categories View Controller-->
         <scene sceneID="9nY-16-Dpc">
             <objects>
-                <collectionViewController id="2TY-TH-Sqe" sceneMemberID="viewController">
+                <collectionViewController id="2TY-TH-Sqe" customClass="CategoriesViewController" customModule="SurpriseMe" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="kvo-oh-gOS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="CDC-bV-VdW">
-                            <size key="itemSize" width="50" height="50"/>
+                            <size key="itemSize" width="414" height="155"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="shopCell" id="gf7-vm-f30">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="categoryCell" id="gf7-vm-f30" customClass="CategoryCollectionViewCell" customModule="SurpriseMe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="155"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="155"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sport" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zyo-CI-77Q">
+                                            <rect key="frame" x="0.0" y="0.0" width="59" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rah-mZ-LpJ">
+                                            <rect key="frame" x="0.0" y="34" width="414" height="121"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dKc-Pt-JGw">
+                                                <size key="itemSize" width="122" height="120"/>
+                                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            </collectionViewFlowLayout>
+                                            <cells>
+                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="shopCell" id="QZQ-T5-zbY" customClass="ShopCollectionViewCell" customModule="SurpriseMe" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.5" width="122" height="120"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                        <rect key="frame" x="0.0" y="0.0" width="122" height="120"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Facebook-logo" translatesAutoresizingMaskIntoConstraints="NO" id="OYw-Qm-Xqs">
+                                                                <rect key="frame" x="0.0" y="0.0" width="122" height="120"/>
+                                                            </imageView>
+                                                        </subviews>
+                                                    </view>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="OYw-Qm-Xqs" secondAttribute="bottom" id="MOk-iC-c3o"/>
+                                                        <constraint firstItem="OYw-Qm-Xqs" firstAttribute="top" secondItem="QZQ-T5-zbY" secondAttribute="top" id="kZi-hx-BfB"/>
+                                                        <constraint firstItem="OYw-Qm-Xqs" firstAttribute="leading" secondItem="QZQ-T5-zbY" secondAttribute="leading" id="qiW-Mp-pVO"/>
+                                                        <constraint firstAttribute="trailing" secondItem="OYw-Qm-Xqs" secondAttribute="trailing" id="ydW-wO-4q2"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <outlet property="shopLogo" destination="OYw-Qm-Xqs" id="81L-6m-7PY"/>
+                                                    </connections>
+                                                </collectionViewCell>
+                                            </cells>
+                                        </collectionView>
+                                    </subviews>
                                 </view>
+                                <constraints>
+                                    <constraint firstItem="rah-mZ-LpJ" firstAttribute="leading" secondItem="gf7-vm-f30" secondAttribute="leading" id="O5E-ez-Bxh"/>
+                                    <constraint firstAttribute="bottom" secondItem="rah-mZ-LpJ" secondAttribute="bottom" id="Wrd-8m-XzA"/>
+                                    <constraint firstItem="rah-mZ-LpJ" firstAttribute="top" secondItem="zyo-CI-77Q" secondAttribute="bottom" constant="4" id="fgp-sl-rwM"/>
+                                    <constraint firstItem="zyo-CI-77Q" firstAttribute="top" secondItem="gf7-vm-f30" secondAttribute="top" id="jt5-zt-Xlm"/>
+                                    <constraint firstAttribute="trailing" secondItem="rah-mZ-LpJ" secondAttribute="trailing" id="puk-TR-8Ff"/>
+                                    <constraint firstItem="zyo-CI-77Q" firstAttribute="leading" secondItem="gf7-vm-f30" secondAttribute="leading" id="zXM-JX-FQN"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="categoryLabel" destination="zyo-CI-77Q" id="lUm-0S-fNK"/>
+                                    <outlet property="shopsCollectionView" destination="rah-mZ-LpJ" id="ObQ-90-NZS"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -40,7 +94,10 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2NC-ET-0cl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1297" y="-400"/>
+            <point key="canvasLocation" x="1295.6521739130435" y="-400.44642857142856"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Facebook-logo" width="200" height="198"/>
+    </resources>
 </document>

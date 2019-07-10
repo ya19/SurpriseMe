@@ -17,8 +17,8 @@ class ViewController: BaseViewController {
     let backgroundImageView = UIImageView()    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setBackground()        
-    }
+        setBackground()
+            }
 
     func setBackground(){
         view.addSubview(backgroundImageView)
