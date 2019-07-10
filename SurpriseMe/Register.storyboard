@@ -1,38 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nBg-eH-DoL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="cgA-iL-VCr">
+        <!--Register View Controller-->
+        <scene sceneID="cLQ-Qz-hc2">
             <objects>
-                <viewController id="nBg-eH-DoL" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="b9k-3D-wek">
+                <viewController storyboardIdentifier="registerPopUp" id="QXJ-5x-Uqf" customClass="RegisterViewController" customModule="SurpriseMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qko-eX-jWq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ifr-wp-f9K">
-                                <rect key="frame" x="159" y="318.5" width="57" height="30"/>
-                                <state key="normal" title="Register"/>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yoO-gt-8of" customClass="SAView" customModule="SurpriseMe" customModuleProvider="target">
+                                <rect key="frame" x="28" y="33.5" width="319" height="600"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cxW-1H-9ht">
+                                        <rect key="frame" x="256" y="21" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="closePopUp:" destination="QXJ-5x-Uqf" eventType="touchUpInside" id="ZiW-c4-nMa"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.46809452419999997" green="0.65788195270000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Ifr-wp-f9K" firstAttribute="centerY" secondItem="b9k-3D-wek" secondAttribute="centerY" id="qji-fX-Rza"/>
-                            <constraint firstItem="Ifr-wp-f9K" firstAttribute="centerX" secondItem="b9k-3D-wek" secondAttribute="centerX" id="vaM-xg-b6Y"/>
+                            <constraint firstItem="yoO-gt-8of" firstAttribute="height" secondItem="Qko-eX-jWq" secondAttribute="height" multiplier="0.9" id="bNo-OO-VHO"/>
+                            <constraint firstItem="yoO-gt-8of" firstAttribute="centerY" secondItem="Qko-eX-jWq" secondAttribute="centerY" id="qkj-UF-Ti1"/>
+                            <constraint firstItem="yoO-gt-8of" firstAttribute="centerX" secondItem="Qko-eX-jWq" secondAttribute="centerX" id="v5e-ht-o6D"/>
+                            <constraint firstItem="yoO-gt-8of" firstAttribute="width" secondItem="Qko-eX-jWq" secondAttribute="width" multiplier="0.85" id="zQ6-w0-mS4"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="cey-5w-ZlG"/>
+                        <viewLayoutGuide key="safeArea" id="t6p-6C-Xru"/>
                     </view>
+                    <connections>
+                        <outlet property="popUpView" destination="yoO-gt-8of" id="NOf-9u-z3y"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="f1o-p1-EB1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GGH-Zi-p7b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="912" y="228"/>
+            <point key="canvasLocation" x="1783" y="6"/>
         </scene>
     </scenes>
 </document>
