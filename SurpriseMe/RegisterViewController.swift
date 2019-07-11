@@ -19,6 +19,7 @@ class RegisterViewController: BaseViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(white: 0, alpha: 0.5)
         self.view.sendSubviewToBack(popUpView)
+        setBackground(self.popUpView , imageName: "pure-blue-sky")
         // Do any additional setup after loading the view.
     }
     

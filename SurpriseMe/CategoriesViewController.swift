@@ -48,6 +48,8 @@ class CategoriesViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CategoryCollectionViewCell
         
         // Configure the cell
+        cell.categoryLabel.text = categories[indexPath.item]
+        
     
         return cell
     }
@@ -84,3 +86,5 @@ class CategoriesViewController: UICollectionViewController {
     */
 
 }
+
+let categories = ["Sports","Electricity"]
