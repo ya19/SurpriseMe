@@ -14,7 +14,9 @@ class CategoriesViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.collectionView.backgroundView = UIImageView(image: UIImage.init(named: "blue-background"))
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
