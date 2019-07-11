@@ -37,13 +37,13 @@ class CategoriesViewController: UICollectionViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return shops.count
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return shops.count
+        return 1
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -55,6 +55,10 @@ class CategoriesViewController: UICollectionViewController {
     
         return cell
     }
+    
+    
+    
+
 
     // MARK: UICollectionViewDelegate
 
@@ -88,5 +92,7 @@ class CategoriesViewController: UICollectionViewController {
     */
 
 }
+
+
 
 let categories = ["Sports","Electricity"]
