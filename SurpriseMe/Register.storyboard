@@ -20,16 +20,128 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yoO-gt-8of" customClass="SAView" customModule="SurpriseMe" customModuleProvider="target">
                                 <rect key="frame" x="28" y="33.5" width="319" height="600"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cxW-1H-9ht">
-                                        <rect key="frame" x="256" y="21" width="46" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cxW-1H-9ht">
+                                        <rect key="frame" x="280.5" y="15" width="32" height="30"/>
+                                        <state key="normal" image="xButton"/>
                                         <connections>
                                             <action selector="closePopUp:" destination="QXJ-5x-Uqf" eventType="touchUpInside" id="ZiW-c4-nMa"/>
                                         </connections>
                                     </button>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="opF-qO-gdg">
+                                        <rect key="frame" x="32" y="210" width="255" height="60"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="584539778.07866204">
+                                            <!--2019-07-11 12:09:38 +0000-->
+                                        </date>
+                                        <date key="minimumDate" timeIntervalSinceReferenceDate="-3187256400">
+                                            <!--1900-01-01 11:00:00 +0000-->
+                                        </date>
+                                    </datePicker>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Dr-ND-SDr" customClass="SATextField" customModule="SurpriseMe" customModuleProvider="target">
+                                        <rect key="frame" x="32" y="60" width="255" height="42"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ex5-e5-Gi6" customClass="SATextField" customModule="SurpriseMe" customModuleProvider="target">
+                                        <rect key="frame" x="32" y="114" width="255" height="42"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Of Birth:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZH3-ts-wC8">
+                                        <rect key="frame" x="32" y="174" width="255" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5SS-zI-CyZ" customClass="SATextField" customModule="SurpriseMe" customModuleProvider="target">
+                                        <rect key="frame" x="32" y="285" width="255" height="42"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Si-NF-rJ7" customClass="SATextField" customModule="SurpriseMe" customModuleProvider="target">
+                                        <rect key="frame" x="32" y="339" width="255" height="42"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eJX-Uc-Frr" customClass="SATextField" customModule="SurpriseMe" customModuleProvider="target">
+                                        <rect key="frame" x="32" y="393" width="255" height="42"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="xkr-6S-oki">
+                                        <rect key="frame" x="16" y="486" width="287" height="31"/>
+                                        <segments>
+                                            <segment title="Everyone"/>
+                                            <segment title="Friends"/>
+                                            <segment title="None"/>
+                                        </segments>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </segmentedControl>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accepting Gifts From:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jo7-TV-Qag">
+                                        <rect key="frame" x="32" y="450" width="255" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nzb-Ay-8Ts" customClass="SAButton" customModule="SurpriseMe" customModuleProvider="target">
+                                        <rect key="frame" x="32" y="534" width="255" height="42"/>
+                                        <state key="normal" title="Register"/>
+                                        <connections>
+                                            <action selector="register:" destination="QXJ-5x-Uqf" eventType="touchUpInside" id="yM4-Z7-jZe"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.46809452419999997" green="0.65788195270000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="5SS-zI-CyZ" firstAttribute="width" secondItem="yoO-gt-8of" secondAttribute="width" multiplier="0.8" id="134-Xo-Wtn"/>
+                                    <constraint firstItem="7Si-NF-rJ7" firstAttribute="centerX" secondItem="yoO-gt-8of" secondAttribute="centerX" id="2WA-Q3-BQb"/>
+                                    <constraint firstItem="6Dr-ND-SDr" firstAttribute="width" secondItem="yoO-gt-8of" secondAttribute="width" multiplier="0.8" id="6UQ-o3-qWo"/>
+                                    <constraint firstItem="7Si-NF-rJ7" firstAttribute="centerY" secondItem="yoO-gt-8of" secondAttribute="centerY" multiplier="1.2" id="7L3-nM-16Y"/>
+                                    <constraint firstItem="nzb-Ay-8Ts" firstAttribute="width" secondItem="yoO-gt-8of" secondAttribute="width" multiplier="0.8" id="Aau-Lb-7p5"/>
+                                    <constraint firstItem="6Dr-ND-SDr" firstAttribute="centerX" secondItem="yoO-gt-8of" secondAttribute="centerX" id="Coj-Ku-uKQ"/>
+                                    <constraint firstItem="eJX-Uc-Frr" firstAttribute="centerX" secondItem="yoO-gt-8of" secondAttribute="centerX" id="EAp-Oe-vHZ"/>
+                                    <constraint firstItem="Ex5-e5-Gi6" firstAttribute="height" secondItem="yoO-gt-8of" secondAttribute="height" multiplier="0.07" id="G7F-OD-vUh"/>
+                                    <constraint firstItem="nzb-Ay-8Ts" firstAttribute="centerY" secondItem="yoO-gt-8of" secondAttribute="centerY" multiplier="1.85" id="HJa-Sd-MO4"/>
+                                    <constraint firstItem="xkr-6S-oki" firstAttribute="centerX" secondItem="yoO-gt-8of" secondAttribute="centerX" id="Jdt-nF-wWE"/>
+                                    <constraint firstItem="eJX-Uc-Frr" firstAttribute="width" secondItem="yoO-gt-8of" secondAttribute="width" multiplier="0.8" id="MDM-Zr-3Dr"/>
+                                    <constraint firstItem="xkr-6S-oki" firstAttribute="width" secondItem="yoO-gt-8of" secondAttribute="width" multiplier="0.9" id="Mdr-Op-hY7"/>
+                                    <constraint firstItem="7Si-NF-rJ7" firstAttribute="height" secondItem="yoO-gt-8of" secondAttribute="height" multiplier="0.07" id="NVY-jU-jMH"/>
+                                    <constraint firstItem="cxW-1H-9ht" firstAttribute="height" secondItem="yoO-gt-8of" secondAttribute="height" multiplier="0.05" id="OmY-Vb-djl"/>
+                                    <constraint firstItem="xkr-6S-oki" firstAttribute="centerY" secondItem="yoO-gt-8of" secondAttribute="centerY" multiplier="1.67" id="Sb1-dP-YNJ"/>
+                                    <constraint firstItem="ZH3-ts-wC8" firstAttribute="width" secondItem="yoO-gt-8of" secondAttribute="width" multiplier="0.8" id="TcZ-VV-ArN"/>
+                                    <constraint firstItem="eJX-Uc-Frr" firstAttribute="centerY" secondItem="yoO-gt-8of" secondAttribute="centerY" multiplier="1.38" id="XEr-Zc-M5t"/>
+                                    <constraint firstItem="Ex5-e5-Gi6" firstAttribute="centerX" secondItem="yoO-gt-8of" secondAttribute="centerX" id="YJA-qA-hoL"/>
+                                    <constraint firstItem="cxW-1H-9ht" firstAttribute="centerX" secondItem="yoO-gt-8of" secondAttribute="centerX" multiplier="1.86" id="ZLY-wG-eMP"/>
+                                    <constraint firstItem="jo7-TV-Qag" firstAttribute="centerX" secondItem="yoO-gt-8of" secondAttribute="centerX" id="aIV-jR-HBr"/>
+                                    <constraint firstItem="opF-qO-gdg" firstAttribute="centerX" secondItem="yoO-gt-8of" secondAttribute="centerX" id="arJ-o5-a2g"/>
+                                    <constraint firstItem="cxW-1H-9ht" firstAttribute="centerY" secondItem="yoO-gt-8of" secondAttribute="centerY" multiplier="0.1" id="cfM-cB-mAh"/>
+                                    <constraint firstItem="ZH3-ts-wC8" firstAttribute="centerY" secondItem="yoO-gt-8of" secondAttribute="centerY" multiplier="0.63" id="d23-dE-p2b"/>
+                                    <constraint firstItem="Ex5-e5-Gi6" firstAttribute="width" secondItem="yoO-gt-8of" secondAttribute="width" multiplier="0.8" id="h5R-sK-v8W"/>
+                                    <constraint firstItem="eJX-Uc-Frr" firstAttribute="height" secondItem="yoO-gt-8of" secondAttribute="height" multiplier="0.07" id="i3n-4D-j0A"/>
+                                    <constraint firstItem="6Dr-ND-SDr" firstAttribute="height" secondItem="yoO-gt-8of" secondAttribute="height" multiplier="0.07" id="jTT-dT-Jsk"/>
+                                    <constraint firstItem="nzb-Ay-8Ts" firstAttribute="height" secondItem="yoO-gt-8of" secondAttribute="height" multiplier="0.07" id="jWD-Dc-NDP"/>
+                                    <constraint firstItem="nzb-Ay-8Ts" firstAttribute="centerX" secondItem="yoO-gt-8of" secondAttribute="centerX" id="mWB-w0-MzY"/>
+                                    <constraint firstItem="7Si-NF-rJ7" firstAttribute="width" secondItem="yoO-gt-8of" secondAttribute="width" multiplier="0.8" id="nJk-ZO-HwV"/>
+                                    <constraint firstItem="jo7-TV-Qag" firstAttribute="centerY" secondItem="yoO-gt-8of" secondAttribute="centerY" multiplier="1.55" id="pYP-0G-8em"/>
+                                    <constraint firstItem="cxW-1H-9ht" firstAttribute="width" secondItem="yoO-gt-8of" secondAttribute="width" multiplier="0.1" id="pzJ-U7-GYo"/>
+                                    <constraint firstItem="Ex5-e5-Gi6" firstAttribute="centerY" secondItem="yoO-gt-8of" secondAttribute="centerY" multiplier="0.45" id="q4k-KW-Ga5"/>
+                                    <constraint firstItem="5SS-zI-CyZ" firstAttribute="centerX" secondItem="yoO-gt-8of" secondAttribute="centerX" id="qBt-mk-AUc"/>
+                                    <constraint firstItem="opF-qO-gdg" firstAttribute="width" secondItem="yoO-gt-8of" secondAttribute="width" multiplier="0.8" id="sd3-Qv-ivA"/>
+                                    <constraint firstItem="5SS-zI-CyZ" firstAttribute="height" secondItem="yoO-gt-8of" secondAttribute="height" multiplier="0.07" id="t1O-F8-VM0"/>
+                                    <constraint firstItem="jo7-TV-Qag" firstAttribute="width" secondItem="yoO-gt-8of" secondAttribute="width" multiplier="0.8" id="u2m-4H-4pp"/>
+                                    <constraint firstItem="xkr-6S-oki" firstAttribute="height" secondItem="yoO-gt-8of" secondAttribute="height" multiplier="0.05" id="ufF-eT-ibM"/>
+                                    <constraint firstItem="jo7-TV-Qag" firstAttribute="height" secondItem="yoO-gt-8of" secondAttribute="height" multiplier="0.05" id="xSo-nD-hoB"/>
+                                    <constraint firstItem="opF-qO-gdg" firstAttribute="centerY" secondItem="yoO-gt-8of" secondAttribute="centerY" multiplier="0.8" id="xve-Vx-Wgy"/>
+                                    <constraint firstItem="ZH3-ts-wC8" firstAttribute="centerX" secondItem="yoO-gt-8of" secondAttribute="centerX" id="yUs-Je-7LL"/>
+                                    <constraint firstItem="5SS-zI-CyZ" firstAttribute="centerY" secondItem="yoO-gt-8of" secondAttribute="centerY" multiplier="1.02" id="ymz-Q0-LKM"/>
+                                    <constraint firstItem="6Dr-ND-SDr" firstAttribute="centerY" secondItem="yoO-gt-8of" secondAttribute="centerY" multiplier="0.27" id="ynE-Zs-bXs"/>
+                                    <constraint firstItem="opF-qO-gdg" firstAttribute="height" secondItem="yoO-gt-8of" secondAttribute="height" multiplier="0.1" id="z5m-pO-gIh"/>
+                                    <constraint firstItem="ZH3-ts-wC8" firstAttribute="height" secondItem="yoO-gt-8of" secondAttribute="height" multiplier="0.05" id="zFY-Zk-gRn"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -42,6 +154,13 @@
                         <viewLayoutGuide key="safeArea" id="t6p-6C-Xru"/>
                     </view>
                     <connections>
+                        <outlet property="confirmPassword" destination="eJX-Uc-Frr" id="1c4-kh-AlI"/>
+                        <outlet property="dateOfBirth" destination="opF-qO-gdg" id="aYZ-av-TUv"/>
+                        <outlet property="email" destination="5SS-zI-CyZ" id="byo-cr-9xT"/>
+                        <outlet property="firstName" destination="6Dr-ND-SDr" id="PBN-6C-eo1"/>
+                        <outlet property="giftStatus" destination="xkr-6S-oki" id="pex-Yl-Kxb"/>
+                        <outlet property="lastName" destination="Ex5-e5-Gi6" id="9Ll-Nc-Yf9"/>
+                        <outlet property="password" destination="7Si-NF-rJ7" id="an9-Ph-bdz"/>
                         <outlet property="popUpView" destination="yoO-gt-8of" id="NOf-9u-z3y"/>
                     </connections>
                 </viewController>
@@ -50,4 +169,7 @@
             <point key="canvasLocation" x="1783" y="6"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="xButton" width="75" height="75"/>
+    </resources>
 </document>

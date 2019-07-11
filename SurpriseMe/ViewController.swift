@@ -30,7 +30,7 @@ class ViewController: BaseViewController {
 
 func setBackground(_ view: UIView , imageName: String){
     let backgroundImageView = UIImageView()
-
+    
     view.addSubview(backgroundImageView)
     backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
     backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -38,6 +38,5 @@ func setBackground(_ view: UIView , imageName: String){
     backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
     backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     backgroundImageView.image = UIImage.init(named: imageName)
-    
     view.sendSubviewToBack(backgroundImageView)
 }

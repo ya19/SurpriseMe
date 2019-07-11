@@ -11,7 +11,20 @@ import UIKit
 class RegisterViewController: BaseViewController {
 
 
+    @IBOutlet weak var firstName: SATextField!
+    @IBOutlet weak var lastName: SATextField!
+    @IBOutlet weak var dateOfBirth: UIDatePicker!
+    @IBOutlet weak var email: SATextField!
+    @IBOutlet weak var password: SATextField!
+    @IBOutlet weak var confirmPassword: SATextField!
+    @IBOutlet weak var giftStatus: UISegmentedControl!
+    
+    
     @IBAction func closePopUp(_ sender: UIButton) {
+        clearData()
+        self.view.removeFromSuperview()
+    }
+    @IBAction func register(_ sender: SAButton) {
         self.view.removeFromSuperview()
     }
     @IBOutlet weak var popUpView: SAView!
@@ -19,10 +32,24 @@ class RegisterViewController: BaseViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(white: 0, alpha: 0.5)
         self.view.sendSubviewToBack(popUpView)
-        setBackground(self.popUpView , imageName: "pure-blue-sky")
+        popUpView.backgroundColor = UIColor(patternImage: UIImage(named: "pure-blue-sky")!)
+        
+        dateOfBirth.maximumDate = Date()
+        dateOfBirth.setValue(UIColor.white, forKey: "textColor")
+//        setBackground(self.popUpView , imageName: "pure-blue-sky")
+        
         // Do any additional setup after loading the view.
     }
     
+    func clearData(){
+        firstName.text = nil
+        lastName.text = nil
+        dateOfBirth.setDate(Date(), animated: false)
+        email.text = nil
+        password.text = nil
+        confirmPassword.text = nil
+        giftStatus.isSelected = false
+    }
 
     /*
     // MARK: - Navigation
