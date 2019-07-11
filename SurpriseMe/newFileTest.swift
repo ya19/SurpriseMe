@@ -10,4 +10,6 @@ import Foundation
 
 class newFile{
     func newFunc(){}
+    
+    func anotherFunc(){}
 }
