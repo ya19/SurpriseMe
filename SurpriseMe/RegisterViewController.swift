@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegisterViewController: BaseViewController {
+class RegisterViewController: UIViewController {
 
 
     @IBOutlet weak var firstName: SATextField!
