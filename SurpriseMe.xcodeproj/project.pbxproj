@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47C93CBC22D7868C00A1D2DD /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C93CBB22D7868C00A1D2DD /* SectionHeader.swift */; };
 		6D2EF9F422D60325005F01A4 /* ShopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2EF9F322D60325005F01A4 /* ShopCollectionViewCell.swift */; };
 		6D2EF9F622D60459005F01A4 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2EF9F522D60459005F01A4 /* CategoryCollectionViewCell.swift */; };
 		6D2EF9F822D6047B005F01A4 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2EF9F722D6047B005F01A4 /* CategoriesViewController.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		47C93CBB22D7868C00A1D2DD /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		6D2EF9F322D60325005F01A4 /* ShopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCollectionViewCell.swift; sourceTree = "<group>"; };
 		6D2EF9F522D60459005F01A4 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		6D2EF9F722D6047B005F01A4 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				6D2EF9F522D60459005F01A4 /* CategoryCollectionViewCell.swift */,
 				6D2EF9F722D6047B005F01A4 /* CategoriesViewController.swift */,
 				7B13C5FD22D69E2A00522043 /* RegisterViewController.swift */,
+				47C93CBB22D7868C00A1D2DD /* SectionHeader.swift */,
 			);
 			path = SurpriseMe;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 				6D2EF9F422D60325005F01A4 /* ShopCollectionViewCell.swift in Sources */,
 				7B1E1FE222D377AC007922E9 /* Treat.swift in Sources */,
 				7B13C5FE22D69E2A00522043 /* RegisterViewController.swift in Sources */,
+				47C93CBC22D7868C00A1D2DD /* SectionHeader.swift in Sources */,
 				6D2EF9F622D60459005F01A4 /* CategoryCollectionViewCell.swift in Sources */,
 				7B1E1FE922D38E3C007922E9 /* SAButton.swift in Sources */,
 				6D2EF9F822D6047B005F01A4 /* CategoriesViewController.swift in Sources */,

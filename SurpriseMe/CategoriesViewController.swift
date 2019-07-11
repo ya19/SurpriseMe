@@ -9,6 +9,7 @@
 import UIKit
 
 private let reuseIdentifier = "categoryCell"
+private let reuseHeaderIdentifier = "sectionHeader"
 
 class CategoriesViewController: UICollectionViewController {
 
@@ -50,7 +51,7 @@ class CategoriesViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CategoryCollectionViewCell
         
         // Configure the cell
-        cell.categoryLabel.text = categories[indexPath.item]
+//        cell.categoryLabel.text = categories[indexPath.item]
         
     
         return cell
@@ -90,6 +91,18 @@ class CategoriesViewController: UICollectionViewController {
     
     }
     */
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if (kind == UICollectionView.elementKindSectionHeader) {
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: reuseHeaderIdentifier, for: indexPath) as! SectionHeader
+            // Customize headerView here
+            
+            headerView.sectionHeaderTitle.text = categories[indexPath.section]
+            return headerView
+        }
+        
+        fatalError()
+    }
 
 }
 
