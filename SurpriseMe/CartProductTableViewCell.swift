@@ -10,8 +10,6 @@ import UIKit
 
 class CartProductTableViewCell: UITableViewCell {
 
-    var product:Product?
-    
     @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var productPrice: UILabel!
@@ -19,7 +17,6 @@ class CartProductTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        print(product)
         // Initialization code
     }
     
@@ -28,10 +25,5 @@ class CartProductTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 //        initCell()
         // Configure the view for the selected state
-    }
-    func initCell(){
-        productImage.image = product?.image
-        productName.text = product?.name
-        productPrice.text = "Price: \(product?.price ?? 0)"
     }
 }
