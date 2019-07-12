@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		474B257922D8959E00D0A332 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474B257822D8959E00D0A332 /* ShopViewController.swift */; };
+		474B257B22D895BF00D0A332 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474B257A22D895BF00D0A332 /* ProductCollectionViewCell.swift */; };
 		47C93CBC22D7868C00A1D2DD /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C93CBB22D7868C00A1D2DD /* SectionHeader.swift */; };
 		6D2EF9F422D60325005F01A4 /* ShopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2EF9F322D60325005F01A4 /* ShopCollectionViewCell.swift */; };
 		6D2EF9F622D60459005F01A4 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2EF9F522D60459005F01A4 /* CategoryCollectionViewCell.swift */; };
@@ -33,6 +35,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		474B257822D8959E00D0A332 /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
+		474B257A22D895BF00D0A332 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		47C93CBB22D7868C00A1D2DD /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		6D2EF9F322D60325005F01A4 /* ShopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCollectionViewCell.swift; sourceTree = "<group>"; };
 		6D2EF9F522D60459005F01A4 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -132,6 +136,8 @@
 				6D2EF9F722D6047B005F01A4 /* CategoriesViewController.swift */,
 				7B13C5FD22D69E2A00522043 /* RegisterViewController.swift */,
 				47C93CBB22D7868C00A1D2DD /* SectionHeader.swift */,
+				474B257822D8959E00D0A332 /* ShopViewController.swift */,
+				474B257A22D895BF00D0A332 /* ProductCollectionViewCell.swift */,
 			);
 			path = SurpriseMe;
 			sourceTree = "<group>";
@@ -211,6 +217,7 @@
 			files = (
 				7BAF23CE22D362E200E83A89 /* ViewController.swift in Sources */,
 				7B1E1FDA22D372E7007922E9 /* Category.swift in Sources */,
+				474B257B22D895BF00D0A332 /* ProductCollectionViewCell.swift in Sources */,
 				6DC7038822D5C0B500F0531B /* BaseViewController.swift in Sources */,
 				7BAF23D422D362E200E83A89 /* SurpriseMe.xcdatamodeld in Sources */,
 				7B1E1FE622D3788F007922E9 /* TreatStatus.swift in Sources */,
@@ -219,6 +226,7 @@
 				7B1E1FE422D37801007922E9 /* User.swift in Sources */,
 				7B1E1FD822D3728A007922E9 /* Shop.swift in Sources */,
 				7B1E1FEB22D393EE007922E9 /* SATextField.swift in Sources */,
+				474B257922D8959E00D0A332 /* ShopViewController.swift in Sources */,
 				7B1E1FDC22D374CA007922E9 /* Product.swift in Sources */,
 				6D2EF9F422D60325005F01A4 /* ShopCollectionViewCell.swift in Sources */,
 				7B1E1FE222D377AC007922E9 /* Treat.swift in Sources */,

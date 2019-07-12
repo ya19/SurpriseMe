@@ -11,6 +11,8 @@ import UIKit
 class CategoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var shopsCollectionView: UICollectionView!
     
+    var shopsData:[Shop] = []
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         shopsCollectionView.delegate = self
@@ -31,13 +33,14 @@ extension CategoryCollectionViewCell : UICollectionViewDataSource {
         return shops.count
     }
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return shops[section].count
+//        return shops[section].count
+        return shopsData.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "shopCell", for: indexPath) as! ShopCollectionViewCell
         
-        cell.shopLogo.image = shops[indexPath.section][indexPath.item].logo
+        cell.shopLogo.image = shopsData[indexPath.item].logo
         
         return cell
     }
@@ -68,6 +71,7 @@ var shops = [
             Shop(id: "ivoryShop", category: .ELECRICTY, name: "Ivory", products: [:], adress: "Kenyon Ayalon, Ramat Gan", desc: "Computers shop with a lot of products", logo: #imageLiteral(resourceName: "logo"), backgroudImage: #imageLiteral(resourceName: "facebook"))
             
             
-        ]
+        ],
+        []
         
     ]

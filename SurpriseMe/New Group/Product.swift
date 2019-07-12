@@ -14,6 +14,7 @@ struct Product{
     let desc:String
     let image:UIImage?
     let category:String
+    let price:Double
     
     
 }
