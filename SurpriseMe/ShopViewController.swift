@@ -1,27 +1,44 @@
 //
-//  CategoriesViewController.swift
+//  ShopViewController.swift
 //  SurpriseMe
 //
-//  Created by hackeru on 10/07/2019.
+//  Created by Youval Ella on 12/07/2019.
 //  Copyright © 2019 Surprise. All rights reserved.
 //
 
 import UIKit
 
-private let reuseIdentifier = "categoryCell"
-private let reuseHeaderIdentifier = "sectionHeader"
+private let reuseIdentifier = "productCell"
 
-class CategoriesViewController: UICollectionViewController {
+
+private let testShop = Shop.init(id: "nikeShop", category: .SPORT, name: "Nike", products:
+    ["Products" :
+        [
+            Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes", price: 159.00),
+            Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes",price: 159.00 ),
+            Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes", price: 159.00),
+            Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes", price: 159.00)
+        ]
+    ]
+    
+    
+    
+    , adress: "Kenyon Ayalon Ramat Gan", desc: "Very expensive sports shop you can buy a variety of products", logo: #imageLiteral(resourceName: "nike-logo"), backgroudImage: #imageLiteral(resourceName: "nike-background"))
+
+
+
+class ShopViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.collectionView.backgroundView = UIImageView(image: UIImage.init(named: "blue-background"))
-        
-        self.navigationController?.navigationBar.isTranslucent = true
-        
+        self.collectionView.backgroundView = UIImageView(image: UIImage.init(named: "nike-background"))
+        self.title = testShop.name
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
+
+
 
         // Do any additional setup after loading the view.
     }
@@ -39,30 +56,26 @@ class CategoriesViewController: UICollectionViewController {
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return shops.count
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 1
+        return testShop.products["Products"]!.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CategoryCollectionViewCell
-        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ProductCollectionViewCell
+    
         // Configure the cell
-//        cell.categoryLabel.text = categories[indexPath.item]
-        cell.shopsData = shops[indexPath.section]
         
+        let array = Array(testShop.products["Products"]!)
+        cell.productLogo.image = array[indexPath.item].image
+        cell.productPrice.text = "\(array[indexPath.item].price) NIS"
     
         return cell
     }
-    
-    
-    
-
 
     // MARK: UICollectionViewDelegate
 
@@ -94,21 +107,5 @@ class CategoriesViewController: UICollectionViewController {
     
     }
     */
-    
-    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if (kind == UICollectionView.elementKindSectionHeader) {
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: reuseHeaderIdentifier, for: indexPath) as! SectionHeader
-            // Customize headerView here
-            
-            headerView.sectionHeaderTitle.text = categories[indexPath.section]
-            return headerView
-        }
-        
-        fatalError()
-    }
 
 }
-
-
-
-let categories = ["Sports","Electricity", "Clothes"]
