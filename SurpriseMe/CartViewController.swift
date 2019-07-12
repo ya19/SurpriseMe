@@ -57,6 +57,22 @@ extension CartViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 145
     }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let removeAction = UITableViewRowAction(style: .destructive, title: "remove") { (action, indexPath) in
+            self.products.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+
+        }
+        
+        removeAction.backgroundColor = UIColor.red
+        
+        return [removeAction]
+    }
+
 }
 extension CartViewController:UITableViewDataSource{
 
