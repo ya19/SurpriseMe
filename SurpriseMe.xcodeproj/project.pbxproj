@@ -32,6 +32,9 @@
 		7BAF23D922D362E400E83A89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BAF23D722D362E400E83A89 /* LaunchScreen.storyboard */; };
 		7BEC607A22D4D5DB0040D6CF /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BEC607922D4D5DB0040D6CF /* Register.storyboard */; };
 		7BEC607C22D4D6870040D6CF /* ShopsCollection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BEC607B22D4D6870040D6CF /* ShopsCollection.storyboard */; };
+		AD68A49122D8E8D900E019BA /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD68A49022D8E8D900E019BA /* CartViewController.swift */; };
+		AD68A49322D8EAD700E019BA /* CartProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD68A49222D8EAD700E019BA /* CartProductTableViewCell.swift */; };
+		AD68A49722D8F2C900E019BA /* Cart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD68A49622D8F2C900E019BA /* Cart.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +66,9 @@
 		7BAF23DA22D362E400E83A89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BEC607922D4D5DB0040D6CF /* Register.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 		7BEC607B22D4D6870040D6CF /* ShopsCollection.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ShopsCollection.storyboard; sourceTree = "<group>"; };
+		AD68A49022D8E8D900E019BA /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
+		AD68A49222D8EAD700E019BA /* CartProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartProductTableViewCell.swift; sourceTree = "<group>"; };
+		AD68A49622D8F2C900E019BA /* Cart.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Cart.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +127,7 @@
 			children = (
 				7BAF23CF22D362E200E83A89 /* Main.storyboard */,
 				7BEC607B22D4D6870040D6CF /* ShopsCollection.storyboard */,
+				AD68A49622D8F2C900E019BA /* Cart.storyboard */,
 				7BEC607922D4D5DB0040D6CF /* Register.storyboard */,
 				7B1E1FE722D38E25007922E9 /* Custom Views */,
 				7BAF23CB22D362E200E83A89 /* AppDelegate.swift */,
@@ -138,6 +145,8 @@
 				47C93CBB22D7868C00A1D2DD /* SectionHeader.swift */,
 				474B257822D8959E00D0A332 /* ShopViewController.swift */,
 				474B257A22D895BF00D0A332 /* ProductCollectionViewCell.swift */,
+				AD68A49022D8E8D900E019BA /* CartViewController.swift */,
+				AD68A49222D8EAD700E019BA /* CartProductTableViewCell.swift */,
 			);
 			path = SurpriseMe;
 			sourceTree = "<group>";
@@ -204,6 +213,7 @@
 				7BEC607C22D4D6870040D6CF /* ShopsCollection.storyboard in Resources */,
 				7BAF23D622D362E400E83A89 /* Assets.xcassets in Resources */,
 				7BAF23D122D362E200E83A89 /* Main.storyboard in Resources */,
+				AD68A49722D8F2C900E019BA /* Cart.storyboard in Resources */,
 				7BEC607A22D4D5DB0040D6CF /* Register.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -220,6 +230,7 @@
 				474B257B22D895BF00D0A332 /* ProductCollectionViewCell.swift in Sources */,
 				6DC7038822D5C0B500F0531B /* BaseViewController.swift in Sources */,
 				7BAF23D422D362E200E83A89 /* SurpriseMe.xcdatamodeld in Sources */,
+				AD68A49322D8EAD700E019BA /* CartProductTableViewCell.swift in Sources */,
 				7B1E1FE622D3788F007922E9 /* TreatStatus.swift in Sources */,
 				7BAF23CC22D362E200E83A89 /* AppDelegate.swift in Sources */,
 				7B13C5FC22D69DD200522043 /* SAView.swift in Sources */,
@@ -231,6 +242,7 @@
 				6D2EF9F422D60325005F01A4 /* ShopCollectionViewCell.swift in Sources */,
 				7B1E1FE222D377AC007922E9 /* Treat.swift in Sources */,
 				7B13C5FE22D69E2A00522043 /* RegisterViewController.swift in Sources */,
+				AD68A49122D8E8D900E019BA /* CartViewController.swift in Sources */,
 				47C93CBC22D7868C00A1D2DD /* SectionHeader.swift in Sources */,
 				6D2EF9F622D60459005F01A4 /* CategoryCollectionViewCell.swift in Sources */,
 				7B1E1FE922D38E3C007922E9 /* SAButton.swift in Sources */,
