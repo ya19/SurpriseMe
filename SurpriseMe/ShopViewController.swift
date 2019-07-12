@@ -34,7 +34,8 @@ class ShopViewController: UICollectionViewController {
         super.viewDidLoad()
         
         self.collectionView.backgroundView = UIImageView(image: UIImage.init(named: "nike-background"))
-        self.title = testShop.name
+        self.title = shop?.name
+        print(shop)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

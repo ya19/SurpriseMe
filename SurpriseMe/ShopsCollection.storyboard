@@ -61,7 +61,6 @@
                                                     </constraints>
                                                     <connections>
                                                         <outlet property="shopLogo" destination="OYw-Qm-Xqs" id="81L-6m-7PY"/>
-                                                        <segue destination="ytj-vz-Het" kind="show" id="IPy-CO-qLl"/>
                                                     </connections>
                                                 </collectionViewCell>
                                             </cells>
@@ -114,7 +113,7 @@
         <!--ShopName-->
         <scene sceneID="eJd-1A-hUN">
             <objects>
-                <collectionViewController id="ytj-vz-Het" customClass="ShopViewController" customModule="SurpriseMe" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="shopController" id="ytj-vz-Het" customClass="ShopViewController" customModule="SurpriseMe" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="LgN-ct-hrM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

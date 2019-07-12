@@ -12,6 +12,8 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var shopsCollectionView: UICollectionView!
     
     var shopsData:[Shop] = []
+    var storyboard:UIStoryboard? = UIStoryboard()
+    var navigation:UINavigationController? = UINavigationController()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,14 +25,19 @@ class CategoryCollectionViewCell: UICollectionViewCell {
 
 extension CategoryCollectionViewCell : UICollectionViewDelegate{
     
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let controller = storyboard?.instantiateViewController(withIdentifier: "shopController") as? ShopViewController else {return}
+        
+        controller.shop = shopsData[indexPath.item]
+        navigation?.pushViewController(controller, animated: true)
+    }
     
 }
 
 extension CategoryCollectionViewCell : UICollectionViewDataSource {
     
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return shops.count
+        return 1
     }
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 //        return shops[section].count

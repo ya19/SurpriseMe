@@ -55,6 +55,8 @@ class CategoriesViewController: UICollectionViewController {
         // Configure the cell
 //        cell.categoryLabel.text = categories[indexPath.item]
         cell.shopsData = shops[indexPath.section]
+        cell.storyboard = self.storyboard
+        cell.navigation = self.navigationController
         
     
         return cell
