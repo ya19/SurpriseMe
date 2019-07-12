@@ -14,6 +14,10 @@ class CartViewController: UIViewController {
     var sum:Double = 0
     @IBOutlet weak var total: UILabel!
     @IBOutlet weak var cartTableView: UITableView!
+    @IBAction func buy(_ sender: SAButton) {
+        Toast.show(message: "go to paypel", controller: self)
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         cartTableView.delegate = self

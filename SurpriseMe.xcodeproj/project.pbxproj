@@ -35,6 +35,7 @@
 		AD68A49122D8E8D900E019BA /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD68A49022D8E8D900E019BA /* CartViewController.swift */; };
 		AD68A49322D8EAD700E019BA /* CartProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD68A49222D8EAD700E019BA /* CartProductTableViewCell.swift */; };
 		AD68A49722D8F2C900E019BA /* Cart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD68A49622D8F2C900E019BA /* Cart.storyboard */; };
+		AD68A49922D91C9700E019BA /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD68A49822D91C9700E019BA /* Toast.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		AD68A49022D8E8D900E019BA /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		AD68A49222D8EAD700E019BA /* CartProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartProductTableViewCell.swift; sourceTree = "<group>"; };
 		AD68A49622D8F2C900E019BA /* Cart.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Cart.storyboard; sourceTree = "<group>"; };
+		AD68A49822D91C9700E019BA /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 				474B257A22D895BF00D0A332 /* ProductCollectionViewCell.swift */,
 				AD68A49022D8E8D900E019BA /* CartViewController.swift */,
 				AD68A49222D8EAD700E019BA /* CartProductTableViewCell.swift */,
+				AD68A49822D91C9700E019BA /* Toast.swift */,
 			);
 			path = SurpriseMe;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				47C93CBC22D7868C00A1D2DD /* SectionHeader.swift in Sources */,
 				6D2EF9F622D60459005F01A4 /* CategoryCollectionViewCell.swift in Sources */,
 				7B1E1FE922D38E3C007922E9 /* SAButton.swift in Sources */,
+				AD68A49922D91C9700E019BA /* Toast.swift in Sources */,
 				6D2EF9F822D6047B005F01A4 /* CategoriesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

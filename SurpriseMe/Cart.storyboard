@@ -89,6 +89,9 @@
                                 <rect key="frame" x="124" y="793" width="166" height="53.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Buy"/>
+                                <connections>
+                                    <action selector="buy:" destination="xI4-91-NL0" eventType="touchUpInside" id="i1E-bg-Zad"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2d-WC-3we">
                                 <rect key="frame" x="41.5" y="730" width="331" height="63"/>
