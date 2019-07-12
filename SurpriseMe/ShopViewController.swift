@@ -29,6 +29,7 @@ private let testShop = Shop.init(id: "nikeShop", category: .SPORT, name: "Nike",
 
 class ShopViewController: UICollectionViewController {
 
+    var shop:Shop?
     override func viewDidLoad() {
         super.viewDidLoad()
         
