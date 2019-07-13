@@ -68,8 +68,7 @@ extension CartViewController:UITableViewDelegate{
         let removeAction = UITableViewRowAction(style: .destructive, title: "remove") { (action, indexPath) in
             self.products.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            
-
+            self.total.text = "Total: \(self.calculateSum())"
         }
         
         removeAction.backgroundColor = UIColor.red
