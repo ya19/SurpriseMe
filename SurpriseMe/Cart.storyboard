@@ -147,7 +147,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mgv-px-Aug" customClass="SAButton" customModule="SurpriseMe" customModuleProvider="target">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mgv-px-Aug" customClass="SAButton" customModule="SurpriseMe" customModuleProvider="target">
                                         <rect key="frame" x="140.5" y="381" width="50" height="44.5"/>
                                         <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" image="icons8-like_it"/>
@@ -168,6 +168,16 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="peu-Fo-bzo" customClass="SAButton" customModule="SurpriseMe" customModuleProvider="target">
+                                        <rect key="frame" x="82.5" y="381" width="166" height="44.5"/>
+                                        <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Add to cart">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addToCart:" destination="8hP-a6-hNT" eventType="touchUpInside" id="9eX-VZ-yWl"/>
+                                        </connections>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T4n-eN-rZh">
                                         <rect key="frame" x="33" y="208.5" width="265" height="31"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -187,11 +197,14 @@
                                     <constraint firstItem="T4n-eN-rZh" firstAttribute="centerX" secondItem="VIu-vw-ymr" secondAttribute="centerX" id="By1-wT-9uv"/>
                                     <constraint firstItem="h4o-NR-uuW" firstAttribute="height" secondItem="VIu-vw-ymr" secondAttribute="height" multiplier="0.3" id="Cef-bu-7eA"/>
                                     <constraint firstItem="I64-im-gaH" firstAttribute="height" secondItem="VIu-vw-ymr" secondAttribute="height" multiplier="0.15" id="Dc6-dq-S02"/>
+                                    <constraint firstItem="peu-Fo-bzo" firstAttribute="centerY" secondItem="VIu-vw-ymr" secondAttribute="centerY" multiplier="1.8" id="EV9-zE-e3J"/>
+                                    <constraint firstItem="peu-Fo-bzo" firstAttribute="height" secondItem="VIu-vw-ymr" secondAttribute="height" multiplier="0.1" id="EkA-m7-fmx"/>
                                     <constraint firstItem="mgv-px-Aug" firstAttribute="height" secondItem="VIu-vw-ymr" secondAttribute="height" multiplier="0.1" id="LeX-La-dn5"/>
                                     <constraint firstItem="GGz-SB-m3j" firstAttribute="centerX" secondItem="VIu-vw-ymr" secondAttribute="centerX" id="O1x-2f-sDX"/>
                                     <constraint firstItem="I64-im-gaH" firstAttribute="centerX" secondItem="VIu-vw-ymr" secondAttribute="centerX" id="OGk-8R-Wvc"/>
                                     <constraint firstItem="T4n-eN-rZh" firstAttribute="height" secondItem="VIu-vw-ymr" secondAttribute="height" multiplier="0.07" id="QgD-eb-XwE"/>
                                     <constraint firstItem="h4o-NR-uuW" firstAttribute="centerY" secondItem="VIu-vw-ymr" secondAttribute="centerY" multiplier="0.35" id="Uv6-sy-yac"/>
+                                    <constraint firstItem="peu-Fo-bzo" firstAttribute="width" secondItem="VIu-vw-ymr" secondAttribute="width" multiplier="0.5" id="YIe-ke-HG4"/>
                                     <constraint firstItem="I64-im-gaH" firstAttribute="centerY" secondItem="VIu-vw-ymr" secondAttribute="centerY" multiplier="1.45" id="Yxw-HP-zha"/>
                                     <constraint firstItem="YWG-WJ-uus" firstAttribute="centerX" secondItem="VIu-vw-ymr" secondAttribute="centerX" id="a4O-ew-alK"/>
                                     <constraint firstItem="mgv-px-Aug" firstAttribute="centerX" secondItem="VIu-vw-ymr" secondAttribute="centerX" id="j1L-PJ-zOI"/>
@@ -199,6 +212,7 @@
                                     <constraint firstItem="h4o-NR-uuW" firstAttribute="centerX" secondItem="VIu-vw-ymr" secondAttribute="centerX" id="rCR-J9-I65"/>
                                     <constraint firstItem="mgv-px-Aug" firstAttribute="width" secondItem="VIu-vw-ymr" secondAttribute="width" multiplier="0.15" id="rDS-mo-AqT"/>
                                     <constraint firstItem="GGz-SB-m3j" firstAttribute="height" secondItem="VIu-vw-ymr" secondAttribute="height" multiplier="0.07" id="sHG-g2-mNM"/>
+                                    <constraint firstItem="peu-Fo-bzo" firstAttribute="centerX" secondItem="VIu-vw-ymr" secondAttribute="centerX" id="tKO-fs-nLs"/>
                                     <constraint firstItem="YWG-WJ-uus" firstAttribute="width" secondItem="VIu-vw-ymr" secondAttribute="width" multiplier="0.8" id="uez-Um-MIp"/>
                                     <constraint firstItem="I64-im-gaH" firstAttribute="width" secondItem="VIu-vw-ymr" secondAttribute="width" multiplier="0.8" id="zu8-w0-TtV"/>
                                 </constraints>
@@ -214,10 +228,12 @@
                         <viewLayoutGuide key="safeArea" id="FTh-XS-biv"/>
                     </view>
                     <connections>
+                        <outlet property="addToCartBtn" destination="peu-Fo-bzo" id="hgO-d9-Ikf"/>
                         <outlet property="itemDescription" destination="I64-im-gaH" id="4bg-jx-Zrp"/>
                         <outlet property="itemImage" destination="h4o-NR-uuW" id="uFp-7P-Icj"/>
                         <outlet property="itemPrice" destination="T4n-eN-rZh" id="WJc-ig-CK7"/>
                         <outlet property="itemTitle" destination="YWG-WJ-uus" id="wN9-3L-NvX"/>
+                        <outlet property="popUpClose" destination="mgv-px-Aug" id="U6m-sv-atS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BZX-qg-QRc" userLabel="First Responder" sceneMemberID="firstResponder"/>

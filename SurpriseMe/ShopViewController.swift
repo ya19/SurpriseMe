@@ -89,7 +89,12 @@ class ShopViewController: UICollectionViewController{
     
         return cell
     }
-    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let itemVC = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "itemPopUp") as! ItemPopUpViewController
+        itemVC.item = shop!.products["Products"]![indexPath.row]
+        itemVC.addToCart = true
+        PopUp.show(child: itemVC, parent: self)
+    }
 
     // MARK: UICollectionViewDelegate
 
