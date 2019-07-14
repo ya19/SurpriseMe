@@ -55,10 +55,9 @@ class CategoriesViewController: UICollectionViewController {
         // Configure the cell
 //        cell.categoryLabel.text = categories[indexPath.item]
         cell.shopsData = shops[indexPath.section]
-        cell.storyboard = self.storyboard
-        cell.navigation = self.navigationController
+        //set the delegate
+        cell.delegate = self
         
-    
         return cell
     }
     
@@ -114,3 +113,12 @@ class CategoriesViewController: UICollectionViewController {
 
 
 let categories = ["Sports","Electricity", "Clothes"]
+extension CategoriesViewController: TappedDelegate{
+    func doIt(shop:Shop) {
+        guard let controller = self.storyboard?.instantiateViewController(withIdentifier: "shopController") as? ShopViewController else {return}
+        
+        controller.shop = shop
+        self.navigationController?.pushViewController(controller, animated: true)
+//        self.navigation?.pushViewController(controller, animated: true)
+    }
+}
