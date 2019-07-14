@@ -31,44 +31,48 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rah-mZ-LpJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="155"/>
+                                            <rect key="frame" x="8" y="0.0" width="406" height="155"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dKc-Pt-JGw">
                                                 <size key="itemSize" width="122" height="120"/>
                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <size key="footerReferenceSize" width="3" height="3"/>
+                                                <inset key="sectionInset" minX="4" minY="6" maxX="5" maxY="5"/>
                                             </collectionViewFlowLayout>
                                             <cells>
                                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="shopCell" id="QZQ-T5-zbY" customClass="ShopCollectionViewCell" customModule="SurpriseMe" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="17.5" width="122" height="120"/>
+                                                    <rect key="frame" x="4" y="18" width="122" height="120"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                         <rect key="frame" x="0.0" y="0.0" width="122" height="120"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Facebook-logo" translatesAutoresizingMaskIntoConstraints="NO" id="OYw-Qm-Xqs">
-                                                                <rect key="frame" x="0.0" y="0.0" width="122" height="120"/>
+                                                                <rect key="frame" x="3" y="3" width="116" height="114"/>
                                                             </imageView>
                                                         </subviews>
                                                     </view>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="OYw-Qm-Xqs" firstAttribute="centerX" secondItem="QZQ-T5-zbY" secondAttribute="centerX" id="G1p-OW-7co"/>
-                                                        <constraint firstItem="OYw-Qm-Xqs" firstAttribute="height" secondItem="QZQ-T5-zbY" secondAttribute="height" id="LWw-rR-Ueo"/>
+                                                        <constraint firstItem="OYw-Qm-Xqs" firstAttribute="height" secondItem="QZQ-T5-zbY" secondAttribute="height" multiplier="0.95" id="LWw-rR-Ueo"/>
                                                         <constraint firstItem="OYw-Qm-Xqs" firstAttribute="centerY" secondItem="QZQ-T5-zbY" secondAttribute="centerY" id="LbC-FW-Ysl"/>
-                                                        <constraint firstItem="OYw-Qm-Xqs" firstAttribute="width" secondItem="QZQ-T5-zbY" secondAttribute="width" id="pVX-ZT-UCw"/>
+                                                        <constraint firstItem="OYw-Qm-Xqs" firstAttribute="width" secondItem="QZQ-T5-zbY" secondAttribute="width" multiplier="0.95" id="pVX-ZT-UCw"/>
                                                     </constraints>
                                                     <connections>
                                                         <outlet property="shopLogo" destination="OYw-Qm-Xqs" id="81L-6m-7PY"/>
                                                     </connections>
                                                 </collectionViewCell>
                                             </cells>
+                                            <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ysG-v7-WbI">
+                                                <rect key="frame" x="131" y="0.0" width="3" height="155"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </collectionReusableView>
                                         </collectionView>
                                     </subviews>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="rah-mZ-LpJ" firstAttribute="leading" secondItem="gf7-vm-f30" secondAttribute="leading" id="O5E-ez-Bxh"/>
+                                    <constraint firstItem="rah-mZ-LpJ" firstAttribute="leading" secondItem="gf7-vm-f30" secondAttribute="leading" constant="8" id="O5E-ez-Bxh"/>
                                     <constraint firstAttribute="bottom" secondItem="rah-mZ-LpJ" secondAttribute="bottom" id="Wrd-8m-XzA"/>
                                     <constraint firstAttribute="trailing" secondItem="rah-mZ-LpJ" secondAttribute="trailing" id="puk-TR-8Ff"/>
                                     <constraint firstItem="rah-mZ-LpJ" firstAttribute="top" secondItem="gf7-vm-f30" secondAttribute="top" id="tCf-zY-6zR"/>
@@ -119,43 +123,56 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="b3S-lP-TgE">
-                            <size key="itemSize" width="122" height="141"/>
+                            <size key="itemSize" width="199" height="197"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="productCell" id="Osb-GD-pbg" customClass="ProductCollectionViewCell" customModule="SurpriseMe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="122" height="141"/>
+                                <rect key="frame" x="0.0" y="0.0" width="199" height="197"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                    <rect key="frame" x="0.0" y="0.0" width="122" height="141"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="199" height="197"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="nike-shoes" translatesAutoresizingMaskIntoConstraints="NO" id="Hxd-tD-88S">
-                                            <rect key="frame" x="10" y="16" width="102" height="95"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Facebook-logo" translatesAutoresizingMaskIntoConstraints="NO" id="kez-Kk-DdM">
+                                            <rect key="frame" x="40.5" y="4" width="118" height="118"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="kez-Kk-DdM" secondAttribute="height" multiplier="1:1" id="7ak-3S-T6a"/>
+                                            </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x8g-7g-ocC">
-                                            <rect key="frame" x="0.0" y="120" width="122" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="productName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JWE-Gd-FZw">
+                                            <rect key="frame" x="16" y="126" width="167" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
-                                            <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="productPrice" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vK2-Hl-1Xa">
+                                            <rect key="frame" x="16" y="151.5" width="167" height="21.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                            <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                     </subviews>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="Hxd-tD-88S" firstAttribute="leading" secondItem="Osb-GD-pbg" secondAttribute="leadingMargin" constant="2" id="5dQ-Zl-aVH"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="Hxd-tD-88S" secondAttribute="trailing" constant="2" id="8aN-Uq-YCN"/>
-                                    <constraint firstItem="Hxd-tD-88S" firstAttribute="top" secondItem="Osb-GD-pbg" secondAttribute="topMargin" constant="8" id="968-uk-Gjs"/>
-                                    <constraint firstItem="x8g-7g-ocC" firstAttribute="leading" secondItem="Osb-GD-pbg" secondAttribute="leading" id="Ftn-9f-peg"/>
-                                    <constraint firstAttribute="trailing" secondItem="x8g-7g-ocC" secondAttribute="trailing" id="fQU-TZ-re9"/>
-                                    <constraint firstAttribute="bottom" secondItem="x8g-7g-ocC" secondAttribute="bottom" id="gzm-aF-8Qp"/>
-                                    <constraint firstItem="x8g-7g-ocC" firstAttribute="top" secondItem="Hxd-tD-88S" secondAttribute="bottom" constant="9" id="ymH-ge-Hfq"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="vK2-Hl-1Xa" secondAttribute="trailing" constant="8" id="LVH-eb-WUk"/>
+                                    <constraint firstItem="kez-Kk-DdM" firstAttribute="top" secondItem="Osb-GD-pbg" secondAttribute="top" constant="4" id="Lqo-V6-W2L"/>
+                                    <constraint firstItem="kez-Kk-DdM" firstAttribute="height" secondItem="Osb-GD-pbg" secondAttribute="height" multiplier="0.6" id="SKS-sN-JjK"/>
+                                    <constraint firstItem="vK2-Hl-1Xa" firstAttribute="top" secondItem="JWE-Gd-FZw" secondAttribute="bottom" constant="4" id="UoL-27-jp9"/>
+                                    <constraint firstItem="kez-Kk-DdM" firstAttribute="centerX" secondItem="Osb-GD-pbg" secondAttribute="centerX" id="XFl-9N-3mW"/>
+                                    <constraint firstItem="JWE-Gd-FZw" firstAttribute="leading" secondItem="Osb-GD-pbg" secondAttribute="leadingMargin" constant="8" id="eOJ-CU-vM5"/>
+                                    <constraint firstItem="JWE-Gd-FZw" firstAttribute="top" secondItem="kez-Kk-DdM" secondAttribute="bottom" constant="4" id="fE6-U8-9pX"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="JWE-Gd-FZw" secondAttribute="trailing" constant="8" id="mCy-Zq-fq1"/>
+                                    <constraint firstItem="vK2-Hl-1Xa" firstAttribute="leading" secondItem="Osb-GD-pbg" secondAttribute="leadingMargin" constant="8" id="rFV-AZ-9eE"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="productLogo" destination="Hxd-tD-88S" id="mx9-cu-Wde"/>
-                                    <outlet property="productPrice" destination="x8g-7g-ocC" id="to4-PG-KfV"/>
+                                    <outlet property="productLogo" destination="kez-Kk-DdM" id="p1A-gB-dDC"/>
+                                    <outlet property="productName" destination="JWE-Gd-FZw" id="Du2-PE-7Hv"/>
+                                    <outlet property="productPriceText" destination="vK2-Hl-1Xa" id="OzB-HU-Vcg"/>
                                     <segue destination="8cp-Vy-yr1" kind="show" id="SXl-RS-QcT"/>
                                 </connections>
                             </collectionViewCell>
@@ -201,6 +218,5 @@
     </scenes>
     <resources>
         <image name="Facebook-logo" width="200" height="198"/>
-        <image name="nike-shoes" width="608" height="387"/>
     </resources>
 </document>

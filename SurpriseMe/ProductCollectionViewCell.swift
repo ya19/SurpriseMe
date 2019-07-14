@@ -11,7 +11,20 @@ import UIKit
 class ProductCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var productLogo: UIImageView!
-    @IBOutlet weak var productPrice: UILabel!
     
+    @IBOutlet weak var productName: UILabel!
     
+    @IBOutlet weak var productPriceText: UILabel!
+    
+//    func popoulate(productName: String , productImage: UIImage , productPrice: Double){
+//        productName.text = productName
+//        productLogo.image = productImage
+//        productPriceText.text = "\(productPrice) NIS"
+//    }
+    
+    func populate(product: Product){
+        productName.text = product.name
+        productLogo.image = product.image
+        productPriceText.text = "\(product.price) NIS"
+    }
 }

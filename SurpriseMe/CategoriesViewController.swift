@@ -20,6 +20,7 @@ class CategoriesViewController: UICollectionViewController {
         
         self.navigationController?.navigationBar.isTranslucent = true
         
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -54,7 +55,9 @@ class CategoriesViewController: UICollectionViewController {
         
         // Configure the cell
 //        cell.categoryLabel.text = categories[indexPath.item]
-        cell.shopsData = shops[indexPath.section]
+//        cell.shopsData = shops[indexPath.section]
+        
+        cell.populate(shopsArray: shops[indexPath.section])
         //set the delegate
         cell.delegate = self
         

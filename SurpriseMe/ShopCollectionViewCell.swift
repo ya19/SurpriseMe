@@ -11,4 +11,8 @@ import UIKit
 class ShopCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var shopLogo: UIImageView!
     
+    func populate(image: UIImage?){
+        shopLogo.image = image
+    }
+    
 }

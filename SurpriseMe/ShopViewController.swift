@@ -80,8 +80,12 @@ class ShopViewController: UICollectionViewController{
         
 //        let array = Array(testShop.products["Products"]!)
         let array = Array(shop!.products["Products"]!)
-        cell.productLogo.image = array[indexPath.item].image
-        cell.productPrice.text = "\(array[indexPath.item].price) NIS"
+        
+//        cell.popoulate(productImage: array[indexPath.item].image ?? #imageLiteral(resourceName: "placeholder"), productPrice: array[indexPath.item].price)
+        
+        cell.populate(product: array[indexPath.item])
+//        cell.productLogo.image = array[indexPath.item].image
+//        cell.productPrice.text = "\(array[indexPath.item].price) NIS"
     
         return cell
     }
