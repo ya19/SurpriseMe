@@ -12,11 +12,8 @@ class ViewController: BaseViewController {
     
 
     @IBAction func register(_ sender: UIButton) {
-        let popUpOverVC = UIStoryboard(name: "Register", bundle: nil).instantiateViewController(withIdentifier:"registerPopUp") as! RegisterViewController
-        self.addChild(popUpOverVC)
-        popUpOverVC.view.frame = self.view.frame
-        self.view.addSubview(popUpOverVC.view)
-        popUpOverVC.didMove(toParent: self)
+
+        PopUp.show(storyBoardName: "Register", vcIdentifer: "registerPopUp", parent: self)
     
     }
     

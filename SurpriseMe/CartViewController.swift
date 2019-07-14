@@ -15,7 +15,7 @@ class CartViewController: UIViewController {
     @IBOutlet weak var total: UILabel!
     @IBOutlet weak var cartTableView: UITableView!
     @IBAction func buy(_ sender: SAButton) {
-        Toast.show(message: "go to paypel", controller: self)
+        Toast.show(message: "go to paypal", controller: self)
         
     }
     override func viewDidLoad() {
@@ -75,7 +75,12 @@ extension CartViewController:UITableViewDelegate{
         
         return [removeAction]
     }
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let itemVC = self.storyboard?.instantiateViewController(withIdentifier: "itemPopUp") as! ItemPopUpViewController
+        itemVC.item = products[indexPath.row]
+        
+        PopUp.show(child: itemVC, parent: self)
+    }
 }
 extension CartViewController:UITableViewDataSource{
 
