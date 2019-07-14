@@ -18,6 +18,11 @@ class ItemPopUpViewController: UIViewController {
 
     }
     
+    @IBAction func xBtnClose(_ sender: UIButton) {
+        addToCart = false
+        self.view.removeFromSuperview()
+        
+    }
     @IBAction func addToCart(_ sender: Any) {
         Toast.show(message: "\(item?.name ?? "") added \n to cart", controller: self.parent!)
         addToCart = false
@@ -29,6 +34,7 @@ class ItemPopUpViewController: UIViewController {
     @IBOutlet weak var itemDescription: UITextView!
     @IBOutlet weak var addToCartBtn: SAButton!
     @IBOutlet weak var popUpClose: SAButton!
+    @IBOutlet weak var xButton: SAButton!
     
     @IBOutlet weak var itemPrice: UILabel!
     @IBOutlet weak var itemTitle: UILabel!
@@ -48,6 +54,7 @@ class ItemPopUpViewController: UIViewController {
         itemDescription.text = item?.desc
         if addToCart{
             addToCartBtn.isHidden = false
+            xButton.isHidden = false
         }else{
             popUpClose.isHidden = false
         }

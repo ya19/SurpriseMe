@@ -138,6 +138,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VIu-vw-ymr" customClass="SAView" customModule="SurpriseMe" customModuleProvider="target">
                                 <rect key="frame" x="41.5" y="224" width="331" height="448"/>
                                 <subviews>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nbK-3y-mTh" customClass="SAButton" customModule="SurpriseMe" customModuleProvider="target">
+                                        <rect key="frame" x="289.5" y="6.5" width="33.5" height="31.5"/>
+                                        <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="xButton"/>
+                                        <connections>
+                                            <action selector="xBtnClose:" destination="8hP-a6-hNT" eventType="touchUpInside" id="vOC-Ri-IAx"/>
+                                        </connections>
+                                    </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h4o-NR-uuW">
                                         <rect key="frame" x="66" y="11" width="199" height="134.5"/>
                                     </imageView>
@@ -189,6 +197,7 @@
                                 <constraints>
                                     <constraint firstItem="T4n-eN-rZh" firstAttribute="centerY" secondItem="VIu-vw-ymr" secondAttribute="centerY" id="0qJ-bA-AHh"/>
                                     <constraint firstItem="T4n-eN-rZh" firstAttribute="width" secondItem="VIu-vw-ymr" secondAttribute="width" multiplier="0.8" id="2Mk-oR-5nK"/>
+                                    <constraint firstItem="nbK-3y-mTh" firstAttribute="height" secondItem="VIu-vw-ymr" secondAttribute="height" multiplier="0.07" id="2iQ-Fi-aF1"/>
                                     <constraint firstItem="GGz-SB-m3j" firstAttribute="centerY" secondItem="VIu-vw-ymr" secondAttribute="centerY" multiplier="1.2" id="2ii-L9-RO1"/>
                                     <constraint firstItem="YWG-WJ-uus" firstAttribute="centerY" secondItem="VIu-vw-ymr" secondAttribute="centerY" multiplier="0.8" id="5dr-T1-eGV"/>
                                     <constraint firstItem="YWG-WJ-uus" firstAttribute="height" secondItem="VIu-vw-ymr" secondAttribute="height" multiplier="0.07" id="6OF-f9-ePF"/>
@@ -203,12 +212,15 @@
                                     <constraint firstItem="GGz-SB-m3j" firstAttribute="centerX" secondItem="VIu-vw-ymr" secondAttribute="centerX" id="O1x-2f-sDX"/>
                                     <constraint firstItem="I64-im-gaH" firstAttribute="centerX" secondItem="VIu-vw-ymr" secondAttribute="centerX" id="OGk-8R-Wvc"/>
                                     <constraint firstItem="T4n-eN-rZh" firstAttribute="height" secondItem="VIu-vw-ymr" secondAttribute="height" multiplier="0.07" id="QgD-eb-XwE"/>
+                                    <constraint firstItem="nbK-3y-mTh" firstAttribute="centerX" secondItem="VIu-vw-ymr" secondAttribute="centerX" multiplier="1.85" id="Td8-Mc-TWb"/>
                                     <constraint firstItem="h4o-NR-uuW" firstAttribute="centerY" secondItem="VIu-vw-ymr" secondAttribute="centerY" multiplier="0.35" id="Uv6-sy-yac"/>
+                                    <constraint firstItem="nbK-3y-mTh" firstAttribute="centerY" secondItem="VIu-vw-ymr" secondAttribute="centerY" multiplier="0.1" id="VHQ-Jk-3nH"/>
                                     <constraint firstItem="peu-Fo-bzo" firstAttribute="width" secondItem="VIu-vw-ymr" secondAttribute="width" multiplier="0.5" id="YIe-ke-HG4"/>
                                     <constraint firstItem="I64-im-gaH" firstAttribute="centerY" secondItem="VIu-vw-ymr" secondAttribute="centerY" multiplier="1.45" id="Yxw-HP-zha"/>
                                     <constraint firstItem="YWG-WJ-uus" firstAttribute="centerX" secondItem="VIu-vw-ymr" secondAttribute="centerX" id="a4O-ew-alK"/>
                                     <constraint firstItem="mgv-px-Aug" firstAttribute="centerX" secondItem="VIu-vw-ymr" secondAttribute="centerX" id="j1L-PJ-zOI"/>
                                     <constraint firstItem="h4o-NR-uuW" firstAttribute="width" secondItem="VIu-vw-ymr" secondAttribute="width" multiplier="0.6" id="lRV-BE-Vse"/>
+                                    <constraint firstItem="nbK-3y-mTh" firstAttribute="width" secondItem="VIu-vw-ymr" secondAttribute="width" multiplier="0.1" id="qTP-sW-Uru"/>
                                     <constraint firstItem="h4o-NR-uuW" firstAttribute="centerX" secondItem="VIu-vw-ymr" secondAttribute="centerX" id="rCR-J9-I65"/>
                                     <constraint firstItem="mgv-px-Aug" firstAttribute="width" secondItem="VIu-vw-ymr" secondAttribute="width" multiplier="0.15" id="rDS-mo-AqT"/>
                                     <constraint firstItem="GGz-SB-m3j" firstAttribute="height" secondItem="VIu-vw-ymr" secondAttribute="height" multiplier="0.07" id="sHG-g2-mNM"/>
@@ -234,6 +246,7 @@
                         <outlet property="itemPrice" destination="T4n-eN-rZh" id="WJc-ig-CK7"/>
                         <outlet property="itemTitle" destination="YWG-WJ-uus" id="wN9-3L-NvX"/>
                         <outlet property="popUpClose" destination="mgv-px-Aug" id="U6m-sv-atS"/>
+                        <outlet property="xButton" destination="nbK-3y-mTh" id="d7q-Tu-B4E"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BZX-qg-QRc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -244,5 +257,6 @@
     <resources>
         <image name="icons8-like_it" width="25" height="25"/>
         <image name="nike-shoes" width="608" height="387"/>
+        <image name="xButton" width="75" height="75"/>
     </resources>
 </document>
