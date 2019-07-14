@@ -11,29 +11,32 @@ import UIKit
 private let reuseIdentifier = "productCell"
 
 
-private let testShop = Shop.init(id: "nikeShop", category: .SPORT, name: "Nike", products:
-    ["Products" :
-        [
-            Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes", price: 159.00),
-            Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes",price: 159.00 ),
-            Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes", price: 159.00),
-            Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes", price: 159.00)
-        ]
-    ]
-    
-    
-    
-    , adress: "Kenyon Ayalon Ramat Gan", desc: "Very expensive sports shop you can buy a variety of products", logo: #imageLiteral(resourceName: "nike-logo"), backgroudImage: #imageLiteral(resourceName: "nike-background"))
+//private let testShop = Shop.init(id: "nikeShop", category: .SPORT, name: "Nike", products:
+//    ["Products" :
+//        [
+//            Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes", price: 159.00),
+//            Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes",price: 159.00 ),
+//            Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes", price: 159.00),
+//            Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes", price: 159.00)
+//        ]
+//    ]
+//    
+//    
+//    
+//    , adress: "Kenyon Ayalon Ramat Gan", desc: "Very expensive sports shop you can buy a variety of products", logo: #imageLiteral(resourceName: "nike-logo"), backgroudImage: #imageLiteral(resourceName: "nike-background"))
 
 
 
-class ShopViewController: UICollectionViewController {
+class ShopViewController: UICollectionViewController{
 
     var shop:Shop?
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.collectionView.backgroundView = UIImageView(image: UIImage.init(named: "nike-background"))
+        self.collectionView.backgroundView?.alpha = 0.7
+        self.navigationController?.navigationBar.isTranslucent = true
+
         self.title = shop?.name
         print(shop)
 
@@ -44,7 +47,7 @@ class ShopViewController: UICollectionViewController {
 
         // Do any additional setup after loading the view.
     }
-
+    
     /*
     // MARK: - Navigation
 
@@ -64,7 +67,7 @@ class ShopViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return testShop.products["Products"]!.count
+        return shop?.products["Products"]?.count ?? 0
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -72,12 +75,17 @@ class ShopViewController: UICollectionViewController {
     
         // Configure the cell
         
-        let array = Array(testShop.products["Products"]!)
+//        cell.frame = CGSize(width: self.collectionView.frame.width / 3.0, height: <#T##Double#>)
+        //if the shop doesn't have products it shoes one empty product.
+        
+//        let array = Array(testShop.products["Products"]!)
+        let array = Array(shop!.products["Products"]!)
         cell.productLogo.image = array[indexPath.item].image
         cell.productPrice.text = "\(array[indexPath.item].price) NIS"
     
         return cell
     }
+    
 
     // MARK: UICollectionViewDelegate
 
@@ -109,5 +117,15 @@ class ShopViewController: UICollectionViewController {
     
     }
     */
+    
+    
 
 }
+
+extension ShopViewController : UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width * 0.3, height: collectionView.frame.height / 5.0)
+    }
+}
+
+

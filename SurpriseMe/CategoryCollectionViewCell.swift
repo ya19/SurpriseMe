@@ -10,6 +10,7 @@ import UIKit
 
 class CategoryCollectionViewCell: UICollectionViewCell {
     
+    
     @IBOutlet weak var shopsCollectionView: UICollectionView!
     
     var shopsData:[Shop] = []
@@ -58,11 +59,32 @@ extension CategoryCollectionViewCell : UICollectionViewDataSource {
 }
 
 
+extension CategoryCollectionViewCell : UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let windowFrame = UIApplication.shared.keyWindow?.frame
+        let screen = UIScreen.main.bounds
+        print(windowFrame)
+        print(screen)
+        return CGSize(width: collectionView.frame.width * 0.3, height: collectionView.frame.height)
+//        return CGSize(width: UIScreen.main.bounds.width * 0.2, height: collectionView.frame.height)
+
+    }
+    
+}
+
 
 
 var shops = [
         [
-            Shop(id: "nikeShop", category: .SPORT, name: "Nike", products: [:], adress: "Shoam 3 St. Ramat Gan", desc: "Expensive sports shop with a lot of shoes and shirts", logo: #imageLiteral(resourceName: "nike-logo"), backgroudImage: #imageLiteral(resourceName: "nike-background")),
+            Shop(id: "nikeShop", category: .SPORT, name: "Nike", products: ["Products" :
+                [
+                    Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes", price: 159.00),
+                    Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes",price: 189.00 ),
+                    Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes", price: 259.00),
+                    Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes", price: 359.00)
+                ]
+                ], adress: "Shoam 3 St. Ramat Gan", desc: "Expensive sports shop with a lot of shoes and shirts", logo: #imageLiteral(resourceName: "nike-logo"), backgroudImage: #imageLiteral(resourceName: "nike-background")),
             
             Shop(id: "nikeShop", category: .SPORT, name: "Nike", products: [:], adress: "Shoam 3 St. Ramat Gan", desc: "Expensive sports shop with a lot of shoes and shirts", logo: #imageLiteral(resourceName: "Facebook-logo"), backgroudImage: #imageLiteral(resourceName: "surprise")),
             
@@ -76,7 +98,14 @@ var shops = [
             
             ],
         [
-            Shop(id: "ivoryShop", category: .ELECRICTY, name: "Ivory", products: [:], adress: "Kenyon Ayalon, Ramat Gan", desc: "Computers shop with a lot of products", logo: #imageLiteral(resourceName: "ivory-logo"), backgroudImage: #imageLiteral(resourceName: "facebook")),
+            Shop(id: "ivoryShop", category: .ELECRICTY, name: "Ivory", products:     ["Products" :
+                [
+                    Product.init(id: "#1", name: "Macbook Pro", desc: "the newest version of the macbook pro, with amazing features", image: #imageLiteral(resourceName: "macbook"), category: "Laptops", price: 11_159.00),
+                    Product.init(id: "#2", name: "Lenovo Computer", desc: "Lenovo Computer", image: #imageLiteral(resourceName: "lenovo-computer"), category: "Computers",price: 1259.00 ),
+                    Product.init(id: "#3", name: "Dell Computer", desc: "Dell computer", image: #imageLiteral(resourceName: "dell-computer"), category: "Computers", price: 1459.00),
+                    Product.init(id: "#4", name: "Nike Green Shoes", desc: "Running shoes with good quality", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes", price: 159.00)
+                ]
+                ], adress: "Kenyon Ayalon, Ramat Gan", desc: "Computers shop with a lot of products", logo: #imageLiteral(resourceName: "ivory-logo"), backgroudImage: #imageLiteral(resourceName: "facebook")),
             Shop(id: "ivoryShop", category: .ELECRICTY, name: "Ivory", products: [:], adress: "Kenyon Ayalon, Ramat Gan", desc: "Computers shop with a lot of products", logo: #imageLiteral(resourceName: "logo"), backgroudImage: #imageLiteral(resourceName: "facebook"))
             
             

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KHl-jQ-Sh7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KHl-jQ-Sh7">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -47,17 +47,17 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="122" height="120"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Facebook-logo" translatesAutoresizingMaskIntoConstraints="NO" id="OYw-Qm-Xqs">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Facebook-logo" translatesAutoresizingMaskIntoConstraints="NO" id="OYw-Qm-Xqs">
                                                                 <rect key="frame" x="0.0" y="0.0" width="122" height="120"/>
                                                             </imageView>
                                                         </subviews>
                                                     </view>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="OYw-Qm-Xqs" secondAttribute="bottom" id="MOk-iC-c3o"/>
-                                                        <constraint firstItem="OYw-Qm-Xqs" firstAttribute="top" secondItem="QZQ-T5-zbY" secondAttribute="top" id="kZi-hx-BfB"/>
-                                                        <constraint firstItem="OYw-Qm-Xqs" firstAttribute="leading" secondItem="QZQ-T5-zbY" secondAttribute="leading" id="qiW-Mp-pVO"/>
-                                                        <constraint firstAttribute="trailing" secondItem="OYw-Qm-Xqs" secondAttribute="trailing" id="ydW-wO-4q2"/>
+                                                        <constraint firstItem="OYw-Qm-Xqs" firstAttribute="centerX" secondItem="QZQ-T5-zbY" secondAttribute="centerX" id="G1p-OW-7co"/>
+                                                        <constraint firstItem="OYw-Qm-Xqs" firstAttribute="height" secondItem="QZQ-T5-zbY" secondAttribute="height" id="LWw-rR-Ueo"/>
+                                                        <constraint firstItem="OYw-Qm-Xqs" firstAttribute="centerY" secondItem="QZQ-T5-zbY" secondAttribute="centerY" id="LbC-FW-Ysl"/>
+                                                        <constraint firstItem="OYw-Qm-Xqs" firstAttribute="width" secondItem="QZQ-T5-zbY" secondAttribute="width" id="pVX-ZT-UCw"/>
                                                     </constraints>
                                                     <connections>
                                                         <outlet property="shopLogo" destination="OYw-Qm-Xqs" id="81L-6m-7PY"/>
