@@ -108,7 +108,13 @@
                             <outlet property="delegate" destination="jGR-ML-mwJ" id="D66-Cu-suD"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Shops" id="e07-mP-BtI"/>
+                    <navigationItem key="navigationItem" title="Shops" id="e07-mP-BtI">
+                        <barButtonItem key="rightBarButtonItem" image="icons8-shopping_cart" id="KGu-Kn-oDn">
+                            <connections>
+                                <segue destination="AIb-Sz-7Io" kind="show" id="6Fg-VC-lGC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z4q-kB-wKi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -173,7 +179,6 @@
                                     <outlet property="productLogo" destination="PAw-LC-A0Y" id="VVu-fo-c0l"/>
                                     <outlet property="productName" destination="49z-Ry-VA3" id="2zd-R6-uX9"/>
                                     <outlet property="productPriceText" destination="O23-OQ-uAD" id="ehz-SY-lC8"/>
-                                    <segue destination="AIb-Sz-7Io" kind="show" id="kns-va-xZ6"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -218,5 +223,6 @@
     </scenes>
     <resources>
         <image name="Facebook-logo" width="200" height="198"/>
+        <image name="icons8-shopping_cart" width="48" height="48"/>
     </resources>
 </document>
