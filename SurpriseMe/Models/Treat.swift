@@ -10,6 +10,10 @@ import UIKit
 
 struct Treat{
     
+    let id:String
+    
+    let date:Date
+    
     let product:Product
     
     let giver:User

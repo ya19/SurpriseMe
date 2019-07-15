@@ -14,6 +14,7 @@ class CartManager{
     var products:[Product]
     
     private init(){
+        //TODO init previous cart from database
         products = []
     }
 }

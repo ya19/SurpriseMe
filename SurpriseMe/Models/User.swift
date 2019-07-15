@@ -22,6 +22,10 @@ struct User{
     
     let friends:[User]
     
+    let myTreats:[Treat]
+    
+    let myOrders:[Treat]
+    
     let treatsStatus:TreatStatus
     
 }
