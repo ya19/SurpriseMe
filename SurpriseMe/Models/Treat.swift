@@ -12,11 +12,11 @@ struct Treat{
     
     let id:String
     
-    let date:Date
+    let date:Date?
     
     let product:Product
     
-    let giver:User
+    let giver:User?
     
-    let getter:User
+    let getter:User?
 }

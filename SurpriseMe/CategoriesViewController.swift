@@ -116,6 +116,7 @@ class CategoriesViewController: UICollectionViewController {
 
 
 let categories = ["Sports","Electricity", "Clothes"]
+
 extension CategoriesViewController: TappedDelegate{
     func doIt(shop:Shop) {
         guard let controller = self.storyboard?.instantiateViewController(withIdentifier: "shopController") as? ShopViewController else {return}

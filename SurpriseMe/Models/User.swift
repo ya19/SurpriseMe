@@ -24,7 +24,7 @@ struct User{
     
     let myTreats:[Treat]
     
-    let myOrders:[Treat]
+    let myOrders:[Order]
     
     let treatsStatus:TreatStatus
     
