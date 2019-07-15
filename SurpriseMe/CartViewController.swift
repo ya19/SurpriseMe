@@ -11,7 +11,13 @@ import UIKit
 class CartViewController: UIViewController {
 //    var products:[Product] = [Product(id: "1", name: "Shoes-x5", desc: "Sport shoes , flexible and effective for running", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes", price: 100.0),Product(id: "1", name: "Shoes-x5", desc: "Sport shoes , flexible and effective for running", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes", price: 100.0)]
     var products:[Product] = []
-    var sum:Double = 0
+    var sum:Double{
+        var count = 0.0
+        for item in products{
+            count += item.price
+        }
+        return count
+    }
     @IBOutlet weak var total: UILabel!
     @IBOutlet weak var cartTableView: UITableView!
     @IBAction func buy(_ sender: SAButton) {
@@ -23,7 +29,7 @@ class CartViewController: UIViewController {
         cartTableView.delegate = self
         cartTableView.dataSource = self
         fakeProducts()
-        total.text = "Total: \(calculateSum())"
+        total.text = "Total: \(sum)"
         
         
         // Do any additional setup after loading the view.
@@ -38,13 +44,6 @@ class CartViewController: UIViewController {
         }
     }
     
-    func calculateSum() -> Double{
-        sum = 0
-        for item in products{
-            sum += item.price
-        }
-        return sum
-    }
     /*
     // MARK: - Navigation
 
@@ -59,7 +58,8 @@ class CartViewController: UIViewController {
 extension CartViewController:UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 145
+        return (UIApplication.shared.keyWindow?.frame.height)!/6.2
+        
     }
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
@@ -68,7 +68,7 @@ extension CartViewController:UITableViewDelegate{
         let removeAction = UITableViewRowAction(style: .destructive, title: "remove") { (action, indexPath) in
             self.products.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            self.total.text = "Total: \(self.calculateSum())"
+            self.total.text = "Total: \(self.sum)"
         }
         
         removeAction.backgroundColor = UIColor.red
