@@ -33,6 +33,7 @@
 		7BAF23D622D362E400E83A89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BAF23D522D362E400E83A89 /* Assets.xcassets */; };
 		7BAF23D922D362E400E83A89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BAF23D722D362E400E83A89 /* LaunchScreen.storyboard */; };
 		7BEC607A22D4D5DB0040D6CF /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BEC607922D4D5DB0040D6CF /* Register.storyboard */; };
+		AD0DDC2A22DC75F4007A4533 /* ShopsCollection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD0DDC2922DC75F4007A4533 /* ShopsCollection.storyboard */; };
 		AD68A49122D8E8D900E019BA /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD68A49022D8E8D900E019BA /* CartViewController.swift */; };
 		AD68A49322D8EAD700E019BA /* CartProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD68A49222D8EAD700E019BA /* CartProductTableViewCell.swift */; };
 		AD68A49722D8F2C900E019BA /* Cart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD68A49622D8F2C900E019BA /* Cart.storyboard */; };
@@ -69,6 +70,7 @@
 		7BAF23D822D362E400E83A89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7BAF23DA22D362E400E83A89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BEC607922D4D5DB0040D6CF /* Register.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
+		AD0DDC2922DC75F4007A4533 /* ShopsCollection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShopsCollection.storyboard; sourceTree = "<group>"; };
 		AD68A49022D8E8D900E019BA /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		AD68A49222D8EAD700E019BA /* CartProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartProductTableViewCell.swift; sourceTree = "<group>"; };
 		AD68A49622D8F2C900E019BA /* Cart.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Cart.storyboard; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			children = (
 				7BAF23CF22D362E200E83A89 /* Main.storyboard */,
 				AD68A49622D8F2C900E019BA /* Cart.storyboard */,
+				AD0DDC2922DC75F4007A4533 /* ShopsCollection.storyboard */,
 				7BEC607922D4D5DB0040D6CF /* Register.storyboard */,
 				7B1E1FE722D38E25007922E9 /* Custom Views */,
 				7BAF23CB22D362E200E83A89 /* AppDelegate.swift */,
@@ -217,6 +220,7 @@
 			files = (
 				7BAF23D922D362E400E83A89 /* LaunchScreen.storyboard in Resources */,
 				7BAF23D622D362E400E83A89 /* Assets.xcassets in Resources */,
+				AD0DDC2A22DC75F4007A4533 /* ShopsCollection.storyboard in Resources */,
 				7BAF23D122D362E200E83A89 /* Main.storyboard in Resources */,
 				AD68A49722D8F2C900E019BA /* Cart.storyboard in Resources */,
 				7BEC607A22D4D5DB0040D6CF /* Register.storyboard in Resources */,
