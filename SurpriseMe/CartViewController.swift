@@ -13,12 +13,12 @@ class CartViewController: UIViewController {
 //    var products:[Product] = CartManager.shared.products
     var sum:Double{
         var count = 0.0
-        for item in CartManager.shared.products{
-            count += item.price
+        for item in CartManager.shared.treats{
+            count += item.product.price
         }
         return count
     }
-    var users:[User]?
+    var users:[User] = []
     @IBOutlet weak var total: UILabel!
     @IBOutlet weak var cartTableView: UITableView!
     @IBAction func buy(_ sender: SAButton) {
@@ -30,6 +30,7 @@ class CartViewController: UIViewController {
         cartTableView.delegate = self
         cartTableView.dataSource = self
 //        fakeProducts()
+        print(CartManager.shared.treats)
         fakeData()
         total.text = "Total: \(sum)"
         
@@ -37,12 +38,12 @@ class CartViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     func fakeData(){
-        users?.append(User(id: "1", email: "email@gmail.com" ,firstName: "yarden" ,lastName: "swissa" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , treatsStatus: TreatStatus.EVERYONE))
-        users?.append(User(id: "1", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , treatsStatus: TreatStatus.EVERYONE))
-        users?.append(User(id: "1", email: "email@gmail.com" ,firstName: "shahaf" ,lastName: "tepler" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , treatsStatus: TreatStatus.EVERYONE))
-        users?.append(User(id: "1", email: "email@gmail.com" ,firstName: "yair" ,lastName: "frid" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , treatsStatus: TreatStatus.EVERYONE))
-        users?.append(User(id: "1", email: "email@gmail.com" ,firstName: "iam" ,lastName: "someone" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , treatsStatus: TreatStatus.EVERYONE))
-        users?.append(User(id: "1", email: "email@gmail.com" ,firstName: "daniel" ,lastName: "daniel" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , treatsStatus: TreatStatus.EVERYONE))
+        users.append(User(id: "1", email: "email@gmail.com" ,firstName: "yarden" ,lastName: "swissa" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , treatsStatus: TreatStatus.EVERYONE))
+        users.append(User(id: "1", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , treatsStatus: TreatStatus.EVERYONE))
+        users.append(User(id: "1", email: "email@gmail.com" ,firstName: "shahaf" ,lastName: "tepler" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , treatsStatus: TreatStatus.EVERYONE))
+        users.append(User(id: "1", email: "email@gmail.com" ,firstName: "yair" ,lastName: "frid" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , treatsStatus: TreatStatus.EVERYONE))
+        users.append(User(id: "1", email: "email@gmail.com" ,firstName: "iam" ,lastName: "someone" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , treatsStatus: TreatStatus.EVERYONE))
+        users.append(User(id: "1", email: "email@gmail.com" ,firstName: "daniel" ,lastName: "daniel" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , treatsStatus: TreatStatus.EVERYONE))
     }
 //    func fakeProducts(){
 //
@@ -76,7 +77,7 @@ extension CartViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let removeAction = UITableViewRowAction(style: .destructive, title: "remove") { (action, indexPath) in
 //            self.products.remove(at: indexPath.row)
-            CartManager.shared.products.remove(at: indexPath.row)
+            CartManager.shared.treats.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             self.total.text = "Total: \(self.sum)"
         }
@@ -87,7 +88,7 @@ extension CartViewController:UITableViewDelegate{
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let itemVC = self.storyboard?.instantiateViewController(withIdentifier: "itemPopUp") as! ItemPopUpViewController
-        itemVC.item = CartManager.shared.products[indexPath.row]
+        itemVC.item = CartManager.shared.treats[indexPath.row].product
         
         PopUp.show(child: itemVC, parent: self)
     }
@@ -98,16 +99,15 @@ extension CartViewController:UITableViewDataSource{
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return CartManager.shared.products.count
+        return CartManager.shared.treats.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cartCell", for: indexPath) as! CartProductTableViewCell
         
-        let product = CartManager.shared.products[indexPath.row]
-        cell.productImage.image = product.image
-        cell.productName.text = product.name
-        cell.productPrice.text = "Price: \(product.price)"
+        
+        cell.populate(treat: CartManager.shared.treats[indexPath.row])
+        cell.treat = CartManager.shared.treats[indexPath.row]
         cell.delegate = self
         return cell
     }
@@ -115,15 +115,20 @@ extension CartViewController:UITableViewDataSource{
     
 }
 extension CartViewController:AddUserDelegate{
-    func addUserTapped() {
+    func addUserTapped(cell:UITableViewCell) {
         let usersVC = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController
         
-        usersVC.users = users
-        PopUp.show(storyBoardName: "Cart", vcIdentifer: "usersPopUp", parent: self)
+        usersVC.users = self.users
+        if let treatCell = cell as? CartProductTableViewCell{
+            usersVC.delegate = treatCell
+        }
+//        usersVC.delegate =
+        
+        PopUp.show(child: usersVC, parent: self)
     }
     
     
 }
 protocol AddUserDelegate{
-    func addUserTapped()
+    func addUserTapped(cell:UITableViewCell)
 }

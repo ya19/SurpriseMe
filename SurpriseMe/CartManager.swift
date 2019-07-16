@@ -11,10 +11,10 @@ import UIKit
 class CartManager{
     static var shared = CartManager()
     
-    var products:[Product]
+    var treats:[Treat]
     
     private init(){
         //TODO init previous cart from database
-        products = []
+        treats = []
     }
 }

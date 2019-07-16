@@ -49,25 +49,34 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jb1-Dd-INa">
-                                                    <rect key="frame" x="217.5" y="99" width="124" height="14"/>
-                                                    <state key="normal" title="click here"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jb1-Dd-INa">
+                                                    <rect key="frame" x="345.5" y="99" width="33.5" height="14"/>
                                                     <connections>
                                                         <action selector="addUser:" destination="WLf-H3-9NW" eventType="touchUpInside" id="Wkt-N4-fkX"/>
                                                     </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="click to add  -&gt;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4c-J3-KXG">
+                                                    <rect key="frame" x="203" y="99" width="145" height="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="6jm-OP-iWz" firstAttribute="centerY" secondItem="ohw-jc-yDC" secondAttribute="centerY" id="0VL-Ti-n3W"/>
                                                 <constraint firstItem="Jb1-Dd-INa" firstAttribute="centerY" secondItem="ohw-jc-yDC" secondAttribute="centerY" multiplier="1.5" id="4cF-HK-JrK"/>
+                                                <constraint firstItem="w4c-J3-KXG" firstAttribute="centerX" secondItem="ohw-jc-yDC" secondAttribute="centerX" multiplier="1.33" id="7Dq-7u-pLB"/>
                                                 <constraint firstItem="tdZ-aE-3Jg" firstAttribute="centerY" secondItem="ohw-jc-yDC" secondAttribute="centerY" multiplier="0.45" id="7EN-OD-OCS"/>
-                                                <constraint firstItem="Jb1-Dd-INa" firstAttribute="width" secondItem="ohw-jc-yDC" secondAttribute="width" multiplier="0.3" id="8p5-S5-GEr"/>
+                                                <constraint firstItem="Jb1-Dd-INa" firstAttribute="width" secondItem="ohw-jc-yDC" secondAttribute="width" multiplier="0.08" id="8p5-S5-GEr"/>
                                                 <constraint firstItem="a8v-jG-8AG" firstAttribute="centerY" secondItem="ohw-jc-yDC" secondAttribute="centerY" multiplier="1.5" id="FPa-Q8-Cvx"/>
                                                 <constraint firstItem="tdZ-aE-3Jg" firstAttribute="height" secondItem="ohw-jc-yDC" secondAttribute="height" multiplier="0.1" id="JO4-bS-fdJ"/>
                                                 <constraint firstItem="WpS-4Y-2et" firstAttribute="height" secondItem="ohw-jc-yDC" secondAttribute="height" multiplier="0.1" id="K7U-lO-JHE"/>
+                                                <constraint firstItem="w4c-J3-KXG" firstAttribute="height" secondItem="ohw-jc-yDC" secondAttribute="height" multiplier="0.1" id="OEf-n9-tOz"/>
                                                 <constraint firstItem="6jm-OP-iWz" firstAttribute="centerX" secondItem="ohw-jc-yDC" secondAttribute="centerX" multiplier="0.35" id="PCh-BU-R10"/>
-                                                <constraint firstItem="Jb1-Dd-INa" firstAttribute="centerX" secondItem="ohw-jc-yDC" secondAttribute="centerX" multiplier="1.35" id="Swx-Jk-e6G"/>
+                                                <constraint firstItem="Jb1-Dd-INa" firstAttribute="centerX" secondItem="ohw-jc-yDC" secondAttribute="centerX" multiplier="1.75" id="Swx-Jk-e6G"/>
+                                                <constraint firstItem="w4c-J3-KXG" firstAttribute="centerY" secondItem="ohw-jc-yDC" secondAttribute="centerY" multiplier="1.5" id="TEL-pp-MQe"/>
                                                 <constraint firstItem="WpS-4Y-2et" firstAttribute="centerY" secondItem="ohw-jc-yDC" secondAttribute="centerY" id="TH7-gd-NU0"/>
+                                                <constraint firstItem="w4c-J3-KXG" firstAttribute="width" secondItem="ohw-jc-yDC" secondAttribute="width" multiplier="0.35" id="W5Z-Wu-VaX"/>
                                                 <constraint firstItem="WpS-4Y-2et" firstAttribute="centerX" secondItem="ohw-jc-yDC" secondAttribute="centerX" multiplier="1.33" id="WgH-Jh-Ght"/>
                                                 <constraint firstItem="a8v-jG-8AG" firstAttribute="width" secondItem="ohw-jc-yDC" secondAttribute="width" multiplier="0.1" id="fY2-aq-ii8"/>
                                                 <constraint firstItem="a8v-jG-8AG" firstAttribute="height" secondItem="ohw-jc-yDC" secondAttribute="height" multiplier="0.1" id="mVO-p2-g61"/>
@@ -81,6 +90,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="getterName" destination="w4c-J3-KXG" id="Bes-mk-4Sq"/>
                                             <outlet property="productImage" destination="6jm-OP-iWz" id="gLY-6t-74C"/>
                                             <outlet property="productName" destination="tdZ-aE-3Jg" id="Edk-lJ-VsA"/>
                                             <outlet property="productPrice" destination="WpS-4Y-2et" id="k49-Cj-ufe"/>
@@ -282,7 +292,7 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="userCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="68L-kE-n3i" customClass="UserPopUpCell" customModule="SurpriseMe" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="userCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" id="68L-kE-n3i" customClass="UserPopUpCell" customModule="SurpriseMe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="331" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="68L-kE-n3i" id="Sk7-oK-gk6">
