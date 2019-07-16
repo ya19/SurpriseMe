@@ -333,6 +333,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nuJ-eZ-6qg"/>
                     </view>
+                    <connections>
+                        <outlet property="searchBar" destination="P0R-ab-lp7" id="pA5-8i-ofl"/>
+                        <outlet property="table" destination="Aq3-bo-xgC" id="XPN-tQ-pt6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d8q-Su-NK0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
