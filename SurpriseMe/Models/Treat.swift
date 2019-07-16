@@ -10,13 +10,13 @@ import UIKit
 
 struct Treat{
     
-    let id:String
+    var id:String
     
-    let date:Date?
+    var date:Date?
     
-    let product:Product
+    var product:Product
     
-    let giver:User?
+    var giver:User?
     
-    let getter:User?
+    var getter:User?
 }

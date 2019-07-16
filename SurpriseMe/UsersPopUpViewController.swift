@@ -11,10 +11,12 @@ import UIKit
 class UsersPopUpViewController: UIViewController {
     var users:[User]?
     
-
+    var delegate:deliverUserDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        
         // Do any additional setup after loading the view.
     }
     
@@ -33,11 +35,15 @@ class UsersPopUpViewController: UIViewController {
 }
 
 extension UsersPopUpViewController:UITableViewDelegate{
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.deliver(user: self.users![indexPath.row])
+        
+        self.view.removeFromSuperview()
+    }
 }
 extension UsersPopUpViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users?.count ?? 0
+        return users!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
