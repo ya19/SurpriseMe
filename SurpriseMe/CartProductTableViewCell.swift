@@ -50,13 +50,13 @@ extension CartProductTableViewCell:deliverUserDelegate{
     func deliver(user: User) {
         self.treat!.getter = user
         getterName.text = "\(user.firstName) \(user.lastName)"
-        for i in 0..<CartManager.shared.treats.count{
-            if(CartManager.shared.treats[i].id == self.treat!.id){
-                CartManager.shared.treats[i].getter = user
-
-            }
-        }
-//        CartManager.shared.treats[self.indexPath!.row].getter = user
+//        for i in 0..<CartManager.shared.treats.count{
+//            if(CartManager.shared.treats[i].id == self.treat!.id){
+//                CartManager.shared.treats[i].getter = user
+//
+//            }
+//        }
+        CartManager.shared.treats[self.indexPath!.row].getter = user
 
     }
 }

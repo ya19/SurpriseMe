@@ -10,7 +10,7 @@ import UIKit
 
 struct Treat{
     
-    var id:String
+    var id:String?
     
     var date:Date?
     
