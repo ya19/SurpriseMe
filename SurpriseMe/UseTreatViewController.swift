@@ -8,8 +8,9 @@
 
 import UIKit
 
-class UseTreatViewController: BaseViewController {
+class UseTreatViewController: UIViewController {
     
+    @IBOutlet weak var popUpView: SAView!
     @IBOutlet weak var addressLabel: SATextField!
     
     @IBOutlet weak var streetLabel: SATextField!
@@ -34,6 +35,7 @@ class UseTreatViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        popUpView.backgroundColor = UIColor(patternImage: UIImage(named: "pure-blue-sky")!)
         // Do any additional setup after loading the view.
     }
     

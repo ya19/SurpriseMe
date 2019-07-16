@@ -17,7 +17,7 @@ var user = User.init(id: "203137252", email: "shahaftepler@gmail.com", firstName
         Treat.init(id: "#3", date: nil, product: Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes", price: 121.00), giver: nil, getter: nil)
     
     
-    ], myOrders: [], treatsStatus: .EVERYONE)
+    ], myOrders: [],myCart: [], treatsStatus: .EVERYONE)
 
 
 class OrdersAndTreatsTableViewController: UITableViewController {

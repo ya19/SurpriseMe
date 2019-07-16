@@ -10,10 +10,14 @@ import UIKit
 
 class CartProductTableViewCell: UITableViewCell {
 
+    @IBAction func addUser(_ sender: UIButton) {
+        delegate?.addUserTapped()
+    }
     @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var productPrice: UILabel!
-    
+    var delegate:AddUserDelegate?
+
     
     override func awakeFromNib() {
         super.awakeFromNib()

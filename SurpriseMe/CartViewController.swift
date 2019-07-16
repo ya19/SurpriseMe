@@ -18,6 +18,7 @@ class CartViewController: UIViewController {
         }
         return count
     }
+    var users:[User]?
     @IBOutlet weak var total: UILabel!
     @IBOutlet weak var cartTableView: UITableView!
     @IBAction func buy(_ sender: SAButton) {
@@ -29,12 +30,20 @@ class CartViewController: UIViewController {
         cartTableView.delegate = self
         cartTableView.dataSource = self
 //        fakeProducts()
+        fakeData()
         total.text = "Total: \(sum)"
         
         
         // Do any additional setup after loading the view.
     }
-    
+    func fakeData(){
+        users?.append(User(id: "1", email: "email@gmail.com" ,firstName: "yarden" ,lastName: "swissa" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , treatsStatus: TreatStatus.EVERYONE))
+        users?.append(User(id: "1", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , treatsStatus: TreatStatus.EVERYONE))
+        users?.append(User(id: "1", email: "email@gmail.com" ,firstName: "shahaf" ,lastName: "tepler" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , treatsStatus: TreatStatus.EVERYONE))
+        users?.append(User(id: "1", email: "email@gmail.com" ,firstName: "yair" ,lastName: "frid" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , treatsStatus: TreatStatus.EVERYONE))
+        users?.append(User(id: "1", email: "email@gmail.com" ,firstName: "iam" ,lastName: "someone" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , treatsStatus: TreatStatus.EVERYONE))
+        users?.append(User(id: "1", email: "email@gmail.com" ,firstName: "daniel" ,lastName: "daniel" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , treatsStatus: TreatStatus.EVERYONE))
+    }
 //    func fakeProducts(){
 //
 //        let fakeProduct = Product(id: "1", name: "Shoes-x5", desc: "Sport shoes , flexible and effective for running", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes", price: 100.0)
@@ -99,8 +108,22 @@ extension CartViewController:UITableViewDataSource{
         cell.productImage.image = product.image
         cell.productName.text = product.name
         cell.productPrice.text = "Price: \(product.price)"
+        cell.delegate = self
         return cell
     }
     
     
+}
+extension CartViewController:AddUserDelegate{
+    func addUserTapped() {
+        let usersVC = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController
+        
+        usersVC.users = users
+        PopUp.show(storyBoardName: "Cart", vcIdentifer: "usersPopUp", parent: self)
+    }
+    
+    
+}
+protocol AddUserDelegate{
+    func addUserTapped()
 }
