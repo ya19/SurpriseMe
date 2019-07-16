@@ -12,8 +12,11 @@ struct Order{
     let id:String
     let treats:[Treat]
     var price:Double{
-    
-        return 0
+        var count = 0.0
+        for treat in treats{
+            count += treat.product.price
+        }
+        return count
     }
     let date:Date
     let buyer:User
