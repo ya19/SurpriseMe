@@ -53,15 +53,32 @@ extension CartProductTableViewCell:deliverUserDelegate{
         for i in 0..<CartManager.shared.treats.count{
             if(CartManager.shared.treats[i].id == self.treat!.id){
                 CartManager.shared.treats[i].getter = user
-          
+
             }
-            print(self.treat!.id)
-            print(CartManager.shared.treats[i].id)
         }
-       
+//        CartManager.shared.treats[self.indexPath!.row].getter = user
 
     }
 }
 protocol deliverUserDelegate{
     func deliver(user:User)
+}
+
+
+// granting indexpath of current cell in a tableview cell.
+extension UITableViewCell {
+    
+    var tableView: UITableView? {
+        return next(UITableView.self)
+    }
+    
+    var indexPath: IndexPath? {
+        return tableView?.indexPath(for: self)
+    }
+}
+extension UIResponder {
+    
+    func next<T: UIResponder>(_ type: T.Type) -> T? {
+        return next as? T ?? next?.next(type)
+    }
 }
