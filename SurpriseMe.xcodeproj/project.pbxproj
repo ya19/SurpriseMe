@@ -46,6 +46,9 @@
 		AD0DDC2C22DC8326007A4533 /* CartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0DDC2B22DC8326007A4533 /* CartManager.swift */; };
 		AD3A98DF22DF56B000B6368A /* SATableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3A98DE22DF56B000B6368A /* SATableView.swift */; };
 		AD3A98E122DF57A700B6368A /* SASearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3A98E022DF57A700B6368A /* SASearchBar.swift */; };
+		AD3A98EF22DFA42A00B6368A /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD3A98EE22DFA42A00B6368A /* Menu.storyboard */; };
+		AD3A98F122DFA4D100B6368A /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3A98F022DFA4D100B6368A /* MenuTableViewCell.swift */; };
+		AD3A98F322DFA4E400B6368A /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3A98F222DFA4E400B6368A /* MenuViewController.swift */; };
 		AD3DEF3322DE29CB00A7C703 /* UsersPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3DEF3222DE29CB00A7C703 /* UsersPopUpViewController.swift */; };
 		AD3DEF3522DE2A0700A7C703 /* UserPopUpCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3DEF3422DE2A0700A7C703 /* UserPopUpCell.swift */; };
 		AD68A49122D8E8D900E019BA /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD68A49022D8E8D900E019BA /* CartViewController.swift */; };
@@ -97,6 +100,9 @@
 		AD0DDC2B22DC8326007A4533 /* CartManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartManager.swift; sourceTree = "<group>"; };
 		AD3A98DE22DF56B000B6368A /* SATableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SATableView.swift; sourceTree = "<group>"; };
 		AD3A98E022DF57A700B6368A /* SASearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SASearchBar.swift; sourceTree = "<group>"; };
+		AD3A98EE22DFA42A00B6368A /* Menu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Menu.storyboard; sourceTree = "<group>"; };
+		AD3A98F022DFA4D100B6368A /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		AD3A98F222DFA4E400B6368A /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		AD3DEF3222DE29CB00A7C703 /* UsersPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersPopUpViewController.swift; sourceTree = "<group>"; };
 		AD3DEF3422DE2A0700A7C703 /* UserPopUpCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPopUpCell.swift; sourceTree = "<group>"; };
 		AD68A49022D8E8D900E019BA /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +174,7 @@
 				47CC647622DCF00300463BF9 /* OrdersManagement.storyboard */,
 				AD0DDC2922DC75F4007A4533 /* ShopsCollection.storyboard */,
 				7BEC607922D4D5DB0040D6CF /* Register.storyboard */,
+				AD3A98EE22DFA42A00B6368A /* Menu.storyboard */,
 				7B1E1FE722D38E25007922E9 /* Custom Views */,
 				7BAF23CB22D362E200E83A89 /* AppDelegate.swift */,
 				7BAF23CD22D362E200E83A89 /* ViewController.swift */,
@@ -198,6 +205,8 @@
 				47575F8322DF3ADC00A61176 /* OrdersAndTreatsViewController.swift */,
 				47575F8522DF5FB200A61176 /* OrderedTreatsViewController.swift */,
 				47575F8722DF5FCD00A61176 /* OrderedTreatsTableCell.swift */,
+				AD3A98F022DFA4D100B6368A /* MenuTableViewCell.swift */,
+				AD3A98F222DFA4E400B6368A /* MenuViewController.swift */,
 			);
 			path = SurpriseMe;
 			sourceTree = "<group>";
@@ -263,6 +272,7 @@
 				7BAF23D922D362E400E83A89 /* LaunchScreen.storyboard in Resources */,
 				47CC647722DCF00300463BF9 /* OrdersManagement.storyboard in Resources */,
 				7BAF23D622D362E400E83A89 /* Assets.xcassets in Resources */,
+				AD3A98EF22DFA42A00B6368A /* Menu.storyboard in Resources */,
 				AD0DDC2A22DC75F4007A4533 /* ShopsCollection.storyboard in Resources */,
 				7BAF23D122D362E200E83A89 /* Main.storyboard in Resources */,
 				AD68A49722D8F2C900E019BA /* Cart.storyboard in Resources */,
@@ -308,10 +318,12 @@
 				47575F8422DF3ADC00A61176 /* OrdersAndTreatsViewController.swift in Sources */,
 				7B13C5FE22D69E2A00522043 /* RegisterViewController.swift in Sources */,
 				AD68A49122D8E8D900E019BA /* CartViewController.swift in Sources */,
+				AD3A98F322DFA4E400B6368A /* MenuViewController.swift in Sources */,
 				AD3A98DF22DF56B000B6368A /* SATableView.swift in Sources */,
 				47C93CBC22D7868C00A1D2DD /* SectionHeader.swift in Sources */,
 				6D2EF9F622D60459005F01A4 /* CategoryCollectionViewCell.swift in Sources */,
 				7B1E1FE922D38E3C007922E9 /* SAButton.swift in Sources */,
+				AD3A98F122DFA4D100B6368A /* MenuTableViewCell.swift in Sources */,
 				AD68A49922D91C9700E019BA /* Toast.swift in Sources */,
 				6D2EF9F822D6047B005F01A4 /* CategoriesViewController.swift in Sources */,
 				AD3A98E122DF57A700B6368A /* SASearchBar.swift in Sources */,
