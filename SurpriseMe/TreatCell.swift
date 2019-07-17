@@ -18,7 +18,7 @@ class TreatCell: UITableViewCell {
     
     @IBOutlet weak var dateLabel: UILabel!
     
-    var delegate:UseTreatDelegate?
+    var delegate:ShowPopUpDelegate?
     var treat:Treat?
     
     

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		474B257922D8959E00D0A332 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474B257822D8959E00D0A332 /* ShopViewController.swift */; };
 		474B257B22D895BF00D0A332 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474B257A22D895BF00D0A332 /* ProductCollectionViewCell.swift */; };
+		47575F8022DF28F200A61176 /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47575F7F22DF28F200A61176 /* OrderCell.swift */; };
+		47575F8422DF3ADC00A61176 /* OrdersAndTreatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47575F8322DF3ADC00A61176 /* OrdersAndTreatsViewController.swift */; };
 		47C93CBC22D7868C00A1D2DD /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C93CBB22D7868C00A1D2DD /* SectionHeader.swift */; };
 		47CC647522DCEEDC00463BF9 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CC647422DCEEDC00463BF9 /* Order.swift */; };
 		47CC647722DCF00300463BF9 /* OrdersManagement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47CC647622DCF00300463BF9 /* OrdersManagement.storyboard */; };
@@ -51,6 +53,8 @@
 /* Begin PBXFileReference section */
 		474B257822D8959E00D0A332 /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		474B257A22D895BF00D0A332 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
+		47575F7F22DF28F200A61176 /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
+		47575F8322DF3ADC00A61176 /* OrdersAndTreatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersAndTreatsViewController.swift; sourceTree = "<group>"; };
 		47C93CBB22D7868C00A1D2DD /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		47CC647422DCEEDC00463BF9 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		47CC647622DCF00300463BF9 /* OrdersManagement.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OrdersManagement.storyboard; sourceTree = "<group>"; };
@@ -180,6 +184,8 @@
 				47CC647C22DD140100463BF9 /* UseTreatViewController.swift */,
 				AD3DEF3222DE29CB00A7C703 /* UsersPopUpViewController.swift */,
 				AD3DEF3422DE2A0700A7C703 /* UserPopUpCell.swift */,
+				47575F7F22DF28F200A61176 /* OrderCell.swift */,
+				47575F8322DF3ADC00A61176 /* OrdersAndTreatsViewController.swift */,
 			);
 			path = SurpriseMe;
 			sourceTree = "<group>";
@@ -260,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BAF23CE22D362E200E83A89 /* ViewController.swift in Sources */,
+				47575F8022DF28F200A61176 /* OrderCell.swift in Sources */,
 				AD3DEF3522DE2A0700A7C703 /* UserPopUpCell.swift in Sources */,
 				47CC647D22DD140100463BF9 /* UseTreatViewController.swift in Sources */,
 				AD0DDC2C22DC8326007A4533 /* CartManager.swift in Sources */,
@@ -284,6 +291,7 @@
 				6D2EF9F422D60325005F01A4 /* ShopCollectionViewCell.swift in Sources */,
 				7B1E1FE222D377AC007922E9 /* Treat.swift in Sources */,
 				6D504AEE22DB278E006EABE0 /* ItemPopUpViewController.swift in Sources */,
+				47575F8422DF3ADC00A61176 /* OrdersAndTreatsViewController.swift in Sources */,
 				7B13C5FE22D69E2A00522043 /* RegisterViewController.swift in Sources */,
 				AD68A49122D8E8D900E019BA /* CartViewController.swift in Sources */,
 				47C93CBC22D7868C00A1D2DD /* SectionHeader.swift in Sources */,

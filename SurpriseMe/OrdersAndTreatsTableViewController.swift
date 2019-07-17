@@ -50,14 +50,14 @@ class OrdersAndTreatsTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "treatCell", for: indexPath) as? TreatCell else{return UITableViewCell()}
         
         cell.populate(treat: user.myTreats[indexPath.row])
-        cell.delegate = self
+//        cell.delegate = self
         // Configure the cell...
 
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 145
+        return UIScreen.main.bounds.height / 6
     }
  
 
@@ -108,20 +108,19 @@ class OrdersAndTreatsTableViewController: UITableViewController {
 
 }
 
-protocol UseTreatDelegate{
-    //send treat so you can know if the date was expired or not.
-    func useTreat(treat: Treat)
-}
 
-extension OrdersAndTreatsTableViewController : UseTreatDelegate{
-    func useTreat(treat: Treat) {
-//        guard let controller = self.storyboard?.instantiateViewController(withIdentifier: "registerPopUp") as? RegisterViewController else {return}
+
+//extension OrdersAndTreatsTableViewController : UseTreatDelegate{
+//    func useTreat(treat: Treat) {
+////        guard let controller = self.storyboard?.instantiateViewController(withIdentifier: "registerPopUp") as? RegisterViewController else {return}
+////
+//////        controller.shop = shop
+////        self.navigationController?.pushViewController(controller, animated: true)
+////        //        self.navigation?.pushViewController(controller, animated: true)
 //
-////        controller.shop = shop
-//        self.navigationController?.pushViewController(controller, animated: true)
-//        //        self.navigation?.pushViewController(controller, animated: true)
-        
-        PopUp.show(storyBoardName: "OrdersManagement", vcIdentifer: "useTreatController", parent: self)
+//        PopUp.show(storyBoardName: "OrdersManagement", vcIdentifer: "useTreatController", parent: self)
+//
+//    }
+//}
 
-    }
-}
+
