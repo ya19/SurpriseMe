@@ -22,6 +22,9 @@ struct User{
     
     let lastName:String
 
+    var fullName:String{
+        return "\(firstName) \(lastName)"
+    }
     let dateOfBitrh:String
     
     let friends:[User]

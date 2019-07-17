@@ -10,13 +10,17 @@ import UIKit
 
 class UsersPopUpViewController: UIViewController {
     var users:[User]?
-    
     var delegate:deliverUserDelegate?
+    var currentUsers:[User]?
+    @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(white: 0, alpha: 0.5)
-        
+        searchBar.delegate = self
+        currentUsers = users
         // Do any additional setup after loading the view.
     }
     
@@ -33,23 +37,35 @@ class UsersPopUpViewController: UIViewController {
 
 
 }
-
+extension UsersPopUpViewController:UISearchBarDelegate{
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard !searchText.isEmpty else {
+            currentUsers = users
+            table.reloadData()
+            return
+        }
+        currentUsers = users?.filter({ user -> Bool in
+            return user.fullName.lowercased().contains(searchText.lowercased())
+        })
+        table.reloadData()
+    }
+}
 extension UsersPopUpViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.deliver(user: self.users![indexPath.row])
+        delegate?.deliver(user: self.currentUsers![indexPath.row])
         
         self.view.removeFromSuperview()
     }
 }
 extension UsersPopUpViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users!.count
+        return currentUsers!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "userCell") as! UserPopUpCell
         
-        cell.populate(user: users![indexPath.row])
+        cell.populate(user: currentUsers![indexPath.row])
         
         return cell
     }
