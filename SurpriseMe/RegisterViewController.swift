@@ -33,7 +33,6 @@ class RegisterViewController: UIViewController {
         self.view.backgroundColor = UIColor(white: 0, alpha: 0.5)
         self.view.sendSubviewToBack(popUpView)
         popUpView.backgroundColor = UIColor(patternImage: UIImage(named: "pure-blue-sky")!)
-        
         dateOfBirth.maximumDate = Date()
         dateOfBirth.setValue(UIColor.white, forKey: "textColor")
 //        setBackground(self.popUpView , imageName: "pure-blue-sky")
