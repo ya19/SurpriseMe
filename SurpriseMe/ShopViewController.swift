@@ -28,7 +28,10 @@ private let reuseIdentifier = "productCell"
 
 
 class ShopViewController: UICollectionViewController{
-
+    @IBAction func showMenu(_ sender: UIBarButtonItem) {
+        AppMenu.shared.toggleMenu(parent: self)
+    }
+    
     var shop:Shop?
     override func viewDidLoad() {
         super.viewDidLoad()

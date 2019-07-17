@@ -22,6 +22,8 @@ class UsersPopUpViewController: UIViewController {
         searchBar.delegate = self
         currentUsers = users
         // Do any additional setup after loading the view.
+        
+        searchBar.frame = CGRect(origin: CGPoint(x: 1, y: 0.1), size: CGSize(width: (table.frame.width * 0.8), height: (table.frame.height * 0.1)))
     }
     
 
