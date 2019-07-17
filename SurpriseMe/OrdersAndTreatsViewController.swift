@@ -101,6 +101,8 @@ extension OrdersAndTreatsViewController : UITableViewDataSource{
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell") as? OrderCell else{return UITableViewCell()}
             
+            
+            cell.order = orders[indexPath.row]
             cell.idLabel.text = orders[indexPath.row].id
             //to do: don't forget to make the calculation ahead.
             cell.priceLabel.text = "\(orders[indexPath.row].price)"
@@ -148,7 +150,9 @@ extension OrdersAndTreatsViewController : ShowPopUpDelegate{
     }
     
     func showTreats(order: Order){
-                PopUp.show(storyBoardName: "OrdersManagement", vcIdentifer: "useTreatController", parent: self)
+        let orderedTreatsVC = UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orderedTreatsController") as! OrderedTreatsViewController
+        orderedTreatsVC.treats = order.treats
+        PopUp.show(child: orderedTreatsVC, parent: self)
     }
 
 }

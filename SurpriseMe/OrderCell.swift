@@ -22,7 +22,8 @@ class OrderCell: UITableViewCell {
     
     var delegate : ShowPopUpDelegate?
     @IBAction func showProducts(_ sender: UIButton) {
-        delegate?.showTreats(order: order ?? Order.init(id: "1", treats: [], date: Date(), buyer: user))
+        print(order)
+        delegate?.showTreats(order: order!)
     }
     
     
