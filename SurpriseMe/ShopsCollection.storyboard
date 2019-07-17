@@ -109,6 +109,11 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Shops" id="e07-mP-BtI">
+                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="qr6-To-M6t">
+                            <connections>
+                                <action selector="showMenu:" destination="jGR-ML-mwJ" id="zVy-8e-FVU"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="icons8-shopping_cart" id="KGu-Kn-oDn">
                             <connections>
                                 <segue destination="AIb-Sz-7Io" kind="show" id="6Fg-VC-lGC"/>
@@ -188,11 +193,18 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="ShopName" id="8ND-2o-3HW">
-                        <barButtonItem key="rightBarButtonItem" image="icons8-shopping_cart" id="e20-rY-vyE">
-                            <connections>
-                                <segue destination="AIb-Sz-7Io" kind="show" id="Ih1-Ra-JHb"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="search" id="9pC-3O-RzI">
+                                <connections>
+                                    <action selector="showMenu:" destination="tnY-bs-PzJ" id="qPN-22-L1l"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" id="e20-rY-vyE">
+                                <connections>
+                                    <segue destination="AIb-Sz-7Io" kind="show" id="Ih1-Ra-JHb"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IPR-8S-D2q" userLabel="First Responder" sceneMemberID="firstResponder"/>
