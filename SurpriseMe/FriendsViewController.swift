@@ -14,26 +14,30 @@ class FriendsViewController: UIViewController {
     //to do: get the friends from Usermanager singelton
     var friends = shahafuser.friends
     var users:[User] = []
-
-
+    let usersVC = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController
+    var popUpOn:Bool = false
+    @IBAction func showMenu(_ sender: UIBarButtonItem) {
+        AppMenu.toggleMenu(parent: self)
+    }
+    
     @IBOutlet weak var friendsTableView: UITableView!
     
     
     @IBAction func addFriendPopUp(_ sender: UIBarButtonItem) {
-        let usersVC = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController
-        
+//        let usersVC = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController
         
         //todo : Get users from database
-        usersVC.users = self.users
         
         //todo: making the table view as the delegate
 //        if let treatCell = cell as? CartProductTableViewCell{
 //            usersVC.delegate = treatCell
 //        }
         //        usersVC.delegate =
-        
-        PopUp.show(child: usersVC, parent: self)
-        
+        if(!popUpOn){
+            usersVC.users = self.users
+            PopUp.show(child: usersVC, parent: self)
+            popUpOn = !popUpOn
+        }
     }
     
     

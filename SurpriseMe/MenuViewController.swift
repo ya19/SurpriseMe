@@ -37,34 +37,40 @@ extension MenuViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch Screens(rawValue: indexPath.row)! {
         case Screens.Main:
+            menu.toggle = !menu.toggle
+            self.view.removeFromSuperview()
+
             if let _ = self.parent as? CategoriesViewController{
-                self.view.removeFromSuperview()
                 return
             }else{
                 let mainVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
-                self.view.removeFromSuperview()
                 self.parent?.navigationController?.pushViewController(mainVC, animated: true)
                 return
             }
         case Screens.MyFriends:
-
-                Toast.show(message: "Waiting for friends screen", controller: self.parent!)
-                self.view.removeFromSuperview()
-            
-            return
+            menu.toggle = !menu.toggle
+            self.view.removeFromSuperview()
+            if let _ = self.parent as? FriendsViewController{
+                return
+            }else{
+                let friendsVC = UIStoryboard(name: "Friends", bundle: nil).instantiateViewController(withIdentifier: "friends") as! FriendsViewController
+                self.parent?.navigationController?.pushViewController(friendsVC, animated: true)
+                return
+            }
         case Screens.OrdersAndTreats:
+            menu.toggle = !menu.toggle
+            self.view.removeFromSuperview()
             if let _ = self.parent as? OrdersAndTreatsViewController{
-                self.view.removeFromSuperview()
                 return
             }else{
                 let ordersAndTreatsVC = UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orders") as! OrdersAndTreatsViewController
-                self.view.removeFromSuperview()
                 self.parent?.navigationController?.pushViewController(ordersAndTreatsVC, animated: true)
                 return
             }
         case .Logout:
-            Toast.show(message: "Logout", controller: self.parent!)
+            menu.toggle = !menu.toggle
             self.view.removeFromSuperview()
+            Toast.show(message: "Logout", controller: self.parent!)
             return
         }
     }

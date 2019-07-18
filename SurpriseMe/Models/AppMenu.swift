@@ -12,10 +12,12 @@ class AppMenu{
     static var currentItem = 0
     static func toggleMenu(parent: UIViewController){
         menu.toggle = !menu.toggle
+
         if(menu.toggle){
             PopUp.show(child: menu, parent: parent)
         }else{
             menu.view.removeFromSuperview()
         }
+
     }
 }
