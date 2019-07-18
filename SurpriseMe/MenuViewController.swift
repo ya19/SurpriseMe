@@ -7,17 +7,17 @@
 //
 
 import UIKit
-
+let menu = UIStoryboard(name: "Menu", bundle: nil).instantiateViewController(withIdentifier: "menuVC") as! MenuViewController
 class MenuViewController: UIViewController {
-
+    var toggle = false
     @IBOutlet weak var table: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         table.backgroundColor = UIColor(red: 0/255.0, green: 128.0/255.0, blue: 128.0/255.0, alpha: 1)
-        self.view.backgroundColor = .clear
+        self.view.backgroundColor = UIColor(white: 0, alpha: 0.5)
         // Do any additional setup after loading the view.
+        
     }
-    
 
     /*
     // MARK: - Navigation
@@ -32,17 +32,58 @@ class MenuViewController: UIViewController {
 }
 extension MenuViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.table.frame.height / 8
+        return self.table.frame.height / 4
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch Screens(rawValue: indexPath.row)! {
+        case Screens.Main:
+            if let _ = self.parent as? CategoriesViewController{
+                self.view.removeFromSuperview()
+                return
+            }else{
+                let mainVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
+                self.view.removeFromSuperview()
+                self.parent?.navigationController?.pushViewController(mainVC, animated: true)
+                return
+            }
+        case Screens.MyFriends:
+
+                Toast.show(message: "Waiting for friends screen", controller: self.parent!)
+                self.view.removeFromSuperview()
+            
+            return
+        case Screens.OrdersAndTreats:
+            if let _ = self.parent as? OrdersAndTreatsViewController{
+                self.view.removeFromSuperview()
+                return
+            }else{
+                let ordersAndTreatsVC = UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orders") as! OrdersAndTreatsViewController
+                self.view.removeFromSuperview()
+                self.parent?.navigationController?.pushViewController(ordersAndTreatsVC, animated: true)
+                return
+            }
+        case .Logout:
+            Toast.show(message: "Logout", controller: self.parent!)
+            self.view.removeFromSuperview()
+            return
+        }
     }
 }
 extension MenuViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+//        var ary:[Screens] = Screens.AllCass
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell") as! MenuTableViewCell
-        cell.populate(title: "title 1")
+        
+        var itemTitle = Screens(rawValue: indexPath.row)!.description
+        if itemTitle == "OrdersAndTreats"{
+            itemTitle = "Orders & Treats"
+        }
+        cell.populate(title: itemTitle)
+        
         return cell
     }
     

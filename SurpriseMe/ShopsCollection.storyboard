@@ -11,7 +11,7 @@
         <!--Shops-->
         <scene sceneID="ejb-BC-k2D">
             <objects>
-                <collectionViewController id="jGR-ML-mwJ" customClass="CategoriesViewController" customModule="SurpriseMe" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="shops" id="jGR-ML-mwJ" customClass="CategoriesViewController" customModule="SurpriseMe" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="gII-Bt-KeX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -244,6 +244,6 @@
         <image name="icons8-shopping_cart" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ih1-Ra-JHb"/>
+        <segue reference="6Fg-VC-lGC"/>
     </inferredMetricsTieBreakers>
 </document>
