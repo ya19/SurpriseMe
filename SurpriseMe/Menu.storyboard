@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5Xb-JF-OA4">
-                                <rect key="frame" x="0.0" y="0.0" width="290" height="896"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5Xb-JF-OA4" customClass="SATableView" customModule="SurpriseMe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="89.5" width="290" height="358.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -30,8 +30,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="290" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PHY-PP-1N6">
-                                                    <rect key="frame" x="124" y="11.5" width="42" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PHY-PP-1N6">
+                                                    <rect key="frame" x="58" y="4.5" width="174" height="35"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -40,7 +40,9 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="PHY-PP-1N6" firstAttribute="centerX" secondItem="TZy-Gi-im4" secondAttribute="centerX" id="2GV-h1-hPc"/>
+                                                <constraint firstItem="PHY-PP-1N6" firstAttribute="height" secondItem="TZy-Gi-im4" secondAttribute="height" multiplier="0.8" id="O4g-lP-yRp"/>
                                                 <constraint firstItem="PHY-PP-1N6" firstAttribute="centerY" secondItem="TZy-Gi-im4" secondAttribute="centerY" id="S7h-a1-Ggf"/>
+                                                <constraint firstItem="PHY-PP-1N6" firstAttribute="width" secondItem="TZy-Gi-im4" secondAttribute="width" multiplier="0.6" id="XYJ-HR-2bS"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -57,8 +59,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="5Xb-JF-OA4" firstAttribute="height" secondItem="Dd6-Ze-8FC" secondAttribute="height" id="3Qm-5U-MwO"/>
-                            <constraint firstItem="5Xb-JF-OA4" firstAttribute="centerY" secondItem="Dd6-Ze-8FC" secondAttribute="centerY" id="Tzm-wP-ahb"/>
+                            <constraint firstItem="5Xb-JF-OA4" firstAttribute="height" secondItem="Dd6-Ze-8FC" secondAttribute="height" multiplier="0.4" id="3Qm-5U-MwO"/>
+                            <constraint firstItem="5Xb-JF-OA4" firstAttribute="centerY" secondItem="Dd6-Ze-8FC" secondAttribute="centerY" multiplier="0.6" id="Tzm-wP-ahb"/>
                             <constraint firstItem="5Xb-JF-OA4" firstAttribute="width" secondItem="Dd6-Ze-8FC" secondAttribute="width" multiplier="0.7" id="bY4-NA-bUP"/>
                             <constraint firstItem="5Xb-JF-OA4" firstAttribute="centerX" secondItem="Dd6-Ze-8FC" secondAttribute="centerX" multiplier="0.7" id="fGg-H6-cC8"/>
                         </constraints>

@@ -14,7 +14,8 @@ private let reuseHeaderIdentifier = "sectionHeader"
 class CategoriesViewController: UICollectionViewController {
 
     @IBAction func showMenu(_ sender: UIBarButtonItem) {
-        PopUp.show(storyBoardName: "Menu", vcIdentifer: "menuVC", parent: self)
+//        PopUp.show(storyBoardName: "Menu", vcIdentifer: "menuVC", parent: self)
+            AppMenu.toggleMenu(parent: self)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
