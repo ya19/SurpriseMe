@@ -32,7 +32,7 @@ class CartViewController: UIViewController {
 //        fakeProducts()
         print(CartManager.shared.treats)
         fakeData()
-        total.text = "Total: \(sum)"
+        total.text = "Total: \(sum) NIS"
         
         
         // Do any additional setup after loading the view.

@@ -551,7 +551,6 @@
                                         </state>
                                         <connections>
                                             <action selector="useVoucher:" destination="KEM-cI-AER" eventType="touchUpInside" id="DQJ-Bp-XIm"/>
-                                            <segue destination="QvI-Bi-lQE" kind="show" id="cor-wC-M06"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1at-xj-jQH">

@@ -11,22 +11,6 @@ import UIKit
 private let reuseIdentifier = "productCell"
 
 
-//private let testShop = Shop.init(id: "nikeShop", category: .SPORT, name: "Nike", products:
-//    ["Products" :
-//        [
-//            Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes", price: 159.00),
-//            Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes",price: 159.00 ),
-//            Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes", price: 159.00),
-//            Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes", price: 159.00)
-//        ]
-//    ]
-//    
-//    
-//    
-//    , adress: "Kenyon Ayalon Ramat Gan", desc: "Very expensive sports shop you can buy a variety of products", logo: #imageLiteral(resourceName: "nike-logo"), backgroudImage: #imageLiteral(resourceName: "nike-background"))
-
-
-
 class ShopViewController: UICollectionViewController{
     @IBAction func showMenu(_ sender: UIBarButtonItem) {
         
@@ -36,7 +20,7 @@ class ShopViewController: UICollectionViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.collectionView.backgroundView = UIImageView(image: UIImage.init(named: "nike-background"))
+        self.collectionView.backgroundView = UIImageView(image: shop?.backgroudImage)
         self.collectionView.backgroundView?.alpha = 0.7
         self.navigationController?.navigationBar.isTranslucent = true
 
