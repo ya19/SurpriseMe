@@ -551,6 +551,7 @@
                                         </state>
                                         <connections>
                                             <action selector="useVoucher:" destination="KEM-cI-AER" eventType="touchUpInside" id="DQJ-Bp-XIm"/>
+                                            <segue destination="QvI-Bi-lQE" kind="show" id="cor-wC-M06"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1at-xj-jQH">
@@ -617,6 +618,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bVv-ac-ois" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2053.5999999999999" y="21.139430284857571"/>
+        </scene>
+        <!--friends-->
+        <scene sceneID="Q8h-4P-OVY">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Friends" referencedIdentifier="friends" id="QvI-Bi-lQE" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hdx-iv-1GO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2993" y="-23"/>
         </scene>
     </scenes>
     <resources>

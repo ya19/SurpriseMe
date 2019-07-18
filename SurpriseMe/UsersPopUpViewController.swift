@@ -55,8 +55,8 @@ extension UsersPopUpViewController:UISearchBarDelegate{
 extension UsersPopUpViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.deliver(user: self.currentUsers![indexPath.row])
-        
-        self.view.removeFromSuperview()
+        PopUp.remove(controller: self)
+//        self.view.removeFromSuperview()
     }
 }
 extension UsersPopUpViewController:UITableViewDataSource{

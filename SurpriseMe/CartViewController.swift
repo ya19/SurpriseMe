@@ -75,11 +75,11 @@ extension CartViewController:UITableViewDelegate{
         return true
     }
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let removeAction = UITableViewRowAction(style: .destructive, title: "remove") { (action, indexPath) in
+        let removeAction = UITableViewRowAction(style: .destructive, title: "Remove") { (action, indexPath) in
 //            self.products.remove(at: indexPath.row)
             CartManager.shared.treats.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            self.total.text = "Total: \(self.sum)"
+            self.total.text = "Total: \(self.sum) NIS"
         }
         
         removeAction.backgroundColor = UIColor.red

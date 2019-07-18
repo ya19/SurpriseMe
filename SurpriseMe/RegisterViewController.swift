@@ -37,6 +37,8 @@ class RegisterViewController: UIViewController {
         dateOfBirth.setValue(UIColor.white, forKey: "textColor")
 //        setBackground(self.popUpView , imageName: "pure-blue-sky")
         
+        
+        
         // Do any additional setup after loading the view.
     }
     

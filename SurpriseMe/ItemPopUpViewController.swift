@@ -20,7 +20,8 @@ class ItemPopUpViewController: UIViewController {
     
     @IBAction func xBtnClose(_ sender: UIButton) {
         addToCart = false
-        self.view.removeFromSuperview()
+//        self.view.removeFromSuperview()
+        PopUp.remove(controller: self)
         
     }
     @IBAction func addToCart(_ sender: Any) {
@@ -29,7 +30,9 @@ class ItemPopUpViewController: UIViewController {
         
         let treat = Treat(id: nil, date: nil, product: item!, giver: currentUser, getter: nil)
         CartManager.shared.treats.append(treat)
-        self.view.removeFromSuperview()
+        
+        PopUp.remove(controller: self)
+//        self.view.removeFromSuperview()
     }
     
     

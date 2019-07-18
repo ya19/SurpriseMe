@@ -15,7 +15,7 @@ class OrderedTreatsViewController: UIViewController {
     
     
     @IBAction func closePopUp(_ sender: SAButton) {
-        self.view.removeFromSuperview()
+        PopUp.remove(controller: self)
     }
     
     
