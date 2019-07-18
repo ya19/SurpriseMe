@@ -20,7 +20,7 @@ class FriendTableCell: UITableViewCell {
     
     func populate(user: User){
         userImage.image = UIImage.init(named: "icons8-user")
-        userNameLabel.text = "\(user.firstName) \(user.lastName)"
+        userNameLabel.text = user.fullName
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

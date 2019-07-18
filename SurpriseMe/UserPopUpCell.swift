@@ -23,6 +23,7 @@ class UserPopUpCell: UITableViewCell {
     }
     
     func populate(user: User){
-        fullName.text = "\(user.firstName) \(user.lastName)"
+//        fullName.text = "\(user.firstName) \(user.lastName)"
+        fullName.text = user.fullName
     }
 }

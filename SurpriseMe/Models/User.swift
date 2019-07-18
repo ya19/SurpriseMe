@@ -27,14 +27,14 @@ struct User{
     }
     let dateOfBitrh:String
     
-    let friends:[User]
+    var friends:[User]
     
-    let myTreats:[Treat]
+    var myTreats:[Treat]
     
-    let myOrders:[Order]
+    var myOrders:[Order]
     
-    let myCart:[Product]
+    var myCart:[Product]
     
-    let treatsStatus:TreatStatus
+    var treatsStatus:TreatStatus
     
 }

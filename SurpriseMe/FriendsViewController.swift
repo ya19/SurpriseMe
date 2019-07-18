@@ -9,11 +9,14 @@
 import UIKit
 
 class FriendsViewController: UIViewController {
-    
+    var friends:[User]{
+        return shahafuser.friends
+    }
+
     
     //to do: get the friends from Usermanager singelton
-    var friends = shahafuser.friends
     var users:[User] = []
+    var delegate : deliverUserDelegate?
     let usersVC = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController
     var popUpOn:Bool = false
     @IBAction func showMenu(_ sender: UIBarButtonItem) {
@@ -34,6 +37,7 @@ class FriendsViewController: UIViewController {
 //        }
         //        usersVC.delegate =
         if(!popUpOn){
+            usersVC.delegate = self
             usersVC.users = self.users
             PopUp.show(child: usersVC, parent: self)
             popUpOn = !popUpOn
@@ -44,9 +48,9 @@ class FriendsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         fakeData()
-        
+
         friendsTableView.delegate = self
         friendsTableView.dataSource = self
         // Do any additional setup after loading the view.
@@ -93,5 +97,14 @@ extension FriendsViewController: UITableViewDataSource{
     }
     
     
+}
+
+extension FriendsViewController : deliverUserDelegate{
+    func deliver(user: User) {
+                
+        //update in database
+        shahafuser.friends.append(user)
+        self.friendsTableView.reloadData()
+    }
 }
 

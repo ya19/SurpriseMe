@@ -56,7 +56,13 @@ extension UsersPopUpViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.deliver(user: self.currentUsers![indexPath.row])
         if let friendsVC = self.parent as? FriendsViewController{
+//            friendsVC.delegate =
+            
+            //update in data base.
             friendsVC.popUpOn = !friendsVC.popUpOn
+//            friendsVC.friends.append(self.currentUsers![indexPath.row])
+//            friendsVC.friendsTableView.reloadData()
+            
         }
         PopUp.remove(controller: self)
         
