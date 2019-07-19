@@ -129,6 +129,7 @@ extension OrdersAndTreatsViewController : ShowPopUpDelegate{
         
         let useTreatVC = self.storyboard?.instantiateViewController(withIdentifier: "useTreatController") as! UseTreatViewController
             useTreatVC.treat = treat
+            useTreatVC.delegate = self
         
         PopUp.show(child: useTreatVC, parent: self)
  
@@ -141,4 +142,14 @@ extension OrdersAndTreatsViewController : ShowPopUpDelegate{
         PopUp.show(child: orderedTreatsVC, parent: self)
     }
 
+}
+
+protocol SentVoucherDelegate {
+    func sentVoucher()
+}
+
+extension OrdersAndTreatsViewController : SendVoucherDelegate{
+    func sendVoucher() {
+            self.ordersTreatsTableView.reloadData()
+    }
 }
