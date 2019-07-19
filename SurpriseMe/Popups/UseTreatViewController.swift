@@ -20,6 +20,8 @@ class UseTreatViewController: UIViewController {
     
     @IBOutlet weak var closePopUpBtn: SAButton!
     
+    var treat: Treat?
+    
     
     @IBAction func closePopUp(_ sender: UIButton) {
         clearData()
@@ -28,6 +30,18 @@ class UseTreatViewController: UIViewController {
     
     
     @IBAction func useVoucher(_ sender: UIButton) {
+        
+        for i in 0..<currentUser.myTreats.count{
+            if treat?.id == currentUser.myTreats[i].id{
+                treat?.treatStatus = TreatStatus.Delivered
+                currentUser.myTreats[i] = treat!
+            }
+            
+            print("\(currentUser.myTreats)")
+            
+        }
+        
+        
         self.view.removeFromSuperview()
     }
     
@@ -58,4 +72,8 @@ class UseTreatViewController: UIViewController {
     }
 
 
+}
+
+protocol SendVoucherDelegate{
+    func sendVoucher()
 }

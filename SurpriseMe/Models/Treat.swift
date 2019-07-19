@@ -40,11 +40,11 @@ enum TreatStatus{
     var description:String{
         switch self{
         case .Expired:
-            return "Voucher Expired"
+            return "Expired"
         case .Delivered:
-            return "Voucher Delivered"
+            return "Delivered"
         case .Used:
-            return "Voucher Used"
+            return "Used"
             
         case .NotUsed:
             return "Not Yet Used"

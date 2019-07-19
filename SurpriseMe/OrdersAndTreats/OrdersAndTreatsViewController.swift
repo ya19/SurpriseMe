@@ -125,7 +125,13 @@ extension OrdersAndTreatsViewController : ShowPopUpDelegate{
         //        self.navigationController?.pushViewController(controller, animated: true)
         //        //        self.navigation?.pushViewController(controller, animated: true)
         
-        PopUp.show(storyBoardName: "OrdersManagement", vcIdentifer: "useTreatController", parent: self)
+        
+        
+        let useTreatVC = self.storyboard?.instantiateViewController(withIdentifier: "useTreatController") as! UseTreatViewController
+            useTreatVC.treat = treat
+        
+        PopUp.show(child: useTreatVC, parent: self)
+ 
         
     }
     

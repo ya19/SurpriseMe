@@ -48,9 +48,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7kh-sA-pdI">
-                                                    <rect key="frame" x="314" y="58" width="46" height="46"/>
+                                                    <rect key="frame" x="311.5" y="31.5" width="52" height="51.5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="7kh-sA-pdI" secondAttribute="height" multiplier="1:1" id="wex-k2-uDk"/>
+                                                        <constraint firstAttribute="width" secondItem="7kh-sA-pdI" secondAttribute="height" multiplier="1:1" id="rnU-Xs-vTd"/>
                                                     </constraints>
                                                     <state key="normal" image="icons8-arrow"/>
                                                     <connections>
@@ -70,14 +70,14 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q56-Tj-iux">
-                                                    <rect key="frame" x="263" y="62" width="36.5" height="36.5"/>
+                                                    <rect key="frame" x="319" y="39" width="37" height="36.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="q56-Tj-iux" secondAttribute="height" multiplier="1:1" id="SLf-T0-qy4"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faq-Cr-Jec">
-                                                    <rect key="frame" x="305.5" y="66" width="64" height="28.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faq-Cr-Jec">
+                                                    <rect key="frame" x="305.5" y="68.5" width="64" height="29"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -85,34 +85,32 @@
                                             <constraints>
                                                 <constraint firstItem="i9c-LT-yak" firstAttribute="centerX" secondItem="XVC-Bv-v6x" secondAttribute="centerX" multiplier="1.25" id="3FA-0y-PIt"/>
                                                 <constraint firstItem="q56-Tj-iux" firstAttribute="height" secondItem="XVC-Bv-v6x" secondAttribute="height" multiplier="0.32" id="6mL-8e-nd9"/>
-                                                <constraint firstItem="7kh-sA-pdI" firstAttribute="trailing" secondItem="XVC-Bv-v6x" secondAttribute="trailingMargin" id="8eg-xd-iGr"/>
                                                 <constraint firstItem="vfq-eW-HCe" firstAttribute="centerY" secondItem="XVC-Bv-v6x" secondAttribute="centerY" id="9uD-r9-Sh5"/>
                                                 <constraint firstItem="faq-Cr-Jec" firstAttribute="width" secondItem="XVC-Bv-v6x" secondAttribute="width" multiplier="0.17" id="AAd-KI-UiD"/>
+                                                <constraint firstItem="7kh-sA-pdI" firstAttribute="centerX" secondItem="XVC-Bv-v6x" secondAttribute="centerX" multiplier="1.8" id="DtO-18-9xo"/>
                                                 <constraint firstItem="sbE-ZW-aBf" firstAttribute="width" secondItem="XVC-Bv-v6x" secondAttribute="width" multiplier="0.6" id="GWj-WV-nZZ"/>
-                                                <constraint firstItem="faq-Cr-Jec" firstAttribute="centerY" secondItem="XVC-Bv-v6x" secondAttribute="centerY" multiplier="1.4" id="Qmj-C9-gBc"/>
+                                                <constraint firstItem="7kh-sA-pdI" firstAttribute="height" secondItem="XVC-Bv-v6x" secondAttribute="height" multiplier="0.45" id="IUG-5p-gUx"/>
+                                                <constraint firstItem="faq-Cr-Jec" firstAttribute="centerY" secondItem="XVC-Bv-v6x" secondAttribute="centerY" multiplier="1.45" id="Qmj-C9-gBc"/>
                                                 <constraint firstItem="faq-Cr-Jec" firstAttribute="centerX" secondItem="XVC-Bv-v6x" secondAttribute="centerX" multiplier="1.8" id="Tpw-fp-dZG"/>
                                                 <constraint firstItem="i9c-LT-yak" firstAttribute="width" secondItem="XVC-Bv-v6x" secondAttribute="width" multiplier="0.6" id="VOR-IS-D0x"/>
                                                 <constraint firstItem="zoZ-oC-PH0" firstAttribute="centerX" secondItem="XVC-Bv-v6x" secondAttribute="centerX" multiplier="1.05" id="W4b-mi-PrE"/>
-                                                <constraint firstItem="q56-Tj-iux" firstAttribute="centerX" secondItem="XVC-Bv-v6x" secondAttribute="centerX" multiplier="1.5" id="XBM-UA-mH9"/>
+                                                <constraint firstItem="q56-Tj-iux" firstAttribute="centerX" secondItem="XVC-Bv-v6x" secondAttribute="centerX" multiplier="1.8" id="XBM-UA-mH9"/>
+                                                <constraint firstItem="7kh-sA-pdI" firstAttribute="centerY" secondItem="XVC-Bv-v6x" secondAttribute="centerY" id="XBQ-GB-axD"/>
                                                 <constraint firstItem="vfq-eW-HCe" firstAttribute="centerX" secondItem="XVC-Bv-v6x" secondAttribute="centerX" multiplier="0.32" id="XbX-BY-Su0"/>
                                                 <constraint firstItem="sbE-ZW-aBf" firstAttribute="centerY" secondItem="XVC-Bv-v6x" secondAttribute="centerY" id="Z3m-5N-bsW"/>
                                                 <constraint firstItem="i9c-LT-yak" firstAttribute="height" secondItem="XVC-Bv-v6x" secondAttribute="height" multiplier="0.28" id="a63-L0-Phg"/>
                                                 <constraint firstItem="zoZ-oC-PH0" firstAttribute="width" secondItem="XVC-Bv-v6x" secondAttribute="width" multiplier="0.4" id="dVV-9C-zEh"/>
                                                 <constraint firstItem="i9c-LT-yak" firstAttribute="centerY" secondItem="XVC-Bv-v6x" secondAttribute="centerY" multiplier="0.5" id="enn-jy-C1k"/>
                                                 <constraint firstItem="vfq-eW-HCe" firstAttribute="width" secondItem="XVC-Bv-v6x" secondAttribute="width" multiplier="0.25" id="gs0-3B-MDh"/>
-                                                <constraint firstItem="7kh-sA-pdI" firstAttribute="bottom" secondItem="XVC-Bv-v6x" secondAttribute="bottomMargin" id="hSi-GA-yr7"/>
                                                 <constraint firstItem="zoZ-oC-PH0" firstAttribute="centerY" secondItem="XVC-Bv-v6x" secondAttribute="centerY" multiplier="1.5" id="lpc-Kh-7gF"/>
                                                 <constraint firstItem="faq-Cr-Jec" firstAttribute="height" secondItem="XVC-Bv-v6x" secondAttribute="height" multiplier="0.25" id="pbX-sM-klO"/>
                                                 <constraint firstItem="zoZ-oC-PH0" firstAttribute="height" secondItem="XVC-Bv-v6x" secondAttribute="height" multiplier="0.25" id="tSu-uY-hGq"/>
-                                                <constraint firstItem="q56-Tj-iux" firstAttribute="centerY" secondItem="XVC-Bv-v6x" secondAttribute="centerY" multiplier="1.4" id="v7n-g6-RNo"/>
+                                                <constraint firstItem="q56-Tj-iux" firstAttribute="centerY" secondItem="XVC-Bv-v6x" secondAttribute="centerY" id="v7n-g6-RNo"/>
                                                 <constraint firstItem="sbE-ZW-aBf" firstAttribute="centerX" secondItem="XVC-Bv-v6x" secondAttribute="centerX" multiplier="1.25" id="wBx-Uq-P04"/>
                                                 <constraint firstItem="vfq-eW-HCe" firstAttribute="height" secondItem="XVC-Bv-v6x" secondAttribute="height" multiplier="0.85" id="wSc-vJ-0zy"/>
                                                 <constraint firstItem="sbE-ZW-aBf" firstAttribute="height" secondItem="XVC-Bv-v6x" secondAttribute="height" multiplier="0.25" id="yB2-rD-4Zy"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <constraints>
-                                            <constraint firstItem="7kh-sA-pdI" firstAttribute="height" secondItem="goT-8X-ub1" secondAttribute="height" multiplier="0.4" id="heJ-4n-GKs"/>
-                                        </constraints>
                                         <connections>
                                             <outlet property="dateLabel" destination="zoZ-oC-PH0" id="z9T-35-3AM"/>
                                             <outlet property="giver" destination="sbE-ZW-aBf" id="QKr-w6-3b8"/>
