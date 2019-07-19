@@ -42,7 +42,7 @@ class TreatCell: UITableViewCell {
         giver.text = "The giver's name" //treat.giver?.firstName
         dateLabel.text = "Date of the order"
         
-        switch treat.treatStatus! {
+        switch treat.getUpdatedStatus!{
         case .NotUsed:
             treatStatusImage.isHidden = true
             treatStatusLabel.isHidden = true

@@ -19,6 +19,6 @@ struct Order{
         return count
     }
     let date:Date
-    let buyer:User
+    let buyer:User?
     
 }
