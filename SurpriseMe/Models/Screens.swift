@@ -18,7 +18,7 @@ enum Screens:Int,CustomStringConvertible ,CaseIterable{
         case .MyFriends:
             return "Friends"
         case .OrdersAndTreats:
-            return "OrdersAndTreats"
+            return "Orders & Treats"
         case .Logout:
             return "Logout"
         }

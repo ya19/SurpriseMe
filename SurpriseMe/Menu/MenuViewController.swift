@@ -110,10 +110,7 @@ extension MenuViewController:UITableViewDataSource{
             cell.setSelected(true, animated: true)
             print(indexPath.row)
         }
-        var itemTitle = Screens(rawValue: indexPath.row)!.description
-        if itemTitle == "OrdersAndTreats"{
-            itemTitle = "Orders & Treats"
-        }
+        let itemTitle = Screens(rawValue: indexPath.row)!.description
         cell.populate(title: itemTitle)
         
         return cell
