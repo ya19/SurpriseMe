@@ -61,6 +61,8 @@ class OrdersAndTreatsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        AppMenu.clearMenu()
         
         self.navigationItem.title = "My Treats & Orders"
         

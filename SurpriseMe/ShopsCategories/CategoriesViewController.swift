@@ -20,6 +20,8 @@ class CategoriesViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        AppMenu.clearMenu()
+        
         self.collectionView.backgroundView = UIImageView(image: UIImage.init(named: "blue-background"))
         
         self.navigationController?.navigationBar.isTranslucent = true

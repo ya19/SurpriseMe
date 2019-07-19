@@ -27,6 +27,9 @@ class CartViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        AppMenu.clearMenu()
+        
         cartTableView.delegate = self
         cartTableView.dataSource = self
 //        fakeProducts()

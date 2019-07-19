@@ -11,14 +11,20 @@ let menu = UIStoryboard(name: "Menu", bundle: nil).instantiateViewController(wit
 class MenuViewController: UIViewController {
     var toggle = false
     @IBOutlet weak var table: UITableView!
+    
+    @IBAction func clear(_ sender: UIButton) {
+        AppMenu.clearMenu()
+    }
+    @IBOutlet weak var screenBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.sendSubviewToBack(screenBtn)
         table.backgroundColor = UIColor(red: 0/255.0, green: 128.0/255.0, blue: 128.0/255.0, alpha: 1)
         self.view.backgroundColor = UIColor(white: 0, alpha: 0.5)
         // Do any additional setup after loading the view.
         
     }
-
     /*
     // MARK: - Navigation
 
@@ -34,6 +40,19 @@ extension MenuViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return self.table.frame.height / 4
     }
+    func indexPathForPreferredFocusedView(in tableView: UITableView) -> IndexPath? {
+        return IndexPath(row: checkFocusedCell(), section: 0)
+    }
+    func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.row == checkFocusedCell(){
+            return true
+        }
+        return false
+    }
+    
+    
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch Screens(rawValue: indexPath.row)! {
         case Screens.Main:
@@ -82,8 +101,10 @@ extension MenuViewController:UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell") as! MenuTableViewCell
         
+
         var itemTitle = Screens(rawValue: indexPath.row)!.description
         if itemTitle == "OrdersAndTreats"{
             itemTitle = "Orders & Treats"
@@ -92,6 +113,15 @@ extension MenuViewController:UITableViewDataSource{
         
         return cell
     }
-    
+    func checkFocusedCell() -> Int{
+        if let _ = self.parent as? CategoriesViewController{
+            return Screens.Main.rawVaule
+        }else if let _ = self.parent as? FriendsViewController{
+            return Screens.MyFriends.rawVaule
+        }else if let _ = self.parent as? OrdersAndTreatsViewController{
+            return Screens.OrdersAndTreats.rawVaule
+        }
+        return -1
+    }
     
 }

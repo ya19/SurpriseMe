@@ -49,6 +49,8 @@ class FriendsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        AppMenu.clearMenu()
+        
         fakeData()
 
         friendsTableView.delegate = self

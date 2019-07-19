@@ -19,13 +19,14 @@ class ShopViewController: UICollectionViewController{
     var shop:Shop?
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        AppMenu.clearMenu()
         
         self.collectionView.backgroundView = UIImageView(image: shop?.backgroudImage)
         self.collectionView.backgroundView?.alpha = 0.7
         self.navigationController?.navigationBar.isTranslucent = true
 
         self.title = shop?.name
-        print(shop)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

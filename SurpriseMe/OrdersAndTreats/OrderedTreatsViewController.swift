@@ -24,7 +24,6 @@ class OrderedTreatsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(white: 0, alpha: 0.5)
-        print("======= \(treats)")
 
         orderedTreatsTable.delegate = self
         orderedTreatsTable.dataSource = self

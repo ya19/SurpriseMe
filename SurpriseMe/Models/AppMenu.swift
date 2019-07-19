@@ -13,11 +13,18 @@ class AppMenu{
     static func toggleMenu(parent: UIViewController){
         menu.toggle = !menu.toggle
 
-        if(menu.toggle){
+        if menu.toggle {
+            menu.view.removeFromSuperview()
             PopUp.show(child: menu, parent: parent)
         }else{
             menu.view.removeFromSuperview()
         }
 
+    }
+    static func clearMenu(){
+        if menu.toggle {
+            menu.toggle = !menu.toggle
+            menu.view.removeFromSuperview()
+        }
     }
 }

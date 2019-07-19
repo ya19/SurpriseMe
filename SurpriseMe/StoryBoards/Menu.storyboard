@@ -56,17 +56,29 @@
                                     <outlet property="delegate" destination="qEk-YD-3w0" id="gp5-E4-f0J"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gIk-tU-tyn">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="clear:" destination="qEk-YD-3w0" eventType="touchUpInside" id="RIw-Pi-VgD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="5Xb-JF-OA4" firstAttribute="height" secondItem="Dd6-Ze-8FC" secondAttribute="height" multiplier="0.4" id="3Qm-5U-MwO"/>
+                            <constraint firstItem="gIk-tU-tyn" firstAttribute="width" secondItem="Dd6-Ze-8FC" secondAttribute="width" id="9vR-mp-EgH"/>
+                            <constraint firstItem="gIk-tU-tyn" firstAttribute="height" secondItem="Dd6-Ze-8FC" secondAttribute="height" id="RGk-Lt-e2R"/>
                             <constraint firstItem="5Xb-JF-OA4" firstAttribute="centerY" secondItem="Dd6-Ze-8FC" secondAttribute="centerY" multiplier="0.6" id="Tzm-wP-ahb"/>
                             <constraint firstItem="5Xb-JF-OA4" firstAttribute="width" secondItem="Dd6-Ze-8FC" secondAttribute="width" multiplier="0.7" id="bY4-NA-bUP"/>
                             <constraint firstItem="5Xb-JF-OA4" firstAttribute="centerX" secondItem="Dd6-Ze-8FC" secondAttribute="centerX" multiplier="0.7" id="fGg-H6-cC8"/>
+                            <constraint firstItem="gIk-tU-tyn" firstAttribute="centerX" secondItem="Dd6-Ze-8FC" secondAttribute="centerX" id="glJ-ml-wOR"/>
+                            <constraint firstItem="gIk-tU-tyn" firstAttribute="centerY" secondItem="Dd6-Ze-8FC" secondAttribute="centerY" id="y5h-tv-EoG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Je2-vS-vlh"/>
                     </view>
                     <connections>
+                        <outlet property="screenBtn" destination="gIk-tU-tyn" id="h0C-M9-exY"/>
                         <outlet property="table" destination="5Xb-JF-OA4" id="lUe-of-Ehm"/>
                     </connections>
                 </viewController>

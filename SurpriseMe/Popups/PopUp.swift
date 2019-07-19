@@ -16,13 +16,6 @@ class PopUp {
         popUpOverVC.didMove(toParent: parent)
     }
     static func show(child:UIViewController , parent:UIViewController){
-//        UIView.animate(withDuration: 0.5) {
-//            parent.addChild(child)
-//            child.view.frame = parent.view.frame
-//            parent.view.addSubview(child.view)
-//            child.didMove(toParent: parent)
-//        }
-//
         
         parent.addChild(child)
         child.view.frame = parent.view.frame
