@@ -10,8 +10,6 @@ import UIKit
 
 
 
-var orders = currentUser.myOrders
-var treats = currentUser.myTreats
 
 
 class OrdersAndTreatsViewController: UIViewController {
@@ -66,8 +64,8 @@ extension OrdersAndTreatsViewController : UITableViewDelegate{
 extension OrdersAndTreatsViewController : UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch(ordersTreatsSegmented.selectedSegmentIndex){
-        case 0: return  orders.count
-        case 1: return treats.count
+        case 0: return  currentUser.myOrders.count
+        case 1: return currentUser.myTreats.count
         default:
             return 1
         }
@@ -82,10 +80,10 @@ extension OrdersAndTreatsViewController : UITableViewDataSource{
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell") as? OrderCell else{return UITableViewCell()}
             
             
-            cell.order = orders[indexPath.row]
-            cell.idLabel.text = orders[indexPath.row].id
+            cell.order = currentUser.myOrders[indexPath.row]
+            cell.idLabel.text = currentUser.myOrders[indexPath.row].id
             //to do: don't forget to make the calculation ahead.
-            cell.priceLabel.text = "\(orders[indexPath.row].price)"
+            cell.priceLabel.text = "\(currentUser.myOrders[indexPath.row].price)"
             cell.dateLabel.text = "today"
             cell.delegate = self
             
@@ -93,7 +91,7 @@ extension OrdersAndTreatsViewController : UITableViewDataSource{
             
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "treatCell") as? TreatCell else{return UITableViewCell()}
-            cell.populate(treat: treats[indexPath.row])
+            cell.populate(treat: currentUser.myTreats[indexPath.row])
             cell.delegate = self
             
             return cell
@@ -148,8 +146,8 @@ protocol SentVoucherDelegate {
     func sentVoucher()
 }
 
-extension OrdersAndTreatsViewController : SendVoucherDelegate{
-    func sendVoucher() {
+extension OrdersAndTreatsViewController : SentVoucherDelegate{
+    func sentVoucher() {
             self.ordersTreatsTableView.reloadData()
     }
 }

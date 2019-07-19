@@ -21,7 +21,7 @@ class UseTreatViewController: UIViewController {
     @IBOutlet weak var closePopUpBtn: SAButton!
     
     var treat: Treat?
-    var delegate : SendVoucherDelegate?
+    var delegate : SentVoucherDelegate?
     
     
     @IBAction func closePopUp(_ sender: UIButton) {
@@ -34,9 +34,10 @@ class UseTreatViewController: UIViewController {
         
         for i in 0..<currentUser.myTreats.count{
             if treat?.id == currentUser.myTreats[i].id{
-                treat?.treatStatus = TreatStatus.Delivered
-                currentUser.myTreats[i] = treat!
-                delegate?.sendVoucher()
+//                treat?.treatStatus = TreatStatus.Delivered
+//                currentUser.myTreats[i] = treat!
+                currentUser.myTreats[i].treatStatus = TreatStatus.Delivered
+                delegate?.sentVoucher()
             }
             
             print("\(currentUser.myTreats)")
@@ -74,8 +75,4 @@ class UseTreatViewController: UIViewController {
     }
 
 
-}
-
-protocol SendVoucherDelegate{
-    func sendVoucher()
 }
