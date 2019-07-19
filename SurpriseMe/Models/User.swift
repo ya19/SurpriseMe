@@ -7,7 +7,7 @@
 //
 
 import UIKit
-var currentUser = User.init(id: "203137252", email: "shahaf_t@narkis.co.il", firstName: "David", lastName: "Tikva", dateOfBitrh: "16.11.91",
+var currentUser = User.init(id: "1", email: "shahaf_t@narkis.co.il", firstName: "David", lastName: "Tikva", dateOfBitrh: "16.11.91",
           
           friends: [
             User(id: "2", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , getTreatsStatus: GetTreatStatus.EVERYONE),

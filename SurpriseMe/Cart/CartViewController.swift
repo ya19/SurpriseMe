@@ -29,24 +29,18 @@ class CartViewController: UIViewController {
         super.viewDidLoad()
 
         AppMenu.clearMenu()
-        
+        users = dataFromServer()
         cartTableView.delegate = self
         cartTableView.dataSource = self
 //        fakeProducts()
         print(CartManager.shared.treats)
-        fakeData()
         total.text = "Total: \(sum) NIS"
         
         
         // Do any additional setup after loading the view.
     }
-    func fakeData(){
-        users.append(User(id: "1", email: "email@gmail.com" ,firstName: "yarden" ,lastName: "swissa" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , getTreatsStatus: GetTreatStatus.EVERYONE))
-        users.append(User(id: "1", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , getTreatsStatus: GetTreatStatus.EVERYONE))
-        users.append(User(id: "1", email: "email@gmail.com" ,firstName: "shahaf" ,lastName: "tepler" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , getTreatsStatus: GetTreatStatus.EVERYONE))
-        users.append(User(id: "1", email: "email@gmail.com" ,firstName: "yair" ,lastName: "frid" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , getTreatsStatus: GetTreatStatus.EVERYONE))
-        users.append(User(id: "1", email: "email@gmail.com" ,firstName: "iam" ,lastName: "someone" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , getTreatsStatus: GetTreatStatus.EVERYONE))
-        users.append(User(id: "1", email: "email@gmail.com" ,firstName: "daniel" ,lastName: "daniel" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , getTreatsStatus: GetTreatStatus.EVERYONE))
+    func dataFromServer() -> [User]{
+        return UsersManager.shared.getAllBut(user: currentUser)
     }
 //    func fakeProducts(){
 //

@@ -31,6 +31,15 @@ class UsersManager{
         return users
     }
     
+    func getIndex(user:User) -> Int {
+        for i in 0..<users.count{
+            if user.id == users[i].id {
+                return i
+            }
+        }
+        return -1
+    }
+    
     func getAllButFriends(user:User) -> [User]{
 
 
@@ -38,8 +47,17 @@ class UsersManager{
         var usersId:Set<User> = Set(users.map{$0})
 
         usersId.subtract(friendsId)
-        return Array(usersId)
+        return Array(usersId).filter{ (item) -> Bool in
+            item.id != user.id
+        }
     }
+    
+    func getAllBut(user:User) -> [User]{
+        return users.filter({ (item) -> Bool in
+            item.id != user.id
+        })
+    }
+    
     
     func fakeData(){
         users.append(User(id: "1", email: "email@gmail.com" ,firstName: "yarden" ,lastName: "swissa" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , getTreatsStatus: GetTreatStatus.EVERYONE))

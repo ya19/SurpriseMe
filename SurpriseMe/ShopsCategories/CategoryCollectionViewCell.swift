@@ -73,10 +73,9 @@ extension CategoryCollectionViewCell : UICollectionViewDataSource {
 extension CategoryCollectionViewCell : UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let windowFrame = UIApplication.shared.keyWindow?.frame
-        let screen = UIScreen.main.bounds
-        print(windowFrame)
-        print(screen)
+//        let windowFrame = UIApplication.shared.keyWindow?.frame
+//        let screen = UIScreen.main.bounds
+        
         return CGSize(width: collectionView.frame.width * 0.3, height: collectionView.frame.height)
 //        return CGSize(width: UIScreen.main.bounds.width * 0.2, height: collectionView.frame.height)
 
