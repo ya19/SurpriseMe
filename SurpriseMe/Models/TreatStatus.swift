@@ -8,6 +8,6 @@
 
 import UIKit
 
-enum  TreatStatus:Int {
+enum  GetTreatStatus:Int {
     case EVERYONE , FRIENDS , NONE
 }

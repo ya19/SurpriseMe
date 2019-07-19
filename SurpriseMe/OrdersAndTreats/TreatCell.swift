@@ -21,6 +21,14 @@ class TreatCell: UITableViewCell {
     var delegate:ShowPopUpDelegate?
     var treat:Treat?
     
+    @IBOutlet weak var treatStatusImage: UIImageView!
+    
+    @IBOutlet weak var treatStatusLabel: UILabel!
+    
+    @IBOutlet weak var useTreatBtn: UIButton!
+    
+    
+    
     
     @IBAction func useCoupon(_ sender: UIButton) {
         
@@ -33,6 +41,35 @@ class TreatCell: UITableViewCell {
         productName.text = treat.product.name
         giver.text = "The giver's name" //treat.giver?.firstName
         dateLabel.text = "Date of the order"
+        
+        switch treat.treatStatus! {
+        case .NotUsed:
+            treatStatusImage.isHidden = true
+            treatStatusLabel.isHidden = true
+            useTreatBtn.isHidden = false
+            
+        case .Used:
+            treatStatusImage.isHidden = false
+            treatStatusLabel.isHidden = false
+            useTreatBtn.isHidden = true
+            treatStatusImage.image = TreatStatus.Used.image
+            treatStatusLabel.text = TreatStatus.Used.description
+            
+        case .Delivered:
+            treatStatusImage.isHidden = false
+            treatStatusLabel.isHidden = false
+            useTreatBtn.isHidden = true
+            treatStatusImage.image = TreatStatus.Delivered.image
+            treatStatusLabel.text = TreatStatus.Delivered.description
+            
+        case .Expired:
+            treatStatusImage.isHidden = false
+            treatStatusLabel.isHidden = false
+            useTreatBtn.isHidden = true
+            treatStatusImage.image = TreatStatus.Expired.image
+            treatStatusLabel.text = TreatStatus.Expired.description
+            
+        }
     }
     
     
