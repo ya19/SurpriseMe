@@ -10,7 +10,7 @@ import UIKit
 
 class FriendsViewController: UIViewController {
     var friends:[User]{
-        return shahafuser.friends
+        return currentUser.friends
     }
 
     
@@ -38,7 +38,7 @@ class FriendsViewController: UIViewController {
         //        usersVC.delegate =
         if(!popUpOn){
             usersVC.delegate = self
-            usersVC.users = self.users
+            usersVC.users = UsersManager.shared.getAllButFriends(user: currentUser)
             PopUp.show(child: usersVC, parent: self)
             popUpOn = !popUpOn
         }
@@ -48,26 +48,18 @@ class FriendsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        getUsersData()
         AppMenu.clearMenu()
         
-        fakeData()
-
         friendsTableView.delegate = self
         friendsTableView.dataSource = self
         // Do any additional setup after loading the view.
     }
     
-    
-    func fakeData(){
-        users.append(User(id: "1", email: "email@gmail.com" ,firstName: "yarden" ,lastName: "swissa" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , treatsStatus: TreatStatus.EVERYONE))
-        users.append(User(id: "1", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , treatsStatus: TreatStatus.EVERYONE))
-        users.append(User(id: "1", email: "email@gmail.com" ,firstName: "shahaf" ,lastName: "tepler" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , treatsStatus: TreatStatus.EVERYONE))
-        users.append(User(id: "1", email: "email@gmail.com" ,firstName: "yair" ,lastName: "frid" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , treatsStatus: TreatStatus.EVERYONE))
-        users.append(User(id: "1", email: "email@gmail.com" ,firstName: "iam" ,lastName: "someone" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , treatsStatus: TreatStatus.EVERYONE))
-        users.append(User(id: "1", email: "email@gmail.com" ,firstName: "daniel" ,lastName: "daniel" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , treatsStatus: TreatStatus.EVERYONE))
+
+    func getUsersData(){
+        users = UsersManager.shared.getUsers()
     }
-    
 
     /*
     // MARK: - Navigation
@@ -105,7 +97,7 @@ extension FriendsViewController : deliverUserDelegate{
     func deliver(user: User) {
                 
         //update in database
-        shahafuser.friends.append(user)
+        currentUser.friends.append(user)
         self.friendsTableView.reloadData()
     }
 }

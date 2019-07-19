@@ -9,40 +9,9 @@
 import UIKit
 
 
-var shahafuser = User.init(id: "203137252", email: "shahaf_t@narkis.co.il", firstName: "David", lastName: "Tikva", dateOfBitrh: "16.11.91",
-                           
-    friends: [
-                User.init(id: "123456789", email: "appoyossi@gmail.com", firstName: "Yossi", lastName: "Appo", dateOfBitrh: "", friends: [], myTreats: [], myOrders: [], myCart: [], treatsStatus: .EVERYONE),
-                
-                User.init(id: "10000000", email: "avicohen@gmail.com", firstName: "Avi", lastName: "Cohen", dateOfBitrh: "", friends: [], myTreats: [], myOrders: [], myCart: [], treatsStatus: .EVERYONE),
-                
-                User.init(id: "20000000", email: "", firstName: "David", lastName: "Ahomo", dateOfBitrh: "", friends: [], myTreats: [], myOrders: [], myCart: [], treatsStatus: .EVERYONE)
-    
-    
-            ],
-    myTreats:
-            [
-                Treat.init(id: "#1", date: nil, product: Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes", price: 159.00), giver: nil, getter: nil),
-                
-                Treat.init(id: "#2", date: nil, product: Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes", price: 165.00), giver: nil, getter: nil),
-                
-                Treat.init(id: "#3", date: nil, product: Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes", price: 121.00), giver: nil, getter: nil)
-                
-                
-            ],
-    
-    myOrders:
-            [Order.init(id: "#1", treats: [
-                    
-                Treat.init(id: "#1", date: nil, product: Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes", price: 159.00), giver: nil, getter: nil),
-                    
-                Treat.init(id: "#2", date: nil, product: Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes", price: 165.00), giver: nil, getter: nil),
-                    
-                Treat.init(id: "#3", date: nil, product: Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes", price: 121.00), giver: nil, getter: nil)], date: Date.init(), buyer: user)
-            ],myCart: [], treatsStatus: .EVERYONE)
 
-var orders = shahafuser.myOrders
-var treats = shahafuser.myTreats
+var orders = currentUser.myOrders
+var treats = currentUser.myTreats
 
 
 class OrdersAndTreatsViewController: UIViewController {
