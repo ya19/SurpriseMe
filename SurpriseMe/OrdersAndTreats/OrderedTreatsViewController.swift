@@ -61,7 +61,6 @@ extension OrderedTreatsViewController: UITableViewDataSource{
          let cell = tableView.dequeueReusableCell(withIdentifier: "orderedTreatCell") as! OrderedTreatsTableCell
         
         cell.populate(treat: treats![indexPath.row])
-        print(treats)
         
         return cell
     }

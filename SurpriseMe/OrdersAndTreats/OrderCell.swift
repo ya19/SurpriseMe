@@ -22,7 +22,6 @@ class OrderCell: UITableViewCell {
     
     var delegate : ShowPopUpDelegate?
     @IBAction func showProducts(_ sender: UIButton) {
-        print(order)
         delegate?.showTreats(order: order!)
     }
     
