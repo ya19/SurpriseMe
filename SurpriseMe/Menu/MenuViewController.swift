@@ -23,14 +23,16 @@ class MenuViewController: UIViewController {
         table.backgroundColor = UIColor(red: 0/255.0, green: 128.0/255.0, blue: 128.0/255.0, alpha: 1)
         self.view.backgroundColor = UIColor(white: 0, alpha: 0.5)
         // Do any additional setup after loading the view.
-        
+//        table.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .none)
+//        table.reloadData()
+ 
     }
     /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
+        // Get th`e new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
     */
@@ -40,17 +42,17 @@ extension MenuViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return self.table.frame.height / 4
     }
-    func indexPathForPreferredFocusedView(in tableView: UITableView) -> IndexPath? {
-        return IndexPath(row: checkFocusedCell(), section: 0)
-    }
-    func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool {
-        if indexPath.row == checkFocusedCell(){
-            return true
-        }
-        return false
-    }
+//    func indexPathForPreferredFocusedView(in tableView: UITableView) -> IndexPath? {
+//        return IndexPath(row: checkFocusedCell(), section: 0)
+//    }
+//    func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool {
+//        if indexPath.row == checkFocusedCell(){
+//            return true
+//        }
+//        return false
+//    }
     
-    
+
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -104,7 +106,10 @@ extension MenuViewController:UITableViewDataSource{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell") as! MenuTableViewCell
         
-
+        if indexPath.row == 0 {
+            cell.setSelected(true, animated: true)
+            print(indexPath.row)
+        }
         var itemTitle = Screens(rawValue: indexPath.row)!.description
         if itemTitle == "OrdersAndTreats"{
             itemTitle = "Orders & Treats"
