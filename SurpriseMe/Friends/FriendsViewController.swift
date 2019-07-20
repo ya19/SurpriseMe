@@ -34,12 +34,10 @@ class FriendsViewController: UIViewController {
             usersVC.users = UsersManager.shared.getAllButFriends(user: currentUser)
 //            userAddedDelegate = usersVC
 //            userAddedDelegate?.reloadMydata()
-        if children.count != 0{
-            for i in 0 ..< children.count{
-                if let _ = children[i] as? MenuViewController{
-                    toggle = true
-                }
-            }
+
+        
+        if menu.toggle {
+            toggle = true
         }
         toggle = PopUp.toggle(child: usersVC, parent: self,toggle: toggle)
 
@@ -51,7 +49,7 @@ class FriendsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getUsersData()
-        AppMenu.clearMenu()
+//        AppMenu.clearMenu()
         
         friendsTableView.delegate = self
         friendsTableView.dataSource = self

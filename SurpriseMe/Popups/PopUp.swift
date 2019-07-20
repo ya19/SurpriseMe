@@ -12,6 +12,9 @@ class PopUp {
         if parent.children.count != 0{
             for i in 0 ..< parent.children.count{
                 if let _ = parent.children[i] as? MenuViewController{
+                    if parent.children.count > 1 {
+                        AppMenu.clearMenu()
+                    }
                 }else{
                       self.remove(controller: parent.children[i])
                 }
@@ -34,6 +37,9 @@ class PopUp {
         if parent.children.count != 0{
             for i in 0 ..< parent.children.count{
                 if let _ = parent.children[i] as? MenuViewController{
+                    if parent.children.count > 1 {
+                        AppMenu.clearMenu()
+                    }
                 }else{
                     self.remove(controller: parent.children[i])
                 }
