@@ -87,7 +87,7 @@ extension CartViewController:UITableViewDelegate{
         let itemVC = self.storyboard?.instantiateViewController(withIdentifier: "itemPopUp") as! ItemPopUpViewController
         itemVC.item = CartManager.shared.treats[indexPath.row].product
         
-        PopUp.show(child: itemVC, parent: self)
+        PopUp.toggle(child: itemVC, parent: self,toggle: true)
     }
 }
 extension CartViewController:UITableViewDataSource{
@@ -121,7 +121,7 @@ extension CartViewController:AddUserDelegate{
         }
 //        usersVC.delegate =
         
-        PopUp.show(child: usersVC, parent: self)
+        PopUp.toggle(child: usersVC, parent: self,toggle: true)
     }
     
     

@@ -51,7 +51,6 @@ class UseTreatViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         popUpView.backgroundColor = UIColor(patternImage: UIImage(named: "pure-blue-sky")!)
         // Do any additional setup after loading the view.
     }

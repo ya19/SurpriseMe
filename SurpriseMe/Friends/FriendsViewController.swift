@@ -12,12 +12,12 @@ class FriendsViewController: UIViewController {
     var friends:[User]{
         return currentUser.friends
     }
-
+//    var userAddedDelegate: UserAddedDelegate?
     
     //to do: get the friends from Usermanager singelton
+    var toggle:Bool = true
     var users:[User] = []
     var delegate : deliverUserDelegate?
-    let usersVC = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController
     var popUpOn:Bool = false
     @IBAction func showMenu(_ sender: UIBarButtonItem) {
         AppMenu.toggleMenu(parent: self)
@@ -27,21 +27,23 @@ class FriendsViewController: UIViewController {
     
     
     @IBAction func addFriendPopUp(_ sender: UIBarButtonItem) {
-//        let usersVC = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController
-        
-        //todo : Get users from database
-        
-        //todo: making the table view as the delegate
-//        if let treatCell = cell as? CartProductTableViewCell{
-//            usersVC.delegate = treatCell
-//        }
-        //        usersVC.delegate =
-        if(!popUpOn){
+
+            let usersVC = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController
+
             usersVC.delegate = self
             usersVC.users = UsersManager.shared.getAllButFriends(user: currentUser)
-            PopUp.show(child: usersVC, parent: self)
-            popUpOn = !popUpOn
+//            userAddedDelegate = usersVC
+//            userAddedDelegate?.reloadMydata()
+        if children.count != 0{
+            for i in 0 ..< children.count{
+                if let _ = children[i] as? MenuViewController{
+                    toggle = true
+                }
+            }
         }
+        toggle = PopUp.toggle(child: usersVC, parent: self,toggle: toggle)
+
+
     }
     
     
@@ -98,6 +100,7 @@ extension FriendsViewController : deliverUserDelegate{
                 
         //update in database
         currentUser.friends.append(user)
+
         self.friendsTableView.reloadData()
     }
 }

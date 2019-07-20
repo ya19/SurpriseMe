@@ -66,26 +66,33 @@ extension MenuViewController:UITableViewDelegate{
             }else{
                 let mainVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
                 self.parent?.navigationController?.pushViewController(mainVC, animated: true)
+                menu.removeFromParent()
+
                 return
             }
         case Screens.MyFriends:
             menu.toggle = !menu.toggle
             self.view.removeFromSuperview()
+
             if let _ = self.parent as? FriendsViewController{
                 return
             }else{
                 let friendsVC = UIStoryboard(name: "Friends", bundle: nil).instantiateViewController(withIdentifier: "friends") as! FriendsViewController
                 self.parent?.navigationController?.pushViewController(friendsVC, animated: true)
+                menu.removeFromParent()
+
                 return
             }
         case Screens.OrdersAndTreats:
             menu.toggle = !menu.toggle
             self.view.removeFromSuperview()
+
             if let _ = self.parent as? OrdersAndTreatsViewController{
                 return
             }else{
                 let ordersAndTreatsVC = UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orders") as! OrdersAndTreatsViewController
                 self.parent?.navigationController?.pushViewController(ordersAndTreatsVC, animated: true)
+                menu.removeFromParent()
                 return
             }
         case .Logout:

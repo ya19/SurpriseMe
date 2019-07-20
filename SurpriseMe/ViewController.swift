@@ -13,7 +13,7 @@ class ViewController: BaseViewController {
 
     @IBAction func register(_ sender: UIButton) {
 
-        PopUp.show(storyBoardName: "Register", vcIdentifer: "registerPopUp", parent: self)
+        PopUp.toggle(storyBoardName: "Register", vcIdentifer: "registerPopUp", parent: self,toggle:true)
     
     }
     

@@ -9,7 +9,9 @@
 import UIKit
 
 class UsersPopUpViewController: UIViewController {
+
     var users:[User]?
+    
     var delegate:deliverUserDelegate?
     var currentUsers:[User]?
     @IBOutlet weak var table: UITableView!
@@ -18,6 +20,8 @@ class UsersPopUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        AppMenu.clearMenu()
         self.view.backgroundColor = UIColor(white: 0, alpha: 0.5)
         searchBar.delegate = self
         currentUsers = users
@@ -46,7 +50,7 @@ extension UsersPopUpViewController:UISearchBarDelegate{
             table.reloadData()
             return
         }
-        currentUsers = users?.filter({ user -> Bool in
+        currentUsers = users!.filter({ user -> Bool in
             return user.fullName.lowercased().contains(searchText.lowercased())
         })
         table.reloadData()
@@ -56,12 +60,9 @@ extension UsersPopUpViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.deliver(user: self.currentUsers![indexPath.row])
         if let friendsVC = self.parent as? FriendsViewController{
-//            friendsVC.delegate =
-            
             //update in data base.
             friendsVC.popUpOn = !friendsVC.popUpOn
-//            friendsVC.friends.append(self.currentUsers![indexPath.row])
-//            friendsVC.friendsTableView.reloadData()
+
             
         }
         PopUp.remove(controller: self)
@@ -84,4 +85,13 @@ extension UsersPopUpViewController:UITableViewDataSource{
     
 }
 
-
+//protocol UserAddedDelegate {
+//    func reloadMydata()
+//}
+//extension UsersPopUpViewController:UserAddedDelegate{
+//    func reloadMydata() {
+//        if self.table != nil {
+//            self.table.reloadData()
+//        }
+//    }
+//}

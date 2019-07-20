@@ -15,8 +15,9 @@ class AppMenu{
 
         if menu.toggle {
             menu.view.removeFromSuperview()
-            PopUp.show(child: menu, parent: parent)
+            PopUp.toggle(child: menu, parent: parent,toggle: true)
         }else{
+            menu.removeFromParent()
             menu.view.removeFromSuperview()
         }
 
@@ -24,6 +25,7 @@ class AppMenu{
     static func clearMenu(){
         if menu.toggle {
             menu.toggle = !menu.toggle
+            menu.removeFromParent()
             menu.view.removeFromSuperview()
         }
     }

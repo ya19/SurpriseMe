@@ -81,7 +81,7 @@ class ShopViewController: UICollectionViewController{
         let itemVC = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "itemPopUp") as! ItemPopUpViewController
         itemVC.item = shop!.products["Products"]![indexPath.row]
         itemVC.addToCart = true
-        PopUp.show(child: itemVC, parent: self)
+        PopUp.toggle(child: itemVC, parent: self,toggle: true)
     }
 
     // MARK: UICollectionViewDelegate
