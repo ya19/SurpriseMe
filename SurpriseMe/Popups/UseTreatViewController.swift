@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UseTreatViewController: UIViewController {
+class UseTreatViewController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var popUpView: SAView!
     @IBOutlet weak var addressLabel: SATextField!
@@ -17,6 +17,7 @@ class UseTreatViewController: UIViewController {
     
     @IBOutlet weak var cityLabel: SATextField!
     @IBOutlet weak var idLabel: SATextField!
+    private let errorMessage = UILabel()
     
     @IBOutlet weak var closePopUpBtn: SAButton!
     
@@ -28,6 +29,31 @@ class UseTreatViewController: UIViewController {
         clearData()
         self.view.removeFromSuperview()
     }
+    
+    
+    @IBAction func checkValidation(_ sender: SATextField) {
+//        if sender.text!.isEmpty{
+//            print("IS VALID ??")
+//            sender.layer.borderColor = UIColor.red.cgColor
+//            sender.backgroundColor = .red
+//            setupErrorMessage(textField: sender)
+//        }
+        
+        //todo remember to change it to regex for address if we want. and add in the enum
+        sender.checkValidationNew(sender: sender, errorLabel: errorMessage, type: .isEmail)
+        
+//        if !sender.checkValidationNew(sender: sender, type: .isEmail){
+//            sender.setupErrorMessage(textField: sender , errorLabel : errorMessage, textFieldType: .isEmail)
+//        }
+        
+        
+    }
+    
+    
+    @IBAction func editingChanged(_ sender: SATextField) {
+        sender.setTextFieldValid(sender: sender, errorLabel: errorMessage)
+    }
+    
     
     
     @IBAction func useVoucher(_ sender: UIButton) {
@@ -51,12 +77,22 @@ class UseTreatViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        errorMessage.isHidden = true
+        self.view.addSubview(errorMessage)
+
 
         popUpView.backgroundColor = UIColor(patternImage: UIImage(named: "pure-blue-sky")!)
+        
+        
         // Do any additional setup after loading the view.
+        
+
+
+        
     }
     
-
+    
     /*
     // MARK: - Navigation
 
@@ -76,3 +112,4 @@ class UseTreatViewController: UIViewController {
 
 
 }
+
