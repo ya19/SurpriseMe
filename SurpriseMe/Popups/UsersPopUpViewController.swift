@@ -61,7 +61,7 @@ extension UsersPopUpViewController:UITableViewDelegate{
         delegate?.deliver(user: self.currentUsers![indexPath.row])
         if let friendsVC = self.parent as? FriendsViewController{
             //update in data base.
-            friendsVC.popUpOn = !friendsVC.popUpOn
+            friendsVC.toggle = !friendsVC.toggle
 
             
         }

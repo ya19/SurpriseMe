@@ -18,7 +18,6 @@ class FriendsViewController: UIViewController {
     var toggle:Bool = true
     var users:[User] = []
     var delegate : deliverUserDelegate?
-    var popUpOn:Bool = false
     @IBAction func showMenu(_ sender: UIBarButtonItem) {
         AppMenu.toggleMenu(parent: self)
     }

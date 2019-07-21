@@ -46,7 +46,7 @@ class CategoriesViewController: UICollectionViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return shops.count
+        return ShopsManager.shared.getShops().count
     }
 
 
@@ -62,7 +62,7 @@ class CategoriesViewController: UICollectionViewController {
 //        cell.categoryLabel.text = categories[indexPath.item]
 //        cell.shopsData = shops[indexPath.section]
         
-        cell.populate(shopsArray: shops[indexPath.section])
+        cell.populate(shopsArray: ShopsManager.shared.getShops()[indexPath.section])
         //set the delegate
         cell.delegate = self
         

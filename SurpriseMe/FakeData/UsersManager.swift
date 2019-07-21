@@ -40,6 +40,13 @@ class UsersManager{
         return -1
     }
     
+    func add(treat:Treat , to:User){
+        for i in 0..<users.count{
+            if users[i].id == to.id{
+                users[i].myTreats.append(treat)
+            }
+        }
+    }
     func getAllButFriends(user:User) -> [User]{
 
 

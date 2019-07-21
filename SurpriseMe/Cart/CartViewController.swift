@@ -21,10 +21,42 @@ class CartViewController: UIViewController {
     var users:[User] = []
     @IBOutlet weak var total: UILabel!
     @IBOutlet weak var cartTableView: UITableView!
+    
+    
+    
     @IBAction func buy(_ sender: SAButton) {
-        Toast.show(message: "go to paypal", controller: self)
+        
+        var filled = true
+        for treat in CartManager.shared.treats{
+            if treat.getter == nil {
+                filled = false
+            }
+        }
+        //create new order , add it to current user orders array
+        //create a treat for each tread in the order, add it to the "getter" treats array
+        // figure out how to create specific id for each order / treat
+        
+        if filled {
+        let order = Order(id: "#", treats: CartManager.shared.treats, date: Date(), buyer: currentUser)
+        currentUser.myOrders.append(order)
+        
+        for treat in CartManager.shared.treats{
+            UsersManager.shared.add(treat: treat, to: treat.getter!)
+        }
+            CartManager.shared.treats = []
+            cartTableView.reloadData()
+            print(currentUser)
+            print(UsersManager.shared.getUsers())
+        Toast.show(message: "Order completed", controller: self)
+        }else{
+            Toast.show(message: "Getters arent filled", controller: self)
+        }
+        
         
     }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

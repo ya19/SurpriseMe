@@ -60,6 +60,7 @@
 		AD68A49722D8F2C900E019BA /* Cart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD68A49622D8F2C900E019BA /* Cart.storyboard */; };
 		AD68A49922D91C9700E019BA /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD68A49822D91C9700E019BA /* Toast.swift */; };
 		ADA1BA0B22E1D5C3004EF8F0 /* UsersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA1BA0A22E1D5C3004EF8F0 /* UsersManager.swift */; };
+		ADDB515F22E4B12D00F262B6 /* ShopsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDB515E22E4B12D00F262B6 /* ShopsManager.swift */; };
 		ADDB641222E0733A003A2916 /* Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDB641122E0733A003A2916 /* Screens.swift */; };
 		ADDB641422E07EC7003A2916 /* AppMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDB641322E07EC7003A2916 /* AppMenu.swift */; };
 /* End PBXBuildFile section */
@@ -121,6 +122,7 @@
 		AD68A49622D8F2C900E019BA /* Cart.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Cart.storyboard; sourceTree = "<group>"; };
 		AD68A49822D91C9700E019BA /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		ADA1BA0A22E1D5C3004EF8F0 /* UsersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersManager.swift; sourceTree = "<group>"; };
+		ADDB515E22E4B12D00F262B6 /* ShopsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsManager.swift; sourceTree = "<group>"; };
 		ADDB641122E0733A003A2916 /* Screens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screens.swift; sourceTree = "<group>"; };
 		ADDB641322E07EC7003A2916 /* AppMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMenu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -300,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				ADA1BA0A22E1D5C3004EF8F0 /* UsersManager.swift */,
+				ADDB515E22E4B12D00F262B6 /* ShopsManager.swift */,
 			);
 			path = FakeData;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				47CC647522DCEEDC00463BF9 /* Order.swift in Sources */,
 				7B1E1FD822D3728A007922E9 /* Shop.swift in Sources */,
 				7B1E1FEB22D393EE007922E9 /* SATextField.swift in Sources */,
+				ADDB515F22E4B12D00F262B6 /* ShopsManager.swift in Sources */,
 				474B257922D8959E00D0A332 /* ShopViewController.swift in Sources */,
 				ADDB641422E07EC7003A2916 /* AppMenu.swift in Sources */,
 				7B1E1FDC22D374CA007922E9 /* Product.swift in Sources */,
