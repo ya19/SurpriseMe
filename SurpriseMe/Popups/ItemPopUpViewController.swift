@@ -46,6 +46,7 @@ class ItemPopUpViewController: UIViewController {
     @IBOutlet weak var itemImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        AppMenu.clearMenu()
         self.view.backgroundColor = UIColor(white: 0, alpha: 0.5)
         initViews()
         
