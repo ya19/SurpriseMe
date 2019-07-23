@@ -29,7 +29,7 @@ class OrderedTreatsTableCell: UITableViewCell {
         treatImage.image = treat.product.image
 //        treatGetter.text = "\(treat.getter?.firstName) \(treat.getter?.lastName)"
         treatGetter.text = treat.getter?.fullName
-        dateOfOrder.text = "When you ordered"
+        dateOfOrder.text = treat.dateString
         productName.text = treat.product.name
     }
 

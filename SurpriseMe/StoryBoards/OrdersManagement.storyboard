@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -547,7 +547,7 @@
                                 <rect key="frame" x="37.5" y="116.5" width="300" height="333.5"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your house number..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d4a-k6-ot4" customClass="SATextField" customModule="SurpriseMe" customModuleProvider="target">
-                                        <rect key="frame" x="22.5" y="47" width="255" height="40"/>
+                                        <rect key="frame" x="22.5" y="150.5" width="255" height="40"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -557,7 +557,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your street..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g79-y0-bRL" customClass="SATextField" customModule="SurpriseMe" customModuleProvider="target">
-                                        <rect key="frame" x="22.5" y="105.5" width="255" height="40"/>
+                                        <rect key="frame" x="22.5" y="92" width="255" height="40"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -567,7 +567,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your ID..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wyO-0d-lTu" customClass="SATextField" customModule="SurpriseMe" customModuleProvider="target">
-                                        <rect key="frame" x="22.5" y="222" width="255" height="40"/>
+                                        <rect key="frame" x="22.5" y="208.5" width="255" height="40"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -577,7 +577,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ni-8E-162">
-                                        <rect key="frame" x="22.5" y="280.5" width="255" height="40"/>
+                                        <rect key="frame" x="22.5" y="288.5" width="255" height="23.5"/>
                                         <state key="normal" title="Use Voucher">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -593,7 +593,7 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Your City.." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VSp-YP-XA0" customClass="SATextField" customModule="SurpriseMe" customModuleProvider="target">
-                                        <rect key="frame" x="22.5" y="163.5" width="255" height="40"/>
+                                        <rect key="frame" x="22.5" y="33.5" width="255" height="40"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -602,12 +602,26 @@
                                             <action selector="editingChanged:" destination="KEM-cI-AER" eventType="editingChanged" id="Ri1-ua-kDT"/>
                                         </connections>
                                     </textField>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gJE-fG-eK0">
+                                        <rect key="frame" x="195" y="255.5" width="62" height="23"/>
+                                        <color key="onTintColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="save my adress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dv6-nk-WoR">
+                                        <rect key="frame" x="45" y="255.5" width="150" height="23"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.50383810384970484" green="0.54069901036507806" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="gJE-fG-eK0" firstAttribute="centerX" secondItem="Hos-02-ANI" secondAttribute="centerX" multiplier="1.5" id="0Vc-8d-1E1"/>
+                                    <constraint firstItem="Dv6-nk-WoR" firstAttribute="centerX" secondItem="Hos-02-ANI" secondAttribute="centerX" multiplier="0.8" id="0iX-8m-lNg"/>
                                     <constraint firstItem="9Ni-8E-162" firstAttribute="width" secondItem="Hos-02-ANI" secondAttribute="width" multiplier="0.85" id="5IA-2O-h7W"/>
-                                    <constraint firstItem="d4a-k6-ot4" firstAttribute="centerY" secondItem="Hos-02-ANI" secondAttribute="centerY" multiplier="0.4" id="6mu-WA-IRc"/>
+                                    <constraint firstItem="d4a-k6-ot4" firstAttribute="centerY" secondItem="Hos-02-ANI" secondAttribute="centerY" multiplier="1.02" id="6mu-WA-IRc"/>
                                     <constraint firstItem="wyO-0d-lTu" firstAttribute="centerX" secondItem="Hos-02-ANI" secondAttribute="centerX" id="7Ey-Ua-42g"/>
+                                    <constraint firstItem="gJE-fG-eK0" firstAttribute="width" secondItem="Hos-02-ANI" secondAttribute="width" multiplier="0.2" id="8Bc-6I-itS"/>
+                                    <constraint firstItem="Dv6-nk-WoR" firstAttribute="centerY" secondItem="Hos-02-ANI" secondAttribute="centerY" multiplier="1.6" id="Biy-Tp-ZIV"/>
                                     <constraint firstItem="g79-y0-bRL" firstAttribute="width" secondItem="Hos-02-ANI" secondAttribute="width" multiplier="0.85" id="Ca0-Kx-ATq"/>
                                     <constraint firstItem="VSp-YP-XA0" firstAttribute="centerX" secondItem="Hos-02-ANI" secondAttribute="centerX" id="HaX-Cy-353"/>
                                     <constraint firstItem="9Ni-8E-162" firstAttribute="centerY" secondItem="Hos-02-ANI" secondAttribute="centerY" multiplier="1.8" id="JrW-pK-ffZ"/>
@@ -616,17 +630,21 @@
                                     <constraint firstItem="VSp-YP-XA0" firstAttribute="width" secondItem="Hos-02-ANI" secondAttribute="width" multiplier="0.85" id="OJX-TT-sf7"/>
                                     <constraint firstItem="9Ni-8E-162" firstAttribute="centerX" secondItem="Hos-02-ANI" secondAttribute="centerX" id="OwD-Sn-EL5"/>
                                     <constraint firstItem="VSp-YP-XA0" firstAttribute="height" secondItem="Hos-02-ANI" secondAttribute="height" multiplier="0.12" id="Peg-EU-kb2"/>
-                                    <constraint firstItem="wyO-0d-lTu" firstAttribute="centerY" secondItem="Hos-02-ANI" secondAttribute="centerY" multiplier="1.45" id="QPE-8S-Fzy"/>
+                                    <constraint firstItem="wyO-0d-lTu" firstAttribute="centerY" secondItem="Hos-02-ANI" secondAttribute="centerY" multiplier="1.37" id="QPE-8S-Fzy"/>
+                                    <constraint firstItem="gJE-fG-eK0" firstAttribute="centerY" secondItem="Hos-02-ANI" secondAttribute="centerY" multiplier="1.6" id="QaU-Pi-jo8"/>
                                     <constraint firstItem="g79-y0-bRL" firstAttribute="height" secondItem="Hos-02-ANI" secondAttribute="height" multiplier="0.12" id="SkF-TO-YQL"/>
-                                    <constraint firstItem="VSp-YP-XA0" firstAttribute="centerY" secondItem="Hos-02-ANI" secondAttribute="centerY" multiplier="1.1" id="X3H-Ol-g4P"/>
+                                    <constraint firstItem="VSp-YP-XA0" firstAttribute="centerY" secondItem="Hos-02-ANI" secondAttribute="centerY" multiplier="0.32" id="X3H-Ol-g4P"/>
                                     <constraint firstItem="d4a-k6-ot4" firstAttribute="width" secondItem="Hos-02-ANI" secondAttribute="width" multiplier="0.85" id="Y4g-fM-Y1n"/>
+                                    <constraint firstItem="Dv6-nk-WoR" firstAttribute="width" secondItem="Hos-02-ANI" secondAttribute="width" multiplier="0.5" id="YH0-3W-SEb"/>
                                     <constraint firstItem="wyO-0d-lTu" firstAttribute="width" secondItem="Hos-02-ANI" secondAttribute="width" multiplier="0.85" id="aRa-Bu-3pw"/>
                                     <constraint firstItem="1at-xj-jQH" firstAttribute="height" secondItem="Hos-02-ANI" secondAttribute="height" multiplier="0.07" id="eNp-P6-Q9S"/>
                                     <constraint firstItem="1at-xj-jQH" firstAttribute="centerY" secondItem="Hos-02-ANI" secondAttribute="centerY" multiplier="0.13" id="fCJ-u5-f9q"/>
-                                    <constraint firstItem="9Ni-8E-162" firstAttribute="height" secondItem="Hos-02-ANI" secondAttribute="height" multiplier="0.12" id="mIK-Md-4vW"/>
+                                    <constraint firstItem="Dv6-nk-WoR" firstAttribute="height" secondItem="Hos-02-ANI" secondAttribute="height" multiplier="0.07" id="jd7-bw-KiP"/>
+                                    <constraint firstItem="gJE-fG-eK0" firstAttribute="height" secondItem="Hos-02-ANI" secondAttribute="height" multiplier="0.07" id="laA-2k-zeY"/>
+                                    <constraint firstItem="9Ni-8E-162" firstAttribute="height" secondItem="Hos-02-ANI" secondAttribute="height" multiplier="0.07" id="mIK-Md-4vW"/>
                                     <constraint firstItem="1at-xj-jQH" firstAttribute="width" secondItem="Hos-02-ANI" secondAttribute="width" multiplier="0.1" id="ncJ-WI-uho"/>
                                     <constraint firstItem="d4a-k6-ot4" firstAttribute="height" secondItem="Hos-02-ANI" secondAttribute="height" multiplier="0.12" id="qFA-5i-Plb"/>
-                                    <constraint firstItem="g79-y0-bRL" firstAttribute="centerY" secondItem="Hos-02-ANI" secondAttribute="centerY" multiplier="0.75" id="s5B-AG-BpL"/>
+                                    <constraint firstItem="g79-y0-bRL" firstAttribute="centerY" secondItem="Hos-02-ANI" secondAttribute="centerY" multiplier="0.67" id="s5B-AG-BpL"/>
                                     <constraint firstItem="wyO-0d-lTu" firstAttribute="height" secondItem="Hos-02-ANI" secondAttribute="height" multiplier="0.12" id="uWS-uq-Xu3"/>
                                     <constraint firstItem="g79-y0-bRL" firstAttribute="centerX" secondItem="Hos-02-ANI" secondAttribute="centerX" id="zwv-0e-Sr5"/>
                                 </constraints>
@@ -647,6 +665,7 @@
                         <outlet property="houseNumber" destination="d4a-k6-ot4" id="ah6-T8-61T"/>
                         <outlet property="idLabel" destination="wyO-0d-lTu" id="rmW-av-VK2"/>
                         <outlet property="popUpView" destination="Hos-02-ANI" id="3cL-rK-0g2"/>
+                        <outlet property="saveAdress" destination="gJE-fG-eK0" id="aNO-LM-ZXs"/>
                         <outlet property="streetLabel" destination="g79-y0-bRL" id="0nw-q7-FWL"/>
                     </connections>
                 </viewController>

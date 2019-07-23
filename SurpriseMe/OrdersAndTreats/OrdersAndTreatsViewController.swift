@@ -84,7 +84,7 @@ extension OrdersAndTreatsViewController : UITableViewDataSource{
             cell.idLabel.text = currentUser.myOrders[indexPath.row].id
             //to do: don't forget to make the calculation ahead.
             cell.priceLabel.text = "\(currentUser.myOrders[indexPath.row].price)"
-            cell.dateLabel.text = "today"
+            cell.dateLabel.text = currentUser.myOrders[indexPath.row].dateString
             cell.delegate = self
             
             return cell

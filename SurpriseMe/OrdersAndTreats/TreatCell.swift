@@ -40,7 +40,7 @@ class TreatCell: UITableViewCell {
         treatImage.image = treat.product.image
         productName.text = treat.product.name
         giver.text = "The giver's name" //treat.giver?.firstName
-        dateLabel.text = "Date of the order"
+        dateLabel.text = treat.dateString
         
         switch treat.getUpdatedStatus!{
         case .NotUsed:

@@ -41,13 +41,18 @@ class CartViewController: UIViewController {
         currentUser.myOrders.append(order)
         
         for treat in CartManager.shared.treats{
-            UsersManager.shared.add(treat: treat, to: treat.getter!)
+            var updatedTreat = treat
+            updatedTreat.date = Date()
+            UsersManager.shared.add(treat: updatedTreat, to: treat.getter!)
         }
             CartManager.shared.treats = []
             cartTableView.reloadData()
+            total.text = String(sum)
             print(currentUser)
             print(UsersManager.shared.getUsers())
         Toast.show(message: "Order completed", controller: self)
+        let ordersAndTreatsVC = UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orders") as! OrdersAndTreatsViewController
+        self.navigationController?.pushViewController(ordersAndTreatsVC, animated: true)
         }else{
             Toast.show(message: "Getters arent filled", controller: self)
         }

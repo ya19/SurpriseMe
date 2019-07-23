@@ -22,6 +22,7 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
     private let idError = UILabel()
     private let streetError = UILabel()
     private let cityError = UILabel()
+    @IBOutlet weak var saveAdress: UISwitch!
     
     var textFields:[SATextField] = []
     var errorMessages:[UILabel] = []
@@ -112,6 +113,11 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
             print("\(currentUser.myTreats)")
             
         }
+        if saveAdress.isOn == true {
+            updateAdress()
+        }else{
+            currentUser.adress = nil
+        }
         
         
         self.view.removeFromSuperview()
@@ -122,7 +128,7 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
         super.viewDidLoad()
         textFields = [houseNumber , streetLabel , cityLabel, idLabel]
         errorMessages = [houseNumberError, streetError, cityError, idError]
-
+        fillFields()
        
         for errorMessage in errorMessages{
             self.view.addSubview(errorMessage)
@@ -141,10 +147,22 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
 
         
     }
-    
+    func updateAdress(){
+        if currentUser.adress == nil{
+            currentUser.adress = [:]
+        }
+        currentUser.adress!["city"] = cityLabel.text
+        currentUser.adress!["street"] = streetLabel.text
+        currentUser.adress!["housenumber"] = houseNumber.text
+        currentUser.adress!["id"] = idLabel.text
+    }
     func fillFields(){
         if currentUser.adress != nil{
-            
+            cityLabel.text = currentUser.adress!["city"]
+            streetLabel.text = currentUser.adress!["street"]
+            houseNumber.text = currentUser.adress!["housenumber"]
+            idLabel.text = currentUser.adress!["id"]
+            saveAdress.isOn = true
         }
     }
     
