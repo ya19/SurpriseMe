@@ -123,7 +123,7 @@ class RegisterViewController: UIViewController {
         }
         
         //todo: checking on dates.
-        if dateOfBirth.date == Date(){
+        if dateOfBirth.date == dateOfBirth.maximumDate{
             
             setupErrorMessageForNonTextFields(sender: dateOfBirth, errorLabel: dateError, message: "You must choose a birthday earlier than 1/1/2000")
             return
@@ -147,12 +147,14 @@ class RegisterViewController: UIViewController {
         self.view.removeFromSuperview()
     }
     @IBOutlet weak var popUpView: SAView!
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(white: 0, alpha: 0.5)
         self.view.sendSubviewToBack(popUpView)
         popUpView.backgroundColor = UIColor(patternImage: UIImage(named: "pure-blue-sky")!)
-        dateOfBirth.maximumDate = Date()
+        dateOfBirth.maximumDate = dateOfBirth.date
         dateOfBirth.setValue(UIColor.white, forKey: "textColor")
         
         textFields = [firstName , lastName , email, password , confirmPassword]
