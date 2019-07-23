@@ -14,6 +14,7 @@ class FriendsViewController: UIViewController {
     }
 //    var userAddedDelegate: UserAddedDelegate?
     
+    @IBOutlet weak var table: UITableView!
     //to do: get the friends from Usermanager singelton
     var toggle:Bool = true
     var users:[User] = []
@@ -59,7 +60,20 @@ class FriendsViewController: UIViewController {
     func getUsersData(){
         users = UsersManager.shared.getUsers()
     }
+    
+    func deleteFriend(indexPath:IndexPath){
+        //            self.products.remove(at: indexPath.row)
+        //            CartManager.shared.treats.remove(at: indexPath.row)
+        //            tableView.deleteRows(at: [indexPath], with: .fade)
+        //            self.total.text = "Total: \(self.sum) NIS"
+        currentUser.friends.remove(at: indexPath.row)
+        table.deleteRows(at: [indexPath],with: .fade)
+        table.reloadData()
+    }
+    func showDialog(dialogMessage:UIAlertController){
+        self.present(dialogMessage, animated: true, completion: nil)
 
+    }
     /*
     // MARK: - Navigation
 
@@ -72,7 +86,36 @@ class FriendsViewController: UIViewController {
 
 }
 
-extension FriendsViewController : UITableViewDelegate{}
+extension FriendsViewController : UITableViewDelegate{
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let removeAction = UITableViewRowAction(style: .destructive, title: "Remove") { (action, indexPath) in
+
+            let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to delete \(self.friends[indexPath.row].fullName)", preferredStyle: .alert)
+            
+            // Create OK button with action handler
+            let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                self.deleteFriend(indexPath: indexPath)
+            })
+            
+            // Create Cancel button with action handlder
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+                print("Cancel button tapped")
+            }
+            
+            //Add OK and Cancel button to dialog message
+            dialogMessage.addAction(ok)
+            dialogMessage.addAction(cancel)
+            
+            // Present dialog message to user
+            self.showDialog(dialogMessage: dialogMessage)
+        }
+        
+        removeAction.backgroundColor = UIColor.red
+        
+        return [removeAction]
+    }
+
+}
 
 extension FriendsViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -82,6 +82,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="friendsTableView" destination="LqB-UZ-WIU" id="xIn-BU-Hna"/>
+                        <outlet property="table" destination="LqB-UZ-WIU" id="hnx-If-eRO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7UV-Ke-28n" userLabel="First Responder" sceneMemberID="firstResponder"/>
