@@ -127,6 +127,12 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
         
     }
     
+    func fillFields(){
+        if currentUser.adress != nil{
+            
+        }
+    }
+    
     
     /*
     // MARK: - Navigation

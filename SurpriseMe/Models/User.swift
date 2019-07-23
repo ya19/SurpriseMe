@@ -7,10 +7,10 @@
 //
 
 import UIKit
-var currentUser = User.init(id: "1", email: "shahaf_t@narkis.co.il", firstName: "David", lastName: "Tikva", dateOfBitrh: "16.11.91",
+var currentUser = User.init(id: "1", email: "shahaf_t@narkis.co.il", firstName: "David", lastName: "Tikva", dateOfBitrh: Date(),
           
           friends: [
-            User(id: "2", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: "1/1/2000" , friends: [] ,myTreats: [], myOrders: [], myCart: [] , getTreatsStatus: GetTreatStatus.EVERYONE),
+            User(id: "2", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: Date() , friends: [] ,myTreats: [], myOrders: [], myCart: [] , getTreatsStatus: GetTreatStatus.EVERYONE, adress: nil),
             
     ],
           myTreats:
@@ -23,7 +23,7 @@ var currentUser = User.init(id: "1", email: "shahaf_t@narkis.co.il", firstName: 
         
         
     ],
-          myOrders:[],myCart: [], getTreatsStatus: GetTreatStatus.EVERYONE)
+          myOrders:[],myCart: [], getTreatsStatus: GetTreatStatus.EVERYONE, adress: nil)
 //consider using cartmanager object or to use mycart from the user. cartmanager will display ui cart only and will not save it in any data, while if u have myCart in the user u can save it and update the current user's cart. well you can also use coredata to store the current cart data there and to use it only from the users device without storing cart data in our DB , well i think thats the best option instead of updating anymoment the cart in the server.
 // using CartManager means to delete myCart attribute from user,
 // using myCart attribute on current user means to delete CartManager object.
@@ -46,7 +46,11 @@ struct User:Hashable,Equatable{
     var fullName:String{
         return "\(firstName) \(lastName)"
     }
-    let dateOfBitrh:String
+    let dateOfBitrh:Date
+    
+    var dateString:String{
+        return "\(dateOfBitrh)"
+    }
     
     var friends:[User]
     
@@ -57,7 +61,9 @@ struct User:Hashable,Equatable{
     var myCart:[Product]
     
     var getTreatsStatus:GetTreatStatus
-
+    
+    var adress:[String:String]?
+    
     var hashValue: Int {
         return id.hashValue ^ email.hashValue ^ firstName.hashValue ^ lastName.hashValue
     }
