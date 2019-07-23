@@ -533,7 +533,7 @@
                     </segments>
                 </segmentedControl>
             </objects>
-            <point key="canvasLocation" x="206" y="1905"/>
+            <point key="canvasLocation" x="265" y="1354"/>
         </scene>
         <!--Use Treat View Controller-->
         <scene sceneID="h3n-fe-Q24">
@@ -546,14 +546,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hos-02-ANI" customClass="SAView" customModule="SurpriseMe" customModuleProvider="target">
                                 <rect key="frame" x="37.5" y="116.5" width="300" height="333.5"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your address..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d4a-k6-ot4" customClass="SATextField" customModule="SurpriseMe" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your house number..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d4a-k6-ot4" customClass="SATextField" customModule="SurpriseMe" customModuleProvider="target">
                                         <rect key="frame" x="22.5" y="47" width="255" height="40"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <action selector="checkValidation:" destination="KEM-cI-AER" eventType="editingDidEnd" id="JdI-hX-QIn"/>
-                                            <action selector="editingChanged:" destination="KEM-cI-AER" eventType="editingChanged" id="FL8-gh-SA2"/>
+                                            <action selector="checkHouseNumberValidation:" destination="KEM-cI-AER" eventType="editingDidEnd" id="Uta-CT-dTK"/>
+                                            <action selector="editingChanged:" destination="KEM-cI-AER" eventType="editingChanged" id="RYc-o2-VFo"/>
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your street..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g79-y0-bRL" customClass="SATextField" customModule="SurpriseMe" customModuleProvider="target">
@@ -561,6 +561,10 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="checkStreetValidation:" destination="KEM-cI-AER" eventType="editingDidEnd" id="of7-VN-zEJ"/>
+                                            <action selector="editingChanged:" destination="KEM-cI-AER" eventType="editingChanged" id="8O1-HI-KQF"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your ID..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wyO-0d-lTu" customClass="SATextField" customModule="SurpriseMe" customModuleProvider="target">
                                         <rect key="frame" x="22.5" y="222" width="255" height="40"/>
@@ -593,6 +597,10 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="checkCityValidation:" destination="KEM-cI-AER" eventType="editingDidEnd" id="RX2-zH-ZEH"/>
+                                            <action selector="editingChanged:" destination="KEM-cI-AER" eventType="editingChanged" id="Ri1-ua-kDT"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="0.50383810384970484" green="0.54069901036507806" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -634,9 +642,9 @@
                         <viewLayoutGuide key="safeArea" id="cDf-1X-e8x"/>
                     </view>
                     <connections>
-                        <outlet property="addressLabel" destination="d4a-k6-ot4" id="NbH-q8-ynT"/>
                         <outlet property="cityLabel" destination="VSp-YP-XA0" id="qkh-eQ-2po"/>
                         <outlet property="closePopUpBtn" destination="1at-xj-jQH" id="9wj-gg-XPH"/>
+                        <outlet property="houseNumber" destination="d4a-k6-ot4" id="ah6-T8-61T"/>
                         <outlet property="idLabel" destination="wyO-0d-lTu" id="rmW-av-VK2"/>
                         <outlet property="popUpView" destination="Hos-02-ANI" id="3cL-rK-0g2"/>
                         <outlet property="streetLabel" destination="g79-y0-bRL" id="0nw-q7-FWL"/>
@@ -644,7 +652,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bVv-ac-ois" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2053.5999999999999" y="21.139430284857571"/>
+            <point key="canvasLocation" x="1231" y="519"/>
         </scene>
         <!--friends-->
         <scene sceneID="Q8h-4P-OVY">
@@ -652,7 +660,7 @@
                 <viewControllerPlaceholder storyboardName="Friends" referencedIdentifier="friends" id="QvI-Bi-lQE" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdx-iv-1GO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2993" y="-23"/>
+            <point key="canvasLocation" x="1977" y="518"/>
         </scene>
     </scenes>
     <resources>

@@ -41,11 +41,9 @@ class SATextField: UITextField{
     func checkValidationNew(sender : SATextField, errorLabel : UILabel , type: TextFieldType){//-> Bool{
         if sender.text!.isEmpty{
             print("Text is empty, please enter....")
-//            sender.layer.borderColor = UIColor.red.cgColor
-//            sender.backgroundColor = .red
+
             setupErrorMessage(textField: sender, errorLabel: errorLabel, textFieldType: type, message: type.getErrorMessage)
-//            return false
-//            setupErrorMessage(textField: sender)
+
         }
         
         sender.typeText = type
@@ -104,6 +102,8 @@ class SATextField: UITextField{
 enum TextFieldType{
     case isEmail , isPassword , isID , isGeneral
     
+    //todo check if to do isconfirmationpassword enum too.
+    
     func checkPattern(text: String)-> Bool{
         switch self{
         case .isEmail:
@@ -150,6 +150,7 @@ enum TextFieldType{
 
         }
     }
+    
 }
 
 //maybe do it in one easier function...

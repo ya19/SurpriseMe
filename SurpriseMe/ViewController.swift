@@ -14,7 +14,7 @@ class ViewController: BaseViewController {
     
     @IBOutlet weak var passwordTextField: SATextField!
     
-    var textFields:[UITextField] = []
+    var textFields:[SATextField] = []
     var errorMessages:[UILabel] = []
     
     var emailError = UILabel()
@@ -50,6 +50,15 @@ class ViewController: BaseViewController {
                 Toast.show(message: "You didn't fill all the details", controller: self)
                 return
             }
+            
+            if textField == emailTextField{
+                textField.checkValidationNew(sender: textField, errorLabel: emailError, type: .isEmail)
+            } else if textField == passwordTextField{
+                textField.checkValidationNew(sender: textField, errorLabel: passwordError, type: .isPassword)
+                
+            }
+            
+            
         }
         
         for errorMessage in errorMessages{

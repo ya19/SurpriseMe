@@ -11,15 +11,19 @@ import UIKit
 class UseTreatViewController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var popUpView: SAView!
-    @IBOutlet weak var addressLabel: SATextField!
+
     
+    @IBOutlet weak var houseNumber: SATextField!
     @IBOutlet weak var streetLabel: SATextField!
     
     @IBOutlet weak var cityLabel: SATextField!
     @IBOutlet weak var idLabel: SATextField!
-    private let addressError = UILabel()
+    private let houseNumberError = UILabel()
     private let idError = UILabel()
-    var textFields:[UITextField] = []
+    private let streetError = UILabel()
+    private let cityError = UILabel()
+    
+    var textFields:[SATextField] = []
     var errorMessages:[UILabel] = []
     @IBOutlet weak var closePopUpBtn: SAButton!
     
@@ -34,24 +38,21 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
         self.view.removeFromSuperview()
     }
     
-    
-    @IBAction func checkValidation(_ sender: SATextField) {
-//        if sender.text!.isEmpty{
-//            print("IS VALID ??")
-//            sender.layer.borderColor = UIColor.red.cgColor
-//            sender.backgroundColor = .red
-//            setupErrorMessage(textField: sender)
-//        }
-        
-        //todo remember to change it to regex for address if we want. and add in the enum
-        sender.checkValidationNew(sender: sender, errorLabel: addressError, type: .isEmail)
-        
-//        if !sender.checkValidationNew(sender: sender, type: .isEmail){
-//            sender.setupErrorMessage(textField: sender , errorLabel : errorMessage, textFieldType: .isEmail)
-//        }
-        
-        
+    @IBAction func checkHouseNumberValidation(_ sender: SATextField) {
+        sender.checkValidationNew(sender: sender, errorLabel: houseNumberError, type: .isGeneral)
     }
+    
+    @IBAction func checkStreetValidation(_ sender: SATextField) {
+        
+        sender.checkValidationNew(sender: sender, errorLabel: streetError, type: .isGeneral)
+    }
+    
+    
+    @IBAction func checkCityValidation(_ sender: SATextField) {
+        
+        sender.checkValidationNew(sender: sender, errorLabel: cityError, type: .isGeneral)
+    }
+    
     
     @IBAction func checkIDvalidation(_ sender: SATextField) {
         
@@ -62,12 +63,20 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
     
     @IBAction func editingChanged(_ sender: SATextField) {
         
-        if sender == addressLabel{
-            sender.setTextFieldValid(sender: sender, errorLabel: addressError)
-        } else if sender == idLabel{
+        switch sender{
+        case houseNumber :
+            sender.setTextFieldValid(sender: sender, errorLabel: houseNumberError)
+        case streetLabel:
+            sender.setTextFieldValid(sender: sender, errorLabel: streetError)
+        case cityLabel:
+            sender.setTextFieldValid(sender: sender, errorLabel: cityError)
+        case idLabel:
             sender.setTextFieldValid(sender: sender, errorLabel: idError)
-
+            
+        default: return
         }
+        
+
         
     }
     
@@ -79,10 +88,14 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
                 Toast.show(message: "You didn't fill all the details", controller: self)
                 return
             }
+            
+            if textField == idLabel{
+                textField.checkValidationNew(sender: textField, errorLabel: idError, type: .isID)
+            }
         }
         
         for errorMessage in errorMessages{
-            if !errorMessage.text!.isEmpty{
+            if errorMessage.text != nil{
                 Toast.show(message: "Some of your details are not filled properly", controller: self)
                 return
             }
@@ -107,12 +120,14 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        textFields = [addressLabel , streetLabel , cityLabel, idLabel]
-        errorMessages = [addressError, idError]
-        addressError.isHidden = true
-        idError.isHidden = true
-        self.view.addSubview(addressError)
-        self.view.addSubview(idError)
+        textFields = [houseNumber , streetLabel , cityLabel, idLabel]
+        errorMessages = [houseNumberError, streetError, cityError, idError]
+
+       
+        for errorMessage in errorMessages{
+            self.view.addSubview(errorMessage)
+        }
+        
 
         
 
@@ -145,7 +160,7 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
     */
     
     func clearData(){
-        addressLabel.text = nil
+        houseNumber.text = nil
         streetLabel.text = nil
         cityLabel.text = nil
         idLabel.text = nil

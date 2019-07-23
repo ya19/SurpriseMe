@@ -27,7 +27,7 @@ class RegisterViewController: UIViewController {
     private let giftStatusError = UILabel()
     private let dateError = UILabel()
     
-    var textFields:[UITextField] = []
+    var textFields:[SATextField] = []
     var errorMessages:[UILabel] = []
     
     @IBAction func firstNameValidation(_ sender: SATextField) {
@@ -113,6 +113,13 @@ class RegisterViewController: UIViewController {
             if textField.text!.isEmpty {
                 Toast.show(message: "You didn't fill all the details", controller: self)
                 return
+            }
+            
+            if textField == email{
+                textField.checkValidationNew(sender: textField, errorLabel: emailError, type: .isEmail)
+            } else if textField == confirmPassword , textField.text != password.text{
+                
+                setupErrorMessageForNonTextFields(sender: textField, errorLabel: confirmPasswordError, message: "Your passwords must be the same")
             }
         }
         
