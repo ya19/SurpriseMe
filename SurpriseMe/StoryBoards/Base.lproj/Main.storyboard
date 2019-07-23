@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pz1-Jv-E38">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,14 +21,18 @@
                                 <rect key="frame" x="41.5" y="732.5" width="331" height="58"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
-                                    <segue destination="mxJ-mB-Ult" kind="show" id="ZTB-MX-H3x"/>
+                                    <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VsD-Yz-HWS"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-mail..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eyU-wO-hd9" customClass="SATextField" customModule="SurpriseMe" customModuleProvider="target">
-                                <rect key="frame" x="41.5" y="575.5" width="331" height="58.5"/>
+                                <rect key="frame" x="41.5" y="571" width="331" height="58.5"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="checkEmailValidation:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="sst-4E-kwW"/>
+                                    <action selector="editingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="m6G-jw-89M"/>
+                                </connections>
                             </textField>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="48" translatesAutoresizingMaskIntoConstraints="NO" id="q8e-Eb-fCO">
                                 <rect key="frame" x="41.5" y="799.5" width="331" height="58.5"/>
@@ -53,6 +57,10 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="checkPasswordValidation:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="Ujp-HB-Duc"/>
+                                    <action selector="editingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="0os-NH-YLB"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1lj-14-lvd">
                                 <rect key="frame" x="93" y="381" width="83" height="89.5"/>
@@ -89,7 +97,7 @@
                             <constraint firstItem="1Vb-uk-brH" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.3" id="EMK-Gd-l6R"/>
                             <constraint firstItem="nZC-Y1-R7g" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="If7-9T-6p2"/>
                             <constraint firstItem="1lj-14-lvd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" multiplier="0.65" id="K4u-MU-f4M"/>
-                            <constraint firstItem="eyU-wO-hd9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.35" id="Nwq-8x-Tgg"/>
+                            <constraint firstItem="eyU-wO-hd9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.34" id="Nwq-8x-Tgg"/>
                             <constraint firstItem="eyU-wO-hd9" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.065" id="RyE-QV-3QK"/>
                             <constraint firstItem="1Vb-uk-brH" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.65" id="VCt-U2-uz5"/>
                             <constraint firstItem="nZC-Y1-R7g" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.7" id="Wa8-62-sUU"/>
@@ -120,10 +128,14 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="b1B-0E-jB5"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="eyU-wO-hd9" id="AVU-4A-V9Z"/>
+                        <outlet property="passwordTextField" destination="efa-DG-GsF" id="FPW-yH-Pmq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1023.1884057971015" y="218.97321428571428"/>
+            <point key="canvasLocation" x="1933.3333333333335" y="218.97321428571428"/>
         </scene>
         <!--ShopsCollection-->
         <scene sceneID="AL1-7X-Nsy">
@@ -131,7 +143,25 @@
                 <viewControllerPlaceholder storyboardName="ShopsCollection" id="mxJ-mB-Ult" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xx6-SZ-Gbx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1641.304347826087" y="201.5625"/>
+            <point key="canvasLocation" x="2551.449275362319" y="201.5625"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="KOD-0v-Esl">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pz1-Jv-E38" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="blackTranslucent" id="ZGU-UC-J0H">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="nmg-oX-bXr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XR1-OY-IkZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1023.1884057971015" y="218.97321428571428"/>
         </scene>
     </scenes>
     <resources>

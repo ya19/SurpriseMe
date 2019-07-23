@@ -19,7 +19,7 @@ class CategoriesViewController: UICollectionViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.navigationBar.isHidden = false
         AppMenu.clearMenu()
         self.collectionView.backgroundView = UIImageView(image: UIImage.init(named: "blue-background"))
         

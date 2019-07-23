@@ -10,6 +10,67 @@ import UIKit
 
 class ViewController: BaseViewController {
     
+    @IBOutlet weak var emailTextField: SATextField!
+    
+    @IBOutlet weak var passwordTextField: SATextField!
+    
+    var textFields:[UITextField] = []
+    var errorMessages:[UILabel] = []
+    
+    var emailError = UILabel()
+    var passwordError = UILabel()
+    
+    @IBAction func checkEmailValidation(_ sender: SATextField) {
+        sender.checkValidationNew(sender: sender, errorLabel: emailError, type: .isEmail)
+    }
+    
+    @IBAction func checkPasswordValidation(_ sender: SATextField) {
+        sender.checkValidationNew(sender: sender, errorLabel: passwordError, type: .isPassword)
+    }
+    
+    
+    @IBAction func editingChanged(_ sender: SATextField) {
+        
+        if sender == emailTextField{
+            sender.setTextFieldValid(sender: sender, errorLabel: emailError)
+        } else if sender == passwordTextField{
+            sender.setTextFieldValid(sender: sender, errorLabel: passwordError)
+            
+        }
+    }
+    
+    
+    
+    
+    
+    
+    @IBAction func login(_ sender: SAButton) {
+        for textField in textFields{
+            if textField.text!.isEmpty{
+                Toast.show(message: "You didn't fill all the details", controller: self)
+                return
+            }
+        }
+        
+        for errorMessage in errorMessages{
+            if errorMessage.text != nil {
+                Toast.show(message: "Some of your details are not filled properly", controller: self)
+                return
+            }
+        }
+        
+        //todo check authentication on firebase
+    
+        
+        let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
+        self.navigationController?.pushViewController(shopsVC, animated: true)
+        
+    }
+    
+    
+    
+    
+    
 
     @IBAction func register(_ sender: UIButton) {
 
@@ -20,7 +81,17 @@ class ViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackground(self.view , imageName: "pure-blue-sky")
-            }
+        textFields = [emailTextField, passwordTextField]
+        errorMessages = [emailError, passwordError]
+//        addressError.isHidden = true
+//        idError.isHidden = true
+        self.view.addSubview(emailError)
+        self.view.addSubview(passwordError)
+        self.navigationController?.navigationBar.isHidden = true
+
+        
+        
+    }
 
     
 }

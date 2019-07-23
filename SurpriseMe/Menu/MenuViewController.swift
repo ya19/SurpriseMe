@@ -22,7 +22,12 @@ class MenuViewController: UIViewController {
         view.sendSubviewToBack(screenBtn)
         table.backgroundColor = UIColor(red: 0/255.0, green: 128.0/255.0, blue: 128.0/255.0, alpha: 1)
         self.view.backgroundColor = UIColor(white: 0, alpha: 0.5)
+//        table.scrollToRow(at: IndexPath(row: 3, section: 0), at: .none, animated: true)
         // Do any additional setup after loading the view.
+
+        
+        //to do set the current presented view controller, and maybe change the way the menu works so it will work fine. cause if you choose friends and then back to the main its still focused on friends.
+        table.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .none)
 //        table.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .none)
 //        table.reloadData()
  
@@ -45,12 +50,9 @@ extension MenuViewController:UITableViewDelegate{
 //    func indexPathForPreferredFocusedView(in tableView: UITableView) -> IndexPath? {
 //        return IndexPath(row: checkFocusedCell(), section: 0)
 //    }
-//    func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool {
-//        if indexPath.row == checkFocusedCell(){
-//            return true
-//        }
-//        return false
-//    }
+    func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
     
 
     
@@ -133,4 +135,22 @@ extension MenuViewController:UITableViewDataSource{
         return -1
     }
     
+//    func checkFocused()-> Int{
+//        
+//
+//        switch UIApplication.shared.keyWindow?.rootViewController {
+//            
+//        case is MenuViewController:
+//            return 0
+//
+//        case UIViewController(nibName: "FriendsViewController", bundle: nil):
+//            return 1
+//
+//        case UIViewController(nibName: "OrdersAndTreatsViewController", bundle: nil):
+//            return 2
+//
+//        default:
+//            return -1
+//        }
+//    }
 }

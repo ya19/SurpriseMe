@@ -43,8 +43,7 @@ class SATextField: UITextField{
             print("Text is empty, please enter....")
 //            sender.layer.borderColor = UIColor.red.cgColor
 //            sender.backgroundColor = .red
-            errorLabel.text = ""
-            setupErrorMessage(textField: sender, errorLabel: errorLabel, textFieldType: type)
+            setupErrorMessage(textField: sender, errorLabel: errorLabel, textFieldType: type, message: type.getErrorMessage)
 //            return false
 //            setupErrorMessage(textField: sender)
         }
@@ -52,15 +51,17 @@ class SATextField: UITextField{
         sender.typeText = type
         //return
         if !sender.typeText!.checkPattern(text: sender.text!){
-            setupErrorMessage(textField: sender, errorLabel: errorLabel, textFieldType: type)
+            setupErrorMessage(textField: sender, errorLabel: errorLabel, textFieldType: type, message: type.getErrorMessage)
         } else{
-            errorLabel.isHidden = true
+            setTextFieldValid(sender: sender, errorLabel: errorLabel)
         }
 
     }
     
-    func setupErrorMessage(textField : UITextField , errorLabel : UILabel, textFieldType : TextFieldType) {
+    func setupErrorMessage(textField : SATextField , errorLabel : UILabel, textFieldType : TextFieldType, message: String) {
         
+        
+        print(textField.text)
         print("------>This is from THE NEW setuperror function<------")
         textField.layer.borderColor = UIColor.red.cgColor
 
@@ -70,11 +71,16 @@ class SATextField: UITextField{
         errorLabel.font = errorLabel.font.withSize(12)
         errorLabel.isHidden = false
         errorLabel.translatesAutoresizingMaskIntoConstraints = false
-        errorLabel.text = "Error Message"
+        errorLabel.text = message
         
         errorLabel.textColor = .red
         //        errorMessage.isHidden = true
         //        self.addSubView(errorMessage)
+        
+//        errorLabel.leadingAnchor.constraint(equalTo: textField.leadingAnchor , constant: 16)
+//
+//        errorLabel.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 4)
+        
         
         NSLayoutConstraint.activate([
             errorLabel.leadingAnchor.constraint(equalTo: textField.leadingAnchor , constant: 16),
@@ -84,13 +90,19 @@ class SATextField: UITextField{
     
     func setTextFieldValid(sender : SATextField , errorLabel: UILabel){
         sender.layer.borderColor = UIColor.blue.cgColor
+        
+        errorLabel.text = nil
         errorLabel.isHidden = true
         
+//        NSLayoutConstraint.deactivate([
+//            errorLabel.leadingAnchor.constraint(equalTo: sender.leadingAnchor , constant: 16),
+//            errorLabel.topAnchor.constraint(equalTo: sender.bottomAnchor, constant: 4)
+//            ])
     }
 }
 
 enum TextFieldType{
-    case isEmail , isPassword , isID
+    case isEmail , isPassword , isID , isGeneral
     
     func checkPattern(text: String)-> Bool{
         switch self{
@@ -101,13 +113,43 @@ enum TextFieldType{
                 return emailPred.evaluate(with: text)
         case .isPassword:
             //todo check if the same password as database
-            return true
-        case .isID:
-            if text.count > 9 {
+            
+            if text.count < 1 || text.count > 10{
                 return false
             }
             return true
+        case .isID:
+            if text.count != 9 {
+                return false
+            }
+            return true
+            
+        case .isGeneral:
+            if text.count < 1 {
+                return false
+            }
+            
+            return true
+            
+        }
+        
+        
+    }
+    
+    var getErrorMessage:String{
+        switch self{
+        case .isEmail:
+            return "Your email must be in email@email.com format"
+        case .isPassword:
+            return "Your password must be between 0-10 characters"
+        case .isID:
+            return "Your ID must be 9 characters"
+            
+        case .isGeneral:
+            return "Box is empty, you must fill the details"
+
         }
     }
 }
 
+//maybe do it in one easier function...

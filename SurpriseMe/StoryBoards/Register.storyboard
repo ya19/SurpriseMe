@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -35,18 +35,29 @@
                                         <date key="minimumDate" timeIntervalSinceReferenceDate="-3187256400">
                                             <!--1900-01-01 11:00:00 +0000-->
                                         </date>
+                                        <connections>
+                                            <action selector="dateChanged:" destination="QXJ-5x-Uqf" eventType="valueChanged" id="wpa-OU-Afn"/>
+                                        </connections>
                                     </datePicker>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Dr-ND-SDr" customClass="SATextField" customModule="SurpriseMe" customModuleProvider="target">
                                         <rect key="frame" x="32" y="60" width="255" height="42"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="editingChanged:" destination="QXJ-5x-Uqf" eventType="editingChanged" id="Epj-rg-VlX"/>
+                                            <action selector="firstNameValidation:" destination="QXJ-5x-Uqf" eventType="editingDidEnd" id="SWG-zI-e8v"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ex5-e5-Gi6" customClass="SATextField" customModule="SurpriseMe" customModuleProvider="target">
                                         <rect key="frame" x="32" y="114" width="255" height="42"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="editingChanged:" destination="QXJ-5x-Uqf" eventType="editingChanged" id="VF4-W1-2Eg"/>
+                                            <action selector="lastNameValidation:" destination="QXJ-5x-Uqf" eventType="editingDidEnd" id="cs2-cX-Luf"/>
+                                        </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Of Birth:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZH3-ts-wC8">
                                         <rect key="frame" x="32" y="174" width="255" height="30"/>
@@ -59,18 +70,30 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="editingChanged:" destination="QXJ-5x-Uqf" eventType="editingChanged" id="1m8-Yb-ahE"/>
+                                            <action selector="emailValidation:" destination="QXJ-5x-Uqf" eventType="editingDidEnd" id="x9j-W0-g1P"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Si-NF-rJ7" customClass="SATextField" customModule="SurpriseMe" customModuleProvider="target">
                                         <rect key="frame" x="32" y="339" width="255" height="42"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="editingChanged:" destination="QXJ-5x-Uqf" eventType="editingChanged" id="Jqu-0U-1i3"/>
+                                            <action selector="passwordValidation:" destination="QXJ-5x-Uqf" eventType="editingDidEnd" id="VXR-im-0C1"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eJX-Uc-Frr" customClass="SATextField" customModule="SurpriseMe" customModuleProvider="target">
                                         <rect key="frame" x="32" y="393" width="255" height="42"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="confirmPasswordValidation:" destination="QXJ-5x-Uqf" eventType="editingDidEnd" id="zkA-nP-cUW"/>
+                                            <action selector="editingChanged:" destination="QXJ-5x-Uqf" eventType="editingChanged" id="r1a-ie-EdW"/>
+                                        </connections>
                                     </textField>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="xkr-6S-oki">
                                         <rect key="frame" x="16" y="486" width="287" height="31"/>
@@ -80,6 +103,9 @@
                                             <segment title="None"/>
                                         </segments>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="giftStatusChanged:" destination="QXJ-5x-Uqf" eventType="valueChanged" id="q3M-mK-haZ"/>
+                                        </connections>
                                     </segmentedControl>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accepting Gifts From:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jo7-TV-Qag">
                                         <rect key="frame" x="32" y="450" width="255" height="30"/>

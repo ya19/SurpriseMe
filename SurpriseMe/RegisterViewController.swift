@@ -19,12 +19,131 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var confirmPassword: SATextField!
     @IBOutlet weak var giftStatus: UISegmentedControl!
     
+    private let firstNameError = UILabel()
+    private let lastNameError = UILabel()
+    private let emailError = UILabel()
+    private let passwordError = UILabel()
+    private let confirmPasswordError = UILabel()
+    private let giftStatusError = UILabel()
+    private let dateError = UILabel()
+    
+    var textFields:[UITextField] = []
+    var errorMessages:[UILabel] = []
+    
+    @IBAction func firstNameValidation(_ sender: SATextField) {
+        sender.checkValidationNew(sender: sender, errorLabel: firstNameError, type: .isGeneral)
+        
+    }
+    
+    @IBAction func lastNameValidation(_ sender: SATextField) {
+        
+        sender.checkValidationNew(sender: sender, errorLabel: lastNameError, type: .isGeneral)
+    }
+    
+    @IBAction func emailValidation(_ sender: SATextField) {
+        
+        sender.checkValidationNew(sender: sender, errorLabel: emailError, type: .isEmail)
+    }
+    
+    
+    @IBAction func passwordValidation(_ sender: SATextField) {
+        sender.checkValidationNew(sender: sender, errorLabel: passwordError, type: .isPassword)
+    }
+    
+    @IBAction func confirmPasswordValidation(_ sender: SATextField) {
+        
+        if !sender.text!.isEmpty {
+            
+            if !(sender.text! == password.text!){
+            setupErrorMessageForNonTextFields(sender: sender, errorLabel: confirmPasswordError, message: "Your passwords must be the same")
+            }
+        } else {
+            sender.checkValidationNew(sender: sender, errorLabel: confirmPasswordError, type: .isPassword)
+        }
+        
+
+    }
+    
+    @IBAction func editingChanged(_ sender: SATextField) {
+        
+        switch sender{
+        case firstName:
+            sender.setTextFieldValid(sender: sender, errorLabel: firstNameError)
+        case lastName:
+            sender.setTextFieldValid(sender: sender, errorLabel: lastNameError)
+
+        case email:
+            sender.setTextFieldValid(sender: sender, errorLabel: emailError)
+        case password:
+            sender.setTextFieldValid(sender: sender, errorLabel: passwordError)
+        case confirmPassword:
+            sender.setTextFieldValid(sender: sender, errorLabel: confirmPasswordError)
+        
+        default:
+            return
+        }
+
+    }
+    
+    @IBAction func dateChanged(_ sender: UIDatePicker) {
+        
+        setValid(sender: sender, errorLabel: dateError)
+    }
+    
+    @IBAction func giftStatusChanged(_ sender: UISegmentedControl) {
+        
+        setValid(sender: sender, errorLabel: giftStatusError)
+    }
+    
+    
+    
+    
+    
+    
+    
     
     @IBAction func closePopUp(_ sender: UIButton) {
         clearData()
         self.view.removeFromSuperview()
     }
     @IBAction func register(_ sender: SAButton) {
+        //todo: check text fields and errors again.
+        
+        for textField in textFields{
+            if textField.text!.isEmpty {
+                Toast.show(message: "You didn't fill all the details", controller: self)
+                return
+            }
+        }
+        
+        if giftStatus.selectedSegmentIndex == -1 {
+            setupErrorMessageForNonTextFields(sender: giftStatus, errorLabel: giftStatusError, message: "You must select the who you accept getting gifts from")
+            
+            return
+        }
+        
+        //todo: checking on dates.
+        if dateOfBirth.date == Date(){
+            
+            setupErrorMessageForNonTextFields(sender: dateOfBirth, errorLabel: dateError, message: "You must choose a birthday earlier than 1/1/2000")
+            return
+        }
+        
+        for errorMessage in errorMessages{
+            if errorMessage.text != nil {
+                Toast.show(message: "Some of your details are not filled properly", controller: self)
+                return
+            }
+        }
+        
+        
+        
+        
+        
+        //todo: check in database if email exists
+        //todo: add to database if successful
+        
+        
         self.view.removeFromSuperview()
     }
     @IBOutlet weak var popUpView: SAView!
@@ -35,6 +154,19 @@ class RegisterViewController: UIViewController {
         popUpView.backgroundColor = UIColor(patternImage: UIImage(named: "pure-blue-sky")!)
         dateOfBirth.maximumDate = Date()
         dateOfBirth.setValue(UIColor.white, forKey: "textColor")
+        
+        textFields = [firstName , lastName , email, password , confirmPassword]
+        errorMessages = [firstNameError, lastNameError , dateError , emailError , passwordError, confirmPasswordError, giftStatusError]
+        
+        for errorMessage in errorMessages {
+            self.view.addSubview(errorMessage)
+        }
+        
+        
+        
+        
+        
+        
 //        setBackground(self.popUpView , imageName: "pure-blue-sky")
         
         
@@ -51,6 +183,36 @@ class RegisterViewController: UIViewController {
         confirmPassword.text = nil
         giftStatus.isSelected = false
     }
+    
+    
+    //consider use extension for this method.
+    func setupErrorMessageForNonTextFields(sender : UIView , errorLabel : UILabel, message: String) {
+        
+        
+        print("------>This is from THE NON Textfields setuperror function<------")
+        sender.layer.borderColor = UIColor.red.cgColor
+
+        errorLabel.font = errorLabel.font.withSize(12)
+        errorLabel.isHidden = false
+        errorLabel.translatesAutoresizingMaskIntoConstraints = false
+        errorLabel.text = message
+        
+        errorLabel.textColor = .red
+
+        
+        
+        NSLayoutConstraint.activate([
+            errorLabel.leadingAnchor.constraint(equalTo: sender.leadingAnchor , constant: 16),
+            errorLabel.topAnchor.constraint(equalTo: sender.bottomAnchor, constant: 4)
+            ])
+    }
+    
+    func setValid(sender : UIView, errorLabel : UILabel){
+        sender.layer.borderColor = UIColor.blue.cgColor
+        errorLabel.text = nil
+        errorLabel.isHidden = true
+    }
+    
 
     /*
     // MARK: - Navigation

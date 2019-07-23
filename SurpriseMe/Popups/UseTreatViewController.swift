@@ -17,12 +17,16 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var cityLabel: SATextField!
     @IBOutlet weak var idLabel: SATextField!
-    private let errorMessage = UILabel()
-    
+    private let addressError = UILabel()
+    private let idError = UILabel()
+    var textFields:[UITextField] = []
+    var errorMessages:[UILabel] = []
     @IBOutlet weak var closePopUpBtn: SAButton!
     
     var treat: Treat?
     var delegate : SentVoucherDelegate?
+    
+
     
     
     @IBAction func closePopUp(_ sender: UIButton) {
@@ -40,7 +44,7 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
 //        }
         
         //todo remember to change it to regex for address if we want. and add in the enum
-        sender.checkValidationNew(sender: sender, errorLabel: errorMessage, type: .isEmail)
+        sender.checkValidationNew(sender: sender, errorLabel: addressError, type: .isEmail)
         
 //        if !sender.checkValidationNew(sender: sender, type: .isEmail){
 //            sender.setupErrorMessage(textField: sender , errorLabel : errorMessage, textFieldType: .isEmail)
@@ -49,14 +53,40 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
         
     }
     
+    @IBAction func checkIDvalidation(_ sender: SATextField) {
+        
+        sender.checkValidationNew(sender: sender, errorLabel: idError, type: .isID)
+    }
+    
+    
     
     @IBAction func editingChanged(_ sender: SATextField) {
-        sender.setTextFieldValid(sender: sender, errorLabel: errorMessage)
+        
+        if sender == addressLabel{
+            sender.setTextFieldValid(sender: sender, errorLabel: addressError)
+        } else if sender == idLabel{
+            sender.setTextFieldValid(sender: sender, errorLabel: idError)
+
+        }
+        
     }
     
     
     
     @IBAction func useVoucher(_ sender: UIButton) {
+        for textField in textFields{
+            if textField.text!.isEmpty{
+                Toast.show(message: "You didn't fill all the details", controller: self)
+                return
+            }
+        }
+        
+        for errorMessage in errorMessages{
+            if !errorMessage.text!.isEmpty{
+                Toast.show(message: "Some of your details are not filled properly", controller: self)
+                return
+            }
+        }
         
         for i in 0..<currentUser.myTreats.count{
             if treat?.id == currentUser.myTreats[i].id{
@@ -77,9 +107,14 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        textFields = [addressLabel , streetLabel , cityLabel, idLabel]
+        errorMessages = [addressError, idError]
+        addressError.isHidden = true
+        idError.isHidden = true
+        self.view.addSubview(addressError)
+        self.view.addSubview(idError)
+
         
-        errorMessage.isHidden = true
-        self.view.addSubview(errorMessage)
 
 
         popUpView.backgroundColor = UIColor(patternImage: UIImage(named: "pure-blue-sky")!)
