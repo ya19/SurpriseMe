@@ -32,6 +32,10 @@ class CartViewController: UIViewController {
                 filled = false
             }
         }
+        if CartManager.shared.treats.count == 0{
+            Toast.show(message: "Your cart is empty", controller: self)
+            return
+        }
         //create new order , add it to current user orders array
         //create a treat for each tread in the order, add it to the "getter" treats array
         // figure out how to create specific id for each order / treat

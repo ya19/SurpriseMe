@@ -114,9 +114,9 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
             
         }
         if saveAdress.isOn == true {
-            updateAdress()
+            updateAddress()
         }else{
-            currentUser.adress = nil
+            currentUser.address = nil
         }
         
         
@@ -147,21 +147,21 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
 
         
     }
-    func updateAdress(){
-        if currentUser.adress == nil{
-            currentUser.adress = [:]
+    func updateAddress(){
+        if currentUser.address == nil{
+            currentUser.address = [:]
         }
-        currentUser.adress!["city"] = cityLabel.text
-        currentUser.adress!["street"] = streetLabel.text
-        currentUser.adress!["housenumber"] = houseNumber.text
-        currentUser.adress!["id"] = idLabel.text
+        currentUser.address!["city"] = cityLabel.text
+        currentUser.address!["street"] = streetLabel.text
+        currentUser.address!["housenumber"] = houseNumber.text
+        currentUser.address!["id"] = idLabel.text
     }
     func fillFields(){
-        if currentUser.adress != nil{
-            cityLabel.text = currentUser.adress!["city"]
-            streetLabel.text = currentUser.adress!["street"]
-            houseNumber.text = currentUser.adress!["housenumber"]
-            idLabel.text = currentUser.adress!["id"]
+        if currentUser.address != nil{
+            cityLabel.text = currentUser.address!["city"]
+            streetLabel.text = currentUser.address!["street"]
+            houseNumber.text = currentUser.address!["housenumber"]
+            idLabel.text = currentUser.address!["id"]
             saveAdress.isOn = true
         }
     }

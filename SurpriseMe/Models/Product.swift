@@ -12,7 +12,13 @@ struct Product{
     let id:String
     let name:String
     let desc:String
-    let image:UIImage?
+    var image:UIImage?{
+        if imageName != nil{
+            return UIImage(named:  imageName!)
+        }
+        return nil
+    }
+    let imageName:String?
     let category:String
     let price:Double
     

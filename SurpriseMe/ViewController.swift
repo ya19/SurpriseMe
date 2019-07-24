@@ -72,7 +72,7 @@ class ViewController: BaseViewController {
     
         
         let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
-        self.navigationController?.pushViewController(shopsVC, animated: true)
+        self.show(shopsVC, sender: sender)
         
     }
     
