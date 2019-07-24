@@ -45,18 +45,24 @@ struct Shop{
         dic["category"] = category.description
         dic["name"] = name
         //products
-        
-        if products["products"] != nil , products["products"]!.count  > 0{
-        var myProducts:[String:[String:Any]] = [:]
-        for product in products["products"]!{
-            myProducts[product.id] = product.toDB
-            print(product.id)
-        }
-            dic["products"] = myProducts
+        // products -> category name -> poduct id -> product
+        if  products.count > 0{
+            
+            var keyDic:[String:[String:[String:Any]]] = [:]
+            for key in products.keys{
+                var productsDic:[String:[String:Any]] = [:]
+                if products[key]!.count > 0{
+                    for product in products[key]!{
+                        productsDic[product.id] = product.toDB
+                    }
+                    keyDic[key] = productsDic
+                }
+            }
+            dic["products"] = keyDic
         } else {
             dic["products"] = products["products"]
         }
-//        dic["products"] = products["products"]
+        //        dic["products"] = products["products"]
         dic["address"] = address
         dic["desc"] = desc
         dic["logoImageName"] = logoImageName
