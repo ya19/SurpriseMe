@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 private let reuseIdentifier = "categoryCell"
 private let reuseHeaderIdentifier = "sectionHeader"
@@ -25,7 +26,17 @@ class CategoriesViewController: UICollectionViewController {
         
         self.navigationController?.navigationBar.isTranslucent = true
         
+        let myShops = ShopsManager.shared.getShops()
+//
+        let ref = Database.database().reference()
+//
+        ref.child("users").child(currentUser.id).setValue(currentUser.toDB)
         
+        for shopCategory in myShops{
+            for shop in shopCategory{
+            ref.child("shops").child(shop.id).setValue(shop.toDB)
+        }
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

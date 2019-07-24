@@ -15,11 +15,11 @@ var currentUser = User.init(id: "1", email: "shahaf_t@narkis.co.il", firstName: 
     ],
           myTreats:
     [
-        Treat.init(id: "#1", date: Date(), product: Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 159.00), giver: nil, getter: nil, treatStatus: TreatStatus.NotUsed),
+        Treat.init(id: "1", date: Date(), product: Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 159.00), giver: nil, getter: nil, treatStatus: TreatStatus.NotUsed),
         
-        Treat.init(id: "#2", date: Date(), product: Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 165.00), giver: nil, getter: nil, treatStatus: TreatStatus.NotUsed),
+        Treat.init(id: "2", date: Date(), product: Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 165.00), giver: nil, getter: nil, treatStatus: TreatStatus.NotUsed),
         
-        Treat.init(id: "#3", date: Date(), product: Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 121.00), giver: nil, getter: nil, treatStatus: TreatStatus.NotUsed)
+        Treat.init(id: "3", date: Date(), product: Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 121.00), giver: nil, getter: nil, treatStatus: TreatStatus.NotUsed)
         
         
     ],
