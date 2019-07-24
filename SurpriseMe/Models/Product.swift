@@ -22,5 +22,17 @@ struct Product{
     let category:String
     let price:Double
     
+    var toDB:[String:Any]{
+        var dic:[String:Any] = [:]
+        
+        dic["id"] = id
+        dic["name"] = name
+        dic["desc"] = desc
+        dic["imageName"] = imageName
+        dic["category"] = category
+        dic["price"] = price
+        
+        return dic
+    }
     
 }

@@ -67,4 +67,52 @@ struct User:Hashable,Equatable{
     var hashValue: Int {
         return id.hashValue ^ email.hashValue ^ firstName.hashValue ^ lastName.hashValue
     }
+    
+    var toDB:[String:Any]{
+        var dic:[String:Any] = [:]
+        
+        dic["id"] = id
+        dic["email"] = email
+        dic["firstName"] = firstName
+        dic["lastName"] = lastName
+        dic["dateOfBirth"] = dateString
+        
+        //friends
+        if friends.count > 0 {
+            var myFriends:[String:[String:Any]] = [:]
+            for friend in friends{
+                myFriends[friend.id] = friend.toDB
+            }
+            dic["friends"] = myFriends
+        }else{
+            dic["friends"] = friends
+        }
+        
+        //myTreats
+        if myTreats.count > 0{
+            var treats:[String:[String:Any]] = [:]
+            for treat in myTreats{
+                treats[treat.id] = treat.toDB
+            }
+            dic["myTreats"] = treats
+        }else{
+            dic["myTreats"] = myTreats
+        }
+        //myOrders
+        if myOrders.count>0{
+            var orders:[String:[String:Any]] = [:]
+            for order in myOrders{
+                orders[order.id] = order.toDB
+            }
+            dic["myOrders"] = orders
+        }else{
+            dic["myOrders"] = myOrders
+        }
+        
+        dic["getTreatStatus"] = getTreatsStatus.rawValue
+        dic["address"] = address
+        
+        
+        return dic
+    }
 }

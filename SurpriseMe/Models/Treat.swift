@@ -10,7 +10,7 @@ import UIKit
 
 struct Treat{
     //
-    var id:String?
+    var id:String
     
     var date:Date?
     
@@ -44,10 +44,22 @@ struct Treat{
         }
         else {return treatStatus}
     }
+    
+    var toDB:[String:Any]{
+        var dic:[String:Any] = [:]
+        
+        dic["id"] = id
+        dic["date"] = dateString
+        dic["product"] = product.toDB
+        dic["giver"] = giver?.toDB
+        dic["getter"] = getter?.toDB
+        dic["status"] = treatStatus?.rawValue
+        return dic
+    }
 }
 
-enum TreatStatus{
-    case Expired , Delivered , Used , NotUsed
+enum TreatStatus:Int{
+    case Expired = 0, Delivered , Used , NotUsed
     
     var description:String{
         switch self{

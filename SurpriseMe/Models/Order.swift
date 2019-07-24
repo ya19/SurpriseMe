@@ -33,4 +33,19 @@ struct Order{
         // again convert your date to string
         return formatter.string(from: yourDate!)
     }
+    
+    var toDB:[String:Any]{
+        var dic:[String:Any] = [:]
+        
+        dic["id"] = id
+        var myTreats:[String:[String:Any]] = [:]
+        for treat in treats{
+            myTreats[treat.id] = treat.toDB
+        }
+        dic["treats"] = myTreats
+        dic["date"] = dateString
+        dic["buyer"] = buyer?.toDB
+        dic["price"] = price
+        return dic
+    }
 }
