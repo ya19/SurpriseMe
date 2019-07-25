@@ -60,11 +60,11 @@
 		AD68A49322D8EAD700E019BA /* CartProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD68A49222D8EAD700E019BA /* CartProductTableViewCell.swift */; };
 		AD68A49722D8F2C900E019BA /* Cart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD68A49622D8F2C900E019BA /* Cart.storyboard */; };
 		AD68A49922D91C9700E019BA /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD68A49822D91C9700E019BA /* Toast.swift */; };
+		AD7B2E6522E97AD300873D9F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD7B2E6422E97AD300873D9F /* GoogleService-Info.plist */; };
 		ADA1BA0B22E1D5C3004EF8F0 /* UsersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA1BA0A22E1D5C3004EF8F0 /* UsersManager.swift */; };
 		ADDB515F22E4B12D00F262B6 /* ShopsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDB515E22E4B12D00F262B6 /* ShopsManager.swift */; };
 		ADDB641222E0733A003A2916 /* Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDB641122E0733A003A2916 /* Screens.swift */; };
 		ADDB641422E07EC7003A2916 /* AppMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDB641322E07EC7003A2916 /* AppMenu.swift */; };
-		ADE06A4822E975C0008646F0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADE06A4722E975C0008646F0 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -126,11 +126,11 @@
 		AD68A49222D8EAD700E019BA /* CartProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartProductTableViewCell.swift; sourceTree = "<group>"; };
 		AD68A49622D8F2C900E019BA /* Cart.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Cart.storyboard; sourceTree = "<group>"; };
 		AD68A49822D91C9700E019BA /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		AD7B2E6422E97AD300873D9F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ADA1BA0A22E1D5C3004EF8F0 /* UsersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersManager.swift; sourceTree = "<group>"; };
 		ADDB515E22E4B12D00F262B6 /* ShopsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsManager.swift; sourceTree = "<group>"; };
 		ADDB641122E0733A003A2916 /* Screens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screens.swift; sourceTree = "<group>"; };
 		ADDB641322E07EC7003A2916 /* AppMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMenu.swift; sourceTree = "<group>"; };
-		ADE06A4722E975C0008646F0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,7 +292,7 @@
 		7BAF23CA22D362E200E83A89 /* SurpriseMe */ = {
 			isa = PBXGroup;
 			children = (
-				ADE06A4722E975C0008646F0 /* GoogleService-Info.plist */,
+				AD7B2E6422E97AD300873D9F /* GoogleService-Info.plist */,
 				ADA1BA0922E1D574004EF8F0 /* FakeData */,
 				47AD99FF22E0A73900B8021C /* Popups */,
 				47AD99FE22E0A6E400B8021C /* Menu */,
@@ -401,7 +401,7 @@
 				AD0DDC2A22DC75F4007A4533 /* ShopsCollection.storyboard in Resources */,
 				7BAF23D122D362E200E83A89 /* Main.storyboard in Resources */,
 				47AD99F122E06BEC00B8021C /* Friends.storyboard in Resources */,
-				ADE06A4822E975C0008646F0 /* GoogleService-Info.plist in Resources */,
+				AD7B2E6522E97AD300873D9F /* GoogleService-Info.plist in Resources */,
 				AD68A49722D8F2C900E019BA /* Cart.storyboard in Resources */,
 				7BEC607A22D4D5DB0040D6CF /* Register.storyboard in Resources */,
 			);
