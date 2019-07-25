@@ -45,23 +45,17 @@ struct Shop{
         dic["category"] = category.description
         dic["name"] = name
         //products
-        // products -> category name -> poduct id -> product
+        
         if  products.count > 0{
-            
-            var keyDic:[String:[String:[String:Any]]] = [:]
-            for key in products.keys{
-                var productsDic:[String:[String:Any]] = [:]
-                if products[key]!.count > 0{
-                    for product in products[key]!{
-                        productsDic[product.id] = product.toDB
-                    }
-                    keyDic[key] = productsDic
-                }
-            }
-            dic["products"] = keyDic
-        } else {
-            dic["products"] = products["products"]
+        var myProducts:[String:[String:Any]] = [:]
+        for product in products["Products"]!{
+            myProducts[product.id] = product.toDB
+            print(product.id)
         }
+        dic["products"] = myProducts
+        } else {
+    dic["products"] = products
+    }
         //        dic["products"] = products["products"]
         dic["address"] = address
         dic["desc"] = desc
@@ -71,3 +65,22 @@ struct Shop{
     }
     
 }
+
+// products -> category name -> poduct id -> product
+//generic with categories
+//        if  products.count > 0{
+//
+//            var keyDic:[String:[String:[String:Any]]] = [:]
+//            for key in products.keys{
+//                var productsDic:[String:[String:Any]] = [:]
+//                if products[key]!.count > 0{
+//                    for product in products[key]!{
+//                        productsDic[product.id] = product.toDB
+//                    }
+//                    keyDic[key] = productsDic
+//                }
+//            }
+//            dic["products"] = keyDic
+//        } else {
+//            dic["products"] = products["products"]
+//        }
