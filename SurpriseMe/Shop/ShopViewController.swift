@@ -55,7 +55,7 @@ class ShopViewController: UICollectionViewController{
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return shop?.products["Products"]?.count ?? 0
+        return shop?.products["products"]?.count ?? 0
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -67,7 +67,7 @@ class ShopViewController: UICollectionViewController{
         //if the shop doesn't have products it shoes one empty product.
         
 //        let array = Array(testShop.products["Products"]!)
-        let array = Array(shop!.products["Products"]!)
+        let array = Array(shop!.products["products"]!)
         
 //        cell.popoulate(productImage: array[indexPath.item].image ?? #imageLiteral(resourceName: "placeholder"), productPrice: array[indexPath.item].price)
         
@@ -79,7 +79,7 @@ class ShopViewController: UICollectionViewController{
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let itemVC = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "itemPopUp") as! ItemPopUpViewController
-        itemVC.item = shop!.products["Products"]![indexPath.row]
+        itemVC.item = shop!.products["products"]![indexPath.row]
         itemVC.addToCart = true
         PopUp.toggle(child: itemVC, parent: self,toggle: true)
     }

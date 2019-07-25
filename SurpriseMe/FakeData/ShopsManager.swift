@@ -22,11 +22,11 @@ class ShopsManager{
         fakeDate()
     }
     
-    func getShops() -> [[Shop]]{
-        
-        var newShopsFromDB:[[Shop]] = [[]]
+    func getShops(delegate:UIViewController){
+        var myDelegate:DoneReadingDBDelegate = delegate as! CategoriesViewController
+        var newShopsFromDB:[[Shop]] = [[],[],[]]
         ref.child("shops").observeSingleEvent(of: .value) { (datasnapshot) in
-//            print("THIS IS A DATA SNAP SHOP-------\(datasnapshot)")
+            print("THIS IS A DATA SNAP SHOP-------\(datasnapshot)")
             for child in datasnapshot.children{
                 
                 print("THIS IS A DATA SNAP SHOT CHILD \(child)")
@@ -41,9 +41,13 @@ class ShopsManager{
                 let category = Category(rawValue: categoryRaw)
                 
                 guard let name = dic["name"] as? String else{return}
+                print("this is products........---->>>\(dic["products"])")
+                var products:[String:[Product]] = [:]
+                if dic["products"] != nil {
                 guard let productsDic = dic["products"] as? [String:[String:Any]] else {return}
                 
-                var products:[String:[Product]] = [:]
+                print("dgbkenrlgjremgmrejhe$###############################")
+                
                 var productsArray:[Product] = []
                 
                 
@@ -52,7 +56,7 @@ class ShopsManager{
                     productsArray.append(product)
                 }
                 products["products"] = productsArray
-                
+                }
                 let address = dic["address"] as! String
                 
                 let desc = dic["desc"] as! String
@@ -66,10 +70,12 @@ class ShopsManager{
                 print(newShopsFromDB.count)
             }
             
+            myDelegate.dbREAD(shops: newShopsFromDB)
+            
             print("--------------------- ARRAY FROM DB -----------------\(newShopsFromDB)")
             
         }
-        return newShopsFromDB
+//        return newShopsFromDB
         
     }
     
@@ -122,12 +128,11 @@ class ShopsManager{
             [
                 Shop(id: "ivoryShop", category: .ELECRICTY, name: "Ivory", products:     ["Products" :
                     [
-                        Product.init(id: "1", name: "Macbook Pro", desc: "the newest version of the macbook pro, with amazing features", imageName: "macbook", category: "Laptops", price: 11_159.00),
-                        Product.init(id: "2", name: "Lenovo Computer", desc: "Lenovo Computer", imageName: "lenovo-computer", category: "Computers",price: 1259.00 ),
-                        Product.init(id: "3", name: "Dell Computer", desc: "Dell computer", imageName: "dell-computer", category: "Computers", price: 1459.00),
+                        Product.init(id: "ivory1", name: "Macbook Pro", desc: "the newest version of the macbook pro, with amazing features", imageName: "macbook", category: "Laptops", price: 11_159.00),
+                        Product.init(id: "ivory2", name: "Lenovo Computer", desc: "Lenovo Computer", imageName: "lenovo-computer", category: "Computers",price: 1259.00 ),
+                        Product.init(id: "ivory3", name: "Dell Computer", desc: "Dell computer", imageName: "dell-computer", category: "Computers", price: 1459.00),
                         
-                    ]
-                    ], address: "Kenyon Ayalon, Ramat Gan", desc: "Computers shop with a lot of products", logoImageName: "ivory-logo", backgroundImageName: "computers-background"),
+                    ] ], address: "Kenyon Ayalon, Ramat Gan", desc: "Computers shop with a lot of products", logoImageName: "ivory-logo", backgroundImageName: "computers-background"),
                 Shop(id: "randomShop4", category: .ELECRICTY, name: "Ivory", products: [:], address: "Kenyon Ayalon, Ramat Gan", desc: "Computers shop with a lot of products", logoImageName: "surprise", backgroundImageName: "logo-1")
                 
                 
@@ -139,6 +144,3 @@ class ShopsManager{
     }
 }
 
-//protocol DoneReadingDBDelegate{
-//    func dbREAD()
-//}

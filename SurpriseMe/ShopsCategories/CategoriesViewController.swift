@@ -28,19 +28,20 @@ class CategoriesViewController: UICollectionViewController {
         
         self.navigationController?.navigationBar.isTranslucent = true
         
-        myShops = ShopsManager.shared.getShops()
+        ShopsManager.shared.getShops(delegate: self)
 //
 //        ShopsManager.shared.delegate = self
-        
+//        myShops = ShopsManager.shared.getFakeShops()
 //        let ref = Database.database().reference()
 ////
-//        ref.child("users").child(currentUser.id).setValue(currentUser.toDB)
-        
+////        ref.child("users").child(currentUser.id).setValue(currentUser.toDB)
+//
 //        for shopCategory in myShops{
 //            for shop in shopCategory{
 //            ref.child("shops").child(shop.id).setValue(shop.toDB)
 //        }
 //        }
+////        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -81,6 +82,7 @@ class CategoriesViewController: UICollectionViewController {
         cell.populate(shopsArray: myShops[indexPath.section])
         //set the delegate
         cell.delegate = self
+        cell.shopsCollectionView.reloadData()
         
         return cell
     }
@@ -147,11 +149,16 @@ extension CategoriesViewController: TappedDelegate{
 //        self.navigation?.pushViewController(controller, animated: true)
     }
 }
+protocol DoneReadingDBDelegate{
+    func dbREAD(shops:[[Shop]])
+}
 
-//extension CategoriesViewController : DoneReadingDBDelegate{
-//    func dbREAD() {
-//        self.collectionView.reloadData()
-//    }
-//    
-//    
-//}
+extension CategoriesViewController : DoneReadingDBDelegate{
+    func dbREAD(shops:[[Shop]]) {
+        myShops = shops
+        print("#@@@@@@@$#%$#^%$&^%*&^%*%^*%^*^%*%\(myShops)")
+        self.collectionView.reloadData()
+    }
+    
+    
+}
