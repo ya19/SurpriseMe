@@ -92,3 +92,11 @@ extension CategoryCollectionViewCell : UICollectionViewDelegateFlowLayout{
 protocol TappedDelegate {
     func doIt(shop:Shop)
 }
+
+//extension CategoryCollectionViewCell:DoneReadingDBDelegate{
+//    func dbREAD() {
+//        self.shopsCollectionView.reloadData()
+//    }
+//    
+//    
+//}

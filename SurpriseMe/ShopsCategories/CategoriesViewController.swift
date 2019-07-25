@@ -18,6 +18,8 @@ class CategoriesViewController: UICollectionViewController {
 //        PopUp.show(storyBoardName: "Menu", vcIdentifer: "menuVC", parent: self)
             AppMenu.toggleMenu(parent: self)
     }
+    
+    var myShops:[[Shop]] = [[]]
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = false
@@ -26,18 +28,19 @@ class CategoriesViewController: UICollectionViewController {
         
         self.navigationController?.navigationBar.isTranslucent = true
         
-        let myShops = ShopsManager.shared.getShops()
+        myShops = ShopsManager.shared.getShops()
 //
+//        ShopsManager.shared.delegate = self
         
-        let ref = Database.database().reference()
-//
-        ref.child("users").child(currentUser.id).setValue(currentUser.toDB)
+//        let ref = Database.database().reference()
+////
+//        ref.child("users").child(currentUser.id).setValue(currentUser.toDB)
         
-        for shopCategory in myShops{
-            for shop in shopCategory{
-            ref.child("shops").child(shop.id).setValue(shop.toDB)
-        }
-        }
+//        for shopCategory in myShops{
+//            for shop in shopCategory{
+//            ref.child("shops").child(shop.id).setValue(shop.toDB)
+//        }
+//        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -58,7 +61,8 @@ class CategoriesViewController: UICollectionViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return ShopsManager.shared.getShops().count
+//        return ShopsManager.shared.getShops().count
+        return myShops.count
     }
 
 
@@ -74,7 +78,7 @@ class CategoriesViewController: UICollectionViewController {
 //        cell.categoryLabel.text = categories[indexPath.item]
 //        cell.shopsData = shops[indexPath.section]
         
-        cell.populate(shopsArray: ShopsManager.shared.getShops()[indexPath.section])
+        cell.populate(shopsArray: myShops[indexPath.section])
         //set the delegate
         cell.delegate = self
         
@@ -144,3 +148,10 @@ extension CategoriesViewController: TappedDelegate{
     }
 }
 
+//extension CategoriesViewController : DoneReadingDBDelegate{
+//    func dbREAD() {
+//        self.collectionView.reloadData()
+//    }
+//    
+//    
+//}
