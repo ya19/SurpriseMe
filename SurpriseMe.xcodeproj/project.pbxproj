@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,7 +22,6 @@
 		47CC647722DCF00300463BF9 /* OrdersManagement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47CC647622DCF00300463BF9 /* OrdersManagement.storyboard */; };
 		47CC647B22DCF83E00463BF9 /* TreatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CC647A22DCF83E00463BF9 /* TreatCell.swift */; };
 		47CC647D22DD140100463BF9 /* UseTreatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CC647C22DD140100463BF9 /* UseTreatViewController.swift */; };
-		47F3408D22E879330067740E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 47F3408C22E879330067740E /* GoogleService-Info.plist */; };
 		4B53B40C534C4B2D361FCA1F /* Pods_SurpriseMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BB9E58547D5E0BD0261BFAA /* Pods_SurpriseMe.framework */; };
 		6D2EF9F422D60325005F01A4 /* ShopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2EF9F322D60325005F01A4 /* ShopCollectionViewCell.swift */; };
 		6D2EF9F622D60459005F01A4 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2EF9F522D60459005F01A4 /* CategoryCollectionViewCell.swift */; };
@@ -65,6 +64,7 @@
 		ADDB515F22E4B12D00F262B6 /* ShopsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDB515E22E4B12D00F262B6 /* ShopsManager.swift */; };
 		ADDB641222E0733A003A2916 /* Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDB641122E0733A003A2916 /* Screens.swift */; };
 		ADDB641422E07EC7003A2916 /* AppMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDB641322E07EC7003A2916 /* AppMenu.swift */; };
+		ADE06A4822E975C0008646F0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADE06A4722E975C0008646F0 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,7 +84,6 @@
 		47CC647622DCF00300463BF9 /* OrdersManagement.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OrdersManagement.storyboard; sourceTree = "<group>"; };
 		47CC647A22DCF83E00463BF9 /* TreatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreatCell.swift; sourceTree = "<group>"; };
 		47CC647C22DD140100463BF9 /* UseTreatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseTreatViewController.swift; sourceTree = "<group>"; };
-		47F3408C22E879330067740E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4BB9E58547D5E0BD0261BFAA /* Pods_SurpriseMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SurpriseMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D2EF9F322D60325005F01A4 /* ShopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCollectionViewCell.swift; sourceTree = "<group>"; };
 		6D2EF9F522D60459005F01A4 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -131,6 +130,7 @@
 		ADDB515E22E4B12D00F262B6 /* ShopsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsManager.swift; sourceTree = "<group>"; };
 		ADDB641122E0733A003A2916 /* Screens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screens.swift; sourceTree = "<group>"; };
 		ADDB641322E07EC7003A2916 /* AppMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMenu.swift; sourceTree = "<group>"; };
+		ADE06A4722E975C0008646F0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,6 +292,7 @@
 		7BAF23CA22D362E200E83A89 /* SurpriseMe */ = {
 			isa = PBXGroup;
 			children = (
+				ADE06A4722E975C0008646F0 /* GoogleService-Info.plist */,
 				ADA1BA0922E1D574004EF8F0 /* FakeData */,
 				47AD99FF22E0A73900B8021C /* Popups */,
 				47AD99FE22E0A6E400B8021C /* Menu */,
@@ -311,7 +312,6 @@
 				7BAF23D222D362E200E83A89 /* SurpriseMe.xcdatamodeld */,
 				6DC7038722D5C0B500F0531B /* BaseViewController.swift */,
 				7B13C5FD22D69E2A00522043 /* RegisterViewController.swift */,
-				47F3408C22E879330067740E /* GoogleService-Info.plist */,
 			);
 			path = SurpriseMe;
 			sourceTree = "<group>";
@@ -331,7 +331,6 @@
 				7A9EB5466DD768D9EDE46E48 /* Pods-SurpriseMe.debug.xcconfig */,
 				121230BE56FA17F9C9242E3B /* Pods-SurpriseMe.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -402,7 +401,7 @@
 				AD0DDC2A22DC75F4007A4533 /* ShopsCollection.storyboard in Resources */,
 				7BAF23D122D362E200E83A89 /* Main.storyboard in Resources */,
 				47AD99F122E06BEC00B8021C /* Friends.storyboard in Resources */,
-				47F3408D22E879330067740E /* GoogleService-Info.plist in Resources */,
+				ADE06A4822E975C0008646F0 /* GoogleService-Info.plist in Resources */,
 				AD68A49722D8F2C900E019BA /* Cart.storyboard in Resources */,
 				7BEC607A22D4D5DB0040D6CF /* Register.storyboard in Resources */,
 			);
