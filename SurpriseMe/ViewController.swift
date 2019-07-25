@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewController: BaseViewController {
     
@@ -97,9 +98,17 @@ class ViewController: BaseViewController {
         self.view.addSubview(emailError)
         self.view.addSubview(passwordError)
         self.navigationController?.navigationBar.isHidden = true
-
         
         
+        let ref = Database.database().reference()
+        ref.child("proudct").observeSingleEvent(of: .value) { (datasnapshot) in
+           
+            let productDic = datasnapshot.value as? [String: Any] ?? [:]
+            let product = Product.getProductFromDictionary(dic: productDic)
+        
+            print(product)
+   
+    }
     }
 
     

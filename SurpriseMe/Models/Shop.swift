@@ -42,7 +42,7 @@ struct Shop{
         var dic:[String:Any] = [:]
         
         dic["id"] = id
-        dic["category"] = category.description
+        dic["category"] = category.rawValue
         dic["name"] = name
         //products
         

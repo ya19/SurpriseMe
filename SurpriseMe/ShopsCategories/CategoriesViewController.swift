@@ -28,6 +28,7 @@ class CategoriesViewController: UICollectionViewController {
         
         let myShops = ShopsManager.shared.getShops()
 //
+        
         let ref = Database.database().reference()
 //
         ref.child("users").child(currentUser.id).setValue(currentUser.toDB)

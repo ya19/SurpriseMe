@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import Firebase
 
 class ShopsManager{
     
     static let shared = ShopsManager()
     
-    
+    let ref = Database.database().reference()
     
     private var shops:[[Shop]]
     
@@ -22,8 +23,47 @@ class ShopsManager{
     }
     
     func getShops() -> [[Shop]]{
-        return shops
+        
+        var newShopsFromDB:[[Shop]] = [[]]
+        
+        
+        ref.child("shops").observeSingleEvent(of: .value) { (datasnapshot) in
+            
+            for child in datasnapshot.children{
+                guard let dic = child as? [String:Any] else{return}
+                guard let id = dic["id"] as? String else {return}
+                guard let categoryRaw = dic["category"] as? Int else{return}
+                let category = Category(rawValue: categoryRaw)
+                guard let name = dic["name"] as? String else{return}
+                guard let productsDic = dic["products"] as? [String:[String:Any]] else {return}
+                var products:[String:[Product]] = [:]
+                for key in productsDic.keys{
+                    guard let product = Product.getProductFromDictionary(dic: productsDic[key]!) as? Product else{return}
+                    products["products"]!.append(product)
+                }
+                
+                let address = dic["address"] as! String
+                let desc = dic["desc"] as! String
+                let logoImageName = dic["logoImageName"] as? String ?? nil
+                let backgroundImageName = dic["backgroundImageName"] as? String ?? nil
+                
+                let shop = Shop.init(id: id, category: category!, name: name, products: products, address: address, desc: desc, logoImageName: logoImageName, backgroundImageName: backgroundImageName)
+                print("----------> NEW SHOP <___------\(shop)")
+                
+                newShopsFromDB[categoryRaw].append(shop)
+            }
+            
+        }
+        return newShopsFromDB
+        
     }
+        
+        func getFakeShops()-> [[Shop]]{
+            return shops
+        }
+        
+    
+    
     
     
     func fakeDate(){

@@ -35,4 +35,17 @@ struct Product{
         return dic
     }
     
+    static func getProductFromDictionary(dic: [String:Any])-> Product?{
+        
+        guard let productId = dic["id"] as? String else{return nil}
+        guard let productName = dic["name"] as? String else{return nil}
+        guard let productDesc = dic["desc"] as? String else{return nil}
+        guard let productImageName = dic["imageName"] as? String else{return nil}
+        guard let productCategory = dic["category"] as? String else{return nil}
+        guard let productPrice = dic["price"] as? Double else{return nil}
+        
+        
+        return Product.init(id: productId, name: productName, desc: productDesc, imageName: productImageName, category: productCategory, price: productPrice)
+    }
+    
 }
