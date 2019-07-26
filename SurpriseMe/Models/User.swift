@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+
 var currentUser = User.init(id: "user1", email: "shahaf_t@narkis.co.il", firstName: "David", lastName: "Tikva", dateOfBitrh: Date(),
           
           friends: [
@@ -73,7 +75,7 @@ struct User:Hashable,Equatable{
         dic["email"] = email
         dic["firstName"] = firstName
         dic["lastName"] = lastName
-        dic["dateOfBirth"] = dateString
+        dic["dateOfBirth"] = dateOfBitrh.timeIntervalSince1970
         
         //friends
         if friends.count > 0 {
@@ -122,7 +124,8 @@ struct User:Hashable,Equatable{
         let email = dic["email"] as! String
         let firstName = dic["firstName"] as! String
         let lastName = dic["lastName"] as! String
-        let dateOfBirth = Date()
+        let myTimeInterval = TimeInterval(dic["dateOfBirth"] as! Double)
+        let dateOfBirth = Date(timeIntervalSince1970: TimeInterval(myTimeInterval))
         var friends:[User] = []
         if let friendsDic = dic["friends"] as? [String:Any]{
             for key in friendsDic.keys{

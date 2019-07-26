@@ -33,23 +33,23 @@ class CategoriesViewController: UICollectionViewController {
 //        ShopsManager.shared.delegate = self
 //        myShops = ShopsManager.shared.getFakeShops()
         let ref = Database.database().reference()
-//        ref.child("user").setValue(currentUser.toDB)
-//        ref.child("user").observeSingleEvent(of: .value) { (DataSnapshot) in
-//            let dic = DataSnapshot.value as! [String:Any]
-//            print("%$#@!\(User.getUserFromDictionary(dic))")
-//        }
-        //        ref.child("treat").observeSingleEvent(of: .value) { (DataSnapshot) in
-//            let dic = DataSnapshot.value as! [String:Any]
-//            print("%$#@!\(Treat.getTreatFromDictionary(dic))")
-//        }
+        ref.child("user").setValue(currentUser.toDB)
+        ref.child("user").observeSingleEvent(of: .value) { (DataSnapshot) in
+            let dic = DataSnapshot.value as! [String:Any]
+            print("%$#@!\(User.getUserFromDictionary(dic))")
+        }
+                ref.child("treat").observeSingleEvent(of: .value) { (DataSnapshot) in
+            let dic = DataSnapshot.value as! [String:Any]
+            print("%$#@!\(Treat.getTreatFromDictionary(dic))")
+        }
+  
 //        ref.child("treat").setValue(Treat(id: "treat1", date: Date(), product: Product(id: "product1", name: "basketball", desc: "ball", imageName: "basketball", category: "SomeCategory", price: 10.2), giver: currentUser, getter: currentUser, treatStatus: TreatStatus.Expired).toDB)
 ////
 //        ref.child("Order").setValue(Order(id: "id1", treats: [Treat(id: "treat1", date: nil, product: Product(id: "product1", name: "shoes", desc: "desc", imageName: "name", category: "shoes", price: 15.0), giver: currentUser, getter: currentUser, treatStatus: TreatStatus.NotUsed),Treat(id: "treat2", date: nil, product: Product(id: "product1", name: "shoes", desc: "desc", imageName: "name", category: "shoes", price: 15.0), giver: currentUser, getter: currentUser, treatStatus: TreatStatus.NotUsed),Treat(id: "treat3", date: nil, product: Product(id: "product1", name: "shoes", desc: "desc", imageName: "name", category: "shoes", price: 15.0), giver: currentUser, getter: currentUser, treatStatus: TreatStatus.NotUsed),Treat(id: "treat4", date: nil, product: Product(id: "product1", name: "shoes", desc: "desc", imageName: "name", category: "shoes", price: 15.0), giver: currentUser, getter: currentUser, treatStatus: TreatStatus.NotUsed)], date: Date(), buyer: currentUser).toDB)
-//        ref.child("Order").observeSingleEvent(of: .value) { (DataSnapshot) in
-//            print(DataSnapshot, "#@$@#$#@$#@$@#$@#$")
-//            let dic = DataSnapshot.value as! [String:Any]
-//            print("!@#$%\(Order.getOrderFromDictionary(dic))")
-//        }
+        ref.child("Order").observeSingleEvent(of: .value) { (DataSnapshot) in
+            let dic = DataSnapshot.value as! [String:Any]
+            print("!@#$%\(Order.getOrderFromDictionary(dic))")
+        }
 ////        ref.child("users").child(currentUser.id).setValue(currentUser.toDB)
 //
 //        for shopCategory in myShops{

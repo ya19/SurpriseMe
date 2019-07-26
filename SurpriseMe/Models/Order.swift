@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 struct Order{
     let id:String
@@ -43,7 +44,7 @@ struct Order{
             myTreats[treat.id] = treat.toDB
         }
         dic["treats"] = myTreats
-        dic["date"] = dateString
+        dic["date"] =  ServerValue.timestamp()
         dic["buyer"] = buyer?.toDB
         dic["price"] = price
         return dic
@@ -57,7 +58,8 @@ struct Order{
         for key in treats.keys{
             allTreats.append(Treat.getTreatFromDictionary(treats[key]!))
         }
-        let date = Date()
+        let t = dic["date"] as! TimeInterval
+        let date = Date(timeIntervalSince1970: t/1000)
         let buyerDic = dic["buyer"] as! [String:Any]
         let buyer = User.getUserFromDictionary(buyerDic)
         

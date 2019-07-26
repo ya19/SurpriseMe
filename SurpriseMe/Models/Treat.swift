@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 struct Treat{
     //
@@ -49,7 +50,7 @@ struct Treat{
         var dic:[String:Any] = [:]
         
         dic["id"] = id
-        dic["date"] = dateString
+        dic["date"] = ServerValue.timestamp()
         dic["product"] = product.toDB
         dic["giver"] = giver?.toDB
         dic["getter"] = getter?.toDB
@@ -59,7 +60,8 @@ struct Treat{
     static func getTreatFromDictionary(_ dic:[String:Any]) -> Treat{
         
         let id = dic["id"] as! String
-        let date = Date()
+        let t = dic["date"] as! TimeInterval
+        let date = Date(timeIntervalSince1970: t/1000)
         let product = Product.getProductFromDictionary(dic["product"] as! [String:Any])
         let giver = User.getUserFromDictionary(dic["giver"] as! [String : Any])
         let getter = User.getUserFromDictionary(dic["getter"] as! [String: Any])
