@@ -23,7 +23,7 @@ class ShopsManager{
     }
     
     func getShops(delegate:UIViewController){
-        var myDelegate:DoneReadingDBDelegate = delegate as! CategoriesViewController
+        let myDelegate:DoneReadingDBDelegate = delegate as! CategoriesViewController
         var newShopsFromDB:[[Shop]] = [[],[],[]]
         ref.child("shops").observeSingleEvent(of: .value) { (datasnapshot) in
 //            print("THIS IS A DATA SNAP SHOP-------\(datasnapshot)")
@@ -52,7 +52,7 @@ class ShopsManager{
                 
                 
                 for key in productsDic.keys{
-                    guard let product = Product.getProductFromDictionary(productsDic[key]!) as? Product else{return}
+                    guard let product = Product.getProductFromDictionary(productsDic[key]!) else {return}
                     productsArray.append(product)
                 }
                 products["products"] = productsArray
@@ -64,7 +64,7 @@ class ShopsManager{
                 let backgroundImageName = dic["backgroundImageName"] as? String ?? nil
 
                 let shop = Shop.init(id: id, category: category!, name: name, products: products, address: address, desc: desc, logoImageName: logoImageName, backgroundImageName: backgroundImageName)
-                print("----------> NEW SHOP <___------\(shop)")
+//                print("----------> NEW SHOP <___------\(shop)")
                 
                 newShopsFromDB[categoryRaw].append(shop)
                 print(newShopsFromDB.count)
@@ -72,7 +72,7 @@ class ShopsManager{
             
             myDelegate.dbREAD(shops: newShopsFromDB)
             
-            print("--------------------- ARRAY FROM DB -----------------\(newShopsFromDB)")
+//            print("--------------------- ARRAY FROM DB -----------------\(newShopsFromDB)")
             
         }
 //        return newShopsFromDB
