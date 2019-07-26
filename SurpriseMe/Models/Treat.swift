@@ -56,6 +56,16 @@ struct Treat{
         dic["status"] = treatStatus?.rawValue
         return dic
     }
+    static func getTreatFromDictionary(_ dic:[String:Any]) -> Treat{
+        
+        let id = dic["id"] as! String
+        let date = Date()
+        let product = Product.getProductFromDictionary(dic["product"] as! [String:Any])
+        let giver = User.getUserFromDictionary(dic["giver"] as! [String : Any])
+        let getter = User.getUserFromDictionary(dic["getter"] as! [String: Any])
+        let status = TreatStatus(rawValue: dic["status"] as! Int)
+        return Treat(id: id, date: date, product: product!, giver: giver, getter: getter, treatStatus: status)
+    }
 }
 
 enum TreatStatus:Int{
@@ -88,5 +98,5 @@ enum TreatStatus:Int{
             return UIImage(named: "icons8-arrow")
         }
     }
-    
+
 }

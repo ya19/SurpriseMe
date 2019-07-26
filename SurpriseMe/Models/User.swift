@@ -7,23 +7,23 @@
 //
 
 import UIKit
-var currentUser = User.init(id: "1", email: "shahaf_t@narkis.co.il", firstName: "David", lastName: "Tikva", dateOfBitrh: Date(),
+var currentUser = User.init(id: "user1", email: "shahaf_t@narkis.co.il", firstName: "David", lastName: "Tikva", dateOfBitrh: Date(),
           
           friends: [
-            User(id: "2", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: Date() , friends: [] ,myTreats: [], myOrders: [], myCart: [] , getTreatsStatus: GetTreatStatus.EVERYONE, address: nil),
+            User(id: "user2", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: Date() , friends: [] ,myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil)
             
     ],
           myTreats:
     [
-        Treat.init(id: "1", date: Date(), product: Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 159.00), giver: nil, getter: nil, treatStatus: TreatStatus.NotUsed),
+        Treat.init(id: "treat1", date: Date(), product: Product.init(id: "product1", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 159.00), giver:  User(id: "user2", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: Date() , friends: [] ,myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil), getter:  User(id: "user2", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: Date() , friends: [] ,myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil), treatStatus: TreatStatus.NotUsed),
         
-        Treat.init(id: "2", date: Date(), product: Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 165.00), giver: nil, getter: nil, treatStatus: TreatStatus.NotUsed),
+        Treat.init(id: "treat2", date: Date(), product: Product.init(id: "product2", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 165.00), giver:  User(id: "user2", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: Date() , friends: [] ,myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil), getter:  User(id: "user2", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: Date() , friends: [] ,myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil), treatStatus: TreatStatus.NotUsed),
         
-        Treat.init(id: "3", date: Date(), product: Product.init(id: "#1", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 121.00), giver: nil, getter: nil, treatStatus: TreatStatus.NotUsed)
+        Treat.init(id: "treat3", date: Date(), product: Product.init(id: "product3", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 121.00), giver:  User(id: "user2", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: Date() , friends: [] ,myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil), getter:  User(id: "user2", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: Date() , friends: [] ,myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil), treatStatus: TreatStatus.NotUsed)
         
         
     ],
-          myOrders:[],myCart: [], getTreatsStatus: GetTreatStatus.EVERYONE, address: nil)
+          myOrders:[], getTreatsStatus: GetTreatStatus.EVERYONE, address: nil)
 //consider using cartmanager object or to use mycart from the user. cartmanager will display ui cart only and will not save it in any data, while if u have myCart in the user u can save it and update the current user's cart. well you can also use coredata to store the current cart data there and to use it only from the users device without storing cart data in our DB , well i think thats the best option instead of updating anymoment the cart in the server.
 // using CartManager means to delete myCart attribute from user,
 // using myCart attribute on current user means to delete CartManager object.
@@ -57,8 +57,6 @@ struct User:Hashable,Equatable{
     var myTreats:[Treat]
     
     var myOrders:[Order]
-    
-    var myCart:[Product]
     
     var getTreatsStatus:GetTreatStatus
     
@@ -114,5 +112,44 @@ struct User:Hashable,Equatable{
         
         
         return dic
+    }
+    //user can have nil/empty array at friends, treats, myOrders , adress.
+
+    static func getUserFromDictionary(_ dic: [String:Any]) -> User{
+      
+        
+        let id = dic["id"] as! String
+        let email = dic["email"] as! String
+        let firstName = dic["firstName"] as! String
+        let lastName = dic["lastName"] as! String
+        let dateOfBirth = Date()
+        var friends:[User] = []
+        if let friendsDic = dic["friends"] as? [String:Any]{
+            for key in friendsDic.keys{
+                friends.append(User.getUserFromDictionary(friendsDic[key]! as! [String:Any]))
+            }
+        }
+        
+        var myTreats:[Treat] = []
+        if let treatsDic = dic["myTreats"] as? [String:Any]{
+            for key in treatsDic.keys{
+                myTreats.append(Treat.getTreatFromDictionary(treatsDic[key]! as! [String:Any]))
+            }
+        }
+        
+        var myOrders:[Order] = []
+        if let ordersDic = dic["myOrders"] as? [String:Any]{
+            for key in ordersDic.keys{
+                myOrders.append(Order.getOrderFromDictionary(ordersDic[key]! as! [String:Any]))
+            }
+        }
+        
+        let getTreatStatus = GetTreatStatus(rawValue: dic["getTreatStatus"] as! Int)
+        var address:[String:String]? = nil
+        if let addressDic = dic["address"] as? [String:String]{
+            address = addressDic
+        }
+        
+        return User(id: id, email: email, firstName: firstName, lastName: lastName, dateOfBitrh: dateOfBirth, friends: friends, myTreats: myTreats, myOrders: myOrders, getTreatsStatus: getTreatStatus!, address: address)
     }
 }

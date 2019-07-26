@@ -104,7 +104,7 @@ class ViewController: BaseViewController {
         ref.child("proudct").observeSingleEvent(of: .value) { (datasnapshot) in
            
             let productDic = datasnapshot.value as? [String: Any] ?? [:]
-            let product = Product.getProductFromDictionary(dic: productDic)
+            let product = Product.getProductFromDictionary( productDic)
         
             print(product)
    

@@ -26,14 +26,14 @@ class ShopsManager{
         var myDelegate:DoneReadingDBDelegate = delegate as! CategoriesViewController
         var newShopsFromDB:[[Shop]] = [[],[],[]]
         ref.child("shops").observeSingleEvent(of: .value) { (datasnapshot) in
-            print("THIS IS A DATA SNAP SHOP-------\(datasnapshot)")
+//            print("THIS IS A DATA SNAP SHOP-------\(datasnapshot)")
             for child in datasnapshot.children{
                 
-                print("THIS IS A DATA SNAP SHOT CHILD \(child)")
+//                print("THIS IS A DATA SNAP SHOT CHILD \(child)")
                 let snap = child as! DataSnapshot
                 guard let dic = snap.value as? [String:Any] else {return}
                 
-                print("this is snap.value ---> \(snap.value)")
+//                print("this is snap.value ---> \(snap.value)")
                 guard let id = dic["id"] as? String else{return}
                 
                 guard let categoryRaw = dic["category"] as? Int else{return}
@@ -41,18 +41,18 @@ class ShopsManager{
                 let category = Category(rawValue: categoryRaw)
                 
                 guard let name = dic["name"] as? String else{return}
-                print("this is products........---->>>\(dic["products"])")
+//                print("this is products........---->>>\(dic["products"])")
                 var products:[String:[Product]] = [:]
                 if dic["products"] != nil {
                 guard let productsDic = dic["products"] as? [String:[String:Any]] else {return}
                 
-                print("dgbkenrlgjremgmrejhe$###############################")
+//                print("dgbkenrlgjremgmrejhe$###############################")
                 
                 var productsArray:[Product] = []
                 
                 
                 for key in productsDic.keys{
-                    guard let product = Product.getProductFromDictionary(dic: productsDic[key]!) as? Product else{return}
+                    guard let product = Product.getProductFromDictionary(productsDic[key]!) as? Product else{return}
                     productsArray.append(product)
                 }
                 products["products"] = productsArray
@@ -143,4 +143,19 @@ class ShopsManager{
 
     }
 }
-
+//MARK timestamp
+//
+//let ref = Firebase(url: "<FIREBASE HERE>")
+//
+//// Tell the server to set the current timestamp at this location.
+//ref.setValue(ServerValue.timestamp())
+//
+//// Read the value at the given location. It will now have the time.
+//ref.observeEventType(.Value, withBlock: {
+//    snap in
+//    if let t = snap.value as? NSTimeInterval {
+//        // Cast the value to an NSTimeInterval
+//        // and divide by 1000 to get seconds.
+//        println(NSDate(timeIntervalSince1970: t/1000))
+//    }
+//})

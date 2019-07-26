@@ -14,11 +14,11 @@ struct Product{
     let desc:String
     var image:UIImage?{
         if imageName != nil{
-            return UIImage(named:  imageName!)
+            return UIImage(named:  imageName)
         }
         return nil
     }
-    let imageName:String?
+    let imageName:String
     let category:String
     let price:Double
     
@@ -35,7 +35,7 @@ struct Product{
         return dic
     }
     
-    static func getProductFromDictionary(dic: [String:Any])-> Product?{
+    static func getProductFromDictionary(_ dic: [String:Any])-> Product?{
         
         guard let productId = dic["id"] as? String else{return nil}
         guard let productName = dic["name"] as? String else{return nil}
@@ -49,3 +49,4 @@ struct Product{
     }
     
 }
+

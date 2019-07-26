@@ -48,4 +48,19 @@ struct Order{
         dic["price"] = price
         return dic
     }
+    
+    static func getOrderFromDictionary(_ dic: [String:Any]) -> Order{
+        let id = dic["id"] as! String
+
+        let treats = dic["treats"] as! [String:[String:Any]]
+        var allTreats:[Treat] = []
+        for key in treats.keys{
+            allTreats.append(Treat.getTreatFromDictionary(treats[key]!))
+        }
+        let date = Date()
+        let buyerDic = dic["buyer"] as! [String:Any]
+        let buyer = User.getUserFromDictionary(buyerDic)
+        
+        return Order(id: id, treats: allTreats, date: date, buyer: buyer)
+    }
 }
