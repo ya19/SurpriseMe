@@ -34,39 +34,11 @@ class ShopsManager{
                 guard let dic = snap.value as? [String:Any] else {return}
                 
 //                print("this is snap.value ---> \(snap.value)")
-                guard let id = dic["id"] as? String else{return}
-                
-                guard let categoryRaw = dic["category"] as? Int else{return}
-                
-                let category = Category(rawValue: categoryRaw)
-                
-                guard let name = dic["name"] as? String else{return}
-//                print("this is products........---->>>\(dic["products"])")
-                var products:[String:[Product]] = [:]
-                if dic["products"] != nil {
-                guard let productsDic = dic["products"] as? [String:[String:Any]] else {return}
-                
-//                print("dgbkenrlgjremgmrejhe$###############################")
-                
-                var productsArray:[Product] = []
-                
-                
-                for key in productsDic.keys{
-                    guard let product = Product.getProductFromDictionary(productsDic[key]!) else {return}
-                    productsArray.append(product)
-                }
-                products["products"] = productsArray
-                }
-                let address = dic["address"] as! String
-                
-                let desc = dic["desc"] as! String
-                let logoImageName = dic["logoImageName"] as? String ?? nil
-                let backgroundImageName = dic["backgroundImageName"] as? String ?? nil
 
-                let shop = Shop.init(id: id, category: category!, name: name, products: products, address: address, desc: desc, logoImageName: logoImageName, backgroundImageName: backgroundImageName)
-//                print("----------> NEW SHOP <___------\(shop)")
                 
-                newShopsFromDB[categoryRaw].append(shop)
+//                print("----------> NEW SHOP <___------\(shop)")
+                let shop = Shop.getShopFromDictionary(dic)
+                newShopsFromDB[shop.category.rawValue].append(shop)
                 print(newShopsFromDB.count)
             }
             

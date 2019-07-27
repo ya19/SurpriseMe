@@ -64,6 +64,39 @@ struct Shop{
         return dic
     }
     
+    static func getShopFromDictionary(_ dic: [String:Any]) -> Shop{
+        let id = dic["id"] as! String
+        
+        
+        let categoryRaw = dic["category"] as! Int
+        
+        let category = Category(rawValue: categoryRaw)
+        
+        let name = dic["name"] as! String
+        //                print("this is products........---->>>\(dic["products"])")
+        var products:[String:[Product]] = [:]
+        if dic["products"] != nil {
+            let productsDic = dic["products"] as! [String:[String:Any]]
+            
+            //                print("dgbkenrlgjremgmrejhe$###############################")
+            
+            var productsArray:[Product] = []
+            
+            
+            for key in productsDic.keys{
+                let product = Product.getProductFromDictionary(productsDic[key]!)
+                productsArray.append(product)
+            }
+            products["products"] = productsArray
+        }
+        let address = dic["address"] as! String
+        
+        let desc = dic["desc"] as! String
+        let logoImageName = dic["logoImageName"] as? String ?? nil
+        let backgroundImageName = dic["backgroundImageName"] as? String ?? nil
+        
+        return Shop.init(id: id, category: category!, name: name, products: products, address: address, desc: desc, logoImageName: logoImageName, backgroundImageName: backgroundImageName)
+    }
 }
 
 // products -> category name -> poduct id -> product

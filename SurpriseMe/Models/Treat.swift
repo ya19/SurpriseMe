@@ -66,7 +66,7 @@ struct Treat{
         let giver = User.getUserFromDictionary(dic["giver"] as! [String : Any])
         let getter = User.getUserFromDictionary(dic["getter"] as! [String: Any])
         let status = TreatStatus(rawValue: dic["status"] as! Int)
-        return Treat(id: id, date: date, product: product!, giver: giver, getter: getter, treatStatus: status)
+        return Treat(id: id, date: date, product: product, giver: giver, getter: getter, treatStatus: status)
     }
 }
 
