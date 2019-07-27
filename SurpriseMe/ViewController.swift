@@ -18,6 +18,8 @@ class ViewController: BaseViewController {
     var textFields:[SATextField] = []
     var errorMessages:[UILabel] = []
     
+//    let ref = Database.database().reference()
+    
     var emailError = UILabel()
     var passwordError = UILabel()
     
@@ -80,7 +82,18 @@ class ViewController: BaseViewController {
                 strongSelf.handleError(error!)
                 return
             }
-//            Toast.show(message: "\(user.user.email!) logged in successfully", controller: strongSelf.parent!)
+
+            print("THIS IS UID!!!! \(user.user.uid)")
+            let ref = Database.database().reference()
+            
+            
+            ref.child("users").child(user.user.uid).observe(.value, with: { (datasnapshot) in
+                guard let newCurrentUserDic = datasnapshot.value as? [String:Any] else{return}
+                print("HELLLLLLLO")
+                currentUser = User.getUserFromDictionary(newCurrentUserDic)
+                print("NEW USER INIT!!! \(currentUser)")
+            })
+            
             
             let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
             strongSelf.show(shopsVC, sender: sender)
