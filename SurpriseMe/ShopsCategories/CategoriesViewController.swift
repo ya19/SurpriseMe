@@ -13,6 +13,8 @@ private let reuseIdentifier = "categoryCell"
 private let reuseHeaderIdentifier = "sectionHeader"
 
 class CategoriesViewController: UICollectionViewController {
+    
+    var handle:AuthStateDidChangeListenerHandle?
 
     @IBAction func showMenu(_ sender: UIBarButtonItem) {
 //        PopUp.show(storyBoardName: "Menu", vcIdentifer: "menuVC", parent: self)
@@ -24,6 +26,12 @@ class CategoriesViewController: UICollectionViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = false
         AppMenu.clearMenu()
+        
+        if Auth.auth().currentUser != nil{
+            Toast.show(message: "\(Auth.auth().currentUser!.email!) Logged in successfully", controller: self)
+        }
+        
+        
         self.collectionView.backgroundView = UIImageView(image: UIImage.init(named: "blue-background"))
         
         self.navigationController?.navigationBar.isTranslucent = true
@@ -43,6 +51,9 @@ class CategoriesViewController: UICollectionViewController {
             print("%$#@!\(Treat.getTreatFromDictionary(dic))")
         }
   
+        
+        
+        
 //        ref.child("treat").setValue(Treat(id: "treat1", date: Date(), product: Product(id: "product1", name: "basketball", desc: "ball", imageName: "basketball", category: "SomeCategory", price: 10.2), giver: currentUser, getter: currentUser, treatStatus: TreatStatus.Expired).toDB)
 ////
 //        ref.child("Order").setValue(Order(id: "id1", treats: [Treat(id: "treat1", date: nil, product: Product(id: "product1", name: "shoes", desc: "desc", imageName: "name", category: "shoes", price: 15.0), giver: currentUser, getter: currentUser, treatStatus: TreatStatus.NotUsed),Treat(id: "treat2", date: nil, product: Product(id: "product1", name: "shoes", desc: "desc", imageName: "name", category: "shoes", price: 15.0), giver: currentUser, getter: currentUser, treatStatus: TreatStatus.NotUsed),Treat(id: "treat3", date: nil, product: Product(id: "product1", name: "shoes", desc: "desc", imageName: "name", category: "shoes", price: 15.0), giver: currentUser, getter: currentUser, treatStatus: TreatStatus.NotUsed),Treat(id: "treat4", date: nil, product: Product(id: "product1", name: "shoes", desc: "desc", imageName: "name", category: "shoes", price: 15.0), giver: currentUser, getter: currentUser, treatStatus: TreatStatus.NotUsed)], date: Date(), buyer: currentUser).toDB)
@@ -63,6 +74,12 @@ class CategoriesViewController: UICollectionViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
+//            Toast.show(message: "\(Auth.auth().currentUser) logged in successfully", controller: self)
+//        }
+//    }
 
     /*
     // MARK: - Navigation

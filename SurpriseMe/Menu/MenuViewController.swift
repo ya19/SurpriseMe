@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+
 let menu = UIStoryboard(name: "Menu", bundle: nil).instantiateViewController(withIdentifier: "menuVC") as! MenuViewController
 class MenuViewController: UIViewController {
     var toggle = false
@@ -99,8 +101,23 @@ extension MenuViewController:UITableViewDelegate{
             }
         case .Logout:
             menu.toggle = !menu.toggle
+            
+            //maybe find a better solution in the try and catch..
+            let email = Auth.auth().currentUser?.email
+            if Auth.auth().currentUser != nil{
+                do {
+                    try Auth.auth().signOut()
+                    let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "login") as! ViewController
+                    Toast.show(message: "\(email!) Logged out successfully", controller: controller)
+                    
+                    //todo add an alert asking if the user is sure he wants to log out
+                    //todo check if to delete the navigation from the login screen, cause it appears again. it doesn't concern the view did load hidden navigation...
+                    self.parent?.navigationController?.pushViewController(controller, animated: true)
+                } catch let signOutError as NSError {
+                    Toast.show(message: "Error signing out: \(signOutError)", controller: self.parent!)
+                }
+            }
             self.view.removeFromSuperview()
-            Toast.show(message: "Logout", controller: self.parent!)
             return
         }
     }

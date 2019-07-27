@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class RegisterViewController: UIViewController {
 
@@ -143,16 +144,34 @@ class RegisterViewController: UIViewController {
             }
         }
         
-        
-        
-        
-        
         //todo: check in database if email exists
+        Auth.auth().createUser(withEmail: email.text!, password: password.text!) { (authResult, error) in
+            
+            guard let user = authResult?.user, error == nil else {
+//                Toast.show(message: error!.localizedDescription, controller: self)
+                self.handleError(error!)
+                return
+            }
+            
+            
+            let ref = Database.database().reference()
+            
+            let newUser = User.init(id: user.uid, email: user.email!, firstName: self.firstName.text!, lastName: self.lastName.text!, dateOfBitrh: self.dateOfBirth.date, friends: [], myTreats: [], myOrders: [], getTreatsStatus: GetTreatStatus(rawValue: self.giftStatus!.selectedSegmentIndex)!, address: [:])
+            
+            ref.child("users").child(user.uid).setValue(newUser.toDB)
+            self.view.removeFromSuperview()
+            Toast.show(message: "\(user.email!) created successfully", controller: self.parent!)
+        
+        }
+    
+}
+        
+        
         //todo: add to database if successful
         
         
-        self.view.removeFromSuperview()
-    }
+    
+    
     @IBOutlet weak var popUpView: SAView!
    
     
@@ -233,4 +252,45 @@ class RegisterViewController: UIViewController {
     }
     */
 
+}
+
+extension AuthErrorCode {
+    var errorMessage: String {
+        switch self {
+        case .emailAlreadyInUse:
+            return "This e-mail address already exists, Please use a different e-mail address."
+        case .userNotFound:
+            return "This e-mail address does not exists, Please try again."
+        case .userDisabled:
+            return "Your account has been disabled. Please contact support."
+        case .invalidEmail, .invalidSender, .invalidRecipientEmail:
+            return "Please enter a valid email"
+        case .networkError:
+            return "Network error. Please try again."
+        case .weakPassword:
+            return "Your password is too weak. The password must be 6 characters long or more."
+        case .wrongPassword:
+            return "Your password is incorrect. Please try again or use 'Forgot password' to reset your password"
+        default:
+            return "Unknown error occurred"
+        }
+    }
+}
+
+
+extension UIViewController{
+    func handleError(_ error: Error) {
+        if let errorCode = AuthErrorCode(rawValue: error._code) {
+            print(errorCode.errorMessage)
+            let alert = UIAlertController(title: "Error", message: errorCode.errorMessage, preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            
+            alert.addAction(okAction)
+            
+            self.present(alert, animated: true, completion: nil)
+            
+        }
+    }
+    
 }

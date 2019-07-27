@@ -7,6 +7,8 @@ target 'SurpriseMe' do
 
 	pod 'Firebase/Analytics'
   pod 'Firebase/Database'
+  pod 'Firebase/Auth'
+
 
 
   # Pods for SurpriseMe

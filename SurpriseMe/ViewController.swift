@@ -70,10 +70,22 @@ class ViewController: BaseViewController {
         }
         
         //todo check authentication on firebase
-    
         
-        let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
-        self.show(shopsVC, sender: sender)
+        Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { [weak self] user, error in
+            guard let strongSelf = self else {
+                return }
+            
+            guard let user = user, error == nil else {
+
+                strongSelf.handleError(error!)
+                return
+            }
+//            Toast.show(message: "\(user.user.email!) logged in successfully", controller: strongSelf.parent!)
+            
+            let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
+            strongSelf.show(shopsVC, sender: sender)
+        
+        }
         
     }
     
@@ -97,18 +109,18 @@ class ViewController: BaseViewController {
 //        idError.isHidden = true
         self.view.addSubview(emailError)
         self.view.addSubview(passwordError)
-        self.navigationController?.navigationBar.isHidden = true
         
-        
-        let ref = Database.database().reference()
-        ref.child("proudct").observeSingleEvent(of: .value) { (datasnapshot) in
-           
-            let productDic = datasnapshot.value as? [String: Any] ?? [:]
-            let product = Product.getProductFromDictionary( productDic)
-        
-            print(product)
+        if Auth.auth().currentUser != nil{
+            let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
+            self.show(shopsVC , sender: nil)
+        }
    
+    
     }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
     }
 
     

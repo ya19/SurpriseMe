@@ -114,7 +114,7 @@ enum TextFieldType{
         case .isPassword:
             //todo check if the same password as database
             
-            if text.count < 1 || text.count > 10{
+            if text.count < 6{
                 return false
             }
             return true
@@ -141,7 +141,7 @@ enum TextFieldType{
         case .isEmail:
             return "Your email must be in email@email.com format"
         case .isPassword:
-            return "Your password must be between 0-10 characters"
+            return "Your password must be 6 digits long or more.."
         case .isID:
             return "Your ID must be 9 characters"
             

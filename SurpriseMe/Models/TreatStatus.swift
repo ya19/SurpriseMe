@@ -9,5 +9,5 @@
 import UIKit
 
 enum  GetTreatStatus:Int {
-    case EVERYONE , FRIENDS , NONE
+    case EVERYONE = 0, FRIENDS , NONE
 }
