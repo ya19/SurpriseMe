@@ -28,7 +28,7 @@ class OrderedTreatsTableCell: UITableViewCell {
     func populate(treat: Treat){
         treatImage.image = treat.product.image
 //        treatGetter.text = "\(treat.getter?.firstName) \(treat.getter?.lastName)"
-        treatGetter.text = treat.getter?.fullName
+        treatGetter.text = treat.getter
         dateOfOrder.text = treat.dateString
         productName.text = treat.product.name
     }

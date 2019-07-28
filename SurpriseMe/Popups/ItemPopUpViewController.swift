@@ -28,7 +28,7 @@ class ItemPopUpViewController: UIViewController {
         Toast.show(message: "\(item?.name ?? "") added \n to cart", controller: self.parent!)
         addToCart = false
         
-        let treat = Treat(id: "treat\(CartManager.shared.treats.count + 1)", date: nil, product: item!, giver: CurrentUser.shared!, getter: nil, treatStatus: TreatStatus.NotUsed)
+        let treat = Treat(id: "treat\(CartManager.shared.treats.count + 1)", date: nil, product: item!, giver: CurrentUser.shared!.id, getter: nil, treatStatus: TreatStatus.NotUsed)
         CartManager.shared.treats.append(treat)
         
         PopUp.remove(controller: self)

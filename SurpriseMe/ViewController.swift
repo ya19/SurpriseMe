@@ -125,12 +125,8 @@ class ViewController: BaseViewController {
         self.view.addSubview(passwordError)
         
         if Auth.auth().currentUser != nil{
-            let ref = Database.database().reference()
-            ref.child("users").child(Auth.auth().currentUser!.uid).observe(.value, with: { (datasnapshot) in
-                guard let newCurrentUserDic = datasnapshot.value as? [String:Any] else{return}
-//                print("HELLLLLLLO")
-                CurrentUser.shared = User.getUserFromDictionary(newCurrentUserDic)
-//                print("NEW USER INIT!!! \(CurrentUser.shared!)")
+            
+            //init currentuser
                 let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
                 self.show(shopsVC, sender: nil)
             })

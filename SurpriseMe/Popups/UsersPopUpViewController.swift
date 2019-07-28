@@ -20,7 +20,6 @@ class UsersPopUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         AppMenu.clearMenu()
         self.view.backgroundColor = UIColor(white: 0, alpha: 0.5)
         searchBar.delegate = self
@@ -58,7 +57,7 @@ extension UsersPopUpViewController:UISearchBarDelegate{
 }
 extension UsersPopUpViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.deliver(user: self.currentUsers![indexPath.row])
+        delegate?.deliver(userId: self.currentUsers![indexPath.row].id)
         if let friendsVC = self.parent as? FriendsViewController{
             //update in data base.
             friendsVC.toggle = !friendsVC.toggle

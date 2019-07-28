@@ -17,14 +17,14 @@ class SplashScreen: UIViewController {
 
         ref.child("users").observe(.value) { (DataSnapshot) in
             self.readShops()
-            let child = DataSnapshot.value as! [String:Any]
+            if let child = DataSnapshot.value as? [String:Any]{
             var users:[User] = []
             for key in child.keys{
                users.append(User.getUserFromDictionary(child[key] as! [String:Any]))
             }
             
             UsersManager.shared.update(users: users)
-
+            }
 
             
         }
@@ -35,6 +35,7 @@ class SplashScreen: UIViewController {
     func readShops(){
         let ref = Database.database().reference()
             var newShopsFromDB:[[Shop]] = [[],[],[]]
+        
             ref.child("shops").observeSingleEvent(of: .value) { (datasnapshot) in
                     for child in datasnapshot.children{
                         let snap = child as! DataSnapshot

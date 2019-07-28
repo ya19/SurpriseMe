@@ -93,35 +93,37 @@ class UsersManager{
             var getter = treat.getter!
             
             for i in 0..<users.count{
-                if users[i].id == getter.id{
+                if users[i].id == getter{
                     treat.id = "\(users[i].id)_\(users[i].myTreats.count + 1)"
                     users[i].myTreats.append(treat)
                     treats.append(treat)
                     
                 }
             }
-            ref.child("users").child(getter.id).child("myTreats").child(treat.id).setValue(treat.toDB)
+            ref.child("users").child(getter).child("myTreats").child(treat.id).setValue(treat.toDB)
         }
             let order = Order(id: "order\(CurrentUser.shared!.myOrders.count + 1)", treats: treats, date: Date(), buyer: CurrentUser.shared)
             add(order: order)
         CartManager.shared.treats = []
-
     
     }
     func getAllButFriends(user:User) -> [User]{
         var usersId:[User] = []
+        print(users)
         for someuser in users{
+            var ok = true
             for friend in user.friends{
-                if someuser.id == friend{
-                    usersId.append(someuser)
+                if someuser.id == friend || someuser.id == user.id{
+                    ok = false
                 }
+            }
+            if ok {
+                usersId.append(someuser)
             }
         }
 
   
-        return usersId.filter{ (item) -> Bool in
-            item.id != user.id
-        }
+        return usersId
     }
     
     func getAllBut(user:User) -> [User]{

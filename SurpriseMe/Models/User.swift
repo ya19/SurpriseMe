@@ -17,12 +17,11 @@ var currentUser = User.init(id: "user1", email: "shahaf_t@narkis.co.il", firstNa
     ],
           myTreats:
     [
-        Treat.init(id: "treat1", date: Date(), product: Product.init(id: "product1", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 159.00), giver:  User(id: "user2", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: Date() , friends: [] ,myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil), getter:  User(id: "user2", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: Date() , friends: [] ,myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil), treatStatus: TreatStatus.NotUsed),
+        Treat.init(id: "treat1", date: Date(), product: Product.init(id: "product1", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 159.00), giver: "user1", getter: "user2", treatStatus: TreatStatus.NotUsed),
         
-        Treat.init(id: "treat2", date: Date(), product: Product.init(id: "product2", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 165.00), giver:  User(id: "user2", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: Date() , friends: [] ,myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil), getter:  User(id: "user2", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: Date() , friends: [] ,myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil), treatStatus: TreatStatus.NotUsed),
+          Treat.init(id: "treat1", date: Date(), product: Product.init(id: "product1", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 159.00), giver: "user1", getter: "user2", treatStatus: TreatStatus.NotUsed),
         
-        Treat.init(id: "treat3", date: Date(), product: Product.init(id: "product3", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 121.00), giver:  User(id: "user2", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: Date() , friends: [] ,myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil), getter:  User(id: "user2", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: Date() , friends: [] ,myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil), treatStatus: TreatStatus.NotUsed)
-        
+          Treat.init(id: "treat1", date: Date(), product: Product.init(id: "product1", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 159.00), giver: "user1", getter: "user2", treatStatus: TreatStatus.NotUsed)
         
     ],
           myOrders:[], getTreatsStatus: GetTreatStatus.EVERYONE, address: nil)
@@ -113,7 +112,7 @@ struct User:Hashable,Equatable{
         }
         
         dic["getTreatStatus"] = getTreatsStatus.rawValue
-        dic["address"] = address
+//        dic["address"] = address
         
         
         return dic
@@ -150,9 +149,9 @@ struct User:Hashable,Equatable{
         
         let getTreatStatus = GetTreatStatus(rawValue: dic["getTreatStatus"] as! Int)
         var address:[String:String]? = nil
-        if let addressDic = dic["address"] as? [String:String]{
-            address = addressDic
-        }
+//        if let addressDic = dic["address"] as? [String:String]{
+//            address = addressDic
+//        }
         
         return User(id: id, email: email, firstName: firstName, lastName: lastName, dateOfBitrh: dateOfBirth, friends: friends, myTreats: myTreats, myOrders: myOrders, getTreatsStatus: getTreatStatus!, address: address)
     }

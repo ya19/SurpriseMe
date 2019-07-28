@@ -9,7 +9,7 @@
 import UIKit
 
 class FriendsViewController: UIViewController {
-    var friends:[User] = []
+    var friends:[User] = [] // init when entering.
 //    var userAddedDelegate: UserAddedDelegate?
     
     @IBOutlet weak var table: UITableView!
@@ -29,7 +29,7 @@ class FriendsViewController: UIViewController {
             let usersVC = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController
 
             usersVC.delegate = self
-            usersVC.users = UsersManager.shared.getAllButFriends(user: currentUser)
+            usersVC.users = UsersManager.shared.getAllButFriends(user: CurrentUser.shared!)
 //            userAddedDelegate = usersVC
 //            userAddedDelegate?.reloadMydata()
 
@@ -134,11 +134,11 @@ extension FriendsViewController: UITableViewDataSource{
 }
 
 extension FriendsViewController : deliverUserDelegate{
-    func deliver(user: User) {
+    func deliver(userId: String) {
                 
         //update in database
 //        currentUser.friends.append(user)
-        UsersManager.shared.add(friend: user)
+        UsersManager.shared.add(friend: userId)
         self.friendsTableView.reloadData()
     }
 }
