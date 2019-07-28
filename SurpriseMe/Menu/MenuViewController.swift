@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 let menu = UIStoryboard(name: "Menu", bundle: nil).instantiateViewController(withIdentifier: "menuVC") as! MenuViewController
 class MenuViewController: UIViewController {
@@ -134,7 +135,7 @@ extension MenuViewController:UITableViewDataSource{
         
         if indexPath.row == 0 {
             cell.setSelected(true, animated: true)
-            print(indexPath.row)
+//            print(indexPath.row)
         }
         let itemTitle = Screens(rawValue: indexPath.row)!.description
         cell.populate(title: itemTitle)

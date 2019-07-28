@@ -50,7 +50,7 @@ struct Shop{
         var myProducts:[String:[String:Any]] = [:]
         for product in products["Products"]!{
             myProducts[product.id] = product.toDB
-            print(product.id)
+//            print(product.id)
         }
         dic["products"] = myProducts
         } else {

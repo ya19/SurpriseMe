@@ -9,9 +9,7 @@
 import UIKit
 
 class FriendsViewController: UIViewController {
-    var friends:[User]{
-        return currentUser.friends
-    }
+    var friends:[User] = []
 //    var userAddedDelegate: UserAddedDelegate?
     
     @IBOutlet weak var table: UITableView!
@@ -66,7 +64,7 @@ class FriendsViewController: UIViewController {
         //            CartManager.shared.treats.remove(at: indexPath.row)
         //            tableView.deleteRows(at: [indexPath], with: .fade)
         //            self.total.text = "Total: \(self.sum) NIS"
-        currentUser.friends.remove(at: indexPath.row)
+        UsersManager.shared.removeFriend(at: indexPath.row)
         table.deleteRows(at: [indexPath],with: .fade)
         table.reloadData()
     }
@@ -99,7 +97,7 @@ extension FriendsViewController : UITableViewDelegate{
             
             // Create Cancel button with action handlder
             let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-                print("Cancel button tapped")
+//                print("Cancel button tapped")
             }
             
             //Add OK and Cancel button to dialog message
@@ -139,8 +137,8 @@ extension FriendsViewController : deliverUserDelegate{
     func deliver(user: User) {
                 
         //update in database
-        currentUser.friends.append(user)
-
+//        currentUser.friends.append(user)
+        UsersManager.shared.add(friend: user)
         self.friendsTableView.reloadData()
     }
 }

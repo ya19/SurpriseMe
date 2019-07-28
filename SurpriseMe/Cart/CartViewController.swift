@@ -41,20 +41,20 @@ class CartViewController: UIViewController {
         // figure out how to create specific id for each order / treat
         
         if filled {
-        let order = Order(id: "#", treats: CartManager.shared.treats, date: Date(), buyer: currentUser)
-        currentUser.myOrders.append(order)
+//        let order = Order(id: "order\(CurrentUser.shared!.myOrders.count + 1)", treats: CartManager.shared.treats, date: Date(), buyer: CurrentUser.shared)
+            //updating current
+//            UsersManager.shared.add(order: order)
         
-        for treat in CartManager.shared.treats{
-            var updatedTreat = treat
-            updatedTreat.date = Date()
-            UsersManager.shared.add(treat: updatedTreat, to: treat.getter!)
-        }
-            CartManager.shared.treats = []
+//        for treat in CartManager.shared.treats{
+//            var updatedTreat = treat
+//            updatedTreat.date = Date()
+//            UsersManager.shared.addd()
+//        }
+            UsersManager.shared.giveTreats()
+//            CartManager.shared.treats = []
             cartTableView.reloadData()
             total.text = String(sum)
-            print(currentUser)
-            print(UsersManager.shared.getUsers())
-        Toast.show(message: "Order completed", controller: self)
+            Toast.show(message: "Order completed", controller: self)
         let ordersAndTreatsVC = UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orders") as! OrdersAndTreatsViewController
         self.navigationController?.pushViewController(ordersAndTreatsVC, animated: true)
         }else{
@@ -74,14 +74,14 @@ class CartViewController: UIViewController {
         cartTableView.delegate = self
         cartTableView.dataSource = self
 //        fakeProducts()
-        print(CartManager.shared.treats)
+//        print(CartManager.shared.treats)
         total.text = "Total: \(sum) NIS"
         
         
         // Do any additional setup after loading the view.
     }
     func dataFromServer() -> [User]{
-        return UsersManager.shared.getAllBut(user: currentUser)
+        return UsersManager.shared.getAllBut(user: CurrentUser.shared!)
     }
 //    func fakeProducts(){
 //

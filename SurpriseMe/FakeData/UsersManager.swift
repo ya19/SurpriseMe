@@ -7,17 +7,55 @@
 //
 
 import UIKit
-
+import Firebase
 class UsersManager{
     static let shared = UsersManager()
     
     private var users:[User]
     
+    let ref = Database.database().reference()
+    
     private init(){
         users = []
         //users from the server
-        fakeData()
+//        ref.child("users").observeSingleEvent(of: .value) { (DataSnapshot) in
+//            let child = DataSnapshot.value as! [String:Any]
+//            for key in child.keys{
+//                self.users.append(User.getUserFromDictionary(child[key] as! [String:Any]))
+//            }
+//        }
+//        ref.child("users").observeSingleEvent(of: .childAdded) { (DataSnapshot) in
+//                self.users.append(User.getUserFromDictionary(DataSnapshot.value as! [String:Any]))
+//
+//        }
+
+        //todo remove child
+//        fakeData()
     }
+    
+    func update(users:[User]){
+        self.users = users
+    }
+    
+ 
+    func add(order:Order){
+        CurrentUser.shared!.myOrders.append(order)
+        ref.child("users").child(CurrentUser.shared!.id).updateChildValues(CurrentUser.shared!.toDB)
+    }
+    
+    func add(friend:String){
+        CurrentUser.shared!.friends.append(friend)
+        ref.child("users").child(CurrentUser.shared!.id).updateChildValues(CurrentUser.shared!.toDB)
+    }
+    
+    func removeFriend(at:Int){
+        let friend = CurrentUser.shared!.friends[at]
+        CurrentUser.shared!.friends.remove(at: at)
+        ref.child("users").child(CurrentUser.shared!.id).child("friends").child(friend).removeValue()
+    }
+    
+    
+    
     
     func add(user:User){
         users.append(user)
@@ -47,14 +85,41 @@ class UsersManager{
             }
         }
     }
+    func giveTreats(){
+
+        var treats:[Treat] = []
+        for i in 0..<CartManager.shared.treats.count{
+            var treat = CartManager.shared.treats[i]
+            var getter = treat.getter!
+            
+            for i in 0..<users.count{
+                if users[i].id == getter.id{
+                    treat.id = "\(users[i].id)_\(users[i].myTreats.count + 1)"
+                    users[i].myTreats.append(treat)
+                    treats.append(treat)
+                    
+                }
+            }
+            ref.child("users").child(getter.id).child("myTreats").child(treat.id).setValue(treat.toDB)
+        }
+            let order = Order(id: "order\(CurrentUser.shared!.myOrders.count + 1)", treats: treats, date: Date(), buyer: CurrentUser.shared)
+            add(order: order)
+        CartManager.shared.treats = []
+
+    
+    }
     func getAllButFriends(user:User) -> [User]{
+        var usersId:[User] = []
+        for someuser in users{
+            for friend in user.friends{
+                if someuser.id == friend{
+                    usersId.append(someuser)
+                }
+            }
+        }
 
-
-        let friendsId:Set<User> = Set(user.friends.map{$0})
-        var usersId:Set<User> = Set(users.map{$0})
-
-        usersId.subtract(friendsId)
-        return Array(usersId).filter{ (item) -> Bool in
+  
+        return usersId.filter{ (item) -> Bool in
             item.id != user.id
         }
     }

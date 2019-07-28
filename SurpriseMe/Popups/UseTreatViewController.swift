@@ -110,7 +110,7 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
                 delegate?.sentVoucher()
             }
             
-            print("\(currentUser.myTreats)")
+//            print("\(currentUser.myTreats)")
             
         }
         if saveAdress.isOn == true {

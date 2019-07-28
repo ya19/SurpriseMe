@@ -40,7 +40,7 @@ class SATextField: UITextField{
     
     func checkValidationNew(sender : SATextField, errorLabel : UILabel , type: TextFieldType){//-> Bool{
         if sender.text!.isEmpty{
-            print("Text is empty, please enter....")
+//            print("Text is empty, please enter....")
 
             setupErrorMessage(textField: sender, errorLabel: errorLabel, textFieldType: type, message: type.getErrorMessage)
 
@@ -59,8 +59,8 @@ class SATextField: UITextField{
     func setupErrorMessage(textField : SATextField , errorLabel : UILabel, textFieldType : TextFieldType, message: String) {
         
         
-        print(textField.text)
-        print("------>This is from THE NEW setuperror function<------")
+//        print(textField.text)
+//        print("------>This is from THE NEW setuperror function<------")
         textField.layer.borderColor = UIColor.red.cgColor
 
         /* Here, I am using AutoLayout to lay out the errorMessage on the screen.

@@ -12,7 +12,7 @@ import Firebase
 var currentUser = User.init(id: "user1", email: "shahaf_t@narkis.co.il", firstName: "David", lastName: "Tikva", dateOfBitrh: Date(),
           
           friends: [
-            User(id: "user2", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: Date() , friends: [] ,myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil)
+            "user2"
             
     ],
           myTreats:
@@ -54,7 +54,9 @@ struct User:Hashable,Equatable{
         return "\(dateOfBitrh)"
     }
     
-    var friends:[User]
+    var friends:[String]
+    
+//    var friendRequsts:[String]
     
     var myTreats:[Treat]
     
@@ -78,16 +80,17 @@ struct User:Hashable,Equatable{
         dic["dateOfBirth"] = dateOfBitrh.timeIntervalSince1970
         
         //friends
-        if friends.count > 0 {
-            var myFriends:[String:[String:Any]] = [:]
-            for friend in friends{
-                myFriends[friend.id] = friend.toDB
-            }
-            dic["friends"] = myFriends
-        }else{
-            dic["friends"] = friends
-        }
+//        if friends.count > 0 {
+//            var myFriends:[String:[String:Any]] = [:]
+//            for friend in friends{
+//                myFriends[friend.id] = friend.toDB
+//            }
+//            dic["friends"] = myFriends
+//        }else{
+        dic["friends"] = friends
+//        }
         
+
         //myTreats
         if myTreats.count > 0{
             var treats:[String:[String:Any]] = [:]
@@ -126,11 +129,9 @@ struct User:Hashable,Equatable{
         let lastName = dic["lastName"] as! String
         let myTimeInterval = TimeInterval(dic["dateOfBirth"] as! Double)
         let dateOfBirth = Date(timeIntervalSince1970: TimeInterval(myTimeInterval))
-        var friends:[User] = []
-        if let friendsDic = dic["friends"] as? [String:Any]{
-            for key in friendsDic.keys{
-                friends.append(User.getUserFromDictionary(friendsDic[key]! as! [String:Any]))
-            }
+        var friends:[String] = []
+        if let friendsArr = dic["friends"] as? [String]{
+            friends = friendsArr
         }
         
         var myTreats:[Treat] = []

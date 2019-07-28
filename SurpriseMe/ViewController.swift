@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class ViewController: BaseViewController {
     
@@ -83,20 +84,20 @@ class ViewController: BaseViewController {
                 return
             }
 
-            print("THIS IS UID!!!! \(user.user.uid)")
+//            print("THIS IS UID!!!! \(user.user.uid)")
             let ref = Database.database().reference()
             
             
             ref.child("users").child(user.user.uid).observe(.value, with: { (datasnapshot) in
                 guard let newCurrentUserDic = datasnapshot.value as? [String:Any] else{return}
-                print("HELLLLLLLO")
-                currentUser = User.getUserFromDictionary(newCurrentUserDic)
-                print("NEW USER INIT!!! \(currentUser)")
+//                print("HELLLLLLLO")
+                CurrentUser.shared = User.getUserFromDictionary(newCurrentUserDic)
+//                print("NEW USER INIT!!! \(CurrentUser.shared!)")
+                let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
+                strongSelf.show(shopsVC, sender: sender)
             })
             
             
-            let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
-            strongSelf.show(shopsVC, sender: sender)
         
         }
         
@@ -124,8 +125,20 @@ class ViewController: BaseViewController {
         self.view.addSubview(passwordError)
         
         if Auth.auth().currentUser != nil{
-            let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
-            self.show(shopsVC , sender: nil)
+            let ref = Database.database().reference()
+            ref.child("users").child(Auth.auth().currentUser!.uid).observe(.value, with: { (datasnapshot) in
+                guard let newCurrentUserDic = datasnapshot.value as? [String:Any] else{return}
+//                print("HELLLLLLLO")
+                CurrentUser.shared = User.getUserFromDictionary(newCurrentUserDic)
+//                print("NEW USER INIT!!! \(CurrentUser.shared!)")
+                let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
+                self.show(shopsVC, sender: nil)
+            })
+            
+            
+            
+            
+            
         }
    
     

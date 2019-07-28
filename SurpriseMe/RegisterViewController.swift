@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class RegisterViewController: UIViewController {
 
@@ -217,7 +218,7 @@ class RegisterViewController: UIViewController {
     func setupErrorMessageForNonTextFields(sender : UIView , errorLabel : UILabel, message: String) {
         
         
-        print("------>This is from THE NON Textfields setuperror function<------")
+//        print("------>This is from THE NON Textfields setuperror function<------")
         sender.layer.borderColor = UIColor.red.cgColor
 
         errorLabel.font = errorLabel.font.withSize(12)
@@ -281,7 +282,7 @@ extension AuthErrorCode {
 extension UIViewController{
     func handleError(_ error: Error) {
         if let errorCode = AuthErrorCode(rawValue: error._code) {
-            print(errorCode.errorMessage)
+//            print(errorCode.errorMessage)
             let alert = UIAlertController(title: "Error", message: errorCode.errorMessage, preferredStyle: .alert)
             
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
