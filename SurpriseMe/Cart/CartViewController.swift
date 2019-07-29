@@ -81,7 +81,7 @@ class CartViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     func dataFromServer() -> [User]{
-        return UsersManager.shared.getAllBut(user: CurrentUser.shared!)
+        return UsersManager.shared.getAllBut(user: CurrentUser.shared.get()!)
     }
 //    func fakeProducts(){
 //

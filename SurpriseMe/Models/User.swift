@@ -76,41 +76,7 @@ struct User:Hashable,Equatable{
         dic["email"] = email
         dic["firstName"] = firstName
         dic["lastName"] = lastName
-        dic["dateOfBirth"] = dateOfBitrh.timeIntervalSince1970
-        
-        //friends
-//        if friends.count > 0 {
-//            var myFriends:[String:[String:Any]] = [:]
-//            for friend in friends{
-//                myFriends[friend.id] = friend.toDB
-//            }
-//            dic["friends"] = myFriends
-//        }else{
-        dic["friends"] = friends
-//        }
-        
-
-        //myTreats
-        if myTreats.count > 0{
-            var treats:[String:[String:Any]] = [:]
-            for treat in myTreats{
-                treats[treat.id] = treat.toDB
-            }
-            dic["myTreats"] = treats
-        }else{
-            dic["myTreats"] = myTreats
-        }
-        //myOrders
-        if myOrders.count>0{
-            var orders:[String:[String:Any]] = [:]
-            for order in myOrders{
-                orders[order.id] = order.toDB
-            }
-            dic["myOrders"] = orders
-        }else{
-            dic["myOrders"] = myOrders
-        }
-        
+        dic["dateOfBirth"] = dateOfBitrh.timeIntervalSince1970       
         dic["getTreatStatus"] = getTreatsStatus.rawValue
 //        dic["address"] = address
         
@@ -126,26 +92,15 @@ struct User:Hashable,Equatable{
         let email = dic["email"] as! String
         let firstName = dic["firstName"] as! String
         let lastName = dic["lastName"] as! String
-        let myTimeInterval = TimeInterval(dic["dateOfBirth"] as! Double)
-        let dateOfBirth = Date(timeIntervalSince1970: TimeInterval(myTimeInterval))
+//        let myTimeInterval = TimeInterval(dic["dateOfBirth"] as! Double)
+//        let dateOfBirth = Date(timeIntervalSince1970: TimeInterval(myTimeInterval))
+        let dateOfBirth = Date()
         var friends:[String] = []
-        if let friendsArr = dic["friends"] as? [String]{
-            friends = friendsArr
-        }
-        
+  
         var myTreats:[Treat] = []
-        if let treatsDic = dic["myTreats"] as? [String:Any]{
-            for key in treatsDic.keys{
-                myTreats.append(Treat.getTreatFromDictionary(treatsDic[key]! as! [String:Any]))
-            }
-        }
-        
+
         var myOrders:[Order] = []
-        if let ordersDic = dic["myOrders"] as? [String:Any]{
-            for key in ordersDic.keys{
-                myOrders.append(Order.getOrderFromDictionary(ordersDic[key]! as! [String:Any]))
-            }
-        }
+   
         
         let getTreatStatus = GetTreatStatus(rawValue: dic["getTreatStatus"] as! Int)
         var address:[String:String]? = nil

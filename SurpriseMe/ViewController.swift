@@ -85,17 +85,10 @@ class ViewController: BaseViewController {
             }
 
 //            print("THIS IS UID!!!! \(user.user.uid)")
-            let ref = Database.database().reference()
-            
-            
-            ref.child("users").child(user.user.uid).observe(.value, with: { (datasnapshot) in
-                guard let newCurrentUserDic = datasnapshot.value as? [String:Any] else{return}
-//                print("HELLLLLLLO")
-                CurrentUser.shared = User.getUserFromDictionary(newCurrentUserDic)
-//                print("NEW USER INIT!!! \(CurrentUser.shared!)")
-                let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
-                strongSelf.show(shopsVC, sender: sender)
-            })
+                CurrentUser.shared.configure(self!)
+//                let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
+//                strongSelf.show(shopsVC, sender: sender)
+           
             
             
         
@@ -127,9 +120,10 @@ class ViewController: BaseViewController {
         if Auth.auth().currentUser != nil{
             
             //init currentuser
-                let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
-                self.show(shopsVC, sender: nil)
-            })
+            CurrentUser.shared.configure(self)
+//                let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
+//                self.show(shopsVC, sender: nil)
+            }
             
             
             
@@ -138,7 +132,7 @@ class ViewController: BaseViewController {
         }
    
     
-    }
+    
     
     
     override func viewWillAppear(_ animated: Bool) {

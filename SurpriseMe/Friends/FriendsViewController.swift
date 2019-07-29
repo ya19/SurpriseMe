@@ -29,7 +29,7 @@ class FriendsViewController: UIViewController {
             let usersVC = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController
 
             usersVC.delegate = self
-            usersVC.users = UsersManager.shared.getAllButFriends(user: CurrentUser.shared!)
+            usersVC.users = UsersManager.shared.getAllButFriends(user: CurrentUser.shared.get()!)
 //            userAddedDelegate = usersVC
 //            userAddedDelegate?.reloadMydata()
 

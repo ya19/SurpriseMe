@@ -39,19 +39,26 @@ class UsersManager{
     
  
     func add(order:Order){
-        CurrentUser.shared!.myOrders.append(order)
-        ref.child("users").child(CurrentUser.shared!.id).updateChildValues(CurrentUser.shared!.toDB)
+//        CurrentUser.shared!.myOrders.append(order)
+        
+        ref.child("orders").child(CurrentUser.shared.get()!.id).child(order.id).setValue(order.toDB)
     }
     
     func add(friend:String){
-        CurrentUser.shared!.friends.append(friend)
-        ref.child("users").child(CurrentUser.shared!.id).updateChildValues(CurrentUser.shared!.toDB)
+        var friends = CurrentUser.shared.get()!.friends
+        friends.append(friend)
+        if friends.count == 1{
+            ref.child("friends").child(CurrentUser.shared.get()!.id).setValue(friends)
+        }else{
+            ref.child("friends").updateChildValues([CurrentUser.shared.get()!.id:friends])
+        }
     }
     
     func removeFriend(at:Int){
-        let friend = CurrentUser.shared!.friends[at]
-        CurrentUser.shared!.friends.remove(at: at)
-        ref.child("users").child(CurrentUser.shared!.id).child("friends").child(friend).removeValue()
+        var friends = CurrentUser.shared.get()!.friends
+        friends.remove(at: at)
+        
+       ref.child("friends").updateChildValues([CurrentUser.shared.get()!.id:friends])
     }
     
     
@@ -100,9 +107,9 @@ class UsersManager{
                     
                 }
             }
-            ref.child("users").child(getter).child("myTreats").child(treat.id).setValue(treat.toDB)
+            ref.child("treats").child(getter).child(treat.id).setValue(treat.toDB)
         }
-            let order = Order(id: "order\(CurrentUser.shared!.myOrders.count + 1)", treats: treats, date: Date(), buyer: CurrentUser.shared)
+            let order = Order(id: "order\(CurrentUser.shared.get()!.myOrders.count + 1)", treats: treats, date: Date(), buyer: CurrentUser.shared.get()!.id)
             add(order: order)
         CartManager.shared.treats = []
     
