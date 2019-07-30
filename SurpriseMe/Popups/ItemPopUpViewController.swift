@@ -28,8 +28,11 @@ class ItemPopUpViewController: UIViewController {
         Toast.show(message: "\(item?.name ?? "") added \n to cart", controller: self.parent!)
         addToCart = false
         
-        let treat = Treat(id: "treat\(CartManager.shared.treats.count + 1)", date: nil, product: item!, giver: CurrentUser.shared.get()!.id, getter: nil, treatStatus: TreatStatus.NotUsed)
-        CartManager.shared.treats.append(treat)
+        //UserManager.shared.addToCart(treat)
+        
+        
+        let treat = Treat(id: "treat\(CurrentUser.shared.get()!.myCart.count + 1)", date: nil, product: item!, giver: CurrentUser.shared.get()!.id, getter: nil, treatStatus: TreatStatus.NotUsed)
+        UsersManager.shared.addToCart(treat: treat)
         
         PopUp.remove(controller: self)
 //        self.view.removeFromSuperview()

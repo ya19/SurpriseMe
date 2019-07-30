@@ -37,85 +37,50 @@ class CurrentUser{
             let myTimeInterval = TimeInterval(dic["dateOfBirth"] as! Double)
             let dateOfBirth = Date(timeIntervalSince1970: TimeInterval(myTimeInterval))
             let getTreatStatus = GetTreatStatus(rawValue: dic["getTreatStatus"] as! Int)!
-            var address:[String:String]? = nil // write to server and get from server in address list
-            self.ref.child("friends").child(id).observeSingleEvent(of: .value, with: { (friendsData) in
+            let address:[String:String]? = nil // write to server and get from server in address list
+            
+
+            
+            self.ref.child("friends").child(id).observe(.value, with: { (friendsData) in
                 var friends:[String] = []
-                if let friendsArr = friendsData.value as? [String]{
+                    if let friendsArr = friendsData.value as? [String]{
                     friends = friendsArr
-                }
-                self.ref.child("orders").child(id).observeSingleEvent(of: .value, with: { (ordersData) in
-                    let ordersDic = ordersData.value as! [String:Any]
-                    var myOrders:[Order] = []
-                    for key in ordersDic.keys{
-                        myOrders.append(Order.getOrderFromDictionary(ordersDic[key] as! [String:Any]))
                     }
-                    self.ref.child("treats").child(id).observeSingleEvent(of: .value, with: { (treatsData) in
-                        let treatsDic = treatsData.value as! [String:Any]
-                        var myTreats:[Treat] = []
-                        for key in treatsDic.keys{
-                            myTreats.append(Treat.getTreatFromDictionary(treatsDic[key] as! [String:Any]))
-                        }
-                        
-                        self.user  = User(id: id, email: email, firstName: firstName, lastName: lastName, dateOfBitrh: dateOfBirth, friends: friends, myTreats: myTreats, myOrders: myOrders, getTreatsStatus: getTreatStatus, address: address)
-                        let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
-                        vc.show(shopsVC, sender: nil)
-                        
-                    })
-                })
-            }, withCancel: { (Error) in
-                var friends:[String] = []
-                self.ref.child("orders").child(id).observeSingleEvent(of: .value, with: { (ordersData) in
-                    let ordersDic = ordersData.value as! [String:Any]
+                self.ref.child("orders").child(id).observe( .value, with: { (ordersData) in
                     var myOrders:[Order] = []
-                    for key in ordersDic.keys{
-                        myOrders.append(Order.getOrderFromDictionary(ordersDic[key] as! [String:Any]))
+                    if let ordersDic = ordersData.value as? [String:Any]{
+                        for key in ordersDic.keys{
+                            myOrders.append(Order.getOrderFromDictionary(ordersDic[key] as! [String:Any]))
+                        }
                     }
-                    self.ref.child("treats").child(id).observeSingleEvent(of: .value, with: { (treatsData) in
-                        let treatsDic = treatsData.value as! [String:Any]
+                        self.ref.child("treats").child(id).observe( .value, with: { (treatsData) in
                         var myTreats:[Treat] = []
-                        for key in treatsDic.keys{
-                            myTreats.append(Treat.getTreatFromDictionary(treatsDic[key] as! [String:Any]))
+                        if let treatsDic = treatsData.value as? [String:Any]{
+                            for key in treatsDic.keys{
+                                myTreats.append(Treat.getTreatFromDictionary(treatsDic[key] as! [String:Any]))
+                            }
                         }
-                        
-                        self.user  = User(id: id, email: email, firstName: firstName, lastName: lastName, dateOfBitrh: dateOfBirth, friends: friends, myTreats: myTreats, myOrders: myOrders, getTreatsStatus: getTreatStatus, address: address)
-                        let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
-                        vc.show(shopsVC, sender: nil)
-                        
-                    })
-                }, withCancel: { (Error) in
-                    var myOrders:[Order] = []
-                    self.ref.child("treats").child(id).observeSingleEvent(of: .value, with: { (treatsData) in
-                        let treatsDic = treatsData.value as! [String:Any]
-                        var myTreats:[Treat] = []
-                        for key in treatsDic.keys{
-                            myTreats.append(Treat.getTreatFromDictionary(treatsDic[key] as! [String:Any]))
-                        }
-                        
-                        self.user  = User(id: id, email: email, firstName: firstName, lastName: lastName, dateOfBitrh: dateOfBirth, friends: friends, myTreats: myTreats, myOrders: myOrders, getTreatsStatus: getTreatStatus, address: address)
-                        let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
-                        vc.show(shopsVC, sender: nil)
-                        
-                    }, withCancel: { (Error) in
+                            self.ref.child("myCart").child(id).observe(.value, with: { (cartData) in
+                                var myCart:[Treat] = []
+                                if let cartDic = cartData.value as? [String:Any]{
+                                    for key in cartDic.keys{
+                                        myCart.append(Treat.getTreatFromDictionary(cartDic[key] as! [String:Any]))
+                                    }
+                                }
+                                self.user  = User(id: id, email: email, firstName: firstName, lastName: lastName, dateOfBitrh: dateOfBirth, friends: friends, myCart: myCart, myTreats: myTreats, myOrders: myOrders, getTreatsStatus: getTreatStatus, address: address)
+                                let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
+                                vc.show(shopsVC, sender: nil)
+                            })
                       
-                        var myTreats:[Treat] = []
-                       
-                        
-                        self.user  = User(id: id, email: email, firstName: firstName, lastName: lastName, dateOfBitrh: dateOfBirth, friends: friends, myTreats: myTreats, myOrders: myOrders, getTreatsStatus: getTreatStatus, address: address)
-                        let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
-                        vc.show(shopsVC, sender: nil)
-                        
-                    })
-
-                        
-                    })
-                })
-                
+            })
+            
+        
             
             
-         
         })
-        }
-
+    })
+    })
     }
-
+    
+}
 

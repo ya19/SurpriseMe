@@ -64,7 +64,10 @@ struct Treat{
         let date = Date(timeIntervalSince1970: t/1000)
         let product = Product.getProductFromDictionary(dic["product"] as! [String:Any])
         let giver = dic["giver"] as! String
-        let getter = dic["getter"] as! String
+        var getter:String? = nil
+        if let someGetter = dic["getter"] as? String{
+            getter = someGetter
+        }
         let status = TreatStatus(rawValue: dic["status"] as! Int)
         return Treat(id: id, date: date, product: product, giver: giver, getter: getter, treatStatus: status)
     }

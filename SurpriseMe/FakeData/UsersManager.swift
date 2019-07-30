@@ -12,7 +12,6 @@ class UsersManager{
     static let shared = UsersManager()
     
     private var users:[User]
-    
     let ref = Database.database().reference()
     
     private init(){
@@ -60,10 +59,29 @@ class UsersManager{
         
        ref.child("friends").updateChildValues([CurrentUser.shared.get()!.id:friends])
     }
+    func setGetterFor(treat: Treat, userId: String){
+            var newTreat = treat
+            newTreat.getter = userId
+            ref.child("myCart").child(CurrentUser.shared.get()!.id).child(treat.id).updateChildValues(newTreat.toDB)
+
+    }
     
-    
-    
-    
+    func addToCart(treat: Treat){
+        ref.child("myCart").child(CurrentUser.shared.get()!.id).child(treat.id).setValue(treat.toDB)
+    }
+    func removeFromCart(at: Int,delegate: UIViewController){
+        let myDelegate:updateCartDelegate = delegate as! updateCartDelegate
+        var myCart = CurrentUser.shared.get()!.myCart
+        myCart.remove(at: at)
+        var cartToDb:[String:Any] = [:]
+        for i in 0..<myCart.count{
+            cartToDb["treat\(i+1)"] = myCart[i].toDB
+        }
+        ref.child("myCart").child(CurrentUser.shared.get()!.id).setValue(cartToDb) { (Error, DatabaseReference) in
+            myDelegate.update()
+            print(cartToDb)
+        }
+    }
     func add(user:User){
         users.append(user)
     }
@@ -95,23 +113,60 @@ class UsersManager{
     func giveTreats(){
 
         var treats:[Treat] = []
-        for i in 0..<CartManager.shared.treats.count{
-            var treat = CartManager.shared.treats[i]
-            var getter = treat.getter!
+        var x = 0
+
+        print("here \(CurrentUser.shared.get()!.myCart.count)")
+        
+        
+        
+        while x < CurrentUser.shared.get()!.myCart.count {
+
+            var treat = CurrentUser.shared.get()!.myCart[x]
+            let getter = treat.getter!
             
-            for i in 0..<users.count{
-                if users[i].id == getter{
-                    treat.id = "\(users[i].id)_\(users[i].myTreats.count + 1)"
-                    users[i].myTreats.append(treat)
-                    treats.append(treat)
-                    
+            self.ref.child("treats").child(getter).observeSingleEvent(of: .value) { (treatsData) in
+                var myTreats:[Treat] = []
+                print("!@#$%^")
+                if let treatsDic = treatsData.value as? [String:Any]{
+                    for key in treatsDic.keys{
+                        myTreats.append(Treat.getTreatFromDictionary(treatsDic[key] as! [String:Any]))
+                    }
+                }
+                print("once")
+                treat.id = "\(getter)_\(myTreats.count + 1)"
+                treats.append(treat)
+                self.ref.child("treats").child(getter).child(treat.id).setValue(treat.toDB)
+                print("twice")
+                if x == CurrentUser.shared.get()!.myCart.count - 1{
+                    let order = Order(id: "order\(CurrentUser.shared.get()!.myOrders.count + 1)", treats: treats, date: Date(), buyer: CurrentUser.shared.get()!.id)
+                    self.add(order: order)
                 }
             }
-            ref.child("treats").child(getter).child(treat.id).setValue(treat.toDB)
-        }
-            let order = Order(id: "order\(CurrentUser.shared.get()!.myOrders.count + 1)", treats: treats, date: Date(), buyer: CurrentUser.shared.get()!.id)
-            add(order: order)
-        CartManager.shared.treats = []
+       // make recursive to make sure it will add 2 products to the same person
+            x = x + 1
+            }
+        
+        
+        
+//        for i in 0..<CurrentUser.shared.get()!.myCart.count{
+//            var treat = CurrentUser.shared.get()!.myCart[i]
+//            let getter = treat.getter!
+//
+//            for i in 0..<users.count{
+//                if users[i].id == getter{
+//                    treat.id = "\(users[i].id)_\(users[i].myTreats.count + 1)"
+//                    users[i].myTreats.append(treat)
+//                    treats.append(treat)
+//                    // we got to read updated user from server
+//                }
+//            }
+//            ref.child("treats").child(getter).child(treat.id).setValue(treat.toDB)
+//
+//
+//
+//        }
+        
+        self.ref.child("myCart").child(CurrentUser.shared.get()!.id).removeValue()
     
     }
     func getAllButFriends(user:User) -> [User]{
@@ -141,12 +196,12 @@ class UsersManager{
     
     
     func fakeData(){
-        users.append(User(id: "user1", email: "email@gmail.com" ,firstName: "yarden" ,lastName: "swissa" ,dateOfBitrh: Date() , friends: [] ,myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil))
-        users.append(User(id: "user2", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: Date() , friends: [] ,myTreats: [], myOrders: [], getTreatsStatus: GetTreatStatus.EVERYONE, address: nil))
-        users.append(User(id: "user3", email: "email@gmail.com" ,firstName: "shahaf" ,lastName: "tepler" ,dateOfBitrh: Date() , friends: [] ,myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil))
-        users.append(User(id: "user4", email: "email@gmail.com" ,firstName: "yair" ,lastName: "frid" ,dateOfBitrh: Date() , friends: [] ,myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil))
-        users.append(User(id: "user5", email: "email@gmail.com" ,firstName: "iam" ,lastName: "someone" ,dateOfBitrh: Date() , friends: [] ,myTreats: [], myOrders: [], getTreatsStatus: GetTreatStatus.EVERYONE, address: nil))
-        users.append(User(id: "user6", email: "email@gmail.com" ,firstName: "daniel" ,lastName: "daniel" ,dateOfBitrh: Date() , friends: [] ,myTreats: [], myOrders: [], getTreatsStatus: GetTreatStatus.EVERYONE, address: nil))
+        users.append(User(id: "user1", email: "email@gmail.com" ,firstName: "yarden" ,lastName: "swissa" ,dateOfBitrh: Date() , friends: [], myCart: [] ,myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil))
+        users.append(User(id: "user2", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: Date() , friends: [], myCart: [] ,myTreats: [], myOrders: [], getTreatsStatus: GetTreatStatus.EVERYONE, address: nil))
+        users.append(User(id: "user3", email: "email@gmail.com" ,firstName: "shahaf" ,lastName: "tepler" ,dateOfBitrh: Date() , friends: [], myCart: [] ,myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil))
+        users.append(User(id: "user4", email: "email@gmail.com" ,firstName: "yair" ,lastName: "frid" ,dateOfBitrh: Date() , friends: [], myCart: [] ,myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil))
+        users.append(User(id: "user5", email: "email@gmail.com" ,firstName: "iam" ,lastName: "someone" ,dateOfBitrh: Date() , friends: [], myCart: [] ,myTreats: [], myOrders: [], getTreatsStatus: GetTreatStatus.EVERYONE, address: nil))
+        users.append(User(id: "user6", email: "email@gmail.com" ,firstName: "daniel" ,lastName: "daniel" ,dateOfBitrh: Date() , friends: [], myCart: [] ,myTreats: [], myOrders: [], getTreatsStatus: GetTreatStatus.EVERYONE, address: nil))
     }
     
 }

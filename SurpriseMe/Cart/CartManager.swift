@@ -8,13 +8,13 @@
 
 import UIKit
 
-class CartManager{
-    static var shared = CartManager()
-    
-    var treats:[Treat]
-    
-    private init(){
-        //TODO init previous cart from database
-        treats = []
-    }
-}
+//class CartManager{
+//    static var shared = CartManager()
+//    
+//    var treats:[Treat]
+//    
+//    private init(){
+//        //TODO init previous cart from database
+//        treats = []
+//    }
+//}

@@ -13,7 +13,7 @@ class CartViewController: UIViewController {
 //    var products:[Product] = CartManager.shared.products
     var sum:Double{
         var count = 0.0
-        for item in CartManager.shared.treats{
+        for item in CurrentUser.shared.get()!.myCart{
             count += item.product.price
         }
         return count
@@ -27,12 +27,12 @@ class CartViewController: UIViewController {
     @IBAction func buy(_ sender: SAButton) {
         
         var filled = true
-        for treat in CartManager.shared.treats{
+        for treat in CurrentUser.shared.get()!.myCart{
             if treat.getter == nil {
                 filled = false
             }
         }
-        if CartManager.shared.treats.count == 0{
+        if CurrentUser.shared.get()!.myCart.count == 0{
             Toast.show(message: "Your cart is empty", controller: self)
             return
         }
@@ -115,8 +115,10 @@ extension CartViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let removeAction = UITableViewRowAction(style: .destructive, title: "Remove") { (action, indexPath) in
 //            self.products.remove(at: indexPath.row)
-            CartManager.shared.treats.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            UsersManager.shared.removeFromCart(at: indexPath.row, delegate: self)
+//            CartManager.shared.treats.remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+    
             self.total.text = "Total: \(self.sum) NIS"
         }
         
@@ -126,7 +128,7 @@ extension CartViewController:UITableViewDelegate{
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let itemVC = self.storyboard?.instantiateViewController(withIdentifier: "itemPopUp") as! ItemPopUpViewController
-        itemVC.item = CartManager.shared.treats[indexPath.row].product
+        itemVC.item = CurrentUser.shared.get()!.myCart[indexPath.row].product
         
         PopUp.toggle(child: itemVC, parent: self,toggle: true)
     }
@@ -137,15 +139,15 @@ extension CartViewController:UITableViewDataSource{
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return CartManager.shared.treats.count
+        return CurrentUser.shared.get()!.myCart.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cartCell", for: indexPath) as! CartProductTableViewCell
         
         
-        cell.populate(treat: CartManager.shared.treats[indexPath.row])
-        cell.treat = CartManager.shared.treats[indexPath.row]
+        cell.populate(treat: CurrentUser.shared.get()!.myCart[indexPath.row])
+        cell.treat = CurrentUser.shared.get()!.myCart[indexPath.row]
         cell.delegate = self
         return cell
     }
@@ -169,4 +171,12 @@ extension CartViewController:AddUserDelegate{
 }
 protocol AddUserDelegate{
     func addUserTapped(cell:UITableViewCell)
+}
+protocol updateCartDelegate {
+    func update()
+}
+extension CartViewController:updateCartDelegate{
+    func update() {
+        cartTableView.reloadData()
+    }
 }

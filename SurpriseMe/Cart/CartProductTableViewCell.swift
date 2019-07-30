@@ -51,9 +51,9 @@ extension CartProductTableViewCell:deliverUserDelegate{
         self.treat!.getter = userId
         getterName.text = "\(userId)"
     
-
-        CartManager.shared.treats[self.indexPath!.row].getter = userId
-
+        UsersManager.shared.setGetterFor(treat: CurrentUser.shared.get()!.myCart[self.indexPath!.row], userId: userId)
+//        CartManager.shared.treats[self.indexPath!.row].getter = userId
+        
     }
 }
 protocol deliverUserDelegate{
