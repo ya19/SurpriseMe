@@ -50,9 +50,8 @@ class CartViewController: UIViewController {
 //            updatedTreat.date = Date()
 //            UsersManager.shared.addd()
 //        }
-            UsersManager.shared.giveTreats()
+            UsersManager.shared.giveTreats(delegate: self)
 //            CartManager.shared.treats = []
-            cartTableView.reloadData()
             total.text = String(sum)
             Toast.show(message: "Order completed", controller: self)
         let ordersAndTreatsVC = UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orders") as! OrdersAndTreatsViewController
