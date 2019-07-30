@@ -11,6 +11,7 @@ import UIKit
 class MenuTableViewCell: UITableViewCell {
 
     @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var menuItemImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,7 +22,8 @@ class MenuTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    func populate(title:String){
+    func populate(title:String, image: UIImage?){
         self.title.text = title
+        self.menuItemImage.image = image
     }
 }

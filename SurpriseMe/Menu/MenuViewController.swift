@@ -22,7 +22,7 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.sendSubviewToBack(screenBtn)
-        table.backgroundColor = UIColor(red: 0/255.0, green: 128.0/255.0, blue: 128.0/255.0, alpha: 1)
+        table.backgroundColor = UIColor(red: 0/255.0, green: 128.0/255.0, blue: 128.0/255.0, alpha: 0.75)
         self.view.backgroundColor = UIColor(white: 0, alpha: 0.5)
 //        table.scrollToRow(at: IndexPath(row: 3, section: 0), at: .none, animated: true)
         // Do any additional setup after loading the view.
@@ -56,10 +56,11 @@ extension MenuViewController:UITableViewDelegate{
         return true
     }
     
-
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
         switch Screens(rawValue: indexPath.row)! {
         case Screens.Main:
             menu.toggle = !menu.toggle
@@ -132,12 +133,15 @@ extension MenuViewController:UITableViewDataSource{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell") as! MenuTableViewCell
         
-        if indexPath.row == 0 {
-            cell.setSelected(true, animated: true)
-            print(indexPath.row)
-        }
+//        if indexPath.row == 0 {
+//            cell.setSelected(true, animated: true)
+//            print(indexPath.row)
+//        }
+        
+
         let itemTitle = Screens(rawValue: indexPath.row)!.description
-        cell.populate(title: itemTitle)
+        let menuItemsImages = [#imageLiteral(resourceName: "icons8-a_home"),#imageLiteral(resourceName: "icons8-friends"),#imageLiteral(resourceName: "icons8-wish_list") ,#imageLiteral(resourceName: "icons8-logout") ]
+        cell.populate(title: itemTitle, image: menuItemsImages[indexPath.row])
         
         return cell
     }

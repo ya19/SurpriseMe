@@ -32,7 +32,8 @@ class CategoriesViewController: UICollectionViewController {
         }
         
         
-        self.collectionView.backgroundView = UIImageView(image: UIImage.init(named: "blue-background"))
+        self.collectionView.backgroundView = UIImageView(image: UIImage.init(named: "shopping-background5"))
+        self.collectionView.backgroundView?.alpha = 0.1
         
         self.navigationController?.navigationBar.isTranslucent = true
         
@@ -46,10 +47,10 @@ class CategoriesViewController: UICollectionViewController {
             let dic = DataSnapshot.value as! [String:Any]
             print("%$#@!\(User.getUserFromDictionary(dic))")
         }
-                ref.child("treat").observeSingleEvent(of: .value) { (DataSnapshot) in
-            let dic = DataSnapshot.value as! [String:Any]
-            print("%$#@!\(Treat.getTreatFromDictionary(dic))")
-        }
+//                ref.child("treat").observeSingleEvent(of: .value) { (DataSnapshot) in
+//            let dic = DataSnapshot.value as! [String:Any]
+//            print("%$#@!\(Treat.getTreatFromDictionary(dic))")
+//        }
   
         
         
@@ -57,10 +58,10 @@ class CategoriesViewController: UICollectionViewController {
 //        ref.child("treat").setValue(Treat(id: "treat1", date: Date(), product: Product(id: "product1", name: "basketball", desc: "ball", imageName: "basketball", category: "SomeCategory", price: 10.2), giver: currentUser, getter: currentUser, treatStatus: TreatStatus.Expired).toDB)
 ////
 //        ref.child("Order").setValue(Order(id: "id1", treats: [Treat(id: "treat1", date: nil, product: Product(id: "product1", name: "shoes", desc: "desc", imageName: "name", category: "shoes", price: 15.0), giver: currentUser, getter: currentUser, treatStatus: TreatStatus.NotUsed),Treat(id: "treat2", date: nil, product: Product(id: "product1", name: "shoes", desc: "desc", imageName: "name", category: "shoes", price: 15.0), giver: currentUser, getter: currentUser, treatStatus: TreatStatus.NotUsed),Treat(id: "treat3", date: nil, product: Product(id: "product1", name: "shoes", desc: "desc", imageName: "name", category: "shoes", price: 15.0), giver: currentUser, getter: currentUser, treatStatus: TreatStatus.NotUsed),Treat(id: "treat4", date: nil, product: Product(id: "product1", name: "shoes", desc: "desc", imageName: "name", category: "shoes", price: 15.0), giver: currentUser, getter: currentUser, treatStatus: TreatStatus.NotUsed)], date: Date(), buyer: currentUser).toDB)
-        ref.child("Order").observeSingleEvent(of: .value) { (DataSnapshot) in
-            let dic = DataSnapshot.value as! [String:Any]
-            print("!@#$%\(Order.getOrderFromDictionary(dic))")
-        }
+//        ref.child("Order").observeSingleEvent(of: .value) { (DataSnapshot) in
+//            let dic = DataSnapshot.value as! [String:Any]
+//            print("!@#$%\(Order.getOrderFromDictionary(dic))")
+//        }
 ////        ref.child("users").child(currentUser.id).setValue(currentUser.toDB)
 //
 //        for shopCategory in myShops{

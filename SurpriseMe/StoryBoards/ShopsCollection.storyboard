@@ -86,18 +86,21 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpI-bL-qnD">
-                                    <rect key="frame" x="8" y="8" width="48" height="34"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <nil key="highlightedColor"/>
-                                    <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpI-bL-qnD">
+                                    <rect key="frame" x="8" y="8" width="398" height="34"/>
+                                    <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="0.10675299657534244" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="tintColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="fontDescription" name="AvenirNextCondensed-Medium" family="Avenir Next Condensed" pointSize="25"/>
+                                    <color key="textColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <size key="shadowOffset" width="1" height="0.0"/>
                                 </label>
                             </subviews>
                             <constraints>
                                 <constraint firstAttribute="bottomMargin" secondItem="fpI-bL-qnD" secondAttribute="bottom" id="5EA-b5-N4c"/>
                                 <constraint firstItem="fpI-bL-qnD" firstAttribute="leading" secondItem="er4-Zm-I2W" secondAttribute="leadingMargin" id="A24-ov-dBG"/>
                                 <constraint firstItem="fpI-bL-qnD" firstAttribute="top" secondItem="er4-Zm-I2W" secondAttribute="topMargin" id="Cl6-0h-bGo"/>
+                                <constraint firstItem="fpI-bL-qnD" firstAttribute="centerX" secondItem="er4-Zm-I2W" secondAttribute="centerX" id="HLA-3R-hHj"/>
                             </constraints>
                             <connections>
                                 <outlet property="sectionHeaderTitle" destination="fpI-bL-qnD" id="JJx-I3-hh2"/>
@@ -109,12 +112,14 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Shops" id="e07-mP-BtI">
-                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="qr6-To-M6t">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="icons8-menu-2" id="qr6-To-M6t">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="showMenu:" destination="jGR-ML-mwJ" id="zVy-8e-FVU"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="icons8-shopping_cart" id="KGu-Kn-oDn">
+                        <barButtonItem key="rightBarButtonItem" image="icons8-shopping_cart-6" id="KGu-Kn-oDn">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <segue destination="AIb-Sz-7Io" kind="show" id="6Fg-VC-lGC"/>
                             </connections>
@@ -196,12 +201,12 @@
                     </collectionView>
                     <navigationItem key="navigationItem" title="ShopName" id="8ND-2o-3HW">
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="search" id="9pC-3O-RzI">
+                            <barButtonItem title="Item" image="icons8-menu-2" id="9pC-3O-RzI">
                                 <connections>
                                     <action selector="showMenu:" destination="tnY-bs-PzJ" id="qPN-22-L1l"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Item" id="e20-rY-vyE">
+                            <barButtonItem title="cart" image="icons8-shopping_cart-6" id="e20-rY-vyE">
                                 <connections>
                                     <segue destination="AIb-Sz-7Io" kind="show" id="Ih1-Ra-JHb"/>
                                 </connections>
@@ -243,7 +248,8 @@
     </scenes>
     <resources>
         <image name="Facebook-logo" width="200" height="198"/>
-        <image name="icons8-shopping_cart" width="48" height="48"/>
+        <image name="icons8-menu-2" width="25" height="25"/>
+        <image name="icons8-shopping_cart-6" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Ih1-Ra-JHb"/>

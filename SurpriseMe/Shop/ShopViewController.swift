@@ -13,7 +13,8 @@ private let reuseIdentifier = "productCell"
 
 class ShopViewController: UICollectionViewController{
     @IBAction func showMenu(_ sender: UIBarButtonItem) {
-        
+        AppMenu.toggleMenu(parent: self)
+
     }
     
     var shop:Shop?
@@ -27,6 +28,7 @@ class ShopViewController: UICollectionViewController{
         self.navigationController?.navigationBar.isTranslucent = true
 
         self.title = shop?.name
+        self.navigationController?.navigationBar.tintColor = UIColor.white
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
