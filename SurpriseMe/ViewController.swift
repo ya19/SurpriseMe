@@ -85,7 +85,7 @@ class ViewController: BaseViewController {
             }
 
 //            print("THIS IS UID!!!! \(user.user.uid)")
-                CurrentUser.shared.configure(self!)
+            CurrentUser.shared.configure(self!, asNavigation: true)
 //                let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
 //                strongSelf.show(shopsVC, sender: sender)
            
@@ -117,13 +117,13 @@ class ViewController: BaseViewController {
         self.view.addSubview(emailError)
         self.view.addSubview(passwordError)
         
-        if Auth.auth().currentUser != nil{
-            
-            //init currentuser
-            CurrentUser.shared.configure(self)
-//                let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
-//                self.show(shopsVC, sender: nil)
-            }
+//        if Auth.auth().currentUser != nil{
+//            
+//            //init currentuser
+//            CurrentUser.shared.configure(self)
+////                let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
+////                self.show(shopsVC, sender: nil)
+//            }
             
             
             

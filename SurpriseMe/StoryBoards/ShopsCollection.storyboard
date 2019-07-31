@@ -134,7 +134,7 @@
         <scene sceneID="uf1-pX-WGw">
             <objects>
                 <collectionViewController storyboardIdentifier="shopController" id="tnY-bs-PzJ" customClass="ShopViewController" customModule="SurpriseMe" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="fhG-ch-opW">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" id="fhG-ch-opW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -200,18 +200,16 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="ShopName" id="8ND-2o-3HW">
-                        <rightBarButtonItems>
-                            <barButtonItem title="Item" image="icons8-menu-2" id="9pC-3O-RzI">
-                                <connections>
-                                    <action selector="showMenu:" destination="tnY-bs-PzJ" id="qPN-22-L1l"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="cart" image="icons8-shopping_cart-6" id="e20-rY-vyE">
-                                <connections>
-                                    <segue destination="AIb-Sz-7Io" kind="show" id="Ih1-Ra-JHb"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="icons8-menu-2" id="9pC-3O-RzI">
+                            <connections>
+                                <action selector="showMenu:" destination="tnY-bs-PzJ" id="qPN-22-L1l"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="cart" image="icons8-shopping_cart-6" id="e20-rY-vyE">
+                            <connections>
+                                <segue destination="AIb-Sz-7Io" kind="show" id="Ih1-Ra-JHb"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IPR-8S-D2q" userLabel="First Responder" sceneMemberID="firstResponder"/>

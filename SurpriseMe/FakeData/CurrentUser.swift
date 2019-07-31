@@ -25,7 +25,8 @@ class CurrentUser{
     func get() -> User?{
         return user
     }
-    func configure(_ vc:UIViewController){
+    func configure(_ vc:UIViewController , asNavigation : Bool){
+        var once = true
         ref.child("users").child(Auth.auth().currentUser!.uid).observe(.value, with: { (datasnapshot) in
             
             let dic = datasnapshot.value as! [String:Any]
@@ -68,8 +69,16 @@ class CurrentUser{
                                     }
                                 }
                                 self.user  = User(id: id, email: email, firstName: firstName, lastName: lastName, dateOfBitrh: dateOfBirth, friends: friends, myCart: myCart, myTreats: myTreats, myOrders: myOrders, getTreatsStatus: getTreatStatus, address: address)
-                                let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
-                                vc.show(shopsVC, sender: nil)
+                                if once{
+                                once = !once
+                                    if asNavigation{
+                                        let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
+                                        vc.show(shopsVC, sender: nil)
+                                    } else {
+                                        let splash = vc as! SplashScreen
+                                        splash.performSegue(withIdentifier: "toShops", sender: nil)
+                                    }
+                                }
                             })
                       
             })

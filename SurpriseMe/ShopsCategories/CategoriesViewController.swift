@@ -36,7 +36,6 @@ class CategoriesViewController: UICollectionViewController {
         
         self.collectionView.backgroundView = UIImageView(image: UIImage.init(named: "shopping-background5"))
         self.collectionView.backgroundView?.alpha = 0.1
-        
         self.navigationController?.navigationBar.isTranslucent = true
         
         myShops = ShopsManager.shared.getShops()

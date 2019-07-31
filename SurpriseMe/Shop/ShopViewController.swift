@@ -21,6 +21,15 @@ class ShopViewController: UICollectionViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        let swipeRight = UISwipeGestureRecognizer()
+        swipeRight.addTarget(self, action: #selector(backSegue) )
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        self.navigationItem.setHidesBackButton(true, animated: true)
+        
+        
         AppMenu.clearMenu()
         
         self.collectionView.backgroundView = UIImageView(image: shop?.backgroudImage)
@@ -36,6 +45,11 @@ class ShopViewController: UICollectionViewController{
 
 
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func backSegue(){
+        print("------- Suppose to make back segue")
+        self.navigationController?.popViewController(animated: true)
     }
     
     /*

@@ -46,7 +46,14 @@ class SplashScreen: UIViewController {
                     }
         
                     ShopsManager.shared.update(shops: newShopsFromDB)
-                self.performSegue(withIdentifier: "login", sender: nil)
+                
+                if Auth.auth().currentUser != nil{
+                    
+                    //init currentuser
+                    CurrentUser.shared.configure(self, asNavigation: false)
+                } else{
+                    self.performSegue(withIdentifier: "login", sender: nil)
+                }
         }
         
     }
