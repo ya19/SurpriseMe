@@ -23,10 +23,12 @@ class CategoriesViewController: UICollectionViewController {
     }
     
     @IBAction func showNotifications(_ sender: UIBarButtonItem) {
+        let notificationsVC = UIStoryboard(name: "Notifications", bundle: nil).instantiateViewController(withIdentifier: "notifications") as! NotificationsViewController
+        
         if menu.toggle {
             toggle = true
         }
-        toggle = PopUp.toggle(storyBoardName: "Notifications", vcIdentifer: "notifications", parent: self, toggle: toggle)
+        toggle = PopUp.toggle(child: notificationsVC, parent: self, toggle: toggle)
     }
     
     
