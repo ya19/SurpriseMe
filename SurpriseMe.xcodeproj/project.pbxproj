@@ -245,6 +245,7 @@
 			children = (
 				AD3A98F022DFA4D100B6368A /* MenuTableViewCell.swift */,
 				AD3A98F222DFA4E400B6368A /* MenuViewController.swift */,
+				47AD99FF22E0A73900B8021C /* Popups */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -318,7 +319,6 @@
 				47062A7A22F1F1EF00610198 /* Notifications */,
 				AD7B2E6422E97AD300873D9F /* GoogleService-Info.plist */,
 				ADA1BA0922E1D574004EF8F0 /* FakeData */,
-				47AD99FF22E0A73900B8021C /* Popups */,
 				47AD99FE22E0A6E400B8021C /* Menu */,
 				47AD99FD22E0A6AD00B8021C /* Shop */,
 				47AD99FC22E0A5E200B8021C /* Friends */,

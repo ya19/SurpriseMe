@@ -15,13 +15,39 @@ class CurrentUser{
     private var user:User?
     var delegate : DoneReadingFriends?
     private let ref = Database.database().reference()
+    private var currentFriendsNum:Int
+    var friends:[User]
     private init(){
       user = nil
-
+        friends = []
+        currentFriendsNum = 0
     }
     
-    
-    
+    func initFriendsVC() {
+       
+        friends = []
+        
+        currentFriendsNum = CurrentUser.shared.get()!.friends.count
+            for friendId in CurrentUser.shared.get()!.friends{
+                self.ref.child("users").child(friendId).observeSingleEvent(of: .value, with: { (friendData) in
+                    self.friends.append(User.getUserFromDictionary(friendData.value as! [String:Any]))
+                })
+        }
+        Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.didFriendsLoaded(_:)), userInfo: nil, repeats: true)
+        
+    }
+    @objc func didFriendsLoaded(_ timer: Timer){
+        print("i am in" , friends.count , currentFriendsNum)
+        
+        if friends.count == currentFriendsNum{
+            timer.invalidate()
+                    let friendsVC = UIStoryboard(name: "Friends", bundle: nil).instantiateViewController(withIdentifier: "friends") as! FriendsViewController
+                    friendsVC.friends = self.friends
+                    menu.parent?.navigationController?.pushViewController(friendsVC, animated: true)
+            menu.removeFromParent()
+
+        }
+    }
     func get() -> User?{
         return user
     }
