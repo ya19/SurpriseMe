@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class ViewController: BaseViewController {
     
@@ -83,20 +84,13 @@ class ViewController: BaseViewController {
                 return
             }
 
-            print("THIS IS UID!!!! \(user.user.uid)")
-            let ref = Database.database().reference()
+//            print("THIS IS UID!!!! \(user.user.uid)")
+                CurrentUser.shared.configure(self!)
+//                let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
+//                strongSelf.show(shopsVC, sender: sender)
+           
             
             
-            ref.child("users").child(user.user.uid).observe(.value, with: { (datasnapshot) in
-                guard let newCurrentUserDic = datasnapshot.value as? [String:Any] else{return}
-                print("HELLLLLLLO")
-                currentUser = User.getUserFromDictionary(newCurrentUserDic)
-                print("NEW USER INIT!!! \(currentUser)")
-            })
-            
-            
-            let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
-            strongSelf.show(shopsVC, sender: sender)
         
         }
         
@@ -124,12 +118,21 @@ class ViewController: BaseViewController {
         self.view.addSubview(passwordError)
         
         if Auth.auth().currentUser != nil{
-            let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
-            self.show(shopsVC , sender: nil)
+            
+            //init currentuser
+            CurrentUser.shared.configure(self)
+//                let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
+//                self.show(shopsVC, sender: nil)
+            }
+            
+            
+            
+            
+            
         }
    
     
-    }
+    
     
     
     override func viewWillAppear(_ animated: Bool) {

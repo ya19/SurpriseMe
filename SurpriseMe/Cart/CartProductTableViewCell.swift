@@ -40,28 +40,24 @@ class CartProductTableViewCell: UITableViewCell {
         productName.text = treat.product.name
         productPrice.text = "Price: \(treat.product.price)"
         if let getter = treat.getter {
-            getterName.text = "\(getter.firstName ) \(getter.lastName)"
+            getterName.text = "\(getter)"
 
         }
     }
 }
 
 extension CartProductTableViewCell:deliverUserDelegate{
-    func deliver(user: User) {
-        self.treat!.getter = user
-        getterName.text = "\(user.firstName) \(user.lastName)"
-//        for i in 0..<CartManager.shared.treats.count{
-//            if(CartManager.shared.treats[i].id == self.treat!.id){
-//                CartManager.shared.treats[i].getter = user
-//
-//            }
-//        }
-        CartManager.shared.treats[self.indexPath!.row].getter = user
-
+    func deliver(userId: String) {
+        self.treat!.getter = userId
+        getterName.text = "\(userId)"
+    
+        UsersManager.shared.setGetterFor(treat: CurrentUser.shared.get()!.myCart[self.indexPath!.row], userId: userId)
+//        CartManager.shared.treats[self.indexPath!.row].getter = userId
+        
     }
 }
 protocol deliverUserDelegate{
-    func deliver(user:User)
+    func deliver(userId:String)
 }
 
 

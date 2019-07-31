@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 let menu = UIStoryboard(name: "Menu", bundle: nil).instantiateViewController(withIdentifier: "menuVC") as! MenuViewController
 class MenuViewController: UIViewController {
@@ -59,8 +60,6 @@ extension MenuViewController:UITableViewDelegate{
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        
         switch Screens(rawValue: indexPath.row)! {
         case Screens.Main:
             menu.toggle = !menu.toggle

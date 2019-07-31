@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pz1-Jv-E38">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="n1G-1k-vRN">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -144,6 +144,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xx6-SZ-Gbx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2551.449275362319" y="201.5625"/>
+        </scene>
+        <!--Splash Screen-->
+        <scene sceneID="sK3-CQ-Pqw">
+            <objects>
+                <viewController id="n1G-1k-vRN" customClass="SplashScreen" customModule="SurpriseMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="56t-I2-alJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="surprise" translatesAutoresizingMaskIntoConstraints="NO" id="HiT-wS-bmf">
+                                <rect key="frame" x="41.5" y="224" width="331" height="448"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="HiT-wS-bmf" firstAttribute="width" secondItem="56t-I2-alJ" secondAttribute="width" multiplier="0.8" id="0RQ-Zd-htL"/>
+                            <constraint firstItem="HiT-wS-bmf" firstAttribute="centerX" secondItem="56t-I2-alJ" secondAttribute="centerX" id="9Li-A6-Msp"/>
+                            <constraint firstItem="HiT-wS-bmf" firstAttribute="height" secondItem="56t-I2-alJ" secondAttribute="height" multiplier="0.5" id="V9Z-cF-vly"/>
+                            <constraint firstItem="HiT-wS-bmf" firstAttribute="centerY" secondItem="56t-I2-alJ" secondAttribute="centerY" id="eJG-F2-D9q"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cbx-Zw-UkD"/>
+                    </view>
+                    <connections>
+                        <segue destination="pz1-Jv-E38" kind="show" identifier="login" id="Juc-mA-eBh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bx1-l1-eI8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139" y="221"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KOD-0v-Esl">

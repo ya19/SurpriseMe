@@ -64,8 +64,8 @@ extension OrdersAndTreatsViewController : UITableViewDelegate{
 extension OrdersAndTreatsViewController : UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch(ordersTreatsSegmented.selectedSegmentIndex){
-        case 0: return  currentUser.myOrders.count
-        case 1: return currentUser.myTreats.count
+        case 0: return  CurrentUser.shared.get()!.myOrders.count
+        case 1: return CurrentUser.shared.get()!.myTreats.count
         default:
             return 1
         }
@@ -80,18 +80,18 @@ extension OrdersAndTreatsViewController : UITableViewDataSource{
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell") as? OrderCell else{return UITableViewCell()}
             
             
-            cell.order = currentUser.myOrders[indexPath.row]
-            cell.idLabel.text = currentUser.myOrders[indexPath.row].id
+            cell.order = CurrentUser.shared.get()!.myOrders[indexPath.row]
+            cell.idLabel.text = CurrentUser.shared.get()!.myOrders[indexPath.row].id
             //to do: don't forget to make the calculation ahead.
-            cell.priceLabel.text = "\(currentUser.myOrders[indexPath.row].price)"
-            cell.dateLabel.text = currentUser.myOrders[indexPath.row].dateString
+            cell.priceLabel.text = "\(CurrentUser.shared.get()!.myOrders[indexPath.row].price)"
+            cell.dateLabel.text = CurrentUser.shared.get()!.myOrders[indexPath.row].dateString
             cell.delegate = self
             
             return cell
             
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "treatCell") as? TreatCell else{return UITableViewCell()}
-            cell.populate(treat: currentUser.myTreats[indexPath.row])
+            cell.populate(treat: CurrentUser.shared.get()!.myTreats[indexPath.row])
             cell.delegate = self
             
             return cell

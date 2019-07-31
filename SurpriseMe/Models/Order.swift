@@ -20,7 +20,7 @@ struct Order{
         return count
     }
     let date:Date
-    let buyer:User?
+    let buyer:String
     var dateString: String{
         let formatter = DateFormatter()
         // initially set the format based on your datepicker date / server String
@@ -45,7 +45,7 @@ struct Order{
         }
         dic["treats"] = myTreats
         dic["date"] =  ServerValue.timestamp()
-        dic["buyer"] = buyer?.toDB
+        dic["buyer"] = buyer
         dic["price"] = price
         return dic
     }
@@ -60,8 +60,8 @@ struct Order{
         }
         let t = dic["date"] as! TimeInterval
         let date = Date(timeIntervalSince1970: t/1000)
-        let buyerDic = dic["buyer"] as! [String:Any]
-        let buyer = User.getUserFromDictionary(buyerDic)
+        let buyer = dic["buyer"] as! String
+       
         
         return Order(id: id, treats: allTreats, date: date, buyer: buyer)
     }

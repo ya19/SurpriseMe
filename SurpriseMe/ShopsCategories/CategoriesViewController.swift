@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 private let reuseIdentifier = "categoryCell"
 private let reuseHeaderIdentifier = "sectionHeader"
@@ -24,6 +25,7 @@ class CategoriesViewController: UICollectionViewController {
     var myShops:[[Shop]] = [[]]
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(UsersManager.shared.getUsers(),"$$$$$$$$$$$$")
         self.navigationController?.navigationBar.isHidden = false
         AppMenu.clearMenu()
         
@@ -37,16 +39,17 @@ class CategoriesViewController: UICollectionViewController {
         
         self.navigationController?.navigationBar.isTranslucent = true
         
-        ShopsManager.shared.getShops(delegate: self)
+        myShops = ShopsManager.shared.getShops()
 //
 //        ShopsManager.shared.delegate = self
 //        myShops = ShopsManager.shared.getFakeShops()
         let ref = Database.database().reference()
-        ref.child("user").setValue(currentUser.toDB)
-        ref.child("user").observeSingleEvent(of: .value) { (DataSnapshot) in
-            let dic = DataSnapshot.value as! [String:Any]
-            print("%$#@!\(User.getUserFromDictionary(dic))")
-        }
+//        ref.child("users").removeValue()
+//        ref.child("user").setValue(currentUser.toDB)
+//        ref.child("user").observeSingleEvent(of: .value) { (DataSnapshot) in
+//            let dic = DataSnapshot.value as! [String:Any]
+//            print("%$#@!\(User.getUserFromDictionary(dic))")
+//        }
 //                ref.child("treat").observeSingleEvent(of: .value) { (DataSnapshot) in
 //            let dic = DataSnapshot.value as! [String:Any]
 //            print("%$#@!\(Treat.getTreatFromDictionary(dic))")

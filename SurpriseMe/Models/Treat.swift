@@ -31,9 +31,9 @@ struct Treat{
     
     var product:Product
     
-    var giver:User?
+    var giver:String?
     
-    var getter:User?
+    var getter:String?
     
     var treatStatus: TreatStatus?
     
@@ -52,8 +52,8 @@ struct Treat{
         dic["id"] = id
         dic["date"] = ServerValue.timestamp()
         dic["product"] = product.toDB
-        dic["giver"] = giver?.toDB
-        dic["getter"] = getter?.toDB
+        dic["giver"] = giver
+        dic["getter"] = getter
         dic["status"] = treatStatus?.rawValue
         return dic
     }
@@ -63,8 +63,11 @@ struct Treat{
         let t = dic["date"] as! TimeInterval
         let date = Date(timeIntervalSince1970: t/1000)
         let product = Product.getProductFromDictionary(dic["product"] as! [String:Any])
-        let giver = User.getUserFromDictionary(dic["giver"] as! [String : Any])
-        let getter = User.getUserFromDictionary(dic["getter"] as! [String: Any])
+        let giver = dic["giver"] as! String
+        var getter:String? = nil
+        if let someGetter = dic["getter"] as? String{
+            getter = someGetter
+        }
         let status = TreatStatus(rawValue: dic["status"] as! Int)
         return Treat(id: id, date: date, product: product, giver: giver, getter: getter, treatStatus: status)
     }

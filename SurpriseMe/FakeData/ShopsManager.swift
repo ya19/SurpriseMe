@@ -22,33 +22,39 @@ class ShopsManager{
         fakeDate()
     }
     
-    func getShops(delegate:UIViewController){
-        let myDelegate:DoneReadingDBDelegate = delegate as! CategoriesViewController
-        var newShopsFromDB:[[Shop]] = [[],[],[]]
-        ref.child("shops").observeSingleEvent(of: .value) { (datasnapshot) in
-//            print("THIS IS A DATA SNAP SHOP-------\(datasnapshot)")
-            for child in datasnapshot.children{
-                
-//                print("THIS IS A DATA SNAP SHOT CHILD \(child)")
-                let snap = child as! DataSnapshot
-                guard let dic = snap.value as? [String:Any] else {return}
-                
-//                print("this is snap.value ---> \(snap.value)")
-
-                
-//                print("----------> NEW SHOP <___------\(shop)")
-                let shop = Shop.getShopFromDictionary(dic)
-                newShopsFromDB[shop.category.rawValue].append(shop)
-                print(newShopsFromDB.count)
-            }
-            
-            myDelegate.dbREAD(shops: newShopsFromDB)
-            
-//            print("--------------------- ARRAY FROM DB -----------------\(newShopsFromDB)")
-            
-        }
-//        return newShopsFromDB
-        
+//    func getShops(delegate:UIViewController){
+//        let myDelegate:DoneReadingDBDelegate = delegate as! CategoriesViewController
+//        var newShopsFromDB:[[Shop]] = [[],[],[]]
+//        ref.child("shops").observeSingleEvent(of: .value) { (datasnapshot) in
+////            print("THIS IS A DATA SNAP SHOP-------\(datasnapshot)")
+//            for child in datasnapshot.children{
+//
+////                print("THIS IS A DATA SNAP SHOT CHILD \(child)")
+//                let snap = child as! DataSnapshot
+//                guard let dic = snap.value as? [String:Any] else {return}
+//
+////                print("this is snap.value ---> \(snap.value)")
+//
+//
+////                print("----------> NEW SHOP <___------\(shop)")
+//                let shop = Shop.getShopFromDictionary(dic)
+//                newShopsFromDB[shop.category.rawValue].append(shop)
+////                print(newShopsFromDB.count)
+//            }
+//
+//            myDelegate.dbREAD(shops: newShopsFromDB)
+//
+////            print("--------------------- ARRAY FROM DB -----------------\(newShopsFromDB)")
+//
+//        }
+////        return newShopsFromDB
+//
+//    }
+    func update(shops:[[Shop]]) {
+        self.shops = shops
+    }
+    func getShops()-> [[Shop]]{
+        return shops
     }
     
 
@@ -57,7 +63,6 @@ class ShopsManager{
     }
     
     func fakeDate(){
-        
         shops =  [
             [
                 Shop(id: "nikeShop", category: .SPORT, name: "Nike", products: ["Products" :
@@ -112,7 +117,15 @@ class ShopsManager{
             []
             
         ]
-
+//        var  count = 0
+        
+//        for category in shops{
+//
+//            for shop in category{
+//                count = count + 1
+//                ref.child("shops").child("shop\(count)").setValue(shop.toDB)
+//            }
+//        }
     }
 }
 //MARK timestamp

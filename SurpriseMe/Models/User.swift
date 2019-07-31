@@ -12,17 +12,16 @@ import Firebase
 var currentUser = User.init(id: "user1", email: "shahaf_t@narkis.co.il", firstName: "David", lastName: "Tikva", dateOfBitrh: Date(),
           
           friends: [
-            User(id: "user2", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: Date() , friends: [] ,myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil)
+            "user2"
             
-    ],
+    ], myCart: [],
           myTreats:
     [
-        Treat.init(id: "treat1", date: Date(), product: Product.init(id: "product1", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 159.00), giver:  User(id: "user2", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: Date() , friends: [] ,myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil), getter:  User(id: "user2", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: Date() , friends: [] ,myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil), treatStatus: TreatStatus.NotUsed),
+        Treat.init(id: "treat1", date: Date(), product: Product.init(id: "product1", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 159.00), giver: "user1", getter: "user2", treatStatus: TreatStatus.NotUsed),
         
-        Treat.init(id: "treat2", date: Date(), product: Product.init(id: "product2", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 165.00), giver:  User(id: "user2", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: Date() , friends: [] ,myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil), getter:  User(id: "user2", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: Date() , friends: [] ,myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil), treatStatus: TreatStatus.NotUsed),
+          Treat.init(id: "treat1", date: Date(), product: Product.init(id: "product1", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 159.00), giver: "user1", getter: "user2", treatStatus: TreatStatus.NotUsed),
         
-        Treat.init(id: "treat3", date: Date(), product: Product.init(id: "product3", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 121.00), giver:  User(id: "user2", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: Date() , friends: [] ,myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil), getter:  User(id: "user2", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: Date() , friends: [] ,myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil), treatStatus: TreatStatus.NotUsed)
-        
+          Treat.init(id: "treat1", date: Date(), product: Product.init(id: "product1", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 159.00), giver: "user1", getter: "user2", treatStatus: TreatStatus.NotUsed)
         
     ],
           myOrders:[], getTreatsStatus: GetTreatStatus.EVERYONE, address: nil)
@@ -54,7 +53,10 @@ struct User:Hashable,Equatable{
         return "\(dateOfBitrh)"
     }
     
-    var friends:[User]
+    var friends:[String]
+    
+    var myCart:[Treat]
+//    var friendRequsts:[String]
     
     var myTreats:[Treat]
     
@@ -75,42 +77,9 @@ struct User:Hashable,Equatable{
         dic["email"] = email
         dic["firstName"] = firstName
         dic["lastName"] = lastName
-        dic["dateOfBirth"] = dateOfBitrh.timeIntervalSince1970
-        
-        //friends
-        if friends.count > 0 {
-            var myFriends:[String:[String:Any]] = [:]
-            for friend in friends{
-                myFriends[friend.id] = friend.toDB
-            }
-            dic["friends"] = myFriends
-        }else{
-            dic["friends"] = friends
-        }
-        
-        //myTreats
-        if myTreats.count > 0{
-            var treats:[String:[String:Any]] = [:]
-            for treat in myTreats{
-                treats[treat.id] = treat.toDB
-            }
-            dic["myTreats"] = treats
-        }else{
-            dic["myTreats"] = myTreats
-        }
-        //myOrders
-        if myOrders.count>0{
-            var orders:[String:[String:Any]] = [:]
-            for order in myOrders{
-                orders[order.id] = order.toDB
-            }
-            dic["myOrders"] = orders
-        }else{
-            dic["myOrders"] = myOrders
-        }
-        
+        dic["dateOfBirth"] = dateOfBitrh.timeIntervalSince1970       
         dic["getTreatStatus"] = getTreatsStatus.rawValue
-        dic["address"] = address
+//        dic["address"] = address
         
         
         return dic
@@ -126,33 +95,15 @@ struct User:Hashable,Equatable{
         let lastName = dic["lastName"] as! String
         let myTimeInterval = TimeInterval(dic["dateOfBirth"] as! Double)
         let dateOfBirth = Date(timeIntervalSince1970: TimeInterval(myTimeInterval))
-        var friends:[User] = []
-        if let friendsDic = dic["friends"] as? [String:Any]{
-            for key in friendsDic.keys{
-                friends.append(User.getUserFromDictionary(friendsDic[key]! as! [String:Any]))
-            }
-        }
-        
-        var myTreats:[Treat] = []
-        if let treatsDic = dic["myTreats"] as? [String:Any]{
-            for key in treatsDic.keys{
-                myTreats.append(Treat.getTreatFromDictionary(treatsDic[key]! as! [String:Any]))
-            }
-        }
-        
-        var myOrders:[Order] = []
-        if let ordersDic = dic["myOrders"] as? [String:Any]{
-            for key in ordersDic.keys{
-                myOrders.append(Order.getOrderFromDictionary(ordersDic[key]! as! [String:Any]))
-            }
-        }
+//        let dateOfBirth = Date()
+
         
         let getTreatStatus = GetTreatStatus(rawValue: dic["getTreatStatus"] as! Int)
         var address:[String:String]? = nil
-        if let addressDic = dic["address"] as? [String:String]{
-            address = addressDic
-        }
+//        if let addressDic = dic["address"] as? [String:String]{
+//            address = addressDic
+//        }
         
-        return User(id: id, email: email, firstName: firstName, lastName: lastName, dateOfBitrh: dateOfBirth, friends: friends, myTreats: myTreats, myOrders: myOrders, getTreatsStatus: getTreatStatus!, address: address)
+        return User(id: id, email: email, firstName: firstName, lastName: lastName, dateOfBitrh: dateOfBirth, friends: [], myCart: [], myTreats: [], myOrders: [], getTreatsStatus: getTreatStatus!, address: address)
     }
 }

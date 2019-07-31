@@ -9,9 +9,7 @@
 import UIKit
 
 class FriendsViewController: UIViewController {
-    var friends:[User]{
-        return currentUser.friends
-    }
+    var friends:[User] = [] // init when entering.
 //    var userAddedDelegate: UserAddedDelegate?
     
     @IBOutlet weak var table: UITableView!
@@ -31,7 +29,7 @@ class FriendsViewController: UIViewController {
             let usersVC = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController
 
             usersVC.delegate = self
-            usersVC.users = UsersManager.shared.getAllButFriends(user: currentUser)
+            usersVC.users = UsersManager.shared.getAllButFriends(user: CurrentUser.shared.get()!)
 //            userAddedDelegate = usersVC
 //            userAddedDelegate?.reloadMydata()
 
@@ -66,7 +64,7 @@ class FriendsViewController: UIViewController {
         //            CartManager.shared.treats.remove(at: indexPath.row)
         //            tableView.deleteRows(at: [indexPath], with: .fade)
         //            self.total.text = "Total: \(self.sum) NIS"
-        currentUser.friends.remove(at: indexPath.row)
+        UsersManager.shared.removeFriend(at: indexPath.row)
         table.deleteRows(at: [indexPath],with: .fade)
         table.reloadData()
     }
@@ -99,7 +97,7 @@ extension FriendsViewController : UITableViewDelegate{
             
             // Create Cancel button with action handlder
             let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-                print("Cancel button tapped")
+//                print("Cancel button tapped")
             }
             
             //Add OK and Cancel button to dialog message
@@ -136,11 +134,11 @@ extension FriendsViewController: UITableViewDataSource{
 }
 
 extension FriendsViewController : deliverUserDelegate{
-    func deliver(user: User) {
+    func deliver(userId: String) {
                 
         //update in database
-        currentUser.friends.append(user)
-
+//        currentUser.friends.append(user)
+        UsersManager.shared.add(friend: userId)
         self.friendsTableView.reloadData()
     }
 }
