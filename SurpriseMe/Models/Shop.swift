@@ -87,7 +87,10 @@ struct Shop{
                 let product = Product.getProductFromDictionary(productsDic[key]!)
                 productsArray.append(product)
             }
-            products["products"] = productsArray
+            let array = productsArray.sorted { (p1, p2) -> Bool in
+                return p1.price < p2.price
+            }
+            products["products"] = array
         }
         let address = dic["address"] as! String
         

@@ -14,29 +14,42 @@ private let reuseIdentifier = "categoryCell"
 private let reuseHeaderIdentifier = "sectionHeader"
 
 class CategoriesViewController: UICollectionViewController {
+    var toggle = true
     
-    var handle:AuthStateDidChangeListenerHandle?
-
+    
     @IBAction func showMenu(_ sender: UIBarButtonItem) {
 //        PopUp.show(storyBoardName: "Menu", vcIdentifer: "menuVC", parent: self)
             AppMenu.toggleMenu(parent: self)
     }
     
+    @IBAction func showNotifications(_ sender: UIBarButtonItem) {
+        if menu.toggle {
+            toggle = true
+        }
+        toggle = PopUp.toggle(storyBoardName: "Notifications", vcIdentifer: "notifications", parent: self, toggle: toggle)
+    }
+    
+    
     var myShops:[[Shop]] = [[]]
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        print(UsersManager.shared.getUsers(),"$$$$$$$$$$$$")
-        self.navigationController?.navigationBar.isHidden = false
-        AppMenu.clearMenu()
-        
+    
+
+    
+    override func viewWillAppear(_ animated: Bool) {
         if Auth.auth().currentUser != nil{
             Toast.show(message: "\(Auth.auth().currentUser!.email!) Logged in successfully", controller: self)
         }
         
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print(UsersManager.shared.getUsers(),"$$$$$$$$$$$$")
+        AppMenu.clearMenu()
+        
+        
         
         self.collectionView.backgroundView = UIImageView(image: UIImage.init(named: "shopping-background5"))
         self.collectionView.backgroundView?.alpha = 0.1
-        self.navigationController?.navigationBar.isTranslucent = true
         
         myShops = ShopsManager.shared.getShops()
 //

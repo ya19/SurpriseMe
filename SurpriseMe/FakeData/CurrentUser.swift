@@ -13,7 +13,7 @@ class CurrentUser{
     static let shared = CurrentUser()
     
     private var user:User?
-    
+    var delegate : DoneReadingFriends?
     private let ref = Database.database().reference()
     private init(){
       user = nil
@@ -45,7 +45,8 @@ class CurrentUser{
             self.ref.child("friends").child(id).observe(.value, with: { (friendsData) in
                 var friends:[String] = []
                     if let friendsArr = friendsData.value as? [String]{
-                    friends = friendsArr
+//                        self.delegate?.doneReadingFriends()
+                    friends = friendsArr // todo check if it works.
                     }
                 self.ref.child("orders").child(id).observe( .value, with: { (ordersData) in
                     var myOrders:[Order] = []
@@ -66,17 +67,25 @@ class CurrentUser{
                                 if let cartDic = cartData.value as? [String:Any]{
                                     for key in cartDic.keys{
                                         myCart.append(Treat.getTreatFromDictionary(cartDic[key] as! [String:Any]))
+                                            myCart = myCart.sorted(by: { (t1, t2) -> Bool in
+//                                            return Int((t1.date?.timeIntervalSince1970)!) < Int((t2.date?.timeIntervalSince1970)!)
+                                                return t1.product.price < t2.product.price
+                                        })
                                     }
                                 }
                                 self.user  = User(id: id, email: email, firstName: firstName, lastName: lastName, dateOfBitrh: dateOfBirth, friends: friends, myCart: myCart, myTreats: myTreats, myOrders: myOrders, getTreatsStatus: getTreatStatus, address: address)
                                 if once{
                                 once = !once
                                     if asNavigation{
-                                        let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
-                                        vc.show(shopsVC, sender: nil)
+//                                        let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
+//                                        vc.show(shopsVC, sender: nil)
+                                        
+                                        let controller = vc as! ViewController
+                                        controller.performSegue(withIdentifier: "loginToShops", sender: nil)
+                                        
                                     } else {
-                                        let splash = vc as! SplashScreen
-                                        splash.performSegue(withIdentifier: "toShops", sender: nil)
+                                        let controller = vc as! SplashScreen
+                                        controller.performSegue(withIdentifier: "toShops", sender: nil)
                                     }
                                 }
                             })
@@ -93,3 +102,6 @@ class CurrentUser{
     
 }
 
+protocol DoneReadingFriends{
+    func doneReadingFriends()
+}

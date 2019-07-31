@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47062A7922F1EC6800610198 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47062A7822F1EC6700610198 /* Notifications.storyboard */; };
+		47062A7C22F1F20C00610198 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47062A7B22F1F20C00610198 /* NotificationsViewController.swift */; };
+		47062A7E22F1F2D000610198 /* NotificationsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47062A7D22F1F2D000610198 /* NotificationsTableCell.swift */; };
+		47062A8022F1F4C500610198 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47062A7F22F1F4C500610198 /* Notification.swift */; };
 		474B257922D8959E00D0A332 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474B257822D8959E00D0A332 /* ShopViewController.swift */; };
 		474B257B22D895BF00D0A332 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474B257A22D895BF00D0A332 /* ProductCollectionViewCell.swift */; };
 		47575F8022DF28F200A61176 /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47575F7F22DF28F200A61176 /* OrderCell.swift */; };
@@ -71,6 +75,10 @@
 
 /* Begin PBXFileReference section */
 		121230BE56FA17F9C9242E3B /* Pods-SurpriseMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SurpriseMe.release.xcconfig"; path = "Target Support Files/Pods-SurpriseMe/Pods-SurpriseMe.release.xcconfig"; sourceTree = "<group>"; };
+		47062A7822F1EC6700610198 /* Notifications.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notifications.storyboard; sourceTree = "<group>"; };
+		47062A7B22F1F20C00610198 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
+		47062A7D22F1F2D000610198 /* NotificationsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsTableCell.swift; sourceTree = "<group>"; };
+		47062A7F22F1F4C500610198 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		474B257822D8959E00D0A332 /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		474B257A22D895BF00D0A332 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		47575F7F22DF28F200A61176 /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
@@ -157,6 +165,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		47062A7A22F1F1EF00610198 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				47062A7B22F1F20C00610198 /* NotificationsViewController.swift */,
+				47062A7D22F1F2D000610198 /* NotificationsTableCell.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 		47AD99F822E0A25900B8021C /* StoryBoards */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +181,7 @@
 				AD68A49622D8F2C900E019BA /* Cart.storyboard */,
 				47CC647622DCF00300463BF9 /* OrdersManagement.storyboard */,
 				AD0DDC2922DC75F4007A4533 /* ShopsCollection.storyboard */,
+				47062A7822F1EC6700610198 /* Notifications.storyboard */,
 				7BEC607922D4D5DB0040D6CF /* Register.storyboard */,
 				47AD99F022E06BEC00B8021C /* Friends.storyboard */,
 				AD3A98EE22DFA42A00B6368A /* Menu.storyboard */,
@@ -256,6 +274,7 @@
 				47CC647422DCEEDC00463BF9 /* Order.swift */,
 				ADDB641122E0733A003A2916 /* Screens.swift */,
 				ADDB641322E07EC7003A2916 /* AppMenu.swift */,
+				47062A7F22F1F4C500610198 /* Notification.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -296,6 +315,7 @@
 		7BAF23CA22D362E200E83A89 /* SurpriseMe */ = {
 			isa = PBXGroup;
 			children = (
+				47062A7A22F1F1EF00610198 /* Notifications */,
 				AD7B2E6422E97AD300873D9F /* GoogleService-Info.plist */,
 				ADA1BA0922E1D574004EF8F0 /* FakeData */,
 				47AD99FF22E0A73900B8021C /* Popups */,
@@ -406,6 +426,7 @@
 				AD3A98EF22DFA42A00B6368A /* Menu.storyboard in Resources */,
 				AD0DDC2A22DC75F4007A4533 /* ShopsCollection.storyboard in Resources */,
 				7BAF23D122D362E200E83A89 /* Main.storyboard in Resources */,
+				47062A7922F1EC6800610198 /* Notifications.storyboard in Resources */,
 				47AD99F122E06BEC00B8021C /* Friends.storyboard in Resources */,
 				AD7B2E6522E97AD300873D9F /* GoogleService-Info.plist in Resources */,
 				AD68A49722D8F2C900E019BA /* Cart.storyboard in Resources */,
@@ -467,11 +488,13 @@
 				7BAF23CE22D362E200E83A89 /* ViewController.swift in Sources */,
 				47575F8022DF28F200A61176 /* OrderCell.swift in Sources */,
 				AD3DEF3522DE2A0700A7C703 /* UserPopUpCell.swift in Sources */,
+				47062A7C22F1F20C00610198 /* NotificationsViewController.swift in Sources */,
 				47AD99F522E07A0900B8021C /* FriendsViewController.swift in Sources */,
 				47CC647D22DD140100463BF9 /* UseTreatViewController.swift in Sources */,
 				AD0DDC2C22DC8326007A4533 /* CartManager.swift in Sources */,
 				7B1E1FDA22D372E7007922E9 /* Category.swift in Sources */,
 				AD91F0E922EDA09E00AECAE2 /* SplashScreen.swift in Sources */,
+				47062A7E22F1F2D000610198 /* NotificationsTableCell.swift in Sources */,
 				474B257B22D895BF00D0A332 /* ProductCollectionViewCell.swift in Sources */,
 				47AD99F722E07A6E00B8021C /* FriendTableCell.swift in Sources */,
 				47575F8822DF5FCD00A61176 /* OrderedTreatsTableCell.swift in Sources */,
@@ -509,6 +532,7 @@
 				AD3A98F122DFA4D100B6368A /* MenuTableViewCell.swift in Sources */,
 				AD68A49922D91C9700E019BA /* Toast.swift in Sources */,
 				6D2EF9F822D6047B005F01A4 /* CategoriesViewController.swift in Sources */,
+				47062A8022F1F4C500610198 /* Notification.swift in Sources */,
 				AD91F0E722ECA72400AECAE2 /* CurrentUser.swift in Sources */,
 				AD3A98E122DF57A700B6368A /* SASearchBar.swift in Sources */,
 			);

@@ -23,6 +23,10 @@ class ProductCollectionViewCell: UICollectionViewCell {
 //    }
     
     func populate(product: Product){
+        
+        productName.layer.cornerRadius = 15.0
+        productPriceText.layer.cornerRadius = 15.0
+        self.layer.cornerRadius = 20.0
         productName.text = product.name
         productLogo.image = product.image
         productPriceText.text = "\(product.price) NIS"

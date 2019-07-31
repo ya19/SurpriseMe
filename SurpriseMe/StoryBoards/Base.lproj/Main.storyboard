@@ -22,6 +22,7 @@
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VsD-Yz-HWS"/>
+                                    <segue destination="mxJ-mB-Ult" kind="show" identifier="loginToShops" id="BSw-N1-M4L"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-mail..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eyU-wO-hd9" customClass="SATextField" customModule="SurpriseMe" customModuleProvider="target">
@@ -167,31 +168,13 @@
                         <viewLayoutGuide key="safeArea" id="cbx-Zw-UkD"/>
                     </view>
                     <connections>
-                        <segue destination="pz1-Jv-E38" kind="show" identifier="login" id="Juc-mA-eBh"/>
                         <segue destination="mxJ-mB-Ult" kind="show" identifier="toShops" id="YmU-f9-yCv"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="login" id="8nH-iQ-3WT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bx1-l1-eI8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="139" y="221"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="KOD-0v-Esl">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pz1-Jv-E38" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="blackTranslucent" id="ZGU-UC-J0H">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="nmg-oX-bXr"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XR1-OY-IkZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1023.1884057971015" y="218.97321428571428"/>
         </scene>
     </scenes>
     <resources>
@@ -199,4 +182,7 @@
         <image name="Instagram_icon" width="599" height="600"/>
         <image name="surprise" width="202" height="150"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="BSw-N1-M4L"/>
+    </inferredMetricsTieBreakers>
 </document>

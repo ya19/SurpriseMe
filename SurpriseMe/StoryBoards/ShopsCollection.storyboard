@@ -118,12 +118,20 @@
                                 <action selector="showMenu:" destination="jGR-ML-mwJ" id="zVy-8e-FVU"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="icons8-shopping_cart-6" id="KGu-Kn-oDn">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <segue destination="AIb-Sz-7Io" kind="show" id="6Fg-VC-lGC"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="icons8-shopping_cart-6" id="KGu-Kn-oDn">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <segue destination="AIb-Sz-7Io" kind="show" id="6Fg-VC-lGC"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="icons8-notification" id="bHh-EZ-fjl">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="showNotifications:" destination="jGR-ML-mwJ" id="r4c-yR-fGO"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z4q-kB-wKi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -142,11 +150,11 @@
                             <size key="itemSize" width="199" height="197"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="8" minY="8" maxX="8" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="productCell" id="vuc-WO-vhL" customClass="ProductCollectionViewCell" customModule="SurpriseMe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="199" height="197"/>
+                                <rect key="frame" x="107.5" y="8" width="199" height="197"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                     <rect key="frame" x="0.0" y="0.0" width="199" height="197"/>
@@ -159,26 +167,23 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="productName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="49z-Ry-VA3">
-                                            <rect key="frame" x="16" y="126" width="167" height="21.5"/>
-                                            <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <rect key="frame" x="16" y="132" width="167" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                            <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="highlightedColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="productPrice" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O23-OQ-uAD">
-                                            <rect key="frame" x="16" y="151.5" width="167" height="21.5"/>
-                                            <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <rect key="frame" x="16" y="156.5" width="167" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                            <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="highlightedColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </label>
                                     </subviews>
                                 </view>
+                                <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="0.25064212331232877" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailingMargin" secondItem="49z-Ry-VA3" secondAttribute="trailing" constant="8" id="0kB-tz-Ct8"/>
-                                    <constraint firstItem="49z-Ry-VA3" firstAttribute="top" secondItem="PAw-LC-A0Y" secondAttribute="bottom" constant="4" id="AIj-uu-dhM"/>
+                                    <constraint firstItem="49z-Ry-VA3" firstAttribute="top" secondItem="PAw-LC-A0Y" secondAttribute="bottom" constant="10" id="AIj-uu-dhM"/>
                                     <constraint firstItem="O23-OQ-uAD" firstAttribute="leading" secondItem="vuc-WO-vhL" secondAttribute="leadingMargin" constant="8" id="GKz-dH-E9h"/>
                                     <constraint firstItem="49z-Ry-VA3" firstAttribute="leading" secondItem="vuc-WO-vhL" secondAttribute="leadingMargin" constant="8" id="TQq-cT-Du1"/>
                                     <constraint firstItem="PAw-LC-A0Y" firstAttribute="centerX" secondItem="vuc-WO-vhL" secondAttribute="centerX" id="WMS-RV-zDT"/>
@@ -247,9 +252,10 @@
     <resources>
         <image name="Facebook-logo" width="200" height="198"/>
         <image name="icons8-menu-2" width="25" height="25"/>
+        <image name="icons8-notification" width="32" height="32"/>
         <image name="icons8-shopping_cart-6" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ih1-Ra-JHb"/>
+        <segue reference="6Fg-VC-lGC"/>
     </inferredMetricsTieBreakers>
 </document>
