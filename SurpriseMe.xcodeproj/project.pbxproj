@@ -11,6 +11,10 @@
 		47062A7C22F1F20C00610198 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47062A7B22F1F20C00610198 /* NotificationsViewController.swift */; };
 		47062A7E22F1F2D000610198 /* NotificationsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47062A7D22F1F2D000610198 /* NotificationsTableCell.swift */; };
 		47062A8022F1F4C500610198 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47062A7F22F1F4C500610198 /* Notification.swift */; };
+		47084D7E22F3141900CF6698 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47084D7D22F3141900CF6698 /* Profile.storyboard */; };
+		47084D8122F3293A00CF6698 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47084D8022F3293A00CF6698 /* ProfileViewController.swift */; };
+		47084D8322F32E0B00CF6698 /* FriendRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47084D8222F32E0B00CF6698 /* FriendRequestTableViewCell.swift */; };
+		47084D8522F3332B00CF6698 /* NewFriendTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47084D8422F3332B00CF6698 /* NewFriendTableCell.swift */; };
 		474B257922D8959E00D0A332 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474B257822D8959E00D0A332 /* ShopViewController.swift */; };
 		474B257B22D895BF00D0A332 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474B257A22D895BF00D0A332 /* ProductCollectionViewCell.swift */; };
 		47575F8022DF28F200A61176 /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47575F7F22DF28F200A61176 /* OrderCell.swift */; };
@@ -79,6 +83,10 @@
 		47062A7B22F1F20C00610198 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		47062A7D22F1F2D000610198 /* NotificationsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsTableCell.swift; sourceTree = "<group>"; };
 		47062A7F22F1F4C500610198 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		47084D7D22F3141900CF6698 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		47084D8022F3293A00CF6698 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		47084D8222F32E0B00CF6698 /* FriendRequestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestTableViewCell.swift; sourceTree = "<group>"; };
+		47084D8422F3332B00CF6698 /* NewFriendTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFriendTableCell.swift; sourceTree = "<group>"; };
 		474B257822D8959E00D0A332 /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		474B257A22D895BF00D0A332 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		47575F7F22DF28F200A61176 /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
@@ -174,6 +182,16 @@
 			path = Notifications;
 			sourceTree = "<group>";
 		};
+		47084D7F22F3291200CF6698 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				47084D8022F3293A00CF6698 /* ProfileViewController.swift */,
+				47084D8222F32E0B00CF6698 /* FriendRequestTableViewCell.swift */,
+				47084D8422F3332B00CF6698 /* NewFriendTableCell.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		47AD99F822E0A25900B8021C /* StoryBoards */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +203,7 @@
 				7BEC607922D4D5DB0040D6CF /* Register.storyboard */,
 				47AD99F022E06BEC00B8021C /* Friends.storyboard */,
 				AD3A98EE22DFA42A00B6368A /* Menu.storyboard */,
+				47084D7D22F3141900CF6698 /* Profile.storyboard */,
 			);
 			path = StoryBoards;
 			sourceTree = "<group>";
@@ -245,7 +264,6 @@
 			children = (
 				AD3A98F022DFA4D100B6368A /* MenuTableViewCell.swift */,
 				AD3A98F222DFA4E400B6368A /* MenuViewController.swift */,
-				47AD99FF22E0A73900B8021C /* Popups */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -316,6 +334,8 @@
 		7BAF23CA22D362E200E83A89 /* SurpriseMe */ = {
 			isa = PBXGroup;
 			children = (
+				47084D7F22F3291200CF6698 /* Profile */,
+				47AD99FF22E0A73900B8021C /* Popups */,
 				47062A7A22F1F1EF00610198 /* Notifications */,
 				AD7B2E6422E97AD300873D9F /* GoogleService-Info.plist */,
 				ADA1BA0922E1D574004EF8F0 /* FakeData */,
@@ -426,6 +446,7 @@
 				AD3A98EF22DFA42A00B6368A /* Menu.storyboard in Resources */,
 				AD0DDC2A22DC75F4007A4533 /* ShopsCollection.storyboard in Resources */,
 				7BAF23D122D362E200E83A89 /* Main.storyboard in Resources */,
+				47084D7E22F3141900CF6698 /* Profile.storyboard in Resources */,
 				47062A7922F1EC6800610198 /* Notifications.storyboard in Resources */,
 				47AD99F122E06BEC00B8021C /* Friends.storyboard in Resources */,
 				AD7B2E6522E97AD300873D9F /* GoogleService-Info.plist in Resources */,
@@ -515,9 +536,11 @@
 				ADDB515F22E4B12D00F262B6 /* ShopsManager.swift in Sources */,
 				474B257922D8959E00D0A332 /* ShopViewController.swift in Sources */,
 				ADDB641422E07EC7003A2916 /* AppMenu.swift in Sources */,
+				47084D8122F3293A00CF6698 /* ProfileViewController.swift in Sources */,
 				7B1E1FDC22D374CA007922E9 /* Product.swift in Sources */,
 				47CC647B22DCF83E00463BF9 /* TreatCell.swift in Sources */,
 				6D2EF9F422D60325005F01A4 /* ShopCollectionViewCell.swift in Sources */,
+				47084D8322F32E0B00CF6698 /* FriendRequestTableViewCell.swift in Sources */,
 				7B1E1FE222D377AC007922E9 /* Treat.swift in Sources */,
 				6D504AEE22DB278E006EABE0 /* ItemPopUpViewController.swift in Sources */,
 				47575F8422DF3ADC00A61176 /* OrdersAndTreatsViewController.swift in Sources */,
@@ -531,6 +554,7 @@
 				7B1E1FE922D38E3C007922E9 /* SAButton.swift in Sources */,
 				AD3A98F122DFA4D100B6368A /* MenuTableViewCell.swift in Sources */,
 				AD68A49922D91C9700E019BA /* Toast.swift in Sources */,
+				47084D8522F3332B00CF6698 /* NewFriendTableCell.swift in Sources */,
 				6D2EF9F822D6047B005F01A4 /* CategoriesViewController.swift in Sources */,
 				47062A8022F1F4C500610198 /* Notification.swift in Sources */,
 				AD91F0E722ECA72400AECAE2 /* CurrentUser.swift in Sources */,

@@ -41,9 +41,14 @@ class CurrentUser{
         
         if friends.count == currentFriendsNum{
             timer.invalidate()
-                    let friendsVC = UIStoryboard(name: "Friends", bundle: nil).instantiateViewController(withIdentifier: "friends") as! FriendsViewController
-                    friendsVC.friends = self.friends
-                    menu.parent?.navigationController?.pushViewController(friendsVC, animated: true)
+//                    let friendsVC = UIStoryboard(name: "Friends", bundle: nil).instantiateViewController(withIdentifier: "friends") as! FriendsViewController
+            
+            let profileVC = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "profile") as! ProfileViewController
+            
+            //profile view controller
+//                    friendsVC.friends = self.friends
+                    profileVC.friends = self.friends
+                    menu.parent?.navigationController?.pushViewController(profileVC, animated: true)
             menu.removeFromParent()
 
         }
@@ -94,8 +99,8 @@ class CurrentUser{
                                     for key in cartDic.keys{
                                         myCart.append(Treat.getTreatFromDictionary(cartDic[key] as! [String:Any]))
                                             myCart = myCart.sorted(by: { (t1, t2) -> Bool in
-//                                            return Int((t1.date?.timeIntervalSince1970)!) < Int((t2.date?.timeIntervalSince1970)!)
-                                                return t1.product.price < t2.product.price
+                                            return Int((t1.date?.timeIntervalSince1970)!) < Int((t2.date?.timeIntervalSince1970)!)
+
                                         })
                                     }
                                 }
