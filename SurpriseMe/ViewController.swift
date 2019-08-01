@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import CoreData
 
 class ViewController: BaseViewController {
     
@@ -24,6 +25,7 @@ class ViewController: BaseViewController {
     var emailError = UILabel()
     var passwordError = UILabel()
     
+    @IBOutlet weak var rememberDetails: UISwitch!
     @IBAction func checkEmailValidation(_ sender: SATextField) {
         sender.checkValidationNew(sender: sender, errorLabel: emailError, type: .isEmail)
     }
@@ -42,10 +44,6 @@ class ViewController: BaseViewController {
             
         }
     }
-    
-    
-    
-    
     
     
     @IBAction func login(_ sender: SAButton) {
@@ -84,20 +82,36 @@ class ViewController: BaseViewController {
                 return
             }
 
-//            print("THIS IS UID!!!! \(user.user.uid)")
+            
+//            if strongSelf.rememberDetails.isOn{
+                strongSelf.saveToCoreData()
+//            }
             CurrentUser.shared.configure(self!, asNavigation: true)
-//                let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
-//                strongSelf.show(shopsVC, sender: sender)
-           
-            
-            
-        
         }
         
     }
     
     
-    
+    func saveToCoreData(){
+        //core data
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.entity(forEntityName: "Users", in: context)
+        let newUser = NSManagedObject(entity: entity!, insertInto: context)
+        
+        newUser.setValue(emailTextField.text, forKey: "email")
+        newUser.setValue(passwordTextField.text, forKey: "password")
+        newUser.setValue(true, forKey: "loginAutomatically")
+        
+        do {
+            try context.save()
+//            context.refresh(newUser, mergeChanges: true)
+            print("saved to core data")
+        } catch {
+            print("Failed saving")
+        }
+    }
     
     
 
@@ -112,23 +126,10 @@ class ViewController: BaseViewController {
         setBackground(self.view , imageName: "pure-blue-sky")
         textFields = [emailTextField, passwordTextField]
         errorMessages = [emailError, passwordError]
-//        addressError.isHidden = true
-//        idError.isHidden = true
+
         self.view.addSubview(emailError)
         self.view.addSubview(passwordError)
-        
-//        if Auth.auth().currentUser != nil{
-//            
-//            //init currentuser
-//            CurrentUser.shared.configure(self)
-////                let shopsVC = UIStoryboard(name: "ShopsCollection", bundle: nil).instantiateViewController(withIdentifier: "shops") as! CategoriesViewController
-////                self.show(shopsVC, sender: nil)
-//            }
-            
-            
-            
-            
-            
+  
         }
    
     

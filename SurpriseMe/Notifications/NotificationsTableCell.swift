@@ -30,8 +30,9 @@ class NotificationsTableCell: UITableViewCell {
     }
     
     func populate(notification : Notification?){
-        notificationImage.image = notification?.image ?? #imageLiteral(resourceName: "placeholder")
-        notificationTitle.text = notification?.title ?? "You have a new ... Request"
+        notificationImage.image = notification!.image ?? #imageLiteral(resourceName: "placeholder")
+        notificationTitle.text = notification!.notificationType.description
+        notificationDescription.text = "\(notification!.sender!.firstName) \(notification!.notificationType.getDescription())"
         notificationDate.text = "Date and time of notification"
     }
 

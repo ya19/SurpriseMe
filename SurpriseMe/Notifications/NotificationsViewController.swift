@@ -11,13 +11,15 @@ import UIKit
 class NotificationsViewController: UIViewController {
 
     @IBOutlet weak var notificationsTableView: UITableView!
+    let notification = Notification.init(title: "Notification", description: "description", date: Date(), image: nil, sender: CurrentUser.shared.get()!, notificationType: .isFriedRequest)
     var notifications:[Notification]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
+notifications = [notification]
         //notifications = ...
+        
+        
         // Do any additional setup after loading the view.
         notificationsTableView.delegate = self
         notificationsTableView.dataSource = self
@@ -53,6 +55,6 @@ extension NotificationsViewController : UITableViewDataSource{
 
 extension NotificationsViewController : UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UIScreen.main.bounds.height / 10
+        return UIScreen.main.bounds.height / 8
     }
 }
