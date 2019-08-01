@@ -17,6 +17,8 @@ class NotificationsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 notifications = [notification]
+        AppMenu.clearMenu()
+        
         //notifications = ...
         
         

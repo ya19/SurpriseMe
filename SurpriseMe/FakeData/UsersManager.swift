@@ -177,15 +177,14 @@ class UsersManager{
     }
     func getAllButFriends(user:User) -> [User]{
         var usersId:[User] = []
-        print(users)
         for someuser in users{
             var ok = true
             for friend in user.friends{
-                if someuser.id == friend || someuser.id == user.id{
+                if someuser.id == friend{
                     ok = false
                 }
             }
-            if ok {
+            if ok , someuser.id != user.id {
                 usersId.append(someuser)
             }
         }

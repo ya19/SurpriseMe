@@ -81,9 +81,9 @@ extension MenuViewController:UITableViewDelegate{
             if let _ = self.parent as? FriendsViewController{
                 return
             }else{
-                let friendsVC = UIStoryboard(name: "Friends", bundle: nil).instantiateViewController(withIdentifier: "friends") as! FriendsViewController
-                self.parent?.navigationController?.pushViewController(friendsVC, animated: true)
-                menu.removeFromParent()
+//                let friendsVC = UIStoryboard(name: "Friends", bundle: nil).instantiateViewController(withIdentifier: "friends") as! FriendsViewController
+//                self.parent?.navigationController?.pushViewController(friendsVC, animated: true)
+                CurrentUser.shared.initFriendsVC()
 
                 return
             }

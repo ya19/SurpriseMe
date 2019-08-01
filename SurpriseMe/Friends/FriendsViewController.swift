@@ -65,6 +65,7 @@ class FriendsViewController: UIViewController {
         //            tableView.deleteRows(at: [indexPath], with: .fade)
         //            self.total.text = "Total: \(self.sum) NIS"
         UsersManager.shared.removeFriend(at: indexPath.row)
+        friends.remove(at: indexPath.row)
         table.deleteRows(at: [indexPath],with: .fade)
         table.reloadData()
     }
