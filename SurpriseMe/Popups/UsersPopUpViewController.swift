@@ -10,10 +10,20 @@ import UIKit
 
 class UsersPopUpViewController: UIViewController {
 
+    @IBOutlet weak var popUpView: SAView!
+    @IBOutlet weak var closeButton: SAButton!
+    
+    @IBAction func closePopUp(_ sender: SAButton) {
+        
+        PopUp.remove(controller: self)
+    }
+    
     var users:[User]?
     
     var delegate:deliverUserDelegate?
     var currentUsers:[User]?
+    
+    var searchingFriends:Bool?
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     

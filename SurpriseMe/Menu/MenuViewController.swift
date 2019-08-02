@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-import FirebaseAuth
+
 
 let menu = UIStoryboard(name: "Menu", bundle: nil).instantiateViewController(withIdentifier: "menuVC") as! MenuViewController
 class MenuViewController: UIViewController {
@@ -139,7 +139,7 @@ extension MenuViewController:UITableViewDataSource{
         
 
         let itemTitle = Screens(rawValue: indexPath.row)!.description
-        let menuItemsImages = [#imageLiteral(resourceName: "icons8-a_home"),#imageLiteral(resourceName: "icons8-friends"),#imageLiteral(resourceName: "icons8-wish_list") ,#imageLiteral(resourceName: "icons8-logout") ]
+        let menuItemsImages = [#imageLiteral(resourceName: "icons8-a_home"),#imageLiteral(resourceName: "icons8-profile"),#imageLiteral(resourceName: "icons8-wish_list") ,#imageLiteral(resourceName: "icons8-logout") ]
         cell.populate(title: itemTitle, image: menuItemsImages[indexPath.row])
         
         return cell

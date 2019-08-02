@@ -29,6 +29,6 @@ class ProductCollectionViewCell: UICollectionViewCell {
         self.layer.cornerRadius = 20.0
         productName.text = product.name
         productLogo.image = product.image
-        productPriceText.text = "\(product.price) NIS"
+        productPriceText.text = "\(product.price) ₪"
     }
 }

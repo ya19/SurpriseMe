@@ -74,7 +74,7 @@ class CartViewController: UIViewController {
         cartTableView.dataSource = self
 //        fakeProducts()
 //        print(CartManager.shared.treats)
-        total.text = "Total: \(sum) NIS"
+        total.text = "Total: \(sum) ₪"
         
         
         // Do any additional setup after loading the view.
@@ -118,7 +118,7 @@ extension CartViewController:UITableViewDelegate{
 //            CartManager.shared.treats.remove(at: indexPath.row)
 //            tableView.deleteRows(at: [indexPath], with: .fade)
     
-            self.total.text = "Total: \(self.sum) NIS"
+            self.total.text = "Total: \(self.sum) ₪"
         }
         
         removeAction.backgroundColor = UIColor.red
@@ -146,7 +146,7 @@ extension CartViewController:UITableViewDataSource{
         
         
         cell.populate(treat: CurrentUser.shared.get()!.myCart[indexPath.row])
-        cell.treat = CurrentUser.shared.get()!.myCart[indexPath.row]
+//        cell.treat = CurrentUser.shared.get()!.myCart[indexPath.row]
         cell.delegate = self
         return cell
     }

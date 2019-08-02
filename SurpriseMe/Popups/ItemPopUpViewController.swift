@@ -59,7 +59,7 @@ class ItemPopUpViewController: UIViewController {
     func initViews(){
         itemImage.image = item?.image
         itemTitle.text = item?.name
-        itemPrice.text = "Price: \(item?.price ?? 0.0)"
+        itemPrice.text = "Price: \(item?.price ?? 0.0) ₪"
         itemDescription.text = item?.desc
         if addToCart{
             addToCartBtn.isHidden = false

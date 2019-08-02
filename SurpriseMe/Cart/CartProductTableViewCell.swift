@@ -38,7 +38,7 @@ class CartProductTableViewCell: UITableViewCell {
     func populate(treat: Treat){
         productImage.image = treat.product.image
         productName.text = treat.product.name
-        productPrice.text = "Price: \(treat.product.price)"
+        productPrice.text = "Price: \(treat.product.price) ₪"
         if let getter = treat.getter {
             getterName.text = "\(getter)"
 

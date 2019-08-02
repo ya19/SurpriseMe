@@ -125,6 +125,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="friendImage" destination="3EV-Mt-SQs" id="Pel-Kv-E0d"/>
                                             <outlet property="friendNameLabel" destination="rn6-iG-Gt2" id="nCk-en-ygC"/>
                                             <outlet property="friendRequestDateLabel" destination="hvg-ZO-7Ob" id="k4Q-1K-npY"/>
                                         </connections>
@@ -166,7 +167,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="71P-j8-YJX">
-                                <rect key="frame" x="24" y="26.5" width="27" height="27"/>
+                                <rect key="frame" x="15" y="76.5" width="26.5" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="71P-j8-YJX" secondAttribute="height" multiplier="1:1" id="QJ4-ba-zow"/>
                                 </constraints>
@@ -176,12 +177,13 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="0.40298587325890406" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="0.74577268835616439" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="5LG-dA-Gxe" firstAttribute="centerY" secondItem="SxP-3g-dBs" secondAttribute="centerY" multiplier="1.04" id="0oD-Ca-iF5"/>
                             <constraint firstItem="ewV-K4-AEC" firstAttribute="centerY" secondItem="SxP-3g-dBs" secondAttribute="centerY" multiplier="0.8" id="4F8-BV-HBr"/>
                             <constraint firstItem="6xF-lj-9Kq" firstAttribute="centerY" secondItem="SxP-3g-dBs" secondAttribute="centerY" multiplier="1.04" id="6NB-Wx-Den"/>
-                            <constraint firstItem="71P-j8-YJX" firstAttribute="centerX" secondItem="SxP-3g-dBs" secondAttribute="centerX" multiplier="0.2" id="DQn-mC-KIN"/>
+                            <constraint firstItem="71P-j8-YJX" firstAttribute="centerX" secondItem="SxP-3g-dBs" secondAttribute="centerX" multiplier="0.15" id="DQn-mC-KIN"/>
                             <constraint firstItem="71P-j8-YJX" firstAttribute="height" secondItem="SxP-3g-dBs" secondAttribute="height" multiplier="0.04" id="Dq7-55-Cdp"/>
                             <constraint firstItem="syl-E1-BNG" firstAttribute="height" secondItem="SxP-3g-dBs" secondAttribute="height" multiplier="0.2" id="LLg-zw-aeh"/>
                             <constraint firstItem="6xF-lj-9Kq" firstAttribute="width" secondItem="SxP-3g-dBs" secondAttribute="width" multiplier="0.5" id="Myi-ym-efS"/>
@@ -197,7 +199,7 @@
                             <constraint firstItem="5LG-dA-Gxe" firstAttribute="centerX" secondItem="SxP-3g-dBs" secondAttribute="centerX" multiplier="1.8" id="jEt-7S-Cff"/>
                             <constraint firstItem="ewV-K4-AEC" firstAttribute="height" secondItem="SxP-3g-dBs" secondAttribute="height" multiplier="0.05" id="lNM-ns-m4S"/>
                             <constraint firstItem="6xF-lj-9Kq" firstAttribute="height" secondItem="SxP-3g-dBs" secondAttribute="height" multiplier="0.04" id="rus-Bb-8gr"/>
-                            <constraint firstItem="71P-j8-YJX" firstAttribute="centerY" secondItem="SxP-3g-dBs" secondAttribute="centerY" multiplier="0.12" id="vwi-On-pvz"/>
+                            <constraint firstItem="71P-j8-YJX" firstAttribute="centerY" secondItem="SxP-3g-dBs" secondAttribute="centerY" multiplier="0.27" id="vwi-On-pvz"/>
                             <constraint firstItem="5LG-dA-Gxe" firstAttribute="height" secondItem="SxP-3g-dBs" secondAttribute="height" multiplier="0.06" id="xbQ-Bi-7NG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2IJ-ty-AF6"/>

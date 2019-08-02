@@ -12,10 +12,23 @@ private let reuseIdentifier = "productCell"
 
 
 class ShopViewController: UICollectionViewController{
+    
+    var toggle = true
     @IBAction func showMenu(_ sender: UIBarButtonItem) {
         AppMenu.toggleMenu(parent: self)
 
     }
+    
+    @IBAction func showNotifications(_ sender: UIBarButtonItem) {
+        
+        let notificationsVC = UIStoryboard(name: "Notifications", bundle: nil).instantiateViewController(withIdentifier: "notifications") as! NotificationsViewController
+        
+        if menu.toggle {
+            toggle = true
+        }
+        toggle = PopUp.toggle(child: notificationsVC, parent: self, toggle: toggle)
+    }
+    
     
     var shop:Shop?
     override func viewDidLoad() {
@@ -34,10 +47,9 @@ class ShopViewController: UICollectionViewController{
         
         self.collectionView.backgroundView = UIImageView(image: shop?.backgroudImage)
         self.collectionView.backgroundView?.alpha = 0.7
-        self.navigationController?.navigationBar.isTranslucent = true
 
         self.title = shop?.name
-        self.navigationController?.navigationBar.tintColor = UIColor.white
+      
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

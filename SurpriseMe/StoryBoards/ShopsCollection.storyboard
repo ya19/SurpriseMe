@@ -113,20 +113,17 @@
                     </collectionView>
                     <navigationItem key="navigationItem" title="Shops" id="e07-mP-BtI">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="icons8-menu-2" id="qr6-To-M6t">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="showMenu:" destination="jGR-ML-mwJ" id="zVy-8e-FVU"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem image="icons8-shopping_cart-6" id="KGu-Kn-oDn">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <segue destination="AIb-Sz-7Io" kind="show" id="6Fg-VC-lGC"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Item" image="icons8-notification" id="bHh-EZ-fjl">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="showNotifications:" destination="jGR-ML-mwJ" id="r4c-yR-fGO"/>
                                 </connections>
@@ -210,11 +207,18 @@
                                 <action selector="showMenu:" destination="tnY-bs-PzJ" id="qPN-22-L1l"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="cart" image="icons8-shopping_cart-6" id="e20-rY-vyE">
-                            <connections>
-                                <segue destination="AIb-Sz-7Io" kind="show" id="Ih1-Ra-JHb"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="cart" image="icons8-shopping_cart-6" id="e20-rY-vyE">
+                                <connections>
+                                    <segue destination="AIb-Sz-7Io" kind="show" id="Ih1-Ra-JHb"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="notification" image="icons8-notification" id="syB-Wl-Pn5">
+                                <connections>
+                                    <action selector="showNotifications:" destination="tnY-bs-PzJ" id="N0t-Cp-aQK"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IPR-8S-D2q" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -226,10 +230,10 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VgP-LJ-mGs" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="blackTranslucent" id="5hT-PN-beb">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="5hT-PN-beb">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -256,6 +260,6 @@
         <image name="icons8-shopping_cart-6" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6Fg-VC-lGC"/>
+        <segue reference="Ih1-Ra-JHb"/>
     </inferredMetricsTieBreakers>
 </document>
