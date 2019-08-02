@@ -15,7 +15,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     var friends:[User] = []
-    
+    var requests:[User] = []
     @IBOutlet weak var friendsRequestsTableView: UITableView!
     
     @IBAction func segmentedValueChanged(_ sender: UISegmentedControl) {
@@ -57,7 +57,9 @@ class ProfileViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
-    
+    func initList(){
+        CurrentUser.shared.initFriendsVC(refresh: false, profileVC: nil)
+    }
     func setupViews(){
         userImage.image = #imageLiteral(resourceName: "icons8-user").circleMasked//CurrentUser...image
         nameLabel.text = "\(CurrentUser.shared.get()!.fullName)"
@@ -96,7 +98,7 @@ extension ProfileViewController : UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch friendsRequestsSegmented.selectedSegmentIndex{
             case 0: return  friends.count
-            case 1: return 1 //todo: currentuser.myFriendRequests.
+            case 1: return requests.count //todo: currentuser.myFriendRequests.
         default:
             return 1
         }
@@ -118,8 +120,11 @@ extension ProfileViewController : UITableViewDataSource{
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendRequestCell") as? FriendRequestTableViewCell else{return UITableViewCell()}
             //todo add the populate parameter as request.
-            cell.populate()
-            
+            cell.populate(user: requests[indexPath.row])
+            cell.user = requests[indexPath.row]
+            cell.delegate = self
+            cell.refresh = self
+            cell.profileVC = self
             return cell
             
         default:
@@ -186,7 +191,35 @@ extension ProfileViewController : deliverUserDelegate{
         
         //update in database
         //        currentUser.friends.append(user)
-        UsersManager.shared.add(friend: userId)
+        UsersManager.shared.add(friendRequest: userId)
         self.friendsRequestsTableView.reloadData()
     }
+}
+
+
+protocol updateList {
+    func remove(at: Int)
+}
+
+extension ProfileViewController:updateList , Refresh, RefreshProfileVC{
+    func remove(at: Int){
+        requests.remove(at: at)
+        friendsRequestsTableView.deleteRows(at: [IndexPath(row: at, section: 0)], with: .none)
+        friendsRequestsTableView.reloadData()
+    }
+    func reload() {
+        CurrentUser.shared.initFriendsVC(refresh: true, profileVC: self)
+    }
+    func reloadMyData(friends: [User] , requests:[User]) {
+        self.friends = friends
+        self.requests = requests
+        self.friendsRequestsTableView.reloadData()
+    }
+}
+protocol RefreshProfileVC {
+    func reloadMyData(friends: [User] , requests:[User])
+}
+
+protocol Refresh {
+    func reload()
 }

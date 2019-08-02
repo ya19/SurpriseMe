@@ -139,7 +139,7 @@ extension FriendsViewController : deliverUserDelegate{
                 
         //update in database
 //        currentUser.friends.append(user)
-        UsersManager.shared.add(friend: userId)
+        UsersManager.shared.add(friendRequest: userId)
         self.friendsTableView.reloadData()
     }
 }

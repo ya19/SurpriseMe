@@ -67,12 +67,15 @@ extension UsersPopUpViewController:UISearchBarDelegate{
 }
 extension UsersPopUpViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.deliver(userId: self.currentUsers![indexPath.row].id)
+        
         if let friendsVC = self.parent as? FriendsViewController{
             //update in data base.
-            friendsVC.toggle = !friendsVC.toggle
-
             
+            friendsVC.toggle = !friendsVC.toggle
+            delegate?.deliver(userId: self.users![indexPath.row].id)
+            
+        }else{
+            delegate?.deliver(userId: self.currentUsers![indexPath.row].id)
         }
         PopUp.remove(controller: self)
         
