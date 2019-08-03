@@ -40,16 +40,13 @@ class CurrentUser{
                     print("--------observerFriendID handler -")
                     self.friends.append(User.getUserFromDictionary(friendData.value as! [String:Any]))
                 })
-                print("NEW HANDLER ----\(handler10)")
         }
         
         for friendRequestId in CurrentUser.shared.get()!.receivedFriendRequests{
-            let handler11 = self.ref.child("users").child(friendRequestId).observeSingleEvent(of: .value, with: { (requestData) in
-                print("--------friend Request handler -")
+            self.ref.child("users").child(friendRequestId).observeSingleEvent(of: .value, with: { (requestData) in
 
                 self.requests.append(User.getUserFromDictionary(requestData.value as! [String:Any]))
             })
-            print("NEW HANDLER ----\(handler11)")
 
         }
         if !refresh{
@@ -125,7 +122,7 @@ class CurrentUser{
                     }
                         let handle4 = self.ref.child("treats").child(id).observe( .value, with: { (treatsData) in
                             print("--------treat observer handler -")
-
+                            NotificationManager.shared.createNotification(with: "Come find out who treated you!", delay: 0.5, notificationType: .isTreatRequest)
                         var myTreats:[Treat] = []
                         if let treatsDic = treatsData.value as? [String:Any]{
                             for key in treatsDic.keys{

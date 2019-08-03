@@ -36,6 +36,7 @@ class CartProductTableViewCell: UITableViewCell {
     }
     
     func populate(treat: Treat){
+        self.treat = treat
         productImage.image = treat.product.image
         productName.text = treat.product.name
         productPrice.text = "Price: \(treat.product.price) ₪"
