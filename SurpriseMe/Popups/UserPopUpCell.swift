@@ -16,6 +16,9 @@ class UserPopUpCell: UITableViewCell {
         // Initialization code
     }
 
+    @IBOutlet weak var friendAddBtn: SAButton!
+    @IBAction func friendAddToggle(_ sender: SAButton) {
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -25,5 +28,8 @@ class UserPopUpCell: UITableViewCell {
     func populate(user: User){
 //        fullName.text = "\(user.firstName) \(user.lastName)"
         fullName.text = user.fullName
+    }
+    func populate(user: User,friendAdd:Bool){
+        
     }
 }
