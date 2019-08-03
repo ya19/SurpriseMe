@@ -83,8 +83,7 @@ class SplashScreen: UIViewController {
                 email = userObject.value(forKey: "email") as? String
                 password = userObject.value(forKey: "password") as? String
                 loginAutomatically = userObject.value(forKey: "loginAutomatically") as? Bool
-                print(email)
-                print(loginAutomatically)
+                
             
             }
             if loginAutomatically != nil{

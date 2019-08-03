@@ -10,6 +10,10 @@ import UIKit
 
 class FriendRequestTableViewCell: UITableViewCell {
 
+    var user:User?
+    var delegate:updateList?
+    var once = true
+    var profileVC:ProfileViewController?
     @IBOutlet weak var friendNameLabel: UILabel!
     
     @IBOutlet weak var friendRequestDateLabel: UILabel!
@@ -17,19 +21,30 @@ class FriendRequestTableViewCell: UITableViewCell {
     @IBOutlet weak var friendImage: UIImageView!
     
     @IBAction func acceptFriendRequest(_ sender: UIButton) {
-        
+        if once {
+            once = false
+
+            UsersManager.shared.add(friend: user!.id, profileVC: profileVC!)
         //todo approve request and delete from list
+            delegate?.remove(at: self.indexPath!.row)
+            
+
+        }
     }
     
     
     @IBAction func declineFriendRequest(_ sender: UIButton) {
-        
+        if once{
+            once = false
+            UsersManager.shared.deny(friend: user!.id)
+            delegate?.remove(at: self.indexPath!.row)
+        }
+
         //todo decline request and delete from list (in database)
     }
-    
     //todo: parameter friend request.
-    func populate(){
-        friendNameLabel.text = "Fake name"
+    func populate(user:User){
+        friendNameLabel.text = user.fullName
         friendRequestDateLabel.text = "Now"
         friendImage.image = #imageLiteral(resourceName: "icons8-user").circleMasked
     }

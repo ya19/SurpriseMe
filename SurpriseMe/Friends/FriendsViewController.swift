@@ -64,7 +64,7 @@ class FriendsViewController: UIViewController {
         //            CartManager.shared.treats.remove(at: indexPath.row)
         //            tableView.deleteRows(at: [indexPath], with: .fade)
         //            self.total.text = "Total: \(self.sum) NIS"
-        UsersManager.shared.removeFriend(at: indexPath.row)
+        UsersManager.shared.removeFriend(friendId: friends[indexPath.row].id)
         friends.remove(at: indexPath.row)
         table.deleteRows(at: [indexPath],with: .fade)
         table.reloadData()
@@ -139,7 +139,7 @@ extension FriendsViewController : deliverUserDelegate{
                 
         //update in database
 //        currentUser.friends.append(user)
-        UsersManager.shared.add(friend: userId)
+        UsersManager.shared.add(friendRequest: userId)
         self.friendsTableView.reloadData()
     }
 }

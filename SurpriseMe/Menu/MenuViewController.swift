@@ -78,12 +78,12 @@ extension MenuViewController:UITableViewDelegate{
             menu.toggle = !menu.toggle
             self.view.removeFromSuperview()
 
-            if let _ = self.parent as? FriendsViewController{
+            if let _ = self.parent as? ProfileViewController{
                 return
             }else{
 //                let friendsVC = UIStoryboard(name: "Friends", bundle: nil).instantiateViewController(withIdentifier: "friends") as! FriendsViewController
 //                self.parent?.navigationController?.pushViewController(friendsVC, animated: true)
-                CurrentUser.shared.initFriendsVC()
+                CurrentUser.shared.initFriendsVC(refresh: false, profileVC: nil)
 
                 return
             }

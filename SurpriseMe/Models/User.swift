@@ -14,7 +14,7 @@ var currentUser = User.init(id: "user1", email: "shahaf_t@narkis.co.il", firstNa
           friends: [
             "user2"
             
-    ], myCart: [],
+    ], myCart: [], sentFriendRequests: [], receivedFriendRequests: [],
           myTreats:
     [
         Treat.init(id: "treat1", date: Date(), product: Product.init(id: "product1", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 159.00), giver: "user1", getter: "user2", treatStatus: TreatStatus.NotUsed),
@@ -56,7 +56,10 @@ struct User:Hashable,Equatable{
     var friends:[String]
     
     var myCart:[Treat]
-//    var friendRequsts:[String]
+    
+    var sentFriendRequests:[String]
+    
+    var receivedFriendRequests:[String]
     
     var myTreats:[Treat]
     
@@ -104,6 +107,6 @@ struct User:Hashable,Equatable{
 //            address = addressDic
 //        }
         
-        return User(id: id, email: email, firstName: firstName, lastName: lastName, dateOfBitrh: dateOfBirth, friends: [], myCart: [], myTreats: [], myOrders: [], getTreatsStatus: getTreatStatus!, address: address)
+        return User(id: id, email: email, firstName: firstName, lastName: lastName, dateOfBitrh: dateOfBirth, friends: [], myCart: [], sentFriendRequests: [], receivedFriendRequests: [], myTreats: [], myOrders: [], getTreatsStatus: getTreatStatus!, address: address)
     }
 }

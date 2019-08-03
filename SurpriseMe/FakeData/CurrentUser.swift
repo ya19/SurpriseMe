@@ -16,38 +16,65 @@ class CurrentUser{
     var delegate : DoneReadingFriends?
     private let ref = Database.database().reference()
     private var currentFriendsNum:Int
+    private var currentRequestsNum:Int
     var friends:[User]
+    var requests:[User]
+    var profileVC:ProfileViewController?
     private init(){
       user = nil
         friends = []
+        requests = []
+        profileVC = nil
         currentFriendsNum = 0
+        currentRequestsNum = 0
     }
     
-    func initFriendsVC() {
-       
+    func initFriendsVC(refresh:Bool, profileVC:ProfileViewController?) {
+       self.profileVC = profileVC
         friends = []
-        
+        requests = []
+        currentRequestsNum = CurrentUser.shared.get()!.receivedFriendRequests.count
         currentFriendsNum = CurrentUser.shared.get()!.friends.count
             for friendId in CurrentUser.shared.get()!.friends{
                 self.ref.child("users").child(friendId).observeSingleEvent(of: .value, with: { (friendData) in
                     self.friends.append(User.getUserFromDictionary(friendData.value as! [String:Any]))
                 })
         }
-        Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.didFriendsLoaded(_:)), userInfo: nil, repeats: true)
+        for friendRequestId in CurrentUser.shared.get()!.receivedFriendRequests{
+            self.ref.child("users").child(friendRequestId).observeSingleEvent(of: .value, with: { (requestData) in
+                self.requests.append(User.getUserFromDictionary(requestData.value as! [String:Any]))
+            })
+        }
+        if !refresh{
+                Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.didFriendsLoaded(_:)), userInfo: nil, repeats: true)
+        }else{
+            
+                Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.refreshFriends(_:)), userInfo: nil, repeats: true)
+        }
         
     }
+    @objc func refreshFriends(_ timer: Timer){
+        if friends.count == currentFriendsNum , requests.count == currentRequestsNum{
+            timer.invalidate()
+          
+            let reloadDelegate:RefreshProfileVC = profileVC!
+            reloadDelegate.reloadMyData(friends: self.friends,requests: self.requests)
+        }
+    }
     @objc func didFriendsLoaded(_ timer: Timer){
-        print("i am in" , friends.count , currentFriendsNum)
+        print(friends.count , "-" , currentFriendsNum, "$$$" , requests.count , "-" , currentRequestsNum)
         
-        if friends.count == currentFriendsNum{
+        if friends.count == currentFriendsNum , requests.count == currentRequestsNum{
             timer.invalidate()
 //                    let friendsVC = UIStoryboard(name: "Friends", bundle: nil).instantiateViewController(withIdentifier: "friends") as! FriendsViewController
-            
+    
             let profileVC = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "profile") as! ProfileViewController
             
             //profile view controller
 //                    friendsVC.friends = self.friends
                     profileVC.friends = self.friends
+                    profileVC.requests = self.requests
+            
                     menu.parent?.navigationController?.pushViewController(profileVC, animated: true)
             menu.removeFromParent()
 
@@ -104,7 +131,18 @@ class CurrentUser{
                                         })
                                     }
                                 }
-                                self.user  = User(id: id, email: email, firstName: firstName, lastName: lastName, dateOfBitrh: dateOfBirth, friends: friends, myCart: myCart, myTreats: myTreats, myOrders: myOrders, getTreatsStatus: getTreatStatus, address: address)
+                                self.ref.child("sentFriendRequests").child(id).observe(.value, with: { (sentData) in
+                                    var sentFriendRequests:[String] = []
+                                    if let sent = sentData.value as? [String]{
+                                        sentFriendRequests = sent
+                                    }
+                                    self.ref.child("receivedFriendRequests").child(id).observe(.value, with: { (receivedData) in
+                                        var receivedFriendRequests:[String] = []
+                                        if let received = receivedData.value as? [String]{
+                                            receivedFriendRequests = received
+                                        }
+                                    self.user  = User(id: id, email: email, firstName: firstName, lastName: lastName, dateOfBitrh: dateOfBirth, friends: friends, myCart: myCart, sentFriendRequests: sentFriendRequests, receivedFriendRequests: receivedFriendRequests
+                                    , myTreats: myTreats, myOrders: myOrders, getTreatsStatus: getTreatStatus, address: address)
                                 if once{
                                 once = !once
                                     if asNavigation{
@@ -113,14 +151,18 @@ class CurrentUser{
                                         
                                         let controller = vc as! ViewController
                                         controller.performSegue(withIdentifier: "loginToShops", sender: nil)
+                                        print("Configured", self.user)
                                         
                                     } else {
                                         let controller = vc as! SplashScreen
                                         controller.performSegue(withIdentifier: "toShops", sender: nil)
                                     }
                                 }
+                                    })
+
                             })
-                      
+                            })
+
             })
             
         
