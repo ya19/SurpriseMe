@@ -22,7 +22,6 @@
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VsD-Yz-HWS"/>
-                                    <segue destination="mxJ-mB-Ult" kind="show" identifier="loginToShops" id="BSw-N1-M4L"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-mail..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eyU-wO-hd9" customClass="SATextField" customModule="SurpriseMe" customModuleProvider="target">
@@ -150,6 +149,7 @@
                         <outlet property="emailTextField" destination="eyU-wO-hd9" id="AVU-4A-V9Z"/>
                         <outlet property="passwordTextField" destination="efa-DG-GsF" id="FPW-yH-Pmq"/>
                         <outlet property="rememberDetails" destination="AHP-qM-hax" id="uYo-pm-Vn6"/>
+                        <segue destination="mxJ-mB-Ult" kind="show" identifier="loginToShops" id="71O-cP-wbz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -201,6 +201,6 @@
         <image name="surprise" width="202" height="150"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BSw-N1-M4L"/>
+        <segue reference="71O-cP-wbz"/>
     </inferredMetricsTieBreakers>
 </document>

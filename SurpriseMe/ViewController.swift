@@ -82,11 +82,7 @@ class ViewController: BaseViewController {
                 return
             }
 
-            
-//            if strongSelf.rememberDetails.isOn{
-                strongSelf.saveToCoreData()
-//            }
-            CurrentUser.shared.configure(self!, asNavigation: true)
+            CurrentUser.shared.configure(strongSelf, asNavigation: true)
         }
         
     }
@@ -127,6 +123,7 @@ class ViewController: BaseViewController {
         textFields = [emailTextField, passwordTextField]
         errorMessages = [emailError, passwordError]
 
+        AppMenu.clearMenu()
         self.view.addSubview(emailError)
         self.view.addSubview(passwordError)
   

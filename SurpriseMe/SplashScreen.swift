@@ -52,13 +52,13 @@ class SplashScreen: UIViewController {
                 
                 
                 if Auth.auth().currentUser != nil{
-                    if self.fetchFromCoreData(){
+//                    if self.fetchFromCoreData(){
                     
                     //init currentuser
                     CurrentUser.shared.configure(self, asNavigation: false)
-                    } else{
-                        self.performSegue(withIdentifier: "login", sender: nil)
-                    }
+//                    } else{
+//                        self.performSegue(withIdentifier: "login", sender: nil)
+//                    }
                 } else{
                     self.performSegue(withIdentifier: "login", sender: nil)
                 }

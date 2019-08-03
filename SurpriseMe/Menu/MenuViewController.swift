@@ -112,6 +112,28 @@ extension MenuViewController:UITableViewDelegate{
                     
                     //todo add an alert asking if the user is sure he wants to log out
                     //todo check if to delete the navigation from the login screen, cause it appears again. it doesn't concern the view did load hidden navigation...
+                    
+                    
+                    //tried to remove all observers in one method or remove each handler numbers that got in the first login, but the handle number changes to each re-attaching of observe. try to find out how to solve. maybe the issue is the profile initiate. while the current user is reading the last id..
+          
+
+                    Database.database().reference().child("users").child(CurrentUser.shared.get()!.id).removeAllObservers()
+                    
+                    Database.database().reference().child("friends").child(CurrentUser.shared.get()!.id).removeAllObservers()
+                    
+                    Database.database().reference().child("orders").child(CurrentUser.shared.get()!.id).removeAllObservers()
+                    
+                    Database.database().reference().child("treats").child(CurrentUser.shared.get()!.id).removeAllObservers()
+                    
+                    Database.database().reference().child("myCart").child(CurrentUser.shared.get()!.id).removeAllObservers()
+                    
+                    Database.database().reference().child("sentFriendRequests").child(CurrentUser.shared.get()!.id).removeAllObservers()
+                    
+                    Database.database().reference().child("receivedFriendRequests").child(CurrentUser.shared.get()!.id).removeAllObservers()
+                    
+                    
+                    
+                    
                     self.parent?.navigationController?.pushViewController(controller, animated: true)
                 } catch let signOutError as NSError {
                     Toast.show(message: "Error signing out: \(signOutError)", controller: self.parent!)

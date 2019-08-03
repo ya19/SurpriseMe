@@ -98,7 +98,7 @@ extension ProfileViewController : UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch friendsRequestsSegmented.selectedSegmentIndex{
             case 0: return  friends.count
-            case 1: return requests.count //todo: currentuser.myFriendRequests.
+            case 1: return requests.count
         default:
             return 1
         }
@@ -108,13 +108,8 @@ extension ProfileViewController : UITableViewDataSource{
         switch(friendsRequestsSegmented.selectedSegmentIndex){
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendCell") as? NewFriendTableCell else{return UITableViewCell()}
-            
-//            cell.populate(user: User.init(id: "203137252", email: "shahaf@tepler.com", firstName: "Shahaf", lastName: "Tepler", dateOfBitrh: Date(), friends: [], myCart: [], myTreats: [], myOrders: [], getTreatsStatus: .EVERYONE, address: [:]))
-            
-            
+
             cell.populate(user: friends[indexPath.row])
-            //todo: populate with actual friends and not fake. at the moment its only ID's.    cell.populate(CurrentUser.shared.get().friends[indexPath.row])
-            
             return cell
             
         case 1:
@@ -150,7 +145,7 @@ extension ProfileViewController : UITableViewDataSource{
         if friendsRequestsSegmented.selectedSegmentIndex == 0{
         let removeAction = UITableViewRowAction(style: .destructive, title: "Remove") { (action, indexPath) in
             
-            let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to delete \(self.friends[indexPath.row].fullName)", preferredStyle: .alert)
+            let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to delete \(self.friends[indexPath.row].fullName)?", preferredStyle: .alert)
             
             // Create OK button with action handler
             let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in

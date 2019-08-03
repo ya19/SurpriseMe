@@ -14,7 +14,7 @@ class CurrentUser{
     
     private var user:User?
     var delegate : DoneReadingFriends?
-    private let ref = Database.database().reference()
+    let ref = Database.database().reference()
     private var currentFriendsNum:Int
     private var currentRequestsNum:Int
     var friends:[User]
@@ -36,14 +36,21 @@ class CurrentUser{
         currentRequestsNum = CurrentUser.shared.get()!.receivedFriendRequests.count
         currentFriendsNum = CurrentUser.shared.get()!.friends.count
             for friendId in CurrentUser.shared.get()!.friends{
-                self.ref.child("users").child(friendId).observeSingleEvent(of: .value, with: { (friendData) in
+                let handler10 = self.ref.child("users").child(friendId).observeSingleEvent(of: .value, with: { (friendData) in
+                    print("--------observerFriendID handler -")
                     self.friends.append(User.getUserFromDictionary(friendData.value as! [String:Any]))
                 })
+                print("NEW HANDLER ----\(handler10)")
         }
+        
         for friendRequestId in CurrentUser.shared.get()!.receivedFriendRequests{
-            self.ref.child("users").child(friendRequestId).observeSingleEvent(of: .value, with: { (requestData) in
+            let handler11 = self.ref.child("users").child(friendRequestId).observeSingleEvent(of: .value, with: { (requestData) in
+                print("--------friend Request handler -")
+
                 self.requests.append(User.getUserFromDictionary(requestData.value as! [String:Any]))
             })
+            print("NEW HANDLER ----\(handler11)")
+
         }
         if !refresh{
                 Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.didFriendsLoaded(_:)), userInfo: nil, repeats: true)
@@ -85,8 +92,7 @@ class CurrentUser{
     }
     func configure(_ vc:UIViewController , asNavigation : Bool){
         var once = true
-        ref.child("users").child(Auth.auth().currentUser!.uid).observe(.value, with: { (datasnapshot) in
-            
+        let handle = ref.child("users").child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (datasnapshot) in
             let dic = datasnapshot.value as! [String:Any]
             
             let id = dic["id"] as! String
@@ -100,27 +106,35 @@ class CurrentUser{
             
 
             
-            self.ref.child("friends").child(id).observe(.value, with: { (friendsData) in
+            let handle2 = self.ref.child("friends").child(id).observe(.value, with: { (friendsData) in
+
+                print("--------friend observer handler -")
                 var friends:[String] = []
                     if let friendsArr = friendsData.value as? [String]{
 //                        self.delegate?.doneReadingFriends()
                     friends = friendsArr // todo check if it works.
                     }
-                self.ref.child("orders").child(id).observe( .value, with: { (ordersData) in
+                let handle3 = self.ref.child("orders").child(id).observe( .value, with: { (ordersData) in
+                    print("--------order observer handler -")
+
                     var myOrders:[Order] = []
                     if let ordersDic = ordersData.value as? [String:Any]{
                         for key in ordersDic.keys{
                             myOrders.append(Order.getOrderFromDictionary(ordersDic[key] as! [String:Any]))
                         }
                     }
-                        self.ref.child("treats").child(id).observe( .value, with: { (treatsData) in
+                        let handle4 = self.ref.child("treats").child(id).observe( .value, with: { (treatsData) in
+                            print("--------treat observer handler -")
+
                         var myTreats:[Treat] = []
                         if let treatsDic = treatsData.value as? [String:Any]{
                             for key in treatsDic.keys{
                                 myTreats.append(Treat.getTreatFromDictionary(treatsDic[key] as! [String:Any]))
                             }
                         }
-                            self.ref.child("myCart").child(id).observe(.value, with: { (cartData) in
+                            let handle5 = self.ref.child("myCart").child(id).observe(.value, with: { (cartData) in
+                                print("--------cart observer handler -")
+
                                 var myCart:[Treat] = []
                                 if let cartDic = cartData.value as? [String:Any]{
                                     for key in cartDic.keys{
@@ -131,12 +145,16 @@ class CurrentUser{
                                         })
                                     }
                                 }
-                                self.ref.child("sentFriendRequests").child(id).observe(.value, with: { (sentData) in
+                                let handle6 = self.ref.child("sentFriendRequests").child(id).observe(.value, with: { (sentData) in
+                                    print("--------sent friend request observer handler -")
+
                                     var sentFriendRequests:[String] = []
                                     if let sent = sentData.value as? [String]{
                                         sentFriendRequests = sent
                                     }
-                                    self.ref.child("receivedFriendRequests").child(id).observe(.value, with: { (receivedData) in
+                                    let handle7 = self.ref.child("receivedFriendRequests").child(id).observe(.value, with: { (receivedData) in
+                                        print("--------received friend request observer handler -")
+
                                         var receivedFriendRequests:[String] = []
                                         if let received = receivedData.value as? [String]{
                                             receivedFriendRequests = received
@@ -159,20 +177,27 @@ class CurrentUser{
                                     }
                                 }
                                     })
+                                    print("---------------- HANDLER\(handle7)")
 
                             })
+                                print("---------------- HANDLER\(handle6)")
                             })
 
+                            print("---------------- HANDLER\(handle5)")
             })
             
         
             
             
+                    print("---------------- HANDLER\(handle4)")
         })
+                print("---------------- HANDLER\(handle3)")
     })
+            print("---------------- HANDLER\(handle2)")
     })
+print("---------------- HANDLER\(handle)")
     }
-    
+
 }
 
 protocol DoneReadingFriends{
