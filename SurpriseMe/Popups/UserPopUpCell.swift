@@ -15,9 +15,30 @@ class UserPopUpCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    var friendAdd:Bool?
+    var friend:User?
+    var didFinishReceived = true
+    var didFinishSent = true
     @IBOutlet weak var friendAddBtn: SAButton!
     @IBAction func friendAddToggle(_ sender: SAButton) {
+        // changing the bool
+        
+        if didFinishSent , didFinishReceived{
+        didFinishReceived = false
+        didFinishSent = false
+        friendAdd! = !friendAdd!
+        if friendAdd!{
+            // add request
+            UsersManager.shared.add(friendRequest: friend!.id,userCell: self)
+            friendAddBtn.setImage(UIImage(named: "icons8-cancel"), for: .normal)
+        }else{
+            // cancel request
+            UsersManager.shared.cancelFriendRequest(friendId: friend!.id,userCell: self)
+            friendAddBtn.setImage(UIImage(named: "icons8-add"), for: .normal)
+            
+        }
+        }
+        
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -30,6 +51,15 @@ class UserPopUpCell: UITableViewCell {
         fullName.text = user.fullName
     }
     func populate(user: User,friendAdd:Bool){
-        
+        friendAddBtn.isHidden = false
+        fullName.text = user.fullName
+        friend = user
+        self.friendAdd = friendAdd
+        if friendAdd{
+            friendAddBtn.setImage(UIImage(named: "icons8-cancel"), for: .normal)
+        }else{
+            friendAddBtn.setImage(UIImage(named: "icons8-add"), for: .normal)
+
+        }
     }
 }

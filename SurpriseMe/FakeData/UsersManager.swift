@@ -187,7 +187,7 @@ class UsersManager{
     }
     
     
-    func cancelFriendRequest(friendId:String){
+    func cancelFriendRequest(friendId:String, userCell:UserPopUpCell){
         // delete from the friend id recieved array myself.
         // delete from my sent the friendID
         
@@ -204,9 +204,13 @@ class UsersManager{
             }
             received.remove(at: remember)
             if received.count > 0 {
-                self.ref.child("receivedFriendRequests").updateChildValues([friendId:received])
+                self.ref.child("receivedFriendRequests").updateChildValues([friendId:received]){ (Error, DatabaseReference) in
+                    userCell.didFinishReceived = true
+                }
             }else{
-                self.ref.child("receivedFriendRequests").child(friendId).removeValue()
+                self.ref.child("receivedFriendRequests").child(friendId).removeValue(completionBlock: { (Error, DatabaseReference) in
+                    userCell.didFinishReceived = true
+                })
             }
         }
         
@@ -219,9 +223,13 @@ class UsersManager{
         }
         sent.remove(at: remember)
         if sent.count>0{
-            self.ref.child("sentFriendRequests").updateChildValues([CurrentUser.shared.get()!.id:sent])
+            self.ref.child("sentFriendRequests").updateChildValues([CurrentUser.shared.get()!.id:sent]) { (Error, DatabaseReference) in
+                userCell.didFinishSent = true
+            }
         }else{
-            self.ref.child("sentFriendRequests").child(CurrentUser.shared.get()!.id).removeValue()
+            self.ref.child("sentFriendRequests").child(CurrentUser.shared.get()!.id).removeValue { (Error, DatabaseReference) in
+                userCell.didFinishSent = true
+            }
         }
         
         
@@ -234,7 +242,7 @@ class UsersManager{
 //        ref.child("friendRequests").updateChildValues([CurrentUser.shared.get()!.id:friendRequests])
 
     }
-    func add(friendRequest:String){
+    func add(friendRequest:String, userCell:UserPopUpCell){
         let id = friendRequest
         ref.child("receivedFriendRequests").child(id).observeSingleEvent(of: .value) { (DataSnapshot) in
             
@@ -244,17 +252,25 @@ class UsersManager{
             }
             received.append(CurrentUser.shared.get()!.id)
             if received.count == 1{
-                self.ref.child("receivedFriendRequests").child(id).setValue(received)
+                self.ref.child("receivedFriendRequests").child(id).setValue(received, withCompletionBlock: { (Error, DatabaseReference) in
+                    userCell.didFinishReceived = true
+                })
             }else{
-                self.ref.child("receivedFriendRequests").updateChildValues([id:received])
+                self.ref.child("receivedFriendRequests").updateChildValues([id:received], withCompletionBlock: { (Error, DatabaseReference) in
+                    userCell.didFinishReceived = true
+                })
             }
         }
         var sent = CurrentUser.shared.get()!.sentFriendRequests
         sent.append(friendRequest)
         if sent.count == 1{
-            ref.child("sentFriendRequests").child(CurrentUser.shared.get()!.id).setValue(sent)
+            ref.child("sentFriendRequests").child(CurrentUser.shared.get()!.id).setValue(sent, withCompletionBlock: { (Error, DatabaseReference) in
+                userCell.didFinishSent = true
+            })
         }else{
-            ref.child("sentFriendRequests").updateChildValues([CurrentUser.shared.get()!.id:sent])
+            ref.child("sentFriendRequests").updateChildValues([CurrentUser.shared.get()!.id:sent], withCompletionBlock: { (Error, DatabaseReference) in
+                userCell.didFinishSent = true
+            })
         }
         
        
@@ -381,11 +397,7 @@ class UsersManager{
                     ok = false
                 }
             }
-            for sent in user.sentFriendRequests{
-                if someuser.id  ==  sent{
-                    ok = false
-                }
-            }
+    
             for received in user.receivedFriendRequests{
                 if someuser.id == received{
                     ok = false

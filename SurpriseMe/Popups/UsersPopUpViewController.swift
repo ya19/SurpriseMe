@@ -72,20 +72,20 @@ extension UsersPopUpViewController:UISearchBarDelegate{
 extension UsersPopUpViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if let friendsVC = self.parent as? FriendsViewController{
-            //update in data base.
-            
-            friendsVC.toggle = !friendsVC.toggle
-            delegate?.deliver(userId: self.users![indexPath.row].id)
-            
-        }else{
-            if let profileVC = self.parent as? ProfileViewController{
-                profileVC.toggle = !profileVC.toggle
-            }
+//        if let friendsVC = self.parent as? FriendsViewController{
+//            //update in data base.
+//
+//            friendsVC.toggle = !friendsVC.toggle
+//            delegate?.deliver(userId: self.users![indexPath.row].id)
+//
+//        }else{
+            if let _ = self.parent as? ProfileViewController{
+//                profileVC.toggle = !profileVC.toggle
+            }else{
             delegate?.deliver(userId: self.currentUsers![indexPath.row].id)
-        }
+//        }
         PopUp.remove(controller: self)
-        
+        }
     }
 }
 extension UsersPopUpViewController:UITableViewDataSource{
@@ -95,9 +95,17 @@ extension UsersPopUpViewController:UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "userCell") as! UserPopUpCell
-        
+        if let _ = self.parent as? ProfileViewController{
+            var friendAdd = false
+            for sent in CurrentUser.shared.get()!.sentFriendRequests{
+                if sent == currentUsers![indexPath.row].id{
+                    friendAdd = true
+                }
+            }
+            cell.populate(user: currentUsers![indexPath.row], friendAdd: friendAdd)
+        }else{
         cell.populate(user: currentUsers![indexPath.row])
-        
+        }
         return cell
     }
     

@@ -185,8 +185,8 @@ extension ProfileViewController : deliverUserDelegate{
         
         //update in database
         //        currentUser.friends.append(user)
-        UsersManager.shared.add(friendRequest: userId)
-        self.friendsRequestsTableView.reloadData()
+//        UsersManager.shared.add(friendRequest: userId)
+//        self.friendsRequestsTableView.reloadData()
     }
 }
 

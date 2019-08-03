@@ -329,7 +329,6 @@
                                                             <state key="normal" image="icons8-add"/>
                                                             <connections>
                                                                 <action selector="friendAddToggle:" destination="68L-kE-n3i" eventType="touchUpInside" id="4US-DO-M4Q"/>
-                                                                <action selector="toggleFriend:" destination="z2x-Ly-a93" eventType="touchUpInside" id="5Q8-vp-Y1R"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
