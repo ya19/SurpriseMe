@@ -78,7 +78,7 @@ extension MenuViewController:UITableViewDelegate{
             menu.toggle = !menu.toggle
             self.view.removeFromSuperview()
 
-            if let _ = self.parent as? FriendsViewController{
+            if let _ = self.parent as? ProfileViewController{
                 return
             }else{
 //                let friendsVC = UIStoryboard(name: "Friends", bundle: nil).instantiateViewController(withIdentifier: "friends") as! FriendsViewController

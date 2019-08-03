@@ -58,7 +58,7 @@ class CurrentUser{
             timer.invalidate()
           
             let reloadDelegate:RefreshProfileVC = profileVC!
-            reloadDelegate.reloadMyData(friends: friends,requests: requests)
+            reloadDelegate.reloadMyData(friends: self.friends,requests: self.requests)
         }
     }
     @objc func didFriendsLoaded(_ timer: Timer){
@@ -151,6 +151,7 @@ class CurrentUser{
                                         
                                         let controller = vc as! ViewController
                                         controller.performSegue(withIdentifier: "loginToShops", sender: nil)
+                                        print("Configured", self.user)
                                         
                                     } else {
                                         let controller = vc as! SplashScreen

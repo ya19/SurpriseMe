@@ -70,7 +70,7 @@ class ProfileViewController: UIViewController {
         //            CartManager.shared.treats.remove(at: indexPath.row)
         //            tableView.deleteRows(at: [indexPath], with: .fade)
         //            self.total.text = "Total: \(self.sum) NIS"
-        UsersManager.shared.removeFriend(at: indexPath.row)
+        UsersManager.shared.removeFriend(friendId: friends[indexPath.row].id)
         friends.remove(at: indexPath.row)
         friendsRequestsTableView.deleteRows(at: [indexPath],with: .fade)
         friendsRequestsTableView.reloadData()
@@ -123,7 +123,6 @@ extension ProfileViewController : UITableViewDataSource{
             cell.populate(user: requests[indexPath.row])
             cell.user = requests[indexPath.row]
             cell.delegate = self
-            cell.refresh = self
             cell.profileVC = self
             return cell
             
@@ -201,25 +200,23 @@ protocol updateList {
     func remove(at: Int)
 }
 
-extension ProfileViewController:updateList , Refresh, RefreshProfileVC{
+extension ProfileViewController:updateList, RefreshProfileVC{
     func remove(at: Int){
         requests.remove(at: at)
         friendsRequestsTableView.deleteRows(at: [IndexPath(row: at, section: 0)], with: .none)
         friendsRequestsTableView.reloadData()
     }
-    func reload() {
-        CurrentUser.shared.initFriendsVC(refresh: true, profileVC: self)
-    }
+
     func reloadMyData(friends: [User] , requests:[User]) {
         self.friends = friends
         self.requests = requests
         self.friendsRequestsTableView.reloadData()
+        print(CurrentUser.shared.get()!,"Current User")
+        print(friends,"Friends123")
+        print(requests,"Requests123")
     }
 }
 protocol RefreshProfileVC {
     func reloadMyData(friends: [User] , requests:[User])
 }
 
-protocol Refresh {
-    func reload()
-}

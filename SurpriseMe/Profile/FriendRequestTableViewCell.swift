@@ -12,7 +12,6 @@ class FriendRequestTableViewCell: UITableViewCell {
 
     var user:User?
     var delegate:updateList?
-    var refresh:Refresh?
     var once = true
     var profileVC:ProfileViewController?
     @IBOutlet weak var friendNameLabel: UILabel!
@@ -23,12 +22,13 @@ class FriendRequestTableViewCell: UITableViewCell {
     
     @IBAction func acceptFriendRequest(_ sender: UIButton) {
         if once {
+            once = false
+
             UsersManager.shared.add(friend: user!.id, profileVC: profileVC!)
         //todo approve request and delete from list
             delegate?.remove(at: self.indexPath!.row)
             
 
-            once = false
         }
     }
     
