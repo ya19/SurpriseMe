@@ -24,11 +24,6 @@ class UsersPopUpViewController: UIViewController {
     
     var users:[User]?
     
-    @IBAction func toggleFriend(_ sender: SAButton) {
-        
-        
-        
-    }
     var delegate:deliverUserDelegate?
     var currentUsers:[User]?
     
