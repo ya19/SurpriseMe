@@ -54,43 +54,25 @@ class CategoriesViewController: UICollectionViewController {
         self.collectionView.backgroundView?.alpha = 0.1
         
         myShops = ShopsManager.shared.getShops()
-//
-//        ShopsManager.shared.delegate = self
-//        myShops = ShopsManager.shared.getFakeShops()
+
         let ref = Database.database().reference()
-//        ref.child("users").removeValue()
-//        ref.child("user").setValue(currentUser.toDB)
-//        ref.child("user").observeSingleEvent(of: .value) { (DataSnapshot) in
-//            let dic = DataSnapshot.value as! [String:Any]
-//            print("%$#@!\(User.getUserFromDictionary(dic))")
-//        }
-//                ref.child("treat").observeSingleEvent(of: .value) { (DataSnapshot) in
-//            let dic = DataSnapshot.value as! [String:Any]
-//            print("%$#@!\(Treat.getTreatFromDictionary(dic))")
-//        }
-  
+        setTreatsObserver()
+
         
         
-        
-//        ref.child("treat").setValue(Treat(id: "treat1", date: Date(), product: Product(id: "product1", name: "basketball", desc: "ball", imageName: "basketball", category: "SomeCategory", price: 10.2), giver: currentUser, getter: currentUser, treatStatus: TreatStatus.Expired).toDB)
-////
-//        ref.child("Order").setValue(Order(id: "id1", treats: [Treat(id: "treat1", date: nil, product: Product(id: "product1", name: "shoes", desc: "desc", imageName: "name", category: "shoes", price: 15.0), giver: currentUser, getter: currentUser, treatStatus: TreatStatus.NotUsed),Treat(id: "treat2", date: nil, product: Product(id: "product1", name: "shoes", desc: "desc", imageName: "name", category: "shoes", price: 15.0), giver: currentUser, getter: currentUser, treatStatus: TreatStatus.NotUsed),Treat(id: "treat3", date: nil, product: Product(id: "product1", name: "shoes", desc: "desc", imageName: "name", category: "shoes", price: 15.0), giver: currentUser, getter: currentUser, treatStatus: TreatStatus.NotUsed),Treat(id: "treat4", date: nil, product: Product(id: "product1", name: "shoes", desc: "desc", imageName: "name", category: "shoes", price: 15.0), giver: currentUser, getter: currentUser, treatStatus: TreatStatus.NotUsed)], date: Date(), buyer: currentUser).toDB)
-//        ref.child("Order").observeSingleEvent(of: .value) { (DataSnapshot) in
-//            let dic = DataSnapshot.value as! [String:Any]
-//            print("!@#$%\(Order.getOrderFromDictionary(dic))")
-//        }
-////        ref.child("users").child(currentUser.id).setValue(currentUser.toDB)
-//
-//        for shopCategory in myShops{
-//            for shop in shopCategory{
-//            ref.child("shops").child(shop.id).setValue(shop.toDB)
-//        }
-//        }
-////        }
+ 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Do any additional setup after loading the view.
+    }
+    
+    
+    //suppose to send notification whenever the user received a treat.
+    func setTreatsObserver(){
+        Database.database().reference().child("treats").child(CurrentUser.shared.get()!.id).observe(.childAdded) { (datasnapshot) in
+            NotificationManager.shared.createNotification(with: "Come find out from who!", delay: 0.5, notificationType: .isTreatRequest)
+        }
     }
     
 //    override func viewWillAppear(_ animated: Bool) {
@@ -138,40 +120,6 @@ class CategoriesViewController: UICollectionViewController {
         return cell
     }
     
-    
-    
-
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if (kind == UICollectionView.elementKindSectionHeader) {

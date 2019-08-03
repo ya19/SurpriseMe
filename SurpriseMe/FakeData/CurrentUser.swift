@@ -117,7 +117,7 @@ class CurrentUser{
                         }
                     }
                     self.ref.child("treats").child(id).observe( .value, with: { (treatsData) in
-                        NotificationManager.shared.createNotification(with: "Come find out from who!", delay: 0.5, notificationType: .isTreatRequest)
+  
                         var myTreats:[Treat] = []
                         if let treatsDic = treatsData.value as? [String:Any]{
                             for key in treatsDic.keys{
