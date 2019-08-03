@@ -14,12 +14,21 @@ class UsersPopUpViewController: UIViewController {
     @IBOutlet weak var closeButton: SAButton!
     
     @IBAction func closePopUp(_ sender: SAButton) {
-        
+        if let profileVC = self.parent as? ProfileViewController{
+            profileVC.toggle = !profileVC.toggle
+        }
+
         PopUp.remove(controller: self)
+        
     }
     
     var users:[User]?
     
+    @IBAction func toggleFriend(_ sender: SAButton) {
+        
+        
+        
+    }
     var delegate:deliverUserDelegate?
     var currentUsers:[User]?
     
@@ -75,6 +84,9 @@ extension UsersPopUpViewController:UITableViewDelegate{
             delegate?.deliver(userId: self.users![indexPath.row].id)
             
         }else{
+            if let profileVC = self.parent as? ProfileViewController{
+                profileVC.toggle = !profileVC.toggle
+            }
             delegate?.deliver(userId: self.currentUsers![indexPath.row].id)
         }
         PopUp.remove(controller: self)
