@@ -321,12 +321,15 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OBT-Em-F3A">
+                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OBT-Em-F3A" customClass="SAButton" customModule="SurpriseMe" customModuleProvider="target">
                                                             <rect key="frame" x="299" y="4" width="35.5" height="35.5"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="OBT-Em-F3A" secondAttribute="height" multiplier="1:1" id="WqP-In-63c"/>
                                                             </constraints>
-                                                            <state key="normal" title="Button" image="icons8-add"/>
+                                                            <state key="normal" image="icons8-add"/>
+                                                            <connections>
+                                                                <action selector="toggleFriend:" destination="z2x-Ly-a93" eventType="touchUpInside" id="5Q8-vp-Y1R"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <constraints>
