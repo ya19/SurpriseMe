@@ -31,9 +31,9 @@ class NotificationsTableCell: UITableViewCell {
     
     func populate(notification : Notification?){
         notificationImage.image = notification!.image?.circleMasked ?? #imageLiteral(resourceName: "placeholder").circleMasked
-        notificationTitle.text = notification!.notificationType.description
-        notificationDescription.text = "\(notification!.sender!.firstName) \(notification!.notificationType.getDescription())"
-        notificationDate.text = "Date and time of notification"
+        notificationTitle.text = notification!.title
+        notificationDescription.text = notification!.description
+        notificationDate.text = "\(notification!.date!)"
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

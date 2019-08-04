@@ -157,7 +157,7 @@ class RegisterViewController: UIViewController {
             
             let ref = Database.database().reference()
             
-            let newUser = User.init(id: user.uid, email: user.email!, firstName: self.firstName.text!, lastName: self.lastName.text!, dateOfBitrh: self.dateOfBirth.date, friends: [], myCart: [], sentFriendRequests: [], receivedFriendRequests: [],  myTreats: [], myOrders: [], getTreatsStatus: GetTreatStatus(rawValue: self.giftStatus!.selectedSegmentIndex)!, address: [:])
+            let newUser = User.init(id: user.uid, email: user.email!, firstName: self.firstName.text!, lastName: self.lastName.text!, dateOfBitrh: self.dateOfBirth.date, friends: [], myCart: [], sentFriendRequests: [], receivedFriendRequests: [],  myTreats: [], myOrders: [], getTreatsStatus: GetTreatStatus(rawValue: self.giftStatus!.selectedSegmentIndex)!, notifications: [], address: [:])
             
             ref.child("users").child(user.uid).setValue(newUser.toDB)
             self.view.removeFromSuperview()

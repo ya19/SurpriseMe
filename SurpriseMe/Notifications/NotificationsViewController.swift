@@ -11,12 +11,12 @@ import UIKit
 class NotificationsViewController: UIViewController {
 
     @IBOutlet weak var notificationsTableView: UITableView!
-    let notification = Notification.init(title: "Notification", description: "description", date: Date(), image: nil, sender: CurrentUser.shared.get()!, notificationType: .isFriedRequest)
+//    let notification = Notification.init(date: Date(), imageName: nil, sender: CurrentUser.shared.get()!.id, notificationType: .isFriedRequest)
     var notifications:[Notification]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-notifications = [notification]
+        notifications = CurrentUser.shared.get()!.notifications
         AppMenu.clearMenu()
         
         //notifications = ...

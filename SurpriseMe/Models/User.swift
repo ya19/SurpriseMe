@@ -24,7 +24,7 @@ var currentUser = User.init(id: "user1", email: "shahaf_t@narkis.co.il", firstNa
           Treat.init(id: "treat1", date: Date(), product: Product.init(id: "product1", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 159.00), giver: "user1", getter: "user2", treatStatus: TreatStatus.NotUsed)
         
     ],
-          myOrders:[], getTreatsStatus: GetTreatStatus.EVERYONE, address: nil)
+          myOrders:[], getTreatsStatus: GetTreatStatus.EVERYONE, notifications: [], address: nil)
 //consider using cartmanager object or to use mycart from the user. cartmanager will display ui cart only and will not save it in any data, while if u have myCart in the user u can save it and update the current user's cart. well you can also use coredata to store the current cart data there and to use it only from the users device without storing cart data in our DB , well i think thats the best option instead of updating anymoment the cart in the server.
 // using CartManager means to delete myCart attribute from user,
 // using myCart attribute on current user means to delete CartManager object.
@@ -67,6 +67,8 @@ struct User:Hashable,Equatable{
     
     var getTreatsStatus:GetTreatStatus
     
+    var notifications:[Notification]
+    
     var address:[String:String]?
     
     var hashValue: Int {
@@ -107,6 +109,6 @@ struct User:Hashable,Equatable{
 //            address = addressDic
 //        }
         
-        return User(id: id, email: email, firstName: firstName, lastName: lastName, dateOfBitrh: dateOfBirth, friends: [], myCart: [], sentFriendRequests: [], receivedFriendRequests: [], myTreats: [], myOrders: [], getTreatsStatus: getTreatStatus!, address: address)
+        return User(id: id, email: email, firstName: firstName, lastName: lastName, dateOfBitrh: dateOfBirth, friends: [], myCart: [], sentFriendRequests: [], receivedFriendRequests: [], myTreats: [], myOrders: [], getTreatsStatus: getTreatStatus!, notifications: [], address: address)
     }
 }

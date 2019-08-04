@@ -25,7 +25,8 @@ class NotificationManager{
             }
             
         }
-        
+    
+    //user notifications, not regular in the bell.
         func createNotification(with text : String, delay : TimeInterval, attachmentUrl : URL? = nil, notificationType : NotificationType){
             //-Custom sound-, -attachment-, -title-, -subtitle-, -thread id-, userInfo
             

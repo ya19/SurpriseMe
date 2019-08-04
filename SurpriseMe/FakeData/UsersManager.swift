@@ -323,6 +323,16 @@ class UsersManager{
             }
         }
     }
+    
+    
+    func sendNotification(friendID : String , notificationType : NotificationType){
+        
+        let notification = Notification.init(date: nil, imageName: nil, sender: CurrentUser.shared.get()!.id, notificationType: notificationType)
+        
+    let key = self.ref.child("notifications").child(friendID).childByAutoId().key! as String
+        self.ref.child("notifications").child(friendID).child(key).setValue(notification.toDB)
+    }
+    
     func giveTreats(delegate: UIViewController){
         let myDelegate:updateCartDelegate = delegate as! updateCartDelegate
         var treats:[Treat] = []
@@ -350,7 +360,7 @@ class UsersManager{
                 
                
                 self.ref.child("treats").child(getter).child(key).setValue(treat.toDB)
-                
+                self.sendNotification(friendID: getter, notificationType : .isTreatRequest)
                 // make sure i got here after i got the entire orders
            
             }
