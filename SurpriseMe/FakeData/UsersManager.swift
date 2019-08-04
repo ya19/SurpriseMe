@@ -47,17 +47,21 @@ class UsersManager{
         //notify both users
         
         var received:[String] = CurrentUser.shared.get()!.receivedFriendRequests
-        var remember = 0
+        var remember = -1
         for i in 0..<received.count{
             if received[i] == friend{
                 remember = i
             }
         }
+        if remember != -1{
         received.remove(at: remember)
         if received.count>0{
             ref.child("receivedFriendRequests").updateChildValues([CurrentUser.shared.get()!.id:received])
         }else{
             ref.child("receivedFriendRequests").child(CurrentUser.shared.get()!.id).removeValue()
+        }
+        }else{
+            print("ERROR 123456")
         }
         
         
@@ -66,17 +70,21 @@ class UsersManager{
             if let requests = DataSnapshot.value as? [String]{
                 sent = requests
             }
-            var remember = 0;
+            var remember = -1;
             for i in 0..<sent.count{
                 if sent[i] == CurrentUser.shared.get()!.id{
                     remember = i
                 }
             }
+            if remember != -1{
             sent.remove(at: remember)
             if sent.count > 0 {
                 self.ref.child("sentFriendRequests").updateChildValues([friend:sent])
             }else{
                 self.ref.child("sentFriendRequests").child(friend).removeValue()
+                }}else{
+                print("ERROR 123456")
+
             }
         }
     }
@@ -85,48 +93,26 @@ class UsersManager{
         //notify both users
         
         
-        var friends = CurrentUser.shared.get()!.friends
-        friends.append(friend)
-        if friends.count == 1{
-            ref.child("friends").child(CurrentUser.shared.get()!.id).setValue(friends) { (Error, DatabaseReference) in
-                CurrentUser.shared.initFriendsVC(refresh: true, profileVC: profileVC)
-
-            }
-        }else{
-            ref.child("friends").updateChildValues([CurrentUser.shared.get()!.id : friends]) { (Error, DatabaseReference) in
-                CurrentUser.shared.initFriendsVC(refresh: true, profileVC: profileVC)
-
-            }
-        }
-        
-        ref.child("friends").child(friend).observeSingleEvent(of: .value) { (DataSnapshot) in
-            var friends:[String] = []
-            if let array = DataSnapshot.value as? [String]{
-                friends = array
-            }
-            friends.append(CurrentUser.shared.get()!.id)
-            if friends.count == 1{
-                self.ref.child("friends").child(friend).setValue(friends)
-            }else{
-                self.ref.child("friends").updateChildValues([friend:friends])
-            }
-        }
+       
         // delete the friend id from my (recieved array)
         // delete from the friend (sent array) my id
         
         
         var received:[String] = CurrentUser.shared.get()!.receivedFriendRequests
-        var remember = 0
+        var remember = -1
         for i in 0..<received.count{
             if received[i] == friend{
                 remember = i
             }
         }
+        if remember != -1{
         received.remove(at: remember)
         if received.count>0{
             ref.child("receivedFriendRequests").updateChildValues([CurrentUser.shared.get()!.id:received])
         }else{
             ref.child("receivedFriendRequests").child(CurrentUser.shared.get()!.id).removeValue()
+            }}else{
+            Toast.show(message: "Friend request has been canceled by the potential friend", controller: profileVC)
         }
         
         
@@ -135,17 +121,50 @@ class UsersManager{
             if let requests = DataSnapshot.value as? [String]{
                 sent = requests
             }
-            var remember = 0;
+            var remember = -1;
             for i in 0..<sent.count{
                 if sent[i] == CurrentUser.shared.get()!.id{
                     remember = i
                 }
             }
+            if remember != -1{
+                
+                var friends = CurrentUser.shared.get()!.friends
+                friends.append(friend)
+                if friends.count == 1{
+                    self.ref.child("friends").child(CurrentUser.shared.get()!.id).setValue(friends) { (Error, DatabaseReference) in
+                        CurrentUser.shared.initFriendsVC(refresh: true, profileVC: profileVC)
+                        
+                    }
+                }else{
+                    self.ref.child("friends").updateChildValues([CurrentUser.shared.get()!.id : friends]) { (Error, DatabaseReference) in
+                        CurrentUser.shared.initFriendsVC(refresh: true, profileVC: profileVC)
+                        
+                    }
+                }
+                
+                self.ref.child("friends").child(friend).observeSingleEvent(of: .value) { (DataSnapshot) in
+                    var friends:[String] = []
+                    if let array = DataSnapshot.value as? [String]{
+                        friends = array
+                    }
+                    friends.append(CurrentUser.shared.get()!.id)
+                    if friends.count == 1{
+                        self.ref.child("friends").child(friend).setValue(friends)
+                    }else{
+                        self.ref.child("friends").updateChildValues([friend:friends])
+                    }
+                }
+                
             sent.remove(at: remember)
             if sent.count > 0 {
                 self.ref.child("sentFriendRequests").updateChildValues([friend:sent])
             }else{
                 self.ref.child("sentFriendRequests").child(friend).removeValue()
+                }}else{
+                print("Friend request has been canceled by the potential friend")
+                Toast.show(message: "Friend request has been canceled by the potential friend", controller: profileVC)
+
             }
         }
         
@@ -196,12 +215,13 @@ class UsersManager{
             if let requests = DataSnapshot.value as? [String]{
                 received = requests
             }
-            var remember = 0;
+            var remember = -1;
             for i in 0..<received.count{
                 if received[i] == CurrentUser.shared.get()!.id{
                     remember = i
                 }
             }
+            if remember != -1{
             received.remove(at: remember)
             if received.count > 0 {
                 self.ref.child("receivedFriendRequests").updateChildValues([friendId:received]){ (Error, DatabaseReference) in
@@ -211,16 +231,22 @@ class UsersManager{
                 self.ref.child("receivedFriendRequests").child(friendId).removeValue(completionBlock: { (Error, DatabaseReference) in
                     userCell.didFinishReceived = true
                 })
+                }}else{
+                print("error , got to check if friend has been added or canceled")
+                userCell.didFinishReceived = true
+
+
             }
         }
         
         var sent = CurrentUser.shared.get()!.sentFriendRequests
-        var remember = 0
+        var remember = -1
         for i in 0..<sent.count{
             if sent[i] == friendId{
                 remember = i
             }
         }
+        if remember != -1 {
         sent.remove(at: remember)
         if sent.count>0{
             self.ref.child("sentFriendRequests").updateChildValues([CurrentUser.shared.get()!.id:sent]) { (Error, DatabaseReference) in
@@ -230,6 +256,10 @@ class UsersManager{
             self.ref.child("sentFriendRequests").child(CurrentUser.shared.get()!.id).removeValue { (Error, DatabaseReference) in
                 userCell.didFinishSent = true
             }
+            }}else{
+            print("error , got to check if friend has been added or canceled")
+            userCell.didFinishSent = true
+
         }
         
         
@@ -327,9 +357,10 @@ class UsersManager{
     
     func sendNotification(friendID : String , notificationType : NotificationType){
         
-        let notification = Notification.init(date: nil, imageName: nil, sender: CurrentUser.shared.get()!.id, notificationType: notificationType)
+        var notification = Notification.init(date: nil, id: nil, imageName: nil, sender: CurrentUser.shared.get()!.id, notificationType: notificationType)
         
-    let key = self.ref.child("notifications").child(friendID).childByAutoId().key! as String
+        let key = self.ref.child("notifications").child(friendID).childByAutoId().key! as String
+        notification.id = key
         self.ref.child("notifications").child(friendID).child(key).setValue(notification.toDB)
     }
     

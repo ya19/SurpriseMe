@@ -71,13 +71,14 @@
     //                    let friendsVC = UIStoryboard(name: "Friends", bundle: nil).instantiateViewController(withIdentifier: "friends") as! FriendsViewController
         
                 let profileVC = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "profile") as! ProfileViewController
-                
                 //profile view controller
     //                    friendsVC.friends = self.friends
-                        profileVC.friends = self.friends
-                        profileVC.requests = self.requests
+                self.profileVC = profileVC
+
+                        self.profileVC!.friends = self.friends
+                        self.profileVC!.requests = self.requests
                 
-                        menu.parent?.navigationController?.pushViewController(profileVC, animated: true)
+                        menu.parent?.navigationController?.pushViewController(self.profileVC!, animated: true)
                 menu.removeFromParent()
 
             }
@@ -151,8 +152,11 @@
                                             if let received = receivedData.value as? [String]{
                                                 receivedFriendRequests = received
                                             }
-                                            
-                                            self.ref.child("notifications").child(id).observe( .value, with: { (notificationsData) in
+                                            if self.profileVC != nil{
+                                                self.initFriendsVC(refresh: true, profileVC: self.profileVC!)
+                                                Toast.show(message: "SHAHAGFFFFFFF", controller: self.profileVC!)
+                                            }
+                                                self.ref.child("notifications").child(id).observe( .value, with: { (notificationsData) in
                                                 
                                                 var myNotifications:[Notification] = []
                                                 if let notificationsDic = notificationsData.value as? [String:Any]{

@@ -24,13 +24,14 @@ struct Notification{
         }
         return #imageLiteral(resourceName: "placeholder")
     }
+    var id:String?
     let imageName : String?
     let sender : String
     let notificationType : NotificationType
     
     var toDB:[String:Any]{
         var dic:[String:Any] = [:]
-        
+        dic["id"] = id!
         dic["title"] = title
         dic["description"] = description
         dic["date"] = ServerValue.timestamp()
@@ -44,13 +45,14 @@ struct Notification{
         
 //        let title = dic["title"] as! String
 //        let description = dic["description"] as! String
+        let id = dic["id"] as! String
         let t = dic["date"] as! TimeInterval
         let date = Date(timeIntervalSince1970: t/1000)
         let imageName = dic["imageName"] as? String
         let sender = dic["sender"] as! String
         let notificationType = NotificationType(rawValue: dic["notificationType"] as! Int)
         
-        return Notification(date: date, imageName: imageName, sender: sender, notificationType: notificationType!)
+        return Notification(date: date, id: id, imageName: imageName, sender: sender, notificationType: notificationType!)
         
     }
 }
