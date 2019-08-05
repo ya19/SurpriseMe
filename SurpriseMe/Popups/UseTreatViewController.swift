@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class UseTreatViewController: UIViewController, UITextFieldDelegate{
     
@@ -31,7 +32,9 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
     var treat: Treat?
     var delegate : SentVoucherDelegate?
     
-
+    var treats:[Treat]{
+        return CurrentUser.shared.get()!.myTreats
+    }
     
     
     @IBAction func closePopUp(_ sender: UIButton) {
@@ -102,17 +105,31 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
             }
         }
         
-        for i in 0..<currentUser.myTreats.count{
-            if treat?.id == currentUser.myTreats[i].id{
-//                treat?.treatStatus = TreatStatus.Delivered
-//                currentUser.myTreats[i] = treat!
-                currentUser.myTreats[i].treatStatus = TreatStatus.Delivered
+        let ref = Database.database().reference()
+        for i in 0..<CurrentUser.shared.get()!.myTreats.count{
+            if treat?.id == CurrentUser.shared.get()!.myTreats[i].id{
+                
+                ref.child("treats").child(CurrentUser.shared.get()!.id).child(treat!.id).child("status").setValue(TreatStatus.Delivered.rawValue)
                 delegate?.sentVoucher()
+                //basically suppose to wait for approval from server and then sending.
+//                CurrentUser.shared.get()!.myTreats[i].treatStatus = TreatStatus.Delivered
+                
             }
             
+        }
+        
+        
+//        for i in 0..<currentUser.myTreats.count{
+//            if treat?.id == currentUser.myTreats[i].id{
+////                treat?.treatStatus = TreatStatus.Delivered
+////                currentUser.myTreats[i] = treat!
+//                currentUser.myTreats[i].treatStatus = TreatStatus.Delivered
+//                delegate?.sentVoucher()
+//            }
+        
 //            print("\(currentUser.myTreats)")
             
-        }
+        
         if saveAdress.isOn == true {
             updateAddress()
         }else{
@@ -135,18 +152,12 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
         }
         
 
-        
-
-
         popUpView.backgroundColor = UIColor(patternImage: UIImage(named: "pure-blue-sky")!)
         
         
-        // Do any additional setup after loading the view.
-        
-
-
-        
     }
+    
+    //todo save it to core data.
     func updateAddress(){
         if currentUser.address == nil{
             currentUser.address = [:]

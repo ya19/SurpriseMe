@@ -145,7 +145,7 @@ protocol SentVoucherDelegate {
 
 extension OrdersAndTreatsViewController : SentVoucherDelegate{
     func sentVoucher() {
-            self.ordersTreatsTableView.reloadData()
+            ordersTreatsTableView.reloadData()
     }
 }
 
@@ -156,6 +156,7 @@ protocol TreatStatusChangedDelegate{
 
 extension OrdersAndTreatsViewController : TreatStatusChangedDelegate{
     func updateStatus() {
-        self.ordersTreatsTableView.reloadData()
+        ordersTreatsTableView.reloadData()
+        print("Status changed.")
     }
 }

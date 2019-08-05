@@ -61,7 +61,6 @@ class TreatCell: UITableViewCell {
         // delegate to reload data.
         
         statusDelegate?.updateStatus()
-// decide what's gonna happen when declined the treat. will it stay?
         
     }
     

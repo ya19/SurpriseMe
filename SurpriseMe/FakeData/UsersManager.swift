@@ -355,9 +355,9 @@ class UsersManager{
     }
     
     
-    func sendNotification(friendID : String , notificationType : NotificationType){
+    func sendNotification(friendID : String , notificationType : NotificationType , treatID: String?){
         
-        var notification = Notification.init(date: nil, id: nil, imageName: nil, sender: CurrentUser.shared.get()!.id, notificationType: notificationType)
+        var notification = Notification.init(date: nil, id: nil, imageName: nil, sender: CurrentUser.shared.get()!.id, notificationType: notificationType, treatID: treatID)
         
         let key = self.ref.child("notifications").child(friendID).childByAutoId().key! as String
         notification.id = key
@@ -391,7 +391,7 @@ class UsersManager{
                 
                
                 self.ref.child("treats").child(getter).child(key).setValue(treat.toDB)
-                self.sendNotification(friendID: getter, notificationType : .isTreatRequest)
+                self.sendNotification(friendID: getter, notificationType : .isTreatRequest , treatID: treat.id)
                 // make sure i got here after i got the entire orders
            
             }

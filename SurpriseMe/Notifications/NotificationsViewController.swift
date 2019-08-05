@@ -50,7 +50,7 @@ extension NotificationsViewController : UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "notificationCell") as! NotificationsTableCell
         cell.populate(notification: notifications?[indexPath.row])
-        
+        cell.delegate = self
         return cell
     }
 }
@@ -58,5 +58,12 @@ extension NotificationsViewController : UITableViewDataSource{
 extension NotificationsViewController : UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UIScreen.main.bounds.height / 8
+    }
+}
+
+
+extension NotificationsViewController : ChangedNotificationStateDelegate{
+    func stateChanged() {
+        self.notificationsTableView.reloadData()
     }
 }

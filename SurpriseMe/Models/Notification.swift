@@ -28,6 +28,7 @@ struct Notification{
     let imageName : String?
     let sender : String
     let notificationType : NotificationType
+    let treatID : String?
     
     var toDB:[String:Any]{
         var dic:[String:Any] = [:]
@@ -38,6 +39,10 @@ struct Notification{
         dic["imageName"] = imageName
         dic["sender"] = sender
         dic["notificationType"] = notificationType.rawValue
+        
+        if treatID != nil{
+            dic["treatID"] = treatID
+        }
         return dic
     }
     
@@ -51,8 +56,8 @@ struct Notification{
         let imageName = dic["imageName"] as? String
         let sender = dic["sender"] as! String
         let notificationType = NotificationType(rawValue: dic["notificationType"] as! Int)
-        
-        return Notification(date: date, id: id, imageName: imageName, sender: sender, notificationType: notificationType!)
+        let treatID = dic["treatID"] as? String
+        return Notification(date: date, id: id, imageName: imageName, sender: sender, notificationType: notificationType!, treatID: treatID)
         
     }
 }

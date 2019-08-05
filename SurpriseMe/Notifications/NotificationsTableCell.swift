@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import Firebase
 
 class NotificationsTableCell: UITableViewCell {
 
+    var notification:Notification?
+    var delegate : ChangedNotificationStateDelegate?
+    
     @IBOutlet weak var notificationImage: UIImageView!
     
     @IBOutlet weak var notificationTitle: UILabel!
@@ -19,6 +23,16 @@ class NotificationsTableCell: UITableViewCell {
     @IBOutlet weak var notificationDate: UILabel!
     
     @IBAction func acceptTapped(_ sender: UIButton) {
+        let ref = Database.database().reference()
+        
+        //approve the treat
+        ref.child("treats").child(CurrentUser.shared.get()!.id).child(notification!.treatID!).child("status").setValue(TreatStatus.Accepted.rawValue)
+        
+        
+        //delete from notifications
+        
+        ref.child("notifications").child(CurrentUser.shared.get()!.id).child(notification!.id!).removeValue()
+        
     }
     
     @IBAction func denyTapped(_ sender: Any) {
@@ -30,6 +44,7 @@ class NotificationsTableCell: UITableViewCell {
     }
     
     func populate(notification : Notification?){
+        self.notification = notification
         notificationImage.image = notification!.image?.circleMasked ?? #imageLiteral(resourceName: "placeholder").circleMasked
         notificationTitle.text = notification!.title
         notificationDescription.text = notification!.description
@@ -42,4 +57,8 @@ class NotificationsTableCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+}
+
+protocol ChangedNotificationStateDelegate{
+    func stateChanged()
 }
