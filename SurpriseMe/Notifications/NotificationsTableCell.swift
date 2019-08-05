@@ -66,13 +66,13 @@ class NotificationsTableCell: UITableViewCell {
                 //removed from treats
                 ref.child("treats").child(CurrentUser.shared.get()!.id).child(self.notification!.treatID!).removeValue()
                 
-                ref.child("notifications").child(CurrentUser.shared.get()!.id).child(self.notification!.id!).removeValue()
             }
             
         case .isFriendRequest:
             UsersManager.shared.deny(friend: notification!.sender)
             
         }
+        ref.child("notifications").child(CurrentUser.shared.get()!.id).child(self.notification!.id!).removeValue()
         
 
     }
