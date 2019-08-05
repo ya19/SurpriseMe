@@ -133,12 +133,12 @@ class UsersManager{
                 friends.append(friend)
                 if friends.count == 1{
                     self.ref.child("friends").child(CurrentUser.shared.get()!.id).setValue(friends) { (Error, DatabaseReference) in
-                        CurrentUser.shared.initFriendsVC(refresh: true, profileVC: profileVC)
+                        CurrentUser.shared.initFriendsVC(refresh: true)
                         
                     }
                 }else{
                     self.ref.child("friends").updateChildValues([CurrentUser.shared.get()!.id : friends]) { (Error, DatabaseReference) in
-                        CurrentUser.shared.initFriendsVC(refresh: true, profileVC: profileVC)
+                        CurrentUser.shared.initFriendsVC(refresh: true)
                         
                     }
                 }

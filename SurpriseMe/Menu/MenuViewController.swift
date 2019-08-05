@@ -83,7 +83,7 @@ extension MenuViewController:UITableViewDelegate{
             }else{
 //                let friendsVC = UIStoryboard(name: "Friends", bundle: nil).instantiateViewController(withIdentifier: "friends") as! FriendsViewController
 //                self.parent?.navigationController?.pushViewController(friendsVC, animated: true)
-                CurrentUser.shared.initFriendsVC(refresh: false, profileVC: nil)
+                CurrentUser.shared.initFriendsVC(refresh: false)
 
                 return
             }
