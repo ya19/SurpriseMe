@@ -112,7 +112,7 @@ class UsersManager{
         }else{
             ref.child("receivedFriendRequests").child(CurrentUser.shared.get()!.id).removeValue()
             }}else{
-            Toast.show(message: "Friend request has been canceled by the potential friend", controller: profileVC)
+            Toast.show(message: "Friend request has been cancelled by the potential friend", controller: profileVC)
         }
         
         

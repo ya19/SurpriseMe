@@ -36,6 +36,35 @@ class NotificationsTableCell: UITableViewCell {
     }
     
     @IBAction func denyTapped(_ sender: Any) {
+        let ref = Database.database().reference()
+        var treat:Treat?
+       
+        //if its a treat notification
+        switch notification!.notificationType{
+        case .isTreatRequest:
+            //creating a treat using the ID
+            ref.child("treats").child(CurrentUser.shared.get()!.id).child(notification!.treatID!).observeSingleEvent(of: .value) { (datasnapshot) in
+                
+                let dic = datasnapshot.value as! [String:Any]
+                treat = Treat.getTreatFromDictionary(dic)
+                
+                treat!.treatStatus = TreatStatus.Declined
+                
+                //write to declined
+                ref.child("declinedTreats").child(self.notification!.sender).child(self.notification!.treatID!).setValue(treat!.toDB)
+                
+                //removed from treats
+                ref.child("treats").child(CurrentUser.shared.get()!.id).child(self.notification!.treatID!).removeValue()
+                
+                ref.child("notifications").child(CurrentUser.shared.get()!.id).child(self.notification!.id!).removeValue()
+            }
+            
+        case .isFriendRequest:
+            
+            
+        }
+        
+
     }
     
     override func awakeFromNib() {
