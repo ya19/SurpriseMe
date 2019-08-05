@@ -168,13 +168,13 @@
 //                                                    if ((self.profileVC != nil && receivedFriendRequests.count != rememberRequest) ||
 //                                                        (self.profileVC != nil && sentFriendRequests.count != rememberSent) ||
 //                                                        (self.profileVC != nil && friends.count != rememberFriends)){
-                                                    if UsersManager.shared.profileVC != nil , receivedFriendRequests.count != rememberRequest{
+                                                    if  receivedFriendRequests.count != rememberRequest{
                                                         UsersManager.shared.initFriendsVC(refresh: true)
-                                                        Toast.show(message: "update", controller: UsersManager.shared.profileVC!)
+                                                        Toast.show(message: "update", controller: UsersManager.shared.profileVC)
                                                     }
-                                                    if UsersManager.shared.profileVC != nil , friends.count != rememberFriends{
+                                                    if  friends.count != rememberFriends{
                                                         UsersManager.shared.initFriendsVC(refresh: true)
-                                                        Toast.show(message: "update", controller: UsersManager.shared.profileVC!)
+                                                        Toast.show(message: "update", controller: UsersManager.shared.profileVC)
                                                     }
                                     if once{
                                     once = !once
