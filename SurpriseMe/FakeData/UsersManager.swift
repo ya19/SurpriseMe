@@ -18,15 +18,15 @@ class UsersManager{
     private var NotFriendsUsersNum:Int
     var friends:[User]
     var requests:[User]
-    var profileVC:ProfileViewController?
-    var notFriendsPopUP:UsersPopUpViewController?
+    var profileVC:ProfileViewController
+    var notFriendsPopUP:UsersPopUpViewController
     var notFriends:[User]
     private init(){
         users = []
         friends = []
         requests = []
-        profileVC = nil
-        notFriendsPopUP = nil
+        profileVC = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "profile") as! ProfileViewController
+        notFriendsPopUP = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController
         currentFriendsNum = 0
         currentRequestsNum = 0
         NotFriendsUsersNum = 0
@@ -426,20 +426,17 @@ class UsersManager{
         if notFriends.count == NotFriendsUsersNum {
             timer.invalidate()
 
-            if self.notFriendsPopUP == nil{
-            let usersVC = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController
-            self.notFriendsPopUP = usersVC
-            }
-            self.notFriendsPopUP!.delegate = self.profileVC!
-            self.notFriendsPopUP!.users = self.notFriends
+           
+            self.notFriendsPopUP.delegate = self.profileVC
+            self.notFriendsPopUP.users = self.notFriends
             //            userAddedDelegate = usersVC
             //            userAddedDelegate?.reloadMydata()
             
             
             if menu.toggle {
-                self.profileVC!.toggle = true
+                self.profileVC.toggle = true
             }
-            self.profileVC!.toggle = PopUp.toggle(child: self.notFriendsPopUP!, parent: self.profileVC!,toggle: self.profileVC!.toggle)
+            self.profileVC.toggle = PopUp.toggle(child: self.notFriendsPopUP, parent: self.profileVC,toggle: self.profileVC.toggle)
             
             
             
@@ -494,7 +491,7 @@ class UsersManager{
         if friends.count == currentFriendsNum , requests.count == currentRequestsNum{
             timer.invalidate()
             
-            let reloadDelegate:RefreshProfileVC = self.profileVC!
+            let reloadDelegate:RefreshProfileVC = self.profileVC
             reloadDelegate.reloadMyData(friends: self.friends,requests: self.requests)
         }
     }
@@ -509,10 +506,10 @@ class UsersManager{
                 //                    friendsVC.friends = self.friends
                 self.profileVC = profileVC
             }
-            self.profileVC!.friends = self.friends
-            self.profileVC!.requests = self.requests
+            self.profileVC.friends = self.friends
+            self.profileVC.requests = self.requests
             
-            menu.parent?.navigationController?.pushViewController(self.profileVC!, animated: true)
+            menu.parent?.navigationController?.pushViewController(self.profileVC, animated: true)
             menu.removeFromParent()
             
         }
