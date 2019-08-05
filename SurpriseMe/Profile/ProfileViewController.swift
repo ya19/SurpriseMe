@@ -58,7 +58,7 @@ class ProfileViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     func initList(){
-        CurrentUser.shared.initFriendsVC(refresh: false, profileVC: nil)
+        CurrentUser.shared.initFriendsVC(refresh: false)
     }
     func setupViews(){
         userImage.image = #imageLiteral(resourceName: "icons8-user").circleMasked//CurrentUser...image

@@ -28,8 +28,7 @@
             currentRequestsNum = 0
         }
         
-        func initFriendsVC(refresh:Bool, profileVC:ProfileViewController?) {
-           self.profileVC = profileVC
+        func initFriendsVC(refresh:Bool) {
             friends = []
             requests = []
             currentRequestsNum = CurrentUser.shared.get()!.receivedFriendRequests.count
@@ -59,7 +58,7 @@
             if friends.count == currentFriendsNum , requests.count == currentRequestsNum{
                 timer.invalidate()
               
-                let reloadDelegate:RefreshProfileVC = profileVC!
+                let reloadDelegate:RefreshProfileVC = self.profileVC!
                 reloadDelegate.reloadMyData(friends: self.friends,requests: self.requests)
             }
         }
@@ -170,11 +169,11 @@
 //                                                        (self.profileVC != nil && sentFriendRequests.count != rememberSent) ||
 //                                                        (self.profileVC != nil && friends.count != rememberFriends)){
                                                     if self.profileVC != nil , receivedFriendRequests.count != rememberRequest{
-                                                        self.initFriendsVC(refresh: true, profileVC: self.profileVC!)
+                                                        self.initFriendsVC(refresh: true)
                                                         Toast.show(message: "update", controller: self.profileVC!)
                                                     }
                                                     if self.profileVC != nil , friends.count != rememberFriends{
-                                                        self.initFriendsVC(refresh: true, profileVC: self.profileVC!)
+                                                        self.initFriendsVC(refresh: true)
                                                         Toast.show(message: "update", controller: self.profileVC!)
                                                     }
                                     if once{
