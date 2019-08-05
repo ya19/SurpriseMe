@@ -160,9 +160,9 @@
                                                         myNotifications.append(Notification.getNotificationFromDictionary(notificationsDic[key] as! [String:Any]))
                                                     }
                                                 }
-                                               let rememberRequest = self.get()?.receivedFriendRequests.count
-                                            let rememberFriends = self.get()?.friends.count
-                                                    let rememberSent = self.get()?.sentFriendRequests.count
+                                               let rememberRequest = self.get()?.receivedFriendRequests.count ?? receivedFriendRequests.count
+                                            let rememberFriends = self.get()?.friends.count ?? friends.count
+                                                    let rememberSent = self.get()?.sentFriendRequests.count ?? sentFriendRequests.count
                                         self.user  = User(id: id, email: email, firstName: firstName, lastName: lastName, dateOfBitrh: dateOfBirth, friends: friends, myCart: myCart, sentFriendRequests: sentFriendRequests, receivedFriendRequests: receivedFriendRequests
                                             , myTreats: myTreats, myOrders: myOrders, getTreatsStatus: getTreatStatus, notifications: myNotifications, address: address)
 //                                                    if ((self.profileVC != nil && receivedFriendRequests.count != rememberRequest) ||
@@ -174,7 +174,14 @@
                                                     }
                                                     if  friends.count != rememberFriends{
                                                         UsersManager.shared.initFriendsVC(refresh: true)
+                                                        UsersManager.shared.initUsersPopUpFromProfile(refresh: true)
+
                                                         Toast.show(message: "update", controller: UsersManager.shared.profileVC)
+                                                    }
+                                                    if sentFriendRequests.count < rememberSent{
+                                                        UsersManager.shared.initUsersPopUpFromProfile(refresh: true)
+                                                        Toast.show(message: "update", controller: UsersManager.shared.notFriendsPopUP)
+
                                                     }
                                     if once{
                                     once = !once
