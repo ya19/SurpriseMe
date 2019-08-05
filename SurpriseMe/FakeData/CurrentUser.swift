@@ -14,74 +14,74 @@
         
         private var user:User?
         let ref = Database.database().reference()
-        private var currentFriendsNum:Int
-        private var currentRequestsNum:Int
-        var friends:[User]
-        var requests:[User]
-        var profileVC:ProfileViewController?
+//        private var currentFriendsNum:Int
+//        private var currentRequestsNum:Int
+//        var friends:[User]
+//        var requests:[User]
+//        var profileVC:ProfileViewController?
         private init(){
           user = nil
-            friends = []
-            requests = []
-            profileVC = nil
-            currentFriendsNum = 0
-            currentRequestsNum = 0
+//            friends = []
+//            requests = []
+//            profileVC = nil
+//            currentFriendsNum = 0
+//            currentRequestsNum = 0
         }
         
-        func initFriendsVC(refresh:Bool) {
-            friends = []
-            requests = []
-            currentRequestsNum = CurrentUser.shared.get()!.receivedFriendRequests.count
-            currentFriendsNum = CurrentUser.shared.get()!.friends.count
-                for friendId in CurrentUser.shared.get()!.friends{
-                    self.ref.child("users").child(friendId).observeSingleEvent(of: .value, with: { (friendData) in
-                        self.friends.append(User.getUserFromDictionary(friendData.value as! [String:Any]))
-                    })
-            }
-            
-            for friendRequestId in CurrentUser.shared.get()!.receivedFriendRequests{
-                self.ref.child("users").child(friendRequestId).observeSingleEvent(of: .value, with: { (requestData) in
-
-                    self.requests.append(User.getUserFromDictionary(requestData.value as! [String:Any]))
-                })
-
-            }
-            if !refresh{
-                    Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.didFriendsLoaded(_:)), userInfo: nil, repeats: true)
-            }else{
-                
-                    Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.refreshFriends(_:)), userInfo: nil, repeats: true)
-            }
-            
-        }
-        @objc func refreshFriends(_ timer: Timer){
-            if friends.count == currentFriendsNum , requests.count == currentRequestsNum{
-                timer.invalidate()
-              
-                let reloadDelegate:RefreshProfileVC = self.profileVC!
-                reloadDelegate.reloadMyData(friends: self.friends,requests: self.requests)
-            }
-        }
-        @objc func didFriendsLoaded(_ timer: Timer){
-            print(friends.count , "-" , currentFriendsNum, "$$$" , requests.count , "-" , currentRequestsNum)
-            
-            if friends.count == currentFriendsNum , requests.count == currentRequestsNum{
-                timer.invalidate()
-    //                    let friendsVC = UIStoryboard(name: "Friends", bundle: nil).instantiateViewController(withIdentifier: "friends") as! FriendsViewController
-                if self.profileVC == nil{
-                let profileVC = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "profile") as! ProfileViewController
-                //profile view controller
-    //                    friendsVC.friends = self.friends
-                self.profileVC = profileVC
-                }
-                        self.profileVC!.friends = self.friends
-                        self.profileVC!.requests = self.requests
-                
-                        menu.parent?.navigationController?.pushViewController(self.profileVC!, animated: true)
-                menu.removeFromParent()
-
-            }
-        }
+//        func initFriendsVC(refresh:Bool) {
+//            friends = []
+//            requests = []
+//            currentRequestsNum = CurrentUser.shared.get()!.receivedFriendRequests.count
+//            currentFriendsNum = CurrentUser.shared.get()!.friends.count
+//                for friendId in CurrentUser.shared.get()!.friends{
+//                    self.ref.child("users").child(friendId).observeSingleEvent(of: .value, with: { (friendData) in
+//                        self.friends.append(User.getUserFromDictionary(friendData.value as! [String:Any]))
+//                    })
+//            }
+//
+//            for friendRequestId in CurrentUser.shared.get()!.receivedFriendRequests{
+//                self.ref.child("users").child(friendRequestId).observeSingleEvent(of: .value, with: { (requestData) in
+//
+//                    self.requests.append(User.getUserFromDictionary(requestData.value as! [String:Any]))
+//                })
+//
+//            }
+//            if !refresh{
+//                    Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.didFriendsLoaded(_:)), userInfo: nil, repeats: true)
+//            }else{
+//
+//                    Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.refreshFriends(_:)), userInfo: nil, repeats: true)
+//            }
+//
+//        }
+//        @objc func refreshFriends(_ timer: Timer){
+//            if friends.count == currentFriendsNum , requests.count == currentRequestsNum{
+//                timer.invalidate()
+//
+//                let reloadDelegate:RefreshProfileVC = self.profileVC!
+//                reloadDelegate.reloadMyData(friends: self.friends,requests: self.requests)
+//            }
+//        }
+//        @objc func didFriendsLoaded(_ timer: Timer){
+//            print(friends.count , "-" , currentFriendsNum, "$$$" , requests.count , "-" , currentRequestsNum)
+//
+//            if friends.count == currentFriendsNum , requests.count == currentRequestsNum{
+//                timer.invalidate()
+//    //                    let friendsVC = UIStoryboard(name: "Friends", bundle: nil).instantiateViewController(withIdentifier: "friends") as! FriendsViewController
+//                if self.profileVC == nil{
+//                let profileVC = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "profile") as! ProfileViewController
+//                //profile view controller
+//    //                    friendsVC.friends = self.friends
+//                self.profileVC = profileVC
+//                }
+//                        self.profileVC!.friends = self.friends
+//                        self.profileVC!.requests = self.requests
+//
+//                        menu.parent?.navigationController?.pushViewController(self.profileVC!, animated: true)
+//                menu.removeFromParent()
+//
+//            }
+//        }
         func get() -> User?{
             return user
         }
@@ -168,13 +168,13 @@
 //                                                    if ((self.profileVC != nil && receivedFriendRequests.count != rememberRequest) ||
 //                                                        (self.profileVC != nil && sentFriendRequests.count != rememberSent) ||
 //                                                        (self.profileVC != nil && friends.count != rememberFriends)){
-                                                    if self.profileVC != nil , receivedFriendRequests.count != rememberRequest{
-                                                        self.initFriendsVC(refresh: true)
-                                                        Toast.show(message: "update", controller: self.profileVC!)
+                                                    if UsersManager.shared.profileVC != nil , receivedFriendRequests.count != rememberRequest{
+                                                        UsersManager.shared.initFriendsVC(refresh: true)
+                                                        Toast.show(message: "update", controller: UsersManager.shared.profileVC!)
                                                     }
-                                                    if self.profileVC != nil , friends.count != rememberFriends{
-                                                        self.initFriendsVC(refresh: true)
-                                                        Toast.show(message: "update", controller: self.profileVC!)
+                                                    if UsersManager.shared.profileVC != nil , friends.count != rememberFriends{
+                                                        UsersManager.shared.initFriendsVC(refresh: true)
+                                                        Toast.show(message: "update", controller: UsersManager.shared.profileVC!)
                                                     }
                                     if once{
                                     once = !once
