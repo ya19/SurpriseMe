@@ -103,7 +103,7 @@ class UsersManager{
             }
         }
     }
-    func add(friend:String, profileVC:ProfileViewController){
+    func add(friend:String){
         
         //notify both users
         
@@ -178,7 +178,7 @@ class UsersManager{
                 self.ref.child("sentFriendRequests").child(friend).removeValue()
                 }}else{
                 print("Friend request has been canceled by the potential friend")
-                Toast.show(message: "Friend request has been canceled by the potential friend", controller: profileVC)
+                Toast.show(message: "Friend request has been canceled by the potential friend", controller: self.profileVC)
 
             }
         }

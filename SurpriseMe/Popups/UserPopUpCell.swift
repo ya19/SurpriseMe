@@ -30,6 +30,7 @@ class UserPopUpCell: UITableViewCell {
         if friendAdd!{
             // add request
             UsersManager.shared.add(friendRequest: friend!.id,userCell: self)
+            UsersManager.shared.sendNotification(friendID: friend!.id, notificationType: .isFriendRequest, treatID: nil)
             friendAddBtn.setImage(UIImage(named: "icons8-cancel"), for: .normal)
         }else{
             // cancel request

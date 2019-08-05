@@ -25,12 +25,22 @@ class NotificationsTableCell: UITableViewCell {
     @IBAction func acceptTapped(_ sender: UIButton) {
         let ref = Database.database().reference()
         
-        //approve the treat
-        ref.child("treats").child(CurrentUser.shared.get()!.id).child(notification!.treatID!).child("status").setValue(TreatStatus.Accepted.rawValue)
+        
+        switch notification!.notificationType{
+        case .isTreatRequest:
+            
+            //approve the treat
+            ref.child("treats").child(CurrentUser.shared.get()!.id).child(notification!.treatID!).child("status").setValue(TreatStatus.Accepted.rawValue)
+            
+        case .isFriendRequest:
+            UsersManager.shared.add(friend: notification!.sender)
+            
+            
+            
+        }
         
         
         //delete from notifications
-        
         ref.child("notifications").child(CurrentUser.shared.get()!.id).child(notification!.id!).removeValue()
         
     }
@@ -60,7 +70,7 @@ class NotificationsTableCell: UITableViewCell {
             }
             
         case .isFriendRequest:
-            
+            UsersManager.shared.deny(friend: notification!.sender)
             
         }
         

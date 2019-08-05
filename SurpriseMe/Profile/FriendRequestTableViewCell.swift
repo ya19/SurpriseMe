@@ -24,7 +24,7 @@ class FriendRequestTableViewCell: UITableViewCell {
         if once {
             once = false
 
-            UsersManager.shared.add(friend: user!.id, profileVC: profileVC!)
+            UsersManager.shared.add(friend: user!.id)
         //todo approve request and delete from list
             delegate?.remove(at: self.indexPath!.row)
             
