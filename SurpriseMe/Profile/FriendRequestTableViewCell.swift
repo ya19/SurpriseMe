@@ -44,6 +44,7 @@ class FriendRequestTableViewCell: UITableViewCell {
     }
     //todo: parameter friend request.
     func populate(user:User){
+        once = true
         friendNameLabel.text = user.fullName
         friendRequestDateLabel.text = "Now"
         friendImage.image = #imageLiteral(resourceName: "icons8-user").circleMasked

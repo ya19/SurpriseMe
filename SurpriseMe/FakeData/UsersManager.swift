@@ -450,10 +450,11 @@ print(self.NotFriendsUsersNum, "test notFriends num")
     
     
     func initFriendsVC(refresh:Bool) {
-        friends = []
-        requests = []
+        self.friends = []
+        self.requests = []
         currentRequestsNum = CurrentUser.shared.get()!.receivedFriendRequests.count
         currentFriendsNum = CurrentUser.shared.get()!.friends.count
+        print(currentRequestsNum,"requestNum")
         for friendId in CurrentUser.shared.get()!.friends{
             self.ref.child("users").child(friendId).observeSingleEvent(of: .value, with: { (friendData) in
                 self.friends.append(User.getUserFromDictionary(friendData.value as! [String:Any]))
@@ -461,6 +462,7 @@ print(self.NotFriendsUsersNum, "test notFriends num")
         }
         
         for friendRequestId in CurrentUser.shared.get()!.receivedFriendRequests{
+            print(friendRequestId,"32534654745765756765")
             self.ref.child("users").child(friendRequestId).observeSingleEvent(of: .value, with: { (requestData) in
                 
                 self.requests.append(User.getUserFromDictionary(requestData.value as! [String:Any]))
@@ -476,10 +478,13 @@ print(self.NotFriendsUsersNum, "test notFriends num")
         
     }
     @objc func refreshFriends(_ timer: Timer){
+        print(requests.count,"requestNum1")
         if friends.count == currentFriendsNum , requests.count == currentRequestsNum{
             timer.invalidate()
             
             let reloadDelegate:RefreshProfileVC = self.profileVC
+            print(self.friends,"MAfriends")
+            print(self.requests,"MaREquest")
             reloadDelegate.reloadMyData(friends: self.friends,requests: self.requests)
         }
     }
