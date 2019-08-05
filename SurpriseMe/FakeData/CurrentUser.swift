@@ -69,12 +69,12 @@
             if friends.count == currentFriendsNum , requests.count == currentRequestsNum{
                 timer.invalidate()
     //                    let friendsVC = UIStoryboard(name: "Friends", bundle: nil).instantiateViewController(withIdentifier: "friends") as! FriendsViewController
-        
+                if self.profileVC == nil{
                 let profileVC = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "profile") as! ProfileViewController
                 //profile view controller
     //                    friendsVC.friends = self.friends
                 self.profileVC = profileVC
-
+                }
                         self.profileVC!.friends = self.friends
                         self.profileVC!.requests = self.requests
                 
@@ -152,10 +152,7 @@
                                             if let received = receivedData.value as? [String]{
                                                 receivedFriendRequests = received
                                             }
-                                            if self.profileVC != nil{
-                                                self.initFriendsVC(refresh: true, profileVC: self.profileVC!)
-                                                Toast.show(message: "SHAHAGFFFFFFF", controller: self.profileVC!)
-                                            }
+                                           
                                                 self.ref.child("notifications").child(id).observe( .value, with: { (notificationsData) in
                                                 
                                                 var myNotifications:[Notification] = []
@@ -164,9 +161,22 @@
                                                         myNotifications.append(Notification.getNotificationFromDictionary(notificationsDic[key] as! [String:Any]))
                                                     }
                                                 }
-                                                
+                                               let rememberRequest = self.get()?.receivedFriendRequests.count
+                                            let rememberFriends = self.get()?.friends.count
+                                                    let rememberSent = self.get()?.sentFriendRequests.count
                                         self.user  = User(id: id, email: email, firstName: firstName, lastName: lastName, dateOfBitrh: dateOfBirth, friends: friends, myCart: myCart, sentFriendRequests: sentFriendRequests, receivedFriendRequests: receivedFriendRequests
                                             , myTreats: myTreats, myOrders: myOrders, getTreatsStatus: getTreatStatus, notifications: myNotifications, address: address)
+//                                                    if ((self.profileVC != nil && receivedFriendRequests.count != rememberRequest) ||
+//                                                        (self.profileVC != nil && sentFriendRequests.count != rememberSent) ||
+//                                                        (self.profileVC != nil && friends.count != rememberFriends)){
+                                                    if self.profileVC != nil , receivedFriendRequests.count != rememberRequest{
+                                                        self.initFriendsVC(refresh: true, profileVC: self.profileVC!)
+                                                        Toast.show(message: "update", controller: self.profileVC!)
+                                                    }
+                                                    if self.profileVC != nil , friends.count != rememberFriends{
+                                                        self.initFriendsVC(refresh: true, profileVC: self.profileVC!)
+                                                        Toast.show(message: "update", controller: self.profileVC!)
+                                                    }
                                     if once{
                                     once = !once
                                         if asNavigation{
