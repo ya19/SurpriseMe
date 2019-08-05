@@ -29,18 +29,22 @@ class ProfileViewController: UIViewController {
     @IBAction func addFriend(_ sender: UIButton) {
         
         //todo: Show add friend pop up
-        let usersVC = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController
-        
-        usersVC.delegate = self
-        usersVC.users = UsersManager.shared.getAllButFriends(user: CurrentUser.shared.get()!)
-        //            userAddedDelegate = usersVC
-        //            userAddedDelegate?.reloadMydata()
+        UsersManager.shared.initUsersPopUpFromProfile(refresh: false)
+    
         
         
-        if menu.toggle {
-            toggle = true
-        }
-        toggle = PopUp.toggle(child: usersVC, parent: self,toggle: toggle)
+//        let usersVC = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController
+//        
+//        usersVC.delegate = self
+//        usersVC.users = UsersManager.shared.getAllButFriends(user: CurrentUser.shared.get()!)
+//        //            userAddedDelegate = usersVC
+//        //            userAddedDelegate?.reloadMydata()
+//        
+//        
+//        if menu.toggle {
+//            toggle = true
+//        }
+//        toggle = PopUp.toggle(child: usersVC, parent: self,toggle: toggle)
     }
     
     @IBAction func editClicked(_ sender: UIButton) {
@@ -57,9 +61,9 @@ class ProfileViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
-    func initList(){
-        CurrentUser.shared.initFriendsVC(refresh: false)
-    }
+//    func initList(){
+//        UsersManager.shared.initFriendsVC(refresh: true)
+//    }
     func setupViews(){
         userImage.image = #imageLiteral(resourceName: "icons8-user").circleMasked//CurrentUser...image
         nameLabel.text = "\(CurrentUser.shared.get()!.fullName)"
