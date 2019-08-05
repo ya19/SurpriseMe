@@ -168,18 +168,18 @@
 //                                                    if ((self.profileVC != nil && receivedFriendRequests.count != rememberRequest) ||
 //                                                        (self.profileVC != nil && sentFriendRequests.count != rememberSent) ||
 //                                                        (self.profileVC != nil && friends.count != rememberFriends)){
-                                                    if  receivedFriendRequests.count != rememberRequest{
+//                                                    if  receivedFriendRequests.count != rememberRequest{
+//                                                        UsersManager.shared.initFriendsVC(refresh: true)
+//                                                        Toast.show(message: "update", controller: UsersManager.shared.profileVC)
+//                                                    }
+                                                    if  friends.count != rememberFriends || receivedFriendRequests.count != rememberRequest{
                                                         UsersManager.shared.initFriendsVC(refresh: true)
                                                         Toast.show(message: "update", controller: UsersManager.shared.profileVC)
                                                     }
-                                                    if  friends.count != rememberFriends{
-                                                        UsersManager.shared.initFriendsVC(refresh: true)
-                                                        UsersManager.shared.initUsersPopUpFromProfile(refresh: true)
-
-                                                        Toast.show(message: "update", controller: UsersManager.shared.profileVC)
-                                                    }
-                                                    if sentFriendRequests.count < rememberSent{
-                                                        UsersManager.shared.initUsersPopUpFromProfile(refresh: true)
+                                                    if sentFriendRequests.count < rememberSent || friends.count != rememberFriends{
+                                                        if UsersManager.shared.profileVC.toggle == false{
+                                                            UsersManager.shared.initUsersPopUpFromProfile(refresh: true)
+                                                        }
                                                         Toast.show(message: "update", controller: UsersManager.shared.notFriendsPopUP)
 
                                                     }
