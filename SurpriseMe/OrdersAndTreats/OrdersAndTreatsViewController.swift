@@ -9,9 +9,6 @@
 import UIKit
 
 
-
-
-
 class OrdersAndTreatsViewController: UIViewController {
     
     
@@ -93,7 +90,7 @@ extension OrdersAndTreatsViewController : UITableViewDataSource{
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "treatCell") as? TreatCell else{return UITableViewCell()}
             cell.populate(treat: CurrentUser.shared.get()!.myTreats[indexPath.row])
             cell.delegate = self
-            
+            cell.statusDelegate = self
             return cell
             
         default:
@@ -149,5 +146,16 @@ protocol SentVoucherDelegate {
 extension OrdersAndTreatsViewController : SentVoucherDelegate{
     func sentVoucher() {
             self.ordersTreatsTableView.reloadData()
+    }
+}
+
+
+protocol TreatStatusChangedDelegate{
+    func updateStatus()
+}
+
+extension OrdersAndTreatsViewController : TreatStatusChangedDelegate{
+    func updateStatus() {
+        self.ordersTreatsTableView.reloadData()
     }
 }

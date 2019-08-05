@@ -39,11 +39,13 @@ struct Treat{
     
     var getUpdatedStatus: TreatStatus?{
         
+        
+        return treatStatus
         //todo change it to date.
-        if dateString == "Now"{
-            return TreatStatus.Expired
-        }
-        else {return treatStatus}
+//        if dateString == "Now"{
+//            return TreatStatus.Expired
+//        }
+//        else {return treatStatus}
     }
     
     var toDB:[String:Any]{
@@ -55,6 +57,10 @@ struct Treat{
         dic["giver"] = giver
         dic["getter"] = getter
         dic["status"] = treatStatus?.rawValue
+        
+        //i can assume that on the first purchase of the treat the status will always be pending.
+//        dic["status"] = TreatStatus.Pending.rawValue
+        
         return dic
     }
     static func getTreatFromDictionary(_ dic:[String:Any]) -> Treat{
@@ -74,34 +80,49 @@ struct Treat{
 }
 
 enum TreatStatus:Int{
-    case Expired = 0, Delivered , Used , NotUsed
+//    case Expired = 0, Delivered , Used , NotUsed , Pending , Declined
+    
+    case Pending = 0, Accepted , Used, Delivered, Declined
     
     var description:String{
         switch self{
-        case .Expired:
-            return "Expired"
+
         case .Delivered:
             return "Delivered"
         case .Used:
             return "Used"
             
-        case .NotUsed:
-            return "Not Yet Used"
+        case .Pending:
+            return "Waiting"
+            
+        case .Accepted:
+            return "Accepted"
+            
+        case .Declined:
+            return "Declined"
     }
     }
     
     var image: UIImage?{
         switch self{
-        case .Expired:
-            return UIImage(named: "icons8-expired")
+//        case .Expired:
+//            return UIImage(named: "icons8-expired")
         case .Delivered:
             return UIImage(named: "icons8-shipped")
         case .Used:
             return UIImage(named: "icons8-checked_2")
             
-        case .NotUsed:
+        case .Accepted:
             return UIImage(named: "icons8-arrow")
+        
+        case .Pending:
+            return UIImage(named: "icons8-expired")
+            
+        case .Declined:
+            return nil
         }
+        
+        
     }
 
 }
