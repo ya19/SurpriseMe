@@ -111,6 +111,17 @@ extension UsersPopUpViewController:UITableViewDataSource{
     
     
 }
+protocol RefreshNotFriendsVC {
+    func reloadMyData(notFriends:[User])
+}
+extension UsersPopUpViewController:RefreshNotFriendsVC{
+    func reloadMyData(notFriends: [User]) {
+        self.users = notFriends
+        self.currentUsers = notFriends
+        self.table.reloadData()
+        print(notFriends)
+    }
+}
 
 //protocol UserAddedDelegate {
 //    func reloadMydata()
