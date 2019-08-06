@@ -56,7 +56,7 @@ class CategoriesViewController: UICollectionViewController {
         myShops = ShopsManager.shared.getShops()
 
         let ref = Database.database().reference()
-        setTreatsObserver()
+//        setTreatsObserver()
 
         
         
@@ -71,7 +71,7 @@ class CategoriesViewController: UICollectionViewController {
     //suppose to send notification whenever the user received a treat.
     func setTreatsObserver(){
         Database.database().reference().child("treats").child(CurrentUser.shared.get()!.id).observe(.childAdded) { (datasnapshot) in
-            NotificationManager.shared.createNotification(with: "Come find out from who!", delay: 0.5, notificationType: .isTreatRequest)
+            UserNotificationManager.shared.createNotification(with: "Come find out from who!", delay: 0.5, notificationType: .isTreatRequest)
         }
     }
     

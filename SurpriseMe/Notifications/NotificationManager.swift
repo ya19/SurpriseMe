@@ -7,77 +7,74 @@
 //
 
 import UIKit
-import UserNotifications
+import Firebase
 
 class NotificationManager{
         
         static let shared = NotificationManager()
-        
+    var ref:DatabaseReference
     
         private init(){
+            ref = Database.database().reference()
+        }
+    
+    
+    func approveNotification(notification : Notification){
+        switch notification.notificationType{
+        case .isTreatRequest:
+            
+            //approve the treat
+    ref.child("treats").child(CurrentUser.shared.get()!.id).child(notification.treatID!).child("status").setValue(TreatStatus.Accepted.rawValue)
+            
+            
+        case .isFriendRequest:
+            UsersManager.shared.add(friend: notification.sender)
             
         }
         
-        func requestNotificationPermission(with callback : @escaping (Bool)->Void){
-            
-            UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.badge,.sound, .carPlay]) { (granted, error) in
-                callback(granted)
-            }
-            
-        }
+        //delete from notifications on server
+        ref.child("notifications").child(CurrentUser.shared.get()!.id).child(notification.id!).removeValue()
+    }
     
-    //user notifications, not regular in the bell.
-        func createNotification(with text : String, delay : TimeInterval, attachmentUrl : URL? = nil, notificationType : NotificationType){
-            //-Custom sound-, -attachment-, -title-, -subtitle-, -thread id-, userInfo
-            
-            func request(){
+    func declineNotification(notification: Notification){
+        var treat:Treat?
+        //added this line because the block doesn't "know" the parameter
+        let myNotification = notification
+        //if its a treat notification
+        switch notification.notificationType{
+        case .isTreatRequest:
+            //creating a treat using the ID
+            ref.child("treats").child(CurrentUser.shared.get()!.id).child(notification.treatID!).observeSingleEvent(of: .value) { (datasnapshot) in
                 
-                let content = UNMutableNotificationContent()
+                let dic = datasnapshot.value as! [String:Any]
+                treat = Treat.getTreatFromDictionary(dic)
                 
-                if let url = attachmentUrl,
-                    let attach = try? UNNotificationAttachment(identifier: "identifier", url: url, options: nil){
-                    content.attachments = [attach]
-                }
+                treat!.treatStatus = TreatStatus.Declined
                 
-                let val = arc4random()%2
+                //write to declined
+                self.ref.child("declinedTreats").child(myNotification.sender).child(myNotification.treatID!).setValue(treat!.toDB)
                 
-                content.body = text
-                content.badge = 1
-                
-                //            let soundName = UNNotificationSoundName(rawValue: "horse.wav")
-                //            let sound = UNNotificationSound(named: soundName)
-                //            content.sound = sound
-                //            if let sound = try? UNNotificationSound(named: UNNotificationSoundName(rawValue: )){
-                //                content.sound = sound
-                //            } else {
-                //                content.sound = UNNotificationSound.default
-                //            }
-                content.title = "\(notificationType.description)"
-                content.subtitle = "in SurpriseMe"
-                content.threadIdentifier = "\(val)"
-                content.userInfo = ["event_id":UUID().uuidString]
-                
-                
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: delay, repeats: false)
-                
-                let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-                
-                UNUserNotificationCenter.current().add(request) { (error) in
-                    if let error = error{
-                        print(error)
-                    } else {
-                        print("request notification success")
-                    }
-                }
+                //removed from treats
+                self.ref.child("treats").child(CurrentUser.shared.get()!.id).child(myNotification.treatID!).removeValue()
                 
             }
             
-            self.requestNotificationPermission { (granted) in
-                if granted{
-                    request()
-                }
-            }
+        case .isFriendRequest:
+            UsersManager.shared.deny(friend: notification.sender)
+            
         }
+        ref.child("notifications").child(CurrentUser.shared.get()!.id).child(notification.id!).removeValue()
+    }
+    
+    
+    
+    
+    
+//    func approveTreatNotification(treatID : String){
+//        ref.child("treats").child(CurrentUser.shared.get()!.id).child(treatID).child("status").setValue(TreatStatus.Accepted.rawValue)
+//    }
+//
+//    func declineTreatNotification(treatID: String){}
 }
 
 
