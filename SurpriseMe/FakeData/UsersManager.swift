@@ -21,6 +21,8 @@ class UsersManager{
     var profileVC:ProfileViewController
     var notFriendsPopUP:UsersPopUpViewController
     var notFriends:[User]
+    var initFriends:Bool
+    var initUsersPopUpNotFriends:Bool
     private init(){
         users = []
         friends = []
@@ -32,6 +34,8 @@ class UsersManager{
         currentRequestsNum = 0
         NotFriendsUsersNum = 0
         notFriends = []
+        initFriends = true
+        initUsersPopUpNotFriends = true
         //users from the server
 //        ref.child("users").observeSingleEvent(of: .value) { (DataSnapshot) in
 //            let child = DataSnapshot.value as! [String:Any]
@@ -380,6 +384,8 @@ class UsersManager{
     }
     
     func initUsersPopUpFromProfile(refresh:Bool){
+        if initUsersPopUpNotFriends{
+            initUsersPopUpNotFriends = false
         notFriends = []
         self.ref.child("users").observeSingleEvent(of: .value) { (usersData) in
             let usersDic = usersData.value as! [String:Any]
@@ -411,11 +417,12 @@ class UsersManager{
             
             Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.refreshNotFriends(_:)), userInfo: nil, repeats: true)
         }
+        }
     }
     @objc func refreshNotFriends(_ timer: Timer){
         if notFriends.count == NotFriendsUsersNum{
             timer.invalidate()
-
+            initUsersPopUpNotFriends = true
             let reloadDelegate:RefreshNotFriendsVC = self.notFriendsPopUP
             reloadDelegate.reloadMyData(notFriends: self.notFriends)
         }
@@ -433,7 +440,7 @@ print(self.NotFriendsUsersNum, "test notFriends num")
             self.notFriendsPopUP.currentUsers = self.notFriends
             //            userAddedDelegate = usersVC
             //            userAddedDelegate?.reloadMydata()
-            
+            initUsersPopUpNotFriends = true
             
             if menu.toggle {
                 self.profileVC.toggle = true
@@ -450,6 +457,8 @@ print(self.NotFriendsUsersNum, "test notFriends num")
     
     
     func initFriendsVC(refresh:Bool) {
+        if initFriends{
+            initFriends = false
         self.friends = []
         self.requests = []
         currentRequestsNum = CurrentUser.shared.get()!.receivedFriendRequests.count
@@ -460,12 +469,15 @@ print(self.NotFriendsUsersNum, "test notFriends num")
                 self.friends.append(User.getUserFromDictionary(friendData.value as! [String:Any]))
             })
         }
-        
+        print(requests.count,"requestNum1")
+
         for friendRequestId in CurrentUser.shared.get()!.receivedFriendRequests{
             print(friendRequestId,"32534654745765756765")
             self.ref.child("users").child(friendRequestId).observeSingleEvent(of: .value, with: { (requestData) in
                 
                 self.requests.append(User.getUserFromDictionary(requestData.value as! [String:Any]))
+                print(self.requests.count,"requestNum3")
+
             })
             
         }
@@ -475,16 +487,17 @@ print(self.NotFriendsUsersNum, "test notFriends num")
             
             Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.refreshFriends(_:)), userInfo: nil, repeats: true)
         }
+        }
         
     }
     @objc func refreshFriends(_ timer: Timer){
-        print(requests.count,"requestNum1")
         if friends.count == currentFriendsNum , requests.count == currentRequestsNum{
             timer.invalidate()
             
             let reloadDelegate:RefreshProfileVC = self.profileVC
             print(self.friends,"MAfriends")
             print(self.requests,"MaREquest")
+            initFriends = true
             reloadDelegate.reloadMyData(friends: self.friends,requests: self.requests)
         }
     }
@@ -501,7 +514,7 @@ print(self.NotFriendsUsersNum, "test notFriends num")
             }
             self.profileVC.friends = self.friends
             self.profileVC.requests = self.requests
-            
+            initFriends = true
             menu.parent?.navigationController?.pushViewController(self.profileVC, animated: true)
             menu.removeFromParent()
             
