@@ -18,8 +18,8 @@ class UsersManager{
     private var NotFriendsUsersNum:Int
     var friends:[User]
     var requests:[User]
-    var profileVC:ProfileViewController
-    var notFriendsPopUP:UsersPopUpViewController
+    var profileVC:ProfileViewController?
+    var notFriendsPopUP:UsersPopUpViewController?
     var notFriends:[User]
     var initFriends:Bool
     var initUsersPopUpNotFriends:Bool
@@ -27,9 +27,8 @@ class UsersManager{
         users = []
         friends = []
         requests = []
-        profileVC = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "profile") as! ProfileViewController
-        notFriendsPopUP = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController
-        notFriendsPopUP.users = []
+        profileVC = nil
+        notFriendsPopUP = nil
         currentFriendsNum = 0
         currentRequestsNum = 0
         NotFriendsUsersNum = 0
@@ -132,7 +131,7 @@ class UsersManager{
         }else{
             ref.child("receivedFriendRequests").child(CurrentUser.shared.get()!.id).removeValue()
             }}else{
-            Toast.show(message: "Friend request has been cancelled by the potential friend", controller: profileVC)
+            Toast.show(message: "Friend request has been cancelled by the potential friend", controller: profileVC!)
         }
         
         
@@ -183,7 +182,7 @@ class UsersManager{
                 self.ref.child("sentFriendRequests").child(friend).removeValue()
                 }}else{
                 print("Friend request has been canceled by the potential friend")
-                Toast.show(message: "Friend request has been canceled by the potential friend", controller: self.profileVC)
+                Toast.show(message: "Friend request has been canceled by the potential friend", controller: self.profileVC!)
 
             }
         }
@@ -389,8 +388,8 @@ class UsersManager{
         notFriends = []
         self.ref.child("users").observeSingleEvent(of: .value) { (usersData) in
             let usersDic = usersData.value as! [String:Any]
-            self.NotFriendsUsersNum = usersDic.keys.count - CurrentUser.shared.get()!.friends.count - 1
-            
+            self.NotFriendsUsersNum = usersDic.keys.count - CurrentUser.shared.get()!.friends.count - CurrentUser.shared.get()!.receivedFriendRequests.count - 1
+            print(self.NotFriendsUsersNum, "Not friends num")
             for key in usersDic.keys{
                 let someuser = User.getUserFromDictionary(usersDic[key] as! [String:Any])
                 var ok = true
@@ -420,10 +419,17 @@ class UsersManager{
         }
     }
     @objc func refreshNotFriends(_ timer: Timer){
+        print(self.NotFriendsUsersNum, "test notFriends num")
+        print(notFriends,"test array")
+        
         if notFriends.count == NotFriendsUsersNum{
             timer.invalidate()
+            if self.notFriendsPopUP == nil{
+                self.notFriendsPopUP = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController
+                self.notFriendsPopUP!.users = []
+            }
             initUsersPopUpNotFriends = true
-            let reloadDelegate:RefreshNotFriendsVC = self.notFriendsPopUP
+            let reloadDelegate:RefreshNotFriendsVC = self.notFriendsPopUP!
             reloadDelegate.reloadMyData(notFriends: self.notFriends)
         }
     }
@@ -433,19 +439,22 @@ print(self.NotFriendsUsersNum, "test notFriends num")
         print(notFriends,"test array")
         if notFriends.count == NotFriendsUsersNum {
             timer.invalidate()
-
+            if self.notFriendsPopUP == nil{
+                self.notFriendsPopUP = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController
+                self.notFriendsPopUP!.users = []
+            }
            
-            self.notFriendsPopUP.delegate = self.profileVC
-            self.notFriendsPopUP.users = self.notFriends
-            self.notFriendsPopUP.currentUsers = self.notFriends
+            self.notFriendsPopUP!.delegate = self.profileVC
+            self.notFriendsPopUP!.users = self.notFriends
+            self.notFriendsPopUP!.currentUsers = self.notFriends
             //            userAddedDelegate = usersVC
             //            userAddedDelegate?.reloadMydata()
             initUsersPopUpNotFriends = true
             
             if menu.toggle {
-                self.profileVC.toggle = true
+                self.profileVC!.toggle = true
             }
-            self.profileVC.toggle = PopUp.toggle(child: self.notFriendsPopUP, parent: self.profileVC,toggle: self.profileVC.toggle)
+            self.profileVC!.toggle = PopUp.toggle(child: self.notFriendsPopUP!, parent: self.profileVC!,toggle: self.profileVC!.toggle)
 
             
         }
@@ -493,8 +502,10 @@ print(self.NotFriendsUsersNum, "test notFriends num")
     @objc func refreshFriends(_ timer: Timer){
         if friends.count == currentFriendsNum , requests.count == currentRequestsNum{
             timer.invalidate()
-            
-            let reloadDelegate:RefreshProfileVC = self.profileVC
+            if self.profileVC == nil{
+                self.profileVC = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "profile") as! ProfileViewController
+            }
+            let reloadDelegate:RefreshProfileVC = self.profileVC!
             print(self.friends,"MAfriends")
             print(self.requests,"MaREquest")
             initFriends = true
@@ -506,16 +517,15 @@ print(self.NotFriendsUsersNum, "test notFriends num")
         if friends.count == currentFriendsNum , requests.count == currentRequestsNum{
             timer.invalidate()
             //                    let friendsVC = UIStoryboard(name: "Friends", bundle: nil).instantiateViewController(withIdentifier: "friends") as! FriendsViewController
-            if self.profileVC == nil{
-                let profileVC = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "profile") as! ProfileViewController
-                //profile view controller
-                //                    friendsVC.friends = self.friends
-                self.profileVC = profileVC
-            }
-            self.profileVC.friends = self.friends
-            self.profileVC.requests = self.requests
+            
+                if self.profileVC == nil{
+                    self.profileVC = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "profile") as! ProfileViewController
+                }
+            
+            self.profileVC!.friends = self.friends
+            self.profileVC!.requests = self.requests
             initFriends = true
-            menu.parent?.navigationController?.pushViewController(self.profileVC, animated: true)
+            menu.parent?.navigationController?.pushViewController(self.profileVC!, animated: true)
             menu.removeFromParent()
             
         }

@@ -107,6 +107,9 @@ extension MenuViewController:UITableViewDelegate{
             if Auth.auth().currentUser != nil{
                 do {
                     try Auth.auth().signOut()
+                    UsersManager.shared.profileVC = nil
+                    UsersManager.shared.notFriendsPopUP = nil
+                    
                     let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "login") as! ViewController
                     Toast.show(message: "\(email!) Logged out successfully", controller: controller)
                     
