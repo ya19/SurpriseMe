@@ -21,7 +21,10 @@
                                 <rect key="frame" x="28" y="33.5" width="319" height="600"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cxW-1H-9ht">
-                                        <rect key="frame" x="280.5" y="15" width="32" height="30"/>
+                                        <rect key="frame" x="280.5" y="14" width="32" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="cxW-1H-9ht" secondAttribute="height" multiplier="1:1" id="NdW-qT-VfE"/>
+                                        </constraints>
                                         <state key="normal" image="xButton"/>
                                         <connections>
                                             <action selector="closePopUp:" destination="QXJ-5x-Uqf" eventType="touchUpInside" id="ZiW-c4-nMa"/>
@@ -120,6 +123,13 @@
                                             <action selector="register:" destination="QXJ-5x-Uqf" eventType="touchUpInside" id="yM4-Z7-jZe"/>
                                         </connections>
                                     </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bPZ-o6-FKf" customClass="SAButton" customModule="SurpriseMe" customModuleProvider="target">
+                                        <rect key="frame" x="32" y="534" width="255" height="42"/>
+                                        <state key="normal" title="Save Changes"/>
+                                        <connections>
+                                            <action selector="saveChanges:" destination="QXJ-5x-Uqf" eventType="touchUpInside" id="RU5-Qp-OKp"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.46809452419999997" green="0.65788195270000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -127,6 +137,7 @@
                                     <constraint firstItem="7Si-NF-rJ7" firstAttribute="centerX" secondItem="yoO-gt-8of" secondAttribute="centerX" id="2WA-Q3-BQb"/>
                                     <constraint firstItem="6Dr-ND-SDr" firstAttribute="width" secondItem="yoO-gt-8of" secondAttribute="width" multiplier="0.8" id="6UQ-o3-qWo"/>
                                     <constraint firstItem="7Si-NF-rJ7" firstAttribute="centerY" secondItem="yoO-gt-8of" secondAttribute="centerY" multiplier="1.2" id="7L3-nM-16Y"/>
+                                    <constraint firstItem="bPZ-o6-FKf" firstAttribute="width" secondItem="yoO-gt-8of" secondAttribute="width" multiplier="0.8" id="95H-qE-CLy"/>
                                     <constraint firstItem="nzb-Ay-8Ts" firstAttribute="width" secondItem="yoO-gt-8of" secondAttribute="width" multiplier="0.8" id="Aau-Lb-7p5"/>
                                     <constraint firstItem="6Dr-ND-SDr" firstAttribute="centerX" secondItem="yoO-gt-8of" secondAttribute="centerX" id="Coj-Ku-uKQ"/>
                                     <constraint firstItem="eJX-Uc-Frr" firstAttribute="centerX" secondItem="yoO-gt-8of" secondAttribute="centerX" id="EAp-Oe-vHZ"/>
@@ -136,9 +147,9 @@
                                     <constraint firstItem="eJX-Uc-Frr" firstAttribute="width" secondItem="yoO-gt-8of" secondAttribute="width" multiplier="0.8" id="MDM-Zr-3Dr"/>
                                     <constraint firstItem="xkr-6S-oki" firstAttribute="width" secondItem="yoO-gt-8of" secondAttribute="width" multiplier="0.9" id="Mdr-Op-hY7"/>
                                     <constraint firstItem="7Si-NF-rJ7" firstAttribute="height" secondItem="yoO-gt-8of" secondAttribute="height" multiplier="0.07" id="NVY-jU-jMH"/>
-                                    <constraint firstItem="cxW-1H-9ht" firstAttribute="height" secondItem="yoO-gt-8of" secondAttribute="height" multiplier="0.05" id="OmY-Vb-djl"/>
                                     <constraint firstItem="xkr-6S-oki" firstAttribute="centerY" secondItem="yoO-gt-8of" secondAttribute="centerY" multiplier="1.67" id="Sb1-dP-YNJ"/>
                                     <constraint firstItem="ZH3-ts-wC8" firstAttribute="width" secondItem="yoO-gt-8of" secondAttribute="width" multiplier="0.8" id="TcZ-VV-ArN"/>
+                                    <constraint firstItem="bPZ-o6-FKf" firstAttribute="height" secondItem="yoO-gt-8of" secondAttribute="height" multiplier="0.07" id="Ug6-Fz-pVC"/>
                                     <constraint firstItem="eJX-Uc-Frr" firstAttribute="centerY" secondItem="yoO-gt-8of" secondAttribute="centerY" multiplier="1.38" id="XEr-Zc-M5t"/>
                                     <constraint firstItem="Ex5-e5-Gi6" firstAttribute="centerX" secondItem="yoO-gt-8of" secondAttribute="centerX" id="YJA-qA-hoL"/>
                                     <constraint firstItem="cxW-1H-9ht" firstAttribute="centerX" secondItem="yoO-gt-8of" secondAttribute="centerX" multiplier="1.86" id="ZLY-wG-eMP"/>
@@ -146,6 +157,7 @@
                                     <constraint firstItem="opF-qO-gdg" firstAttribute="centerX" secondItem="yoO-gt-8of" secondAttribute="centerX" id="arJ-o5-a2g"/>
                                     <constraint firstItem="cxW-1H-9ht" firstAttribute="centerY" secondItem="yoO-gt-8of" secondAttribute="centerY" multiplier="0.1" id="cfM-cB-mAh"/>
                                     <constraint firstItem="ZH3-ts-wC8" firstAttribute="centerY" secondItem="yoO-gt-8of" secondAttribute="centerY" multiplier="0.63" id="d23-dE-p2b"/>
+                                    <constraint firstItem="bPZ-o6-FKf" firstAttribute="centerY" secondItem="yoO-gt-8of" secondAttribute="centerY" multiplier="1.85" id="fe5-48-cBK"/>
                                     <constraint firstItem="Ex5-e5-Gi6" firstAttribute="width" secondItem="yoO-gt-8of" secondAttribute="width" multiplier="0.8" id="h5R-sK-v8W"/>
                                     <constraint firstItem="eJX-Uc-Frr" firstAttribute="height" secondItem="yoO-gt-8of" secondAttribute="height" multiplier="0.07" id="i3n-4D-j0A"/>
                                     <constraint firstItem="6Dr-ND-SDr" firstAttribute="height" secondItem="yoO-gt-8of" secondAttribute="height" multiplier="0.07" id="jTT-dT-Jsk"/>
@@ -167,6 +179,7 @@
                                     <constraint firstItem="6Dr-ND-SDr" firstAttribute="centerY" secondItem="yoO-gt-8of" secondAttribute="centerY" multiplier="0.27" id="ynE-Zs-bXs"/>
                                     <constraint firstItem="opF-qO-gdg" firstAttribute="height" secondItem="yoO-gt-8of" secondAttribute="height" multiplier="0.1" id="z5m-pO-gIh"/>
                                     <constraint firstItem="ZH3-ts-wC8" firstAttribute="height" secondItem="yoO-gt-8of" secondAttribute="height" multiplier="0.05" id="zFY-Zk-gRn"/>
+                                    <constraint firstItem="bPZ-o6-FKf" firstAttribute="centerX" secondItem="yoO-gt-8of" secondAttribute="centerX" id="zpK-3c-y3m"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -188,6 +201,8 @@
                         <outlet property="lastName" destination="Ex5-e5-Gi6" id="9Ll-Nc-Yf9"/>
                         <outlet property="password" destination="7Si-NF-rJ7" id="an9-Ph-bdz"/>
                         <outlet property="popUpView" destination="yoO-gt-8of" id="NOf-9u-z3y"/>
+                        <outlet property="registerBtn" destination="nzb-Ay-8Ts" id="3OD-J4-xyV"/>
+                        <outlet property="saveChangesBtn" destination="bPZ-o6-FKf" id="lzD-ik-dtL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GGH-Zi-p7b" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -15,6 +15,7 @@
 		47084D8122F3293A00CF6698 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47084D8022F3293A00CF6698 /* ProfileViewController.swift */; };
 		47084D8322F32E0B00CF6698 /* FriendRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47084D8222F32E0B00CF6698 /* FriendRequestTableViewCell.swift */; };
 		47084D8522F3332B00CF6698 /* NewFriendTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47084D8422F3332B00CF6698 /* NewFriendTableCell.swift */; };
+		4716F1DB22F97CCA00F083A0 /* UserNotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4716F1DA22F97CCA00F083A0 /* UserNotificationsManager.swift */; };
 		474B257922D8959E00D0A332 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474B257822D8959E00D0A332 /* ShopViewController.swift */; };
 		474B257B22D895BF00D0A332 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474B257A22D895BF00D0A332 /* ProductCollectionViewCell.swift */; };
 		47575F8022DF28F200A61176 /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47575F7F22DF28F200A61176 /* OrderCell.swift */; };
@@ -88,6 +89,7 @@
 		47084D8022F3293A00CF6698 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		47084D8222F32E0B00CF6698 /* FriendRequestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestTableViewCell.swift; sourceTree = "<group>"; };
 		47084D8422F3332B00CF6698 /* NewFriendTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFriendTableCell.swift; sourceTree = "<group>"; };
+		4716F1DA22F97CCA00F083A0 /* UserNotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationsManager.swift; sourceTree = "<group>"; };
 		474B257822D8959E00D0A332 /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		474B257A22D895BF00D0A332 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		47575F7F22DF28F200A61176 /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				47062A7B22F1F20C00610198 /* NotificationsViewController.swift */,
 				47062A7D22F1F2D000610198 /* NotificationsTableCell.swift */,
 				47A1734C22F5DBF80080F08D /* NotificationManager.swift */,
+				4716F1DA22F97CCA00F083A0 /* UserNotificationsManager.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				6DC7038822D5C0B500F0531B /* BaseViewController.swift in Sources */,
 				7BAF23D422D362E200E83A89 /* SurpriseMe.xcdatamodeld in Sources */,
 				ADDB641222E0733A003A2916 /* Screens.swift in Sources */,
+				4716F1DB22F97CCA00F083A0 /* UserNotificationsManager.swift in Sources */,
 				AD68A49322D8EAD700E019BA /* CartProductTableViewCell.swift in Sources */,
 				7B1E1FE622D3788F007922E9 /* TreatStatus.swift in Sources */,
 				7BAF23CC22D362E200E83A89 /* AppDelegate.swift in Sources */,

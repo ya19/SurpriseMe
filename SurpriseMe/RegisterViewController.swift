@@ -12,7 +12,16 @@ import FirebaseAuth
 
 class RegisterViewController: UIViewController {
 
-
+    
+    var fromRegisterButton: Bool = true
+    let ref = Database.database().reference()
+    @IBOutlet weak var registerBtn: SAButton!
+    
+    
+    @IBOutlet weak var saveChangesBtn: SAButton!
+    var toggle = true
+    
+    
     @IBOutlet weak var firstName: SATextField!
     @IBOutlet weak var lastName: SATextField!
     @IBOutlet weak var dateOfBirth: UIDatePicker!
@@ -106,38 +115,54 @@ class RegisterViewController: UIViewController {
     
     @IBAction func closePopUp(_ sender: UIButton) {
         clearData()
-        self.view.removeFromSuperview()
+        
+//        self.view.removeFromSuperview()
+        PopUp.remove(controller: self)
+        
+        //it works but it looks like it happens simultaneously and not after.
+        //tried animation but it won't work.
+        if let parent = parent as? ProfileViewController{
+            parent.navigationController?.navigationBar.isHidden = false
+            
+        }
+//        toggle = PopUp.toggle(child: self, parent: parent!, toggle: toggle)
+        
     }
     @IBAction func register(_ sender: SAButton) {
         //todo: check text fields and errors again.
-        
         for textField in textFields{
             if textField.text!.isEmpty {
                 Toast.show(message: "You didn't fill all the details", controller: self)
                 return
             }
-            
+
             if textField == email{
                 textField.checkValidationNew(sender: textField, errorLabel: emailError, type: .isEmail)
             } else if textField == confirmPassword , textField.text != password.text{
-                
+
                 setupErrorMessageForNonTextFields(sender: textField, errorLabel: confirmPasswordError, message: "Your passwords must be the same")
             }
         }
-        
+
         if giftStatus.selectedSegmentIndex == -1 {
             setupErrorMessageForNonTextFields(sender: giftStatus, errorLabel: giftStatusError, message: "You must select the who you accept getting gifts from")
-            
+
             return
         }
-        
+
         //todo: checking on dates.
-        if dateOfBirth.date == dateOfBirth.maximumDate{
-            
-            setupErrorMessageForNonTextFields(sender: dateOfBirth, errorLabel: dateError, message: "You must choose a birthday earlier than 1/1/2000")
+
+        let today = Date()
+        let gregorian = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+        let age = gregorian.components([.year], from: dateOfBirth.date, to: today, options: [])
+
+        if age.year! < 18 {
+            // user is under 18
+            setupErrorMessageForNonTextFields(sender: dateOfBirth, errorLabel: dateError, message: "You must be over 18 to use SurpriseMe! Sorry.")
             return
         }
-        
+
+
         for errorMessage in errorMessages{
             if errorMessage.text != nil {
                 Toast.show(message: "Some of your details are not filled properly", controller: self)
@@ -175,9 +200,106 @@ class RegisterViewController: UIViewController {
     
     @IBOutlet weak var popUpView: SAView!
    
+    @IBAction func saveChanges(_ sender: SAButton) {
+        //no need to check for empty cause they are already filled
+        
+        //check date
+        let today = Date()
+        let gregorian = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+        let age = gregorian.components([.year], from: dateOfBirth.date, to: today, options: [])
+        
+        if age.year! < 18 {
+            // user is under 18
+            setupErrorMessageForNonTextFields(sender: dateOfBirth, errorLabel: dateError, message: "You must be over 18 to use SurpriseMe! Sorry.")
+            return
+        }
+        
+        //if pass not empty , check
+        
+        if password.text != nil || confirmPassword.text != nil{
+            password.checkValidationNew(sender: password, errorLabel: passwordError, type: .isPassword)
+            
+            if !confirmPassword.text!.isEmpty {
+                
+                if !(confirmPassword.text! == password.text!){
+                    setupErrorMessageForNonTextFields(sender: confirmPassword, errorLabel: confirmPasswordError, message: "Your passwords must be the same")
+                }
+            } else {
+                confirmPassword.checkValidationNew(sender: confirmPassword, errorLabel: confirmPasswordError, type: .isPassword)
+            }
+        }
+        
+        //check for errors.
+        for errorMessage in errorMessages{
+            if errorMessage.text != nil {
+                Toast.show(message: "Some of your details are not filled properly", controller: self)
+                return
+            }
+        }
+        
+        //if email has been changed
+                                    //puting ! cause this button only appear when a current user exist anyway.
+        if email.text != CurrentUser.shared.get()!.email{
+            Auth.auth().currentUser?.updateEmail(to: email.text!, completion: { (error) in
+                if error != nil{
+                    self.handleError(error!)
+                    return
+                } else{
+//
+//                    self.ref.child("users").child(CurrentUser.shared.get()!.id).child("email").setValue(self.email.text!)
+//
+//                    Toast.show(message: "Your email had changed to \(self.email.text!)", controller: self)
+                }
+            })
+        }
+        
+        let updatedUser = User.init(id: CurrentUser.shared.get()!.id, email: email.text!, firstName: firstName.text!, lastName: lastName.text!, dateOfBitrh: dateOfBirth.date, friends: CurrentUser.shared.get()!.friends, myCart: CurrentUser.shared.get()!.myCart, sentFriendRequests: CurrentUser.shared.get()!.sentFriendRequests, receivedFriendRequests: CurrentUser.shared.get()!.receivedFriendRequests, myTreats: CurrentUser.shared.get()!.myTreats, myOrders: CurrentUser.shared.get()!.myOrders, getTreatsStatus: GetTreatStatus(rawValue: giftStatus!.selectedSegmentIndex)!, notifications: CurrentUser.shared.get()!.notifications, address: CurrentUser.shared.get()?.address)
+        
+        ref.child("users").child(CurrentUser.shared.get()!.id).updateChildValues(updatedUser.toDB)
+        
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
+
+    }
+    
+    
+    func readUserFromServer(){
+        let user = CurrentUser.shared.get()!
+        firstName.text = user.firstName
+        lastName.text = user.lastName
+        email.text = user.email
+        dateOfBirth.setDate(user.dateOfBitrh, animated: true)
+        giftStatus.selectedSegmentIndex = user.getTreatsStatus.rawValue
+        
+
+    }
+    
+    
+//    func readUserFromServer(){
+//        guard let id = CurrentUser.shared.get()?.id else{return}
+//        ref.child("users").child(id).observeSingleEvent(of: .value) { (DataSnapshot) in
+//            let dic = DataSnapshot.value as! [String:Any]
+//            let user = User.getUserFromDictionary(dic)
+//            self.firstName.text = user.firstName
+//            self.lastName.text = user.lastName
+//            self.email.text = user.email
+//
+//            //password...
+//
+//            self.dateOfBirth.setDate(user.dateOfBitrh, animated: true)
+//            self.giftStatus.selectedSegmentIndex = user.getTreatsStatus.rawValue
+//            self.existingUser = user
+//        }
+//
+//
+//
+//    }
+    
+    func setup(){
         self.view.backgroundColor = UIColor(white: 0, alpha: 0.5)
         self.view.sendSubviewToBack(popUpView)
         popUpView.backgroundColor = UIColor(patternImage: UIImage(named: "pure-blue-sky")!)
@@ -191,16 +313,16 @@ class RegisterViewController: UIViewController {
             self.view.addSubview(errorMessage)
         }
         
+        //might be better to do if let parent instead of hiding etc.
         
-        
-        
-        
-        
-//        setBackground(self.popUpView , imageName: "pure-blue-sky")
-        
-        
-        
-        // Do any additional setup after loading the view.
+        if fromRegisterButton{
+            saveChangesBtn.isHidden = true
+        } else {
+            saveChangesBtn.isHidden = false
+            registerBtn.isHidden = true
+            
+            readUserFromServer()
+        }
     }
     
     func clearData(){

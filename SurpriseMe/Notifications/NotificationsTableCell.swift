@@ -13,6 +13,7 @@ class NotificationsTableCell: UITableViewCell {
 
     var notification:Notification?
     var delegate : ChangedNotificationStateDelegate?
+    var updateListDelegate : updateList?
     
     @IBOutlet weak var notificationImage: UIImageView!
     
@@ -23,57 +24,18 @@ class NotificationsTableCell: UITableViewCell {
     @IBOutlet weak var notificationDate: UILabel!
     
     @IBAction func acceptTapped(_ sender: UIButton) {
-        let ref = Database.database().reference()
-        
-        
-        switch notification!.notificationType{
-        case .isTreatRequest:
-            
-            //approve the treat
-            ref.child("treats").child(CurrentUser.shared.get()!.id).child(notification!.treatID!).child("status").setValue(TreatStatus.Accepted.rawValue)
-            
-        case .isFriendRequest:
-            UsersManager.shared.add(friend: notification!.sender)
-            
-            
-            
-        }
-        
-        
-        //delete from notifications
-        ref.child("notifications").child(CurrentUser.shared.get()!.id).child(notification!.id!).removeValue()
+
+        NotificationManager.shared.approveNotification(notification: notification!)
+        updateListDelegate?.remove(at: self.indexPath!.row)
+
         
     }
     
     @IBAction func denyTapped(_ sender: Any) {
-        let ref = Database.database().reference()
-        var treat:Treat?
-       
-        //if its a treat notification
-        switch notification!.notificationType{
-        case .isTreatRequest:
-            //creating a treat using the ID
-            ref.child("treats").child(CurrentUser.shared.get()!.id).child(notification!.treatID!).observeSingleEvent(of: .value) { (datasnapshot) in
-                
-                let dic = datasnapshot.value as! [String:Any]
-                treat = Treat.getTreatFromDictionary(dic)
-                
-                treat!.treatStatus = TreatStatus.Declined
-                
-                //write to declined
-                ref.child("declinedTreats").child(self.notification!.sender).child(self.notification!.treatID!).setValue(treat!.toDB)
-                
-                //removed from treats
-                ref.child("treats").child(CurrentUser.shared.get()!.id).child(self.notification!.treatID!).removeValue()
-                
-                ref.child("notifications").child(CurrentUser.shared.get()!.id).child(self.notification!.id!).removeValue()
-            }
-            
-        case .isFriendRequest:
-            UsersManager.shared.deny(friend: notification!.sender)
-            
-        }
         
+        NotificationManager.shared.declineNotification(notification: notification!)
+        updateListDelegate?.remove(at: self.indexPath!.row)
+
 
     }
     
@@ -101,3 +63,61 @@ class NotificationsTableCell: UITableViewCell {
 protocol ChangedNotificationStateDelegate{
     func stateChanged()
 }
+
+
+
+
+//comments that i prefer living here so it won't get deleted.
+
+
+//accept
+
+//        switch notification!.notificationType{
+//        case .isTreatRequest:
+//
+//            //approve the treat
+////            ref.child("treats").child(CurrentUser.shared.get()!.id).child(notification!.treatID!).child("status").setValue(TreatStatus.Accepted.rawValue)
+//
+//            NotificationManager.shared.approveTreatNotification(treatID: notification!.treatID!)
+//
+//        case .isFriendRequest:
+//            UsersManager.shared.add(friend: notification!.sender)
+//
+//        }
+//
+//
+//        //delete from notifications
+//        ref.child("notifications").child(CurrentUser.shared.get()!.id).child(notification!.id!).removeValue()
+////        delegate?.stateChanged()
+
+
+
+//decline
+
+//        var treat:Treat?
+//
+//        //if its a treat notification
+//        switch notification!.notificationType{
+//        case .isTreatRequest:
+//            //creating a treat using the ID
+//            ref.child("treats").child(CurrentUser.shared.get()!.id).child(notification!.treatID!).observeSingleEvent(of: .value) { (datasnapshot) in
+//
+//                let dic = datasnapshot.value as! [String:Any]
+//                treat = Treat.getTreatFromDictionary(dic)
+//
+//                treat!.treatStatus = TreatStatus.Declined
+//
+//                //write to declined
+//                ref.child("declinedTreats").child(self.notification!.sender).child(self.notification!.treatID!).setValue(treat!.toDB)
+//
+//                //removed from treats
+//                ref.child("treats").child(CurrentUser.shared.get()!.id).child(self.notification!.treatID!).removeValue()
+//
+//            }
+//
+//        case .isFriendRequest:
+//            UsersManager.shared.deny(friend: notification!.sender)
+//
+//        }
+//        ref.child("notifications").child(CurrentUser.shared.get()!.id).child(self.notification!.id!).removeValue()
+//        delegate?.stateChanged()

@@ -50,7 +50,8 @@ extension NotificationsViewController : UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "notificationCell") as! NotificationsTableCell
         cell.populate(notification: notifications?[indexPath.row])
-        cell.delegate = self
+//        cell.delegate = self
+        cell.updateListDelegate = self
         return cell
     }
 }
@@ -62,8 +63,19 @@ extension NotificationsViewController : UITableViewDelegate{
 }
 
 
-extension NotificationsViewController : ChangedNotificationStateDelegate{
-    func stateChanged() {
-        self.notificationsTableView.reloadData()
+//extension NotificationsViewController : ChangedNotificationStateDelegate{
+//    func stateChanged() {
+//        
+//        notifications = CurrentUser.shared.get()?.notifications
+//        self.notificationsTableView.reloadData()
+//    }
+//}
+
+extension NotificationsViewController : updateList{
+    func remove(at: Int) {
+        notifications!.remove(at: at)
+        notificationsTableView.deleteRows(at: [IndexPath(row: at, section: 0)], with: .none)
+        notificationsTableView.reloadData()
+
     }
 }

@@ -74,7 +74,7 @@ extension MenuViewController:UITableViewDelegate{
 
                 return
             }
-        case Screens.MyFriends:
+        case Screens.MyProfile:
             menu.toggle = !menu.toggle
             self.view.removeFromSuperview()
 
@@ -170,7 +170,7 @@ extension MenuViewController:UITableViewDataSource{
         if let _ = self.parent as? CategoriesViewController{
             return Screens.Main.rawVaule
         }else if let _ = self.parent as? FriendsViewController{
-            return Screens.MyFriends.rawVaule
+            return Screens.MyProfile.rawVaule
         }else if let _ = self.parent as? OrdersAndTreatsViewController{
             return Screens.OrdersAndTreats.rawVaule
         }

@@ -24,7 +24,7 @@ class ProfileViewController: UIViewController {
     }
     
     var toggle = true
-    
+    var editScreenToggle = true
     
     @IBAction func addFriend(_ sender: UIButton) {
         
@@ -49,7 +49,17 @@ class ProfileViewController: UIViewController {
     
     @IBAction func editClicked(_ sender: UIButton) {
         
-        //todo: Show pop up for editing details
+        self.navigationController?.navigationBar.isHidden = true
+        
+        let registerVC = UIStoryboard(name: "Register", bundle: nil).instantiateViewController(withIdentifier: "registerPopUp") as! RegisterViewController
+        registerVC.fromRegisterButton = false
+        
+        if menu.toggle {
+            editScreenToggle = true
+        }
+        
+        editScreenToggle = PopUp.toggle(child: registerVC, parent: self, toggle: editScreenToggle)
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()

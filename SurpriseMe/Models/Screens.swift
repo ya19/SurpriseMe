@@ -9,14 +9,14 @@
 import UIKit
 
 enum Screens:Int,CustomStringConvertible ,CaseIterable{
-    case Main = 0 , MyFriends, OrdersAndTreats, Logout
+    case Main = 0 , MyProfile, OrdersAndTreats, Logout
     
     var description: String{
         switch self {
         case .Main:
             return "Main"
-        case .MyFriends:
-            return "Friends"
+        case .MyProfile:
+            return "My Profile"
         case .OrdersAndTreats:
             return "Orders & Treats"
         case .Logout:
@@ -26,7 +26,7 @@ enum Screens:Int,CustomStringConvertible ,CaseIterable{
     
     var rawVaule:Int{
         switch self {
-        case .Main , .MyFriends , .OrdersAndTreats , .Logout:
+        case .Main , .MyProfile , .OrdersAndTreats , .Logout:
             return rawValue
         }
     }
