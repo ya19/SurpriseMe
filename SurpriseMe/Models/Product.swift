@@ -13,10 +13,10 @@ struct Product{
     let name:String
     let desc:String
     var image:UIImage?{
-        if imageName != nil{
-            return UIImage(named:  imageName)
-        }
-        return nil
+        
+            return UIImage(named:  imageName) ?? nil
+
+        
     }
     let imageName:String
     let category:String

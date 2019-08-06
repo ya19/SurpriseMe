@@ -126,7 +126,7 @@ extension OrdersAndTreatsViewController : ShowPopUpDelegate{
             useTreatVC.treat = treat
             useTreatVC.delegate = self
         
-        PopUp.toggle(child: useTreatVC, parent: self,toggle:true)
+        let _ = PopUp.toggle(child: useTreatVC, parent: self,toggle:true)
  
         
     }
@@ -134,7 +134,7 @@ extension OrdersAndTreatsViewController : ShowPopUpDelegate{
     func showTreats(order: Order){
         let orderedTreatsVC = UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orderedTreatsController") as! OrderedTreatsViewController
         orderedTreatsVC.treats = order.treats
-        PopUp.toggle(child: orderedTreatsVC, parent: self,toggle:true)
+        let _ = PopUp.toggle(child: orderedTreatsVC, parent: self,toggle:true)
     }
 
 }

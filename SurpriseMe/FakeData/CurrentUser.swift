@@ -180,13 +180,17 @@
                                                     }
                                                 
                                                     print("here123")
-                                                    if sentFriendRequests.count < rememberSent || friends.count != rememberFriends{
+                                                    if  friends.count != rememberFriends{
                                                         if UsersManager.shared.profileVC?.toggle == false{
                                                             print("i am in it")
                                                             UsersManager.shared.initUsersPopUpFromProfile(refresh: true)
                                                         }
                                                   
                                                         }
+                                                    if sentFriendRequests.count < rememberSent {
+                                                        UsersManager.shared.initUsersPopUpFromProfile(refresh: true)
+
+                                                    }
                                                     
                                     if once{
                                     once = !once

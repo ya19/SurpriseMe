@@ -113,7 +113,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate{
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         
-        let content = response.notification.request.content
+//        let content = response.notification.request.content
         
         //        if let eventId = content.userInfo["event_id"] as? String{
         //
