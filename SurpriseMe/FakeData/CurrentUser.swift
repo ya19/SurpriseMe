@@ -177,17 +177,15 @@
                                                     if  friends.count != rememberFriends || receivedFriendRequests.count != rememberRequest{
                                                         
                                                         UsersManager.shared.initFriendsVC(refresh: true)
-                                                        Toast.show(message: "update", controller: UsersManager.shared.profileVC)
                                                     }
                                                 
                                                     print("here123")
-                                                    if sentFriendRequests.count != rememberSent || friends.count != rememberFriends{
-                                                            print("PLEASE SAY", UsersManager.shared.profileVC.toggle)
-                                                        if UsersManager.shared.profileVC.toggle == false{
+                                                    if sentFriendRequests.count < rememberSent || friends.count != rememberFriends{
+                                                        if UsersManager.shared.profileVC?.toggle == false{
                                                             print("i am in it")
                                                             UsersManager.shared.initUsersPopUpFromProfile(refresh: true)
                                                         }
-                                                        Toast.show(message: "update", controller: UsersManager.shared.notFriendsPopUP)
+                                                  
                                                         }
                                                     
                                     if once{
