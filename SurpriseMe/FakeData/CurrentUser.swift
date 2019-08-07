@@ -174,13 +174,14 @@
 //                                                    }
                                               
                                                         print("here123")
-                                                    if  friends.count != rememberFriends || receivedFriendRequests.count != rememberRequest{
+                                                    if  receivedFriendRequests.count != rememberRequest{
                                                         
                                                         UsersManager.shared.initFriendsVC(refresh: true)
                                                     }
                                                 
                                                     print("here123")
                                                     if  friends.count != rememberFriends{
+                                                        UsersManager.shared.initFriendsVC(refresh: true)
                                                         if UsersManager.shared.profileVC?.toggle == false{
                                                             print("i am in it")
                                                             UsersManager.shared.initUsersPopUpFromProfile(refresh: true)

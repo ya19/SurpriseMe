@@ -439,6 +439,10 @@ print(self.NotFriendsUsersNum, "test notFriends num")
         print(notFriends,"test array")
         if notFriends.count == NotFriendsUsersNum {
             timer.invalidate()
+            if self.notFriendsPopUP != nil{
+                let reloadDelegate:RefreshNotFriendsVC = self.notFriendsPopUP!
+                reloadDelegate.reloadMyData(notFriends: self.notFriends)
+            }
             if self.notFriendsPopUP == nil{
                 self.notFriendsPopUP = (UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController)
                 self.notFriendsPopUP!.users = []
@@ -447,6 +451,7 @@ print(self.NotFriendsUsersNum, "test notFriends num")
             self.notFriendsPopUP!.delegate = self.profileVC
             self.notFriendsPopUP!.users = self.notFriends
             self.notFriendsPopUP!.currentUsers = self.notFriends
+     
             //            userAddedDelegate = usersVC
             //            userAddedDelegate?.reloadMydata()
             initUsersPopUpNotFriends = true
