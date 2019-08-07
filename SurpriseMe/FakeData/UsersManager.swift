@@ -525,6 +525,21 @@ print(self.NotFriendsUsersNum, "test notFriends num")
             self.profileVC!.friends = self.friends
             self.profileVC!.requests = self.requests
             initFriends = true
+            if var navigationArray = menu.parent?.navigationController?.viewControllers{
+                var remember = -1;
+                for i in 0..<navigationArray.count{
+                    if  let _ = navigationArray[i] as? ProfileViewController{
+                        remember = i
+                    }
+                }
+                if remember != -1{
+                    navigationArray.remove(at: remember) // To remove previous UIViewController
+                    menu.parent?.navigationController?.viewControllers = navigationArray
+                }
+            }
+            
+            
+            
             menu.parent?.navigationController?.pushViewController(self.profileVC!, animated: true)
             menu.removeFromParent()
             
