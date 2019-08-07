@@ -76,7 +76,7 @@ class ViewController: BaseViewController {
             guard let strongSelf = self else {
                 return }
             
-            guard let user = user, error == nil else {
+            guard let _ = user, error == nil else {
 
                 strongSelf.handleError(error!)
                 return
@@ -113,7 +113,7 @@ class ViewController: BaseViewController {
 
     @IBAction func register(_ sender: UIButton) {
 
-        PopUp.toggle(storyBoardName: "Register", vcIdentifer: "registerPopUp", parent: self,toggle:true)
+        let _ = PopUp.toggle(storyBoardName: "Register", vcIdentifer: "registerPopUp", parent: self,toggle:true)
     
     }
     

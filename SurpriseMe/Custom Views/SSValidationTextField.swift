@@ -53,16 +53,16 @@ class SSValidationTextField: UITextField {
     }
     
     private func setup() {
-        NotificationCenter.default.addObserver(self, selector: "textFieldEdited:", name: UITextField.textDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: Selector(("textFieldEdited:")), name: UITextField.textDidChangeNotification, object: nil)
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func textFieldEdited(aNotificaiton: NSNotification) {
+    @objc func textFieldEdited(aNotificaiton: NSNotification) {
         if self == aNotificaiton.object! as! SSValidationTextField {
-            var currentString = self.text
+//            var currentString = self.text
             if self.validityFunction != nil {
                 if delaytime != 0 {
                     setTimerForValidation()
@@ -76,14 +76,14 @@ class SSValidationTextField: UITextField {
             delayTimer?.invalidate()
             delayTimer = nil
         }
-        delayTimer = Timer.scheduledTimer(timeInterval: TimeInterval(delaytime), target: self, selector: "checkValidity", userInfo: nil, repeats: false)
+        delayTimer = Timer.scheduledTimer(timeInterval: TimeInterval(delaytime), target: self, selector: Selector(("checkValidity")), userInfo: nil, repeats: false)
     }
     /**
      When called manually, performs the validity check, sets the appropriate label and returns bool whether validation was successful or not.
      :returns: A Bool whether validation was successful or not.
      */
-    func checkValidity() -> Bool {
-        var currentString = self.text
+    @objc func checkValidity() -> Bool {
+        let currentString = self.text
         if currentString!.isEmpty {
             if errorLabel != nil {
                 errorLabel!.isHidden = true

@@ -104,7 +104,7 @@ struct User:Hashable,Equatable{
 
         
         let getTreatStatus = GetTreatStatus(rawValue: dic["getTreatStatus"] as! Int)
-        var address:[String:String]? = nil
+        let address:[String:String]? = nil
 //        if let addressDic = dic["address"] as? [String:String]{
 //            address = addressDic
 //        }

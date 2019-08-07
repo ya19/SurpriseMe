@@ -55,7 +55,7 @@ class CategoriesViewController: UICollectionViewController {
         
         myShops = ShopsManager.shared.getShops()
 
-        let ref = Database.database().reference()
+//        let ref = Database.database().reference()
 //        setTreatsObserver()
 
         

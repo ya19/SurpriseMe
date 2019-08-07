@@ -425,7 +425,7 @@ class UsersManager{
         if notFriends.count == NotFriendsUsersNum{
             timer.invalidate()
             if self.notFriendsPopUP == nil{
-                self.notFriendsPopUP = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController
+                self.notFriendsPopUP = (UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController)
                 self.notFriendsPopUP!.users = []
             }
             initUsersPopUpNotFriends = true
@@ -440,7 +440,7 @@ print(self.NotFriendsUsersNum, "test notFriends num")
         if notFriends.count == NotFriendsUsersNum {
             timer.invalidate()
             if self.notFriendsPopUP == nil{
-                self.notFriendsPopUP = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController
+                self.notFriendsPopUP = (UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController)
                 self.notFriendsPopUP!.users = []
             }
            
@@ -503,7 +503,7 @@ print(self.NotFriendsUsersNum, "test notFriends num")
         if friends.count == currentFriendsNum , requests.count == currentRequestsNum{
             timer.invalidate()
             if self.profileVC == nil{
-                self.profileVC = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "profile") as! ProfileViewController
+                self.profileVC = (UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "profile") as! ProfileViewController)
             }
             let reloadDelegate:RefreshProfileVC = self.profileVC!
             print(self.friends,"MAfriends")
@@ -519,7 +519,7 @@ print(self.NotFriendsUsersNum, "test notFriends num")
             //                    let friendsVC = UIStoryboard(name: "Friends", bundle: nil).instantiateViewController(withIdentifier: "friends") as! FriendsViewController
             
                 if self.profileVC == nil{
-                    self.profileVC = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "profile") as! ProfileViewController
+                    self.profileVC = (UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "profile") as! ProfileViewController)
                 }
             
             self.profileVC!.friends = self.friends
@@ -538,7 +538,6 @@ print(self.NotFriendsUsersNum, "test notFriends num")
         var x = 0
 
         
-        var didFinish = false
     
         
         while x < CurrentUser.shared.get()!.myCart.count {

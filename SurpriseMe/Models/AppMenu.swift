@@ -15,7 +15,7 @@ class AppMenu{
 
         if menu.toggle {
             menu.view.removeFromSuperview()
-            PopUp.toggle(child: menu, parent: parent,toggle: true)
+          let _ =  PopUp.toggle(child: menu, parent: parent,toggle: true)
         }else{
             menu.removeFromParent()
             menu.view.removeFromSuperview()
