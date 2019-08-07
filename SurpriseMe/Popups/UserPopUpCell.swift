@@ -34,6 +34,8 @@ class UserPopUpCell: UITableViewCell {
             friendAddBtn.setImage(UIImage(named: "icons8-cancel"), for: .normal)
         }else{
             // cancel request
+            
+            //todo remove notification!!!!!!
             UsersManager.shared.cancelFriendRequest(friendId: friend!.id,userCell: self)
             friendAddBtn.setImage(UIImage(named: "icons8-add"), for: .normal)
             

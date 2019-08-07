@@ -510,12 +510,14 @@ class UsersManager{
             timer.invalidate()
             if self.profileVC == nil{
                 self.profileVC = (UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "profile") as! ProfileViewController)
-            }
+            }else{
             let reloadDelegate:RefreshProfileVC = self.profileVC!
             print(self.friends,"MAfriends")
             print(self.requests,"MaREquest")
-            initFriends = true
             reloadDelegate.reloadMyData(friends: self.friends,requests: self.requests)
+            }
+            initFriends = true
+
         }
     }
     @objc func didFriendsLoaded(_ timer: Timer){
