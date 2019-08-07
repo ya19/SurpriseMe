@@ -189,8 +189,10 @@
                                                   
                                                         }
                                                     if sentFriendRequests.count < rememberSent {
-                                                        UsersManager.shared.initUsersPopUpFromProfile(refresh: true)
-
+                                                        if UsersManager.shared.profileVC?.toggle == false{
+                                                            print("i am in it")
+                                                            UsersManager.shared.initUsersPopUpFromProfile(refresh: true)
+                                                        }
                                                     }
                                                     
                                     if once{
