@@ -82,7 +82,21 @@ class CartViewController: UIViewController {
     func dataFromServer() -> [User]{
         return UsersManager.shared.getAllBut(user: CurrentUser.shared.get()!)
     }
-
+    override func viewWillDisappear(_ animated: Bool) {
+        if var navigationArray = self.navigationController?.viewControllers{
+            var remember = -1;
+            for i in 0..<navigationArray.count{
+                if  let _ = navigationArray[i] as? CartViewController{
+                    remember = i
+                }
+            }
+            if remember != -1{
+                navigationArray.remove(at: remember) // To remove previous UIViewController
+                self.navigationController?.viewControllers = navigationArray
+            }
+        }
+        
+    }
     
 
 

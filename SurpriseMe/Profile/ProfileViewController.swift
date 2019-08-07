@@ -80,7 +80,21 @@ class ProfileViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        if var navigationArray = self.navigationController?.viewControllers{
+            var remember = -1;
+            for i in 0..<navigationArray.count{
+                if  let _ = navigationArray[i] as? ProfileViewController{
+                    remember = i
+                }
+            }
+            if remember != -1{
+                navigationArray.remove(at: remember) // To remove previous UIViewController
+                self.navigationController?.viewControllers = navigationArray
+            }
+        }
+        
+    }
     
 //    func initList(){
 //        UsersManager.shared.initFriendsVC(refresh: true)
