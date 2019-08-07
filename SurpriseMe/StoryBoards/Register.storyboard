@@ -82,7 +82,7 @@
                                         <rect key="frame" x="32" y="339" width="255" height="42"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                         <connections>
                                             <action selector="editingChanged:" destination="QXJ-5x-Uqf" eventType="editingChanged" id="Jqu-0U-1i3"/>
                                             <action selector="passwordValidation:" destination="QXJ-5x-Uqf" eventType="editingDidEnd" id="VXR-im-0C1"/>
@@ -92,7 +92,7 @@
                                         <rect key="frame" x="32" y="393" width="255" height="42"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                         <connections>
                                             <action selector="confirmPasswordValidation:" destination="QXJ-5x-Uqf" eventType="editingDidEnd" id="zkA-nP-cUW"/>
                                             <action selector="editingChanged:" destination="QXJ-5x-Uqf" eventType="editingChanged" id="r1a-ie-EdW"/>

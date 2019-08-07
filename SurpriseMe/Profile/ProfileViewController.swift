@@ -26,6 +26,15 @@ class ProfileViewController: UIViewController {
     var toggle = true
     var editScreenToggle = true
     
+    @IBAction func showMenu(_ sender: UIBarButtonItem) {
+        AppMenu.toggleMenu(parent: self)
+    }
+    
+    
+    
+    
+    
+    
     @IBAction func addFriend(_ sender: UIButton) {
         
         //todo: Show add friend pop up
@@ -66,11 +75,13 @@ class ProfileViewController: UIViewController {
 
         friendsRequestsTableView.delegate = self
         friendsRequestsTableView.dataSource = self
-        
+        AppMenu.clearMenu()
         setupViews()
         
         // Do any additional setup after loading the view.
     }
+    
+    
 //    func initList(){
 //        UsersManager.shared.initFriendsVC(refresh: true)
 //    }

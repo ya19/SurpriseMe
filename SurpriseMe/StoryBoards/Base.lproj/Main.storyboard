@@ -56,7 +56,7 @@
                                 <rect key="frame" x="41.5" y="625" width="331" height="58"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <connections>
                                     <action selector="checkPasswordValidation:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="Ujp-HB-Duc"/>
                                     <action selector="editingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="0os-NH-YLB"/>

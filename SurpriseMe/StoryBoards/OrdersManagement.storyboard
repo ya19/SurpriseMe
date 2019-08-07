@@ -256,19 +256,23 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="inC-bX-9WU"/>
                     </view>
+                    <navigationItem key="navigationItem" id="uQc-Cx-EfF">
+                        <barButtonItem key="leftBarButtonItem" title="menu" image="icons8-menu-2" id="IB6-ox-YEf">
+                            <connections>
+                                <action selector="showMenu:" destination="buD-LU-8IH" id="tZL-T7-sTM"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="cart" image="icons8-shopping_cart-6" id="iXJ-wW-D9f"/>
+                            <barButtonItem title="notification" image="icons8-notification" id="u5p-Qc-GfI"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <connections>
                         <outlet property="ordersTreatsSegmented" destination="8IV-Gl-2K6" id="HNP-U7-dd3"/>
                         <outlet property="ordersTreatsTableView" destination="aeN-DR-a5g" id="9e7-MX-uJJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ze5-pl-5GU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationItem title="Title" id="uQc-Cx-EfF">
-                    <barButtonItem key="leftBarButtonItem" title="menu" id="IB6-ox-YEf"/>
-                    <rightBarButtonItems>
-                        <barButtonItem title="cart" image="icons8-shopping_cart-6" id="iXJ-wW-D9f"/>
-                        <barButtonItem title="notification" image="icons8-notification" id="u5p-Qc-GfI"/>
-                    </rightBarButtonItems>
-                </navigationItem>
             </objects>
             <point key="canvasLocation" x="-622" y="520"/>
         </scene>
@@ -722,6 +726,7 @@
     <resources>
         <image name="icons8-arrow" width="100" height="100"/>
         <image name="icons8-like_it" width="25" height="25"/>
+        <image name="icons8-menu-2" width="25" height="25"/>
         <image name="icons8-notification" width="32" height="32"/>
         <image name="icons8-shopping_cart-6" width="32" height="32"/>
         <image name="xButton" width="75" height="75"/>

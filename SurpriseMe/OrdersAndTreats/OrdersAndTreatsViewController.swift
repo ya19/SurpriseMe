@@ -14,6 +14,9 @@ class OrdersAndTreatsViewController: UIViewController {
     
     @IBOutlet weak var ordersTreatsSegmented: UISegmentedControl!
     
+    @IBAction func showMenu(_ sender: UIBarButtonItem) {
+        AppMenu.toggleMenu(parent: self)
+    }
     
     @IBOutlet weak var ordersTreatsTableView: UITableView!
     

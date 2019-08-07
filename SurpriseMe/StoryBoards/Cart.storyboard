@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xI4-91-NL0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xI4-91-NL0">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -144,7 +144,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gKj-2a-1Na"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Cart" id="GSv-VK-3KS"/>
+                    <navigationItem key="navigationItem" title="Cart" id="GSv-VK-3KS">
+                        <barButtonItem key="leftBarButtonItem" title="menu" image="icons8-menu-2" id="DWq-LJ-i4T"/>
+                        <barButtonItem key="rightBarButtonItem" title="notifications" image="icons8-notification" id="iuF-ss-LpD"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="cartTableView" destination="4jv-Yz-iX2" id="pqz-Nc-C2U"/>
                         <outlet property="total" destination="d2d-WC-3we" id="F8R-O3-5gg"/>
@@ -401,6 +404,8 @@
     <resources>
         <image name="icons8-add" width="32" height="32"/>
         <image name="icons8-like_it" width="25" height="25"/>
+        <image name="icons8-menu-2" width="25" height="25"/>
+        <image name="icons8-notification" width="32" height="32"/>
         <image name="nike-shoes" width="608" height="387"/>
         <image name="xButton" width="75" height="75"/>
     </resources>

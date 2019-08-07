@@ -13,6 +13,10 @@ import FirebaseAuth
 class RegisterViewController: UIViewController {
 
     
+    var newEmail : String?
+    var newPassword : String?
+    var emailChange = false
+    var passwordChange:Bool?
     var fromRegisterButton: Bool = true
     let ref = Database.database().reference()
     @IBOutlet weak var registerBtn: SAButton!
@@ -201,61 +205,41 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var popUpView: SAView!
    
     @IBAction func saveChanges(_ sender: SAButton) {
+        
         //no need to check for empty cause they are already filled
         
-        //check date
-        let today = Date()
-        let gregorian = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
-        let age = gregorian.components([.year], from: dateOfBirth.date, to: today, options: [])
-        
-        if age.year! < 18 {
-            // user is under 18
-            setupErrorMessageForNonTextFields(sender: dateOfBirth, errorLabel: dateError, message: "You must be over 18 to use SurpriseMe! Sorry.")
-            return
-        }
-        
-        //if pass not empty , check
-        
-        if password.text != nil || confirmPassword.text != nil{
-            password.checkValidationNew(sender: password, errorLabel: passwordError, type: .isPassword)
-            
-            if !confirmPassword.text!.isEmpty {
-                
-                if !(confirmPassword.text! == password.text!){
-                    setupErrorMessageForNonTextFields(sender: confirmPassword, errorLabel: confirmPasswordError, message: "Your passwords must be the same")
+        //check for empty text fields
+        if checkEmptyFields(){
+            if checkAge(){
+                if checkPasswordValidation(){
+                    if checkErrors(){
+                        if checkForEmailChange() , checkForPasswordChange(){
+                            setUpdates()
+                            self.view.removeFromSuperview()
+
+                        } else {
+                            return
+                        }
+                    }
                 }
             } else {
-                confirmPassword.checkValidationNew(sender: confirmPassword, errorLabel: confirmPasswordError, type: .isPassword)
-            }
-        }
-        
-        //check for errors.
-        for errorMessage in errorMessages{
-            if errorMessage.text != nil {
-                Toast.show(message: "Some of your details are not filled properly", controller: self)
-                return
-            }
-        }
-        
-        //if email has been changed
-                                    //puting ! cause this button only appear when a current user exist anyway.
-        if email.text != CurrentUser.shared.get()!.email{
-            Auth.auth().currentUser?.updateEmail(to: email.text!, completion: { (error) in
-                if error != nil{
-                    self.handleError(error!)
-                    return
-                } else{
-//
-//                    self.ref.child("users").child(CurrentUser.shared.get()!.id).child("email").setValue(self.email.text!)
-//
-//                    Toast.show(message: "Your email had changed to \(self.email.text!)", controller: self)
+                dateOfBirth.setDate(CurrentUser.shared.get()!.dateOfBitrh, animated: true)
+                if checkPasswordValidation(){
+                    if checkErrors(){
+                        if checkForEmailChange() , checkForPasswordChange(){
+                            setUpdates()
+//                            PopUp.remove(controller: self)
+                            self.view.removeFromSuperview()
+
+                        } else {
+                            return
+                        }
+                    }
                 }
-            })
+            }
         }
         
-        let updatedUser = User.init(id: CurrentUser.shared.get()!.id, email: email.text!, firstName: firstName.text!, lastName: lastName.text!, dateOfBitrh: dateOfBirth.date, friends: CurrentUser.shared.get()!.friends, myCart: CurrentUser.shared.get()!.myCart, sentFriendRequests: CurrentUser.shared.get()!.sentFriendRequests, receivedFriendRequests: CurrentUser.shared.get()!.receivedFriendRequests, myTreats: CurrentUser.shared.get()!.myTreats, myOrders: CurrentUser.shared.get()!.myOrders, getTreatsStatus: GetTreatStatus(rawValue: giftStatus!.selectedSegmentIndex)!, notifications: CurrentUser.shared.get()!.notifications, address: CurrentUser.shared.get()?.address)
         
-        ref.child("users").child(CurrentUser.shared.get()!.id).updateChildValues(updatedUser.toDB)
         
         
     }
@@ -265,6 +249,116 @@ class RegisterViewController: UIViewController {
         setup()
 
     }
+    
+    func setUpdates(){
+                let updatedUser = User.init(id: CurrentUser.shared.get()!.id, email: newEmail!, firstName: firstName.text!, lastName: lastName.text!, dateOfBitrh: dateOfBirth.date, friends: CurrentUser.shared.get()!.friends, myCart: CurrentUser.shared.get()!.myCart, sentFriendRequests: CurrentUser.shared.get()!.sentFriendRequests, receivedFriendRequests: CurrentUser.shared.get()!.receivedFriendRequests, myTreats: CurrentUser.shared.get()!.myTreats, myOrders: CurrentUser.shared.get()!.myOrders, getTreatsStatus: GetTreatStatus(rawValue: giftStatus!.selectedSegmentIndex)!, notifications: CurrentUser.shared.get()!.notifications, address: CurrentUser.shared.get()?.address)
+        
+        ref.child("users").child(CurrentUser.shared.get()!.id).updateChildValues(updatedUser.toDB)
+    }
+    
+    func checkForPasswordChange()->Bool{
+            Auth.auth().currentUser?.updateEmail(to: email.text!, completion: { (error) in
+                if error != nil{
+                    self.handleError(error!)
+                    self.passwordChange = false
+                    return
+                } else{
+                    
+                    self.passwordChange = true
+                    self.newPassword = self.password.text
+                }
+            })
+            
+            return passwordChange!
+
+    }
+
+    
+    func checkForEmailChange()-> Bool{
+        //if email has been changed
+        //puting ! cause this button only appear when a current user exist anyway.
+        if email.text != Auth.auth().currentUser!.email{
+            Auth.auth().currentUser?.updateEmail(to: email.text!, completion: { (error) in
+                if error != nil{
+                    self.handleError(error!)
+                    self.emailChange = false
+                    self.newEmail = CurrentUser.shared.get()!.email
+                    return
+                } else{
+                    
+                    self.emailChange = true
+                    self.newEmail = self.email.text
+                    //
+                    //                    self.ref.child("users").child(CurrentUser.shared.get()!.id).child("email").setValue(self.email.text!)
+                    //
+                    Toast.show(message: "Your email had changed to \(self.email.text!)", controller: self)
+                }
+            })
+            
+            return emailChange
+        }
+        
+        return false
+    }
+    
+    
+    func checkEmptyFields()-> Bool{
+        for textField in textFields{
+            if textField.text!.isEmpty {
+                Toast.show(message: "You didn't fill all the details", controller: self)
+                return false
+            }
+        }
+        return true
+    }
+    
+    func checkAge()-> Bool{
+        let today = Date()
+        let gregorian = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+        let age = gregorian.components([.year], from: dateOfBirth.date, to: today, options: [])
+        
+        if age.year! < 18 {
+            // user is under 18
+            setupErrorMessageForNonTextFields(sender: dateOfBirth, errorLabel: dateError, message: "You must be over 18 to use SurpriseMe! Sorry.")
+            return false
+        }
+        
+        return true
+    }
+    
+    func checkErrors()-> Bool{
+        //check for errors.
+        for errorMessage in errorMessages{
+            if errorMessage.text != nil {
+                Toast.show(message: "Some of your details are not filled properly", controller: self)
+                return false
+            }
+        }
+        
+        return true
+    }
+    
+    func checkPasswordValidation()->Bool{
+        //if pass not empty , check
+        if password.text != nil || confirmPassword.text != nil{
+            password.checkValidationNew(sender: password, errorLabel: passwordError, type: .isPassword)
+            
+            if !confirmPassword.text!.isEmpty {
+                
+                if !(confirmPassword.text! == password.text!){
+                    setupErrorMessageForNonTextFields(sender: confirmPassword, errorLabel: confirmPasswordError, message: "Your passwords must be the same")
+                    return false
+                }
+                return true
+            } else {
+                confirmPassword.checkValidationNew(sender: confirmPassword, errorLabel: confirmPasswordError, type: .isPassword)
+                return false
+            }
+            return true
+        }
+        return false
+    }
+    
     
     
     func readUserFromServer(){
