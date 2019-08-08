@@ -250,18 +250,19 @@ extension ProfileViewController:updateList, RefreshProfileVC{
         friendsRequestsTableView.reloadData()
     }
 
-    func reloadMyData(friends: [User] , requests:[User]) {
-        self.friends = friends
-        self.requests = requests
-        if self.friendsRequestsTableView != nil{
-        self.friendsRequestsTableView.reloadData()
+    func reloadMyData(friends: [User]? , requests:[User]?) {
+        if friends != nil{
+            self.friends = friends!
         }
-        print(CurrentUser.shared.get()!,"Current User")
-        print(friends,"Friends123")
-        print(requests,"Requests123")
+        if requests != nil{
+            self.requests = requests!
+        }
+        if self.friendsRequestsTableView != nil{
+            self.friendsRequestsTableView.reloadData()
+        }
     }
 }
 protocol RefreshProfileVC {
-    func reloadMyData(friends: [User] , requests:[User])
+    func reloadMyData(friends: [User]? , requests:[User]?)
 }
 

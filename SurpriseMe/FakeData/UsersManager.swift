@@ -13,27 +13,27 @@ class UsersManager{
     
     private var users:[User]
     let ref = Database.database().reference()
-    private var currentFriendsNum:Int
-    private var currentRequestsNum:Int
+//    private var currentFriendsNum:Int
+//    private var currentRequestsNum:Int
     private var NotFriendsUsersNum:Int
-    var friends:[User]
-    var requests:[User]
-    var profileVC:ProfileViewController?
+//    var friends:[User]
+//    var requests:[User]
+//    var profileVC:ProfileViewController?
     var notFriendsPopUP:UsersPopUpViewController?
     var notFriends:[User]
-    var initFriends:Bool
+//    var initFriends:Bool
     var initUsersPopUpNotFriends:Bool
     private init(){
         users = []
-        friends = []
-        requests = []
-        profileVC = nil
+//        friends = []
+//        requests = []
+//        profileVC = nil
         notFriendsPopUP = nil
-        currentFriendsNum = 0
-        currentRequestsNum = 0
+//        currentFriendsNum = 0
+//        currentRequestsNum = 0
         NotFriendsUsersNum = 0
         notFriends = []
-        initFriends = true
+//        initFriends = true
         initUsersPopUpNotFriends = true
         //users from the server
 //        ref.child("users").observeSingleEvent(of: .value) { (DataSnapshot) in
@@ -132,7 +132,7 @@ class UsersManager{
                 ref.child("receivedFriendRequests").child(CurrentUser.shared.get()!.id).removeValue()
                 }}
         else{
-            Toast.show(message: "Friend request has been cancelled by the potential friend", controller: profileVC!)
+//            Toast.show(message: "Friend request has been cancelled by the potential friend", controller: profileVC!)
         }
         
         
@@ -153,12 +153,12 @@ class UsersManager{
                 friends.append(friend)
                 if friends.count == 1{
                     self.ref.child("friends").child(CurrentUser.shared.get()!.id).setValue(friends) { (Error, DatabaseReference) in
-                        UsersManager.shared.initFriendsVC(refresh: true)
+//                        UsersManager.shared.initFriendsVC(refresh: true)
 
                     }
                 }else{
                     self.ref.child("friends").updateChildValues([CurrentUser.shared.get()!.id : friends]) { (Error, DatabaseReference) in
-                        UsersManager.shared.initFriendsVC(refresh: true)
+//                        UsersManager.shared.initFriendsVC(refresh: true)
 
                     }
                 }
@@ -183,7 +183,7 @@ class UsersManager{
                 self.ref.child("sentFriendRequests").child(friend).removeValue()
                 }}else{
                 print("Friend request has been canceled by the potential friend")
-                Toast.show(message: "Friend request has been canceled by the potential friend", controller: self.profileVC!)
+//                Toast.show(message: "Friend request has been canceled by the potential friend", controller: self.profileVC!)
 
             }
         }
@@ -449,7 +449,7 @@ class UsersManager{
             } else{
                 self.notFriendsPopUP = (UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController)
                 
-                self.notFriendsPopUP!.delegate = self.profileVC
+                self.notFriendsPopUP!.delegate = VCManager.shared.profileVC!
                 self.notFriendsPopUP!.users = self.notFriends
                 self.notFriendsPopUP!.currentUsers = self.notFriends
             }
@@ -460,9 +460,9 @@ class UsersManager{
             initUsersPopUpNotFriends = true
             
             if menu.toggle {
-                self.profileVC!.toggle = true
+                VCManager.shared.profileVC!.toggle = true
             }
-            self.profileVC!.toggle = PopUp.toggle(child: self.notFriendsPopUP!, parent: self.profileVC!,toggle: self.profileVC!.toggle)
+           VCManager.shared.profileVC!.toggle = PopUp.toggle(child: self.notFriendsPopUP!, parent: VCManager.shared.profileVC!,toggle: VCManager.shared.profileVC!.toggle)
            
         }
     }
@@ -472,73 +472,73 @@ class UsersManager{
     
     
     
-    func initFriendsVC(refresh:Bool) {
-        if initFriends{
-            initFriends = false
-        self.friends = []
-        self.requests = []
-        currentRequestsNum = CurrentUser.shared.get()!.receivedFriendRequests.count
-        currentFriendsNum = CurrentUser.shared.get()!.friends.count
-        print(currentRequestsNum,"requestNum")
-        for friendId in CurrentUser.shared.get()!.friends{
-            self.ref.child("users").child(friendId).observeSingleEvent(of: .value, with: { (friendData) in
-                self.friends.append(User.getUserFromDictionary(friendData.value as! [String:Any]))
-            })
-        }
-        print(requests.count,"requestNum1")
-
-        for friendRequestId in CurrentUser.shared.get()!.receivedFriendRequests{
-            print(friendRequestId,"32534654745765756765")
-            self.ref.child("users").child(friendRequestId).observeSingleEvent(of: .value, with: { (requestData) in
-                
-                self.requests.append(User.getUserFromDictionary(requestData.value as! [String:Any]))
-                print(self.requests.count,"requestNum3")
-
-            })
-            
-        }
-        if !refresh{
-            Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.didFriendsLoaded(_:)), userInfo: nil, repeats: true)
-        }else{
-            
-            Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.refreshFriends(_:)), userInfo: nil, repeats: true)
-        }
-        }
-        
-    }
-    @objc func refreshFriends(_ timer: Timer){
-        if friends.count == currentFriendsNum , requests.count == currentRequestsNum{
-            timer.invalidate()
-            if self.profileVC == nil{
-                self.profileVC = (UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "profile") as! ProfileViewController)
-            }else{
-            let reloadDelegate:RefreshProfileVC = self.profileVC!
-            print(self.friends,"MAfriends")
-            print(self.requests,"MaREquest")
-            reloadDelegate.reloadMyData(friends: self.friends,requests: self.requests)
-            }
-            initFriends = true
-
-        }
-    }
-    @objc func didFriendsLoaded(_ timer: Timer){
-        
-        if friends.count == currentFriendsNum , requests.count == currentRequestsNum{
-            timer.invalidate()
-            //                    let friendsVC = UIStoryboard(name: "Friends", bundle: nil).instantiateViewController(withIdentifier: "friends") as! FriendsViewController
-            
-                if self.profileVC == nil{
-                    self.profileVC = (UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "profile") as! ProfileViewController)
-                }
-            
-            self.profileVC!.friends = self.friends
-            self.profileVC!.requests = self.requests
-            initFriends = true
-            menu.parent?.navigationController?.pushViewController(self.profileVC!, animated: true)
-            menu.removeFromParent()
-            
-        }
-    }
+//    func initFriendsVC(refresh:Bool) {
+//        if initFriends{
+//            initFriends = false
+//        self.friends = []
+//        self.requests = []
+//        currentRequestsNum = CurrentUser.shared.get()!.receivedFriendRequests.count
+//        currentFriendsNum = CurrentUser.shared.get()!.friends.count
+//        print(currentRequestsNum,"requestNum")
+//        for friendId in CurrentUser.shared.get()!.friends{
+//            self.ref.child("users").child(friendId).observeSingleEvent(of: .value, with: { (friendData) in
+//                self.friends.append(User.getUserFromDictionary(friendData.value as! [String:Any]))
+//            })
+//        }
+//        print(requests.count,"requestNum1")
+//
+//        for friendRequestId in CurrentUser.shared.get()!.receivedFriendRequests{
+//            print(friendRequestId,"32534654745765756765")
+//            self.ref.child("users").child(friendRequestId).observeSingleEvent(of: .value, with: { (requestData) in
+//
+//                self.requests.append(User.getUserFromDictionary(requestData.value as! [String:Any]))
+//                print(self.requests.count,"requestNum3")
+//
+//            })
+//
+//        }
+//        if !refresh{
+//            Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.didFriendsLoaded(_:)), userInfo: nil, repeats: true)
+//        }else{
+//
+//            Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.refreshFriends(_:)), userInfo: nil, repeats: true)
+//        }
+//        }
+//
+//    }
+//    @objc func refreshFriends(_ timer: Timer){
+//        if friends.count == currentFriendsNum , requests.count == currentRequestsNum{
+//            timer.invalidate()
+//            if self.profileVC == nil{
+//                self.profileVC = (UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "profile") as! ProfileViewController)
+//            }else{
+//            let reloadDelegate:RefreshProfileVC = self.profileVC!
+//            print(self.friends,"MAfriends")
+//            print(self.requests,"MaREquest")
+//            reloadDelegate.reloadMyData(friends: self.friends,requests: self.requests)
+//            }
+//            initFriends = true
+//
+//        }
+//    }
+//    @objc func didFriendsLoaded(_ timer: Timer){
+//        
+//        if friends.count == currentFriendsNum , requests.count == currentRequestsNum{
+//            timer.invalidate()
+//            //                    let friendsVC = UIStoryboard(name: "Friends", bundle: nil).instantiateViewController(withIdentifier: "friends") as! FriendsViewController
+//            
+//                if self.profileVC == nil{
+//                    self.profileVC = (UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "profile") as! ProfileViewController)
+//                }
+//            
+//            self.profileVC!.friends = self.friends
+//            self.profileVC!.requests = self.requests
+//            initFriends = true
+//            menu.parent?.navigationController?.pushViewController(self.profileVC!, animated: true)
+//            menu.removeFromParent()
+//            
+//        }
+//    }
     
     
     func giveTreats(delegate: UIViewController){
