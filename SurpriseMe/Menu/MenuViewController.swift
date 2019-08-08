@@ -83,7 +83,8 @@ extension MenuViewController:UITableViewDelegate{
             }else{
 //                let friendsVC = UIStoryboard(name: "Friends", bundle: nil).instantiateViewController(withIdentifier: "friends") as! FriendsViewController
 //                self.parent?.navigationController?.pushViewController(friendsVC, animated: true)
-                UsersManager.shared.initFriendsVC(refresh: false)
+//                UsersManager.shared.initFriendsVC(refresh: false)
+                VCManager.shared.initProfileVC()
 
                 return
             }
@@ -107,7 +108,8 @@ extension MenuViewController:UITableViewDelegate{
             if Auth.auth().currentUser != nil{
                 do {
                     try Auth.auth().signOut()
-                    UsersManager.shared.profileVC = nil
+//                    UsersManager.shared.profileVC = nil
+                    VCManager.shared.profileVC = nil
                     UsersManager.shared.notFriendsPopUP = nil
                     
                     let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "login") as! ViewController
