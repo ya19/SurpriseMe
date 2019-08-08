@@ -126,11 +126,12 @@ class UsersManager{
         }
         if remember != -1{
         received.remove(at: remember)
-        if received.count>0{
-            ref.child("receivedFriendRequests").updateChildValues([CurrentUser.shared.get()!.id:received])
-        }else{
-            ref.child("receivedFriendRequests").child(CurrentUser.shared.get()!.id).removeValue()
-            }}else{
+            if received.count>0{
+                ref.child("receivedFriendRequests").updateChildValues([CurrentUser.shared.get()!.id:received])
+            }else{
+                ref.child("receivedFriendRequests").child(CurrentUser.shared.get()!.id).removeValue()
+                }}
+        else{
             Toast.show(message: "Friend request has been cancelled by the potential friend", controller: profileVC!)
         }
         

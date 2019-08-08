@@ -211,8 +211,16 @@
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem title="cart" image="icons8-shopping_cart-6" id="4r4-BJ-lFG"/>
-                            <barButtonItem title="noitification" image="icons8-notification" id="sUL-gK-qZw"/>
+                            <barButtonItem title="cart" image="icons8-shopping_cart-6" id="4r4-BJ-lFG">
+                                <connections>
+                                    <segue destination="QgU-q8-sfA" kind="show" id="8CC-A5-5w9"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="noitification" image="icons8-notification" id="sUL-gK-qZw">
+                                <connections>
+                                    <action selector="showNotifications:" destination="zsN-dp-yuo" id="Ud2-vY-myG"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
@@ -225,6 +233,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sWi-CI-XEy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="125.59999999999999" y="-37.331334332833585"/>
+        </scene>
+        <!--CartVC-->
+        <scene sceneID="b5g-jF-qhC">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Cart" referencedIdentifier="CartVC" id="QgU-q8-sfA" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yZt-EQ-XPH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1184" y="-107"/>
         </scene>
     </scenes>
     <resources>

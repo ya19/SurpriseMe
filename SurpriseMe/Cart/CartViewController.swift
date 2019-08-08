@@ -9,8 +9,8 @@
 import UIKit
 
 class CartViewController: UIViewController {
-//    var products:[Product] = [Product(id: "1", name: "Shoes-x5", desc: "Sport shoes , flexible and effective for running", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes", price: 100.0),Product(id: "1", name: "Shoes-x5", desc: "Sport shoes , flexible and effective for running", image: #imageLiteral(resourceName: "nike-shoes"), category: "Shoes", price: 100.0)]
-//    var products:[Product] = CartManager.shared.products
+
+    var toggle = true
     var sum:Double{
         var count = 0.0
         for item in CurrentUser.shared.get()!.myCart{
@@ -63,7 +63,18 @@ class CartViewController: UIViewController {
         
     }
     
+    @IBAction func showMenu(_ sender: UIBarButtonItem) {
+        AppMenu.toggleMenu(parent: self)
+    }
     
+    @IBAction func showNotifications(_ sender: UIBarButtonItem) {
+        let notificationsVC = UIStoryboard(name: "Notifications", bundle: nil).instantiateViewController(withIdentifier: "notifications") as! NotificationsViewController
+        
+        if menu.toggle {
+            toggle = true
+        }
+        toggle = PopUp.toggle(child: notificationsVC, parent: self, toggle: toggle)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

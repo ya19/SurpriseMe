@@ -145,8 +145,16 @@
                         <viewLayoutGuide key="safeArea" id="gKj-2a-1Na"/>
                     </view>
                     <navigationItem key="navigationItem" title="Cart" id="GSv-VK-3KS">
-                        <barButtonItem key="leftBarButtonItem" title="menu" image="icons8-menu-2" id="DWq-LJ-i4T"/>
-                        <barButtonItem key="rightBarButtonItem" title="notifications" image="icons8-notification" id="iuF-ss-LpD"/>
+                        <barButtonItem key="leftBarButtonItem" title="menu" image="icons8-menu-2" id="DWq-LJ-i4T">
+                            <connections>
+                                <action selector="showMenu:" destination="xI4-91-NL0" id="4Me-XQ-CIm"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="notifications" image="icons8-notification" id="iuF-ss-LpD">
+                            <connections>
+                                <action selector="showNotifications:" destination="xI4-91-NL0" id="t5S-Rk-lCb"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="cartTableView" destination="4jv-Yz-iX2" id="pqz-Nc-C2U"/>
