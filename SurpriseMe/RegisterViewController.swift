@@ -214,11 +214,15 @@ class RegisterViewController: UIViewController {
                 if checkPasswordValidation(){
                     if checkErrors(){
                         if checkForEmailChange() , checkForPasswordChange(){
-                            setUpdates()
-                            self.view.removeFromSuperview()
-
+                            setUpdates(isNewEmail : true , isNewPass: true)
+                        } else if checkForEmailChange() , !checkForPasswordChange() {
+                            setUpdates(isNewEmail : true , isNewPass: false)
+                        } else if checkForPasswordChange(), !checkForEmailChange(){
+                            setUpdates(isNewEmail : false, isNewPass: true)
                         } else {
-                            return
+                            setUpdates(isNewEmail : false , isNewPass: false)
+
+//                            return
                         }
                     }
                 }
@@ -227,7 +231,7 @@ class RegisterViewController: UIViewController {
                 if checkPasswordValidation(){
                     if checkErrors(){
                         if checkForEmailChange() , checkForPasswordChange(){
-                            setUpdates()
+                            setUpdates(isNewEmail : false , isNewPass: false)
 //                            PopUp.remove(controller: self)
                             self.view.removeFromSuperview()
 
@@ -250,15 +254,38 @@ class RegisterViewController: UIViewController {
 
     }
     
-    func setUpdates(){
-                let updatedUser = User.init(id: CurrentUser.shared.get()!.id, email: newEmail!, firstName: firstName.text!, lastName: lastName.text!, dateOfBitrh: dateOfBirth.date, friends: CurrentUser.shared.get()!.friends, myCart: CurrentUser.shared.get()!.myCart, sentFriendRequests: CurrentUser.shared.get()!.sentFriendRequests, receivedFriendRequests: CurrentUser.shared.get()!.receivedFriendRequests, myTreats: CurrentUser.shared.get()!.myTreats, myOrders: CurrentUser.shared.get()!.myOrders, getTreatsStatus: GetTreatStatus(rawValue: giftStatus!.selectedSegmentIndex)!, notifications: CurrentUser.shared.get()!.notifications, address: CurrentUser.shared.get()?.address)
+    func setUpdates(isNewEmail : Bool , isNewPass: Bool){
+        let updatedUser:User?
         
-        ref.child("users").child(CurrentUser.shared.get()!.id).updateChildValues(updatedUser.toDB)
+        
+        if isNewEmail , isNewPass{
+                updatedUser = User.init(id: CurrentUser.shared.get()!.id, email: newEmail!, firstName: firstName.text!, lastName: lastName.text!, dateOfBitrh: dateOfBirth.date, friends: CurrentUser.shared.get()!.friends, myCart: CurrentUser.shared.get()!.myCart, sentFriendRequests: CurrentUser.shared.get()!.sentFriendRequests, receivedFriendRequests: CurrentUser.shared.get()!.receivedFriendRequests, myTreats: CurrentUser.shared.get()!.myTreats, myOrders: CurrentUser.shared.get()!.myOrders, getTreatsStatus: GetTreatStatus(rawValue: giftStatus!.selectedSegmentIndex)!, notifications: CurrentUser.shared.get()!.notifications, address: CurrentUser.shared.get()?.address)
+            
+            Toast.show(message: "Your email has successfully changed to \(newEmail!)", controller: self.parent!)
+        } else if isNewEmail , !isNewPass{
+                updatedUser = User.init(id: CurrentUser.shared.get()!.id, email: newEmail!, firstName: firstName.text!, lastName: lastName.text!, dateOfBitrh: dateOfBirth.date, friends: CurrentUser.shared.get()!.friends, myCart: CurrentUser.shared.get()!.myCart, sentFriendRequests: CurrentUser.shared.get()!.sentFriendRequests, receivedFriendRequests: CurrentUser.shared.get()!.receivedFriendRequests, myTreats: CurrentUser.shared.get()!.myTreats, myOrders: CurrentUser.shared.get()!.myOrders, getTreatsStatus: GetTreatStatus(rawValue: giftStatus!.selectedSegmentIndex)!, notifications: CurrentUser.shared.get()!.notifications, address: CurrentUser.shared.get()?.address)
+                        Toast.show(message: "Your email has successfully changed to \(newEmail!)", controller: self.parent!)
+        }else if isNewPass , !isNewEmail{
+            updatedUser = User.init(id: CurrentUser.shared.get()!.id, email: CurrentUser.shared.get()!.email, firstName: firstName.text!, lastName: lastName.text!, dateOfBitrh: dateOfBirth.date, friends: CurrentUser.shared.get()!.friends, myCart: CurrentUser.shared.get()!.myCart, sentFriendRequests: CurrentUser.shared.get()!.sentFriendRequests, receivedFriendRequests: CurrentUser.shared.get()!.receivedFriendRequests, myTreats: CurrentUser.shared.get()!.myTreats, myOrders: CurrentUser.shared.get()!.myOrders, getTreatsStatus: GetTreatStatus(rawValue: giftStatus!.selectedSegmentIndex)!, notifications: CurrentUser.shared.get()!.notifications, address: CurrentUser.shared.get()?.address)
+            
+        } else{
+                    updatedUser = User.init(id: CurrentUser.shared.get()!.id, email: CurrentUser.shared.get()!.email, firstName: firstName.text!, lastName: lastName.text!, dateOfBitrh: dateOfBirth.date, friends: CurrentUser.shared.get()!.friends, myCart: CurrentUser.shared.get()!.myCart, sentFriendRequests: CurrentUser.shared.get()!.sentFriendRequests, receivedFriendRequests: CurrentUser.shared.get()!.receivedFriendRequests, myTreats: CurrentUser.shared.get()!.myTreats, myOrders: CurrentUser.shared.get()!.myOrders, getTreatsStatus: GetTreatStatus(rawValue: giftStatus!.selectedSegmentIndex)!, notifications: CurrentUser.shared.get()!.notifications, address: CurrentUser.shared.get()?.address)
+        }
+        PopUp.remove(controller: self)
+        
+        //it works but it looks like it happens simultaneously and not after.
+        //tried animation but it won't work.
+        if let parent = parent as? ProfileViewController{
+            parent.navigationController?.navigationBar.isHidden = false
+            
+        }
+        ref.child("users").child(CurrentUser.shared.get()!.id).updateChildValues(updatedUser!.toDB)
     }
     
     func checkForPasswordChange()->Bool{
             Auth.auth().currentUser?.updateEmail(to: email.text!, completion: { (error) in
                 if error != nil{
+                    Toast.show(message: error!.localizedDescription, controller: self)
                     self.handleError(error!)
                     self.passwordChange = false
                     return
@@ -269,7 +296,7 @@ class RegisterViewController: UIViewController {
                 }
             })
             
-            return passwordChange!
+            return passwordChange ?? false
 
     }
 
