@@ -253,7 +253,9 @@ extension ProfileViewController:updateList, RefreshProfileVC{
     func reloadMyData(friends: [User] , requests:[User]) {
         self.friends = friends
         self.requests = requests
+        if self.friendsRequestsTableView != nil{
         self.friendsRequestsTableView.reloadData()
+        }
         print(CurrentUser.shared.get()!,"Current User")
         print(friends,"Friends123")
         print(requests,"Requests123")
