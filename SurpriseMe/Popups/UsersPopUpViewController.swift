@@ -82,7 +82,6 @@ extension UsersPopUpViewController:UITableViewDelegate{
             if let _ = self.parent as? ProfileViewController{
 //                profileVC.toggle = !profileVC.toggle
             }else{
-                print("notProfile")
             delegate!.deliver(user: self.currentUsers![indexPath.row])
 //        }
         PopUp.remove(controller: self)

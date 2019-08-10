@@ -20,7 +20,7 @@ class OrderedTreatsViewController: UIViewController {
     
     
     var treats:[Treat]?
-    
+    var getters:[String:String]?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(white: 0, alpha: 0.5)
@@ -60,7 +60,7 @@ extension OrderedTreatsViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          let cell = tableView.dequeueReusableCell(withIdentifier: "orderedTreatCell") as! OrderedTreatsTableCell
         
-        cell.populate(treat: treats![indexPath.row])
+        cell.populate(treat: treats![indexPath.row],getter: getters![treats![indexPath.row].id]!)
         
         return cell
     }

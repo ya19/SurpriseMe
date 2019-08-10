@@ -128,7 +128,7 @@ protocol ShowPopUpDelegate{
     //send treat so you can know if the date was expired or not.
     func useTreat(treat: Treat)
     
-    func showTreats(order: Order)
+    func showTreats(order:Order)
 }
 
 extension OrdersAndTreatsViewController : ShowPopUpDelegate{
@@ -153,9 +153,10 @@ extension OrdersAndTreatsViewController : ShowPopUpDelegate{
     }
     
     func showTreats(order: Order){
-        let orderedTreatsVC = UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orderedTreatsController") as! OrderedTreatsViewController
-        orderedTreatsVC.treats = order.treats
-        let _ = PopUp.toggle(child: orderedTreatsVC, parent: self,toggle:true)
+//        let orderedTreatsVC = UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orderedTreatsController") as! OrderedTreatsViewController
+//        orderedTreatsVC.treats = treats
+//        let _ = PopUp.toggle(child: orderedTreatsVC, parent: self,toggle:true)
+        VCManager.shared.initTreatsForOrder(order: order,vc: self)
     }
 
 }

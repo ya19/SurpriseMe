@@ -553,9 +553,9 @@ class UsersManager{
     
     func giveTreats(delegate: UIViewController){
         let myDelegate:updateCartDelegate = delegate as! updateCartDelegate
-        var treats:[Treat] = []
+        var treats:[String] = []
         var x = 0
-
+        var price = 0.0
         
     
         
@@ -563,30 +563,32 @@ class UsersManager{
 
             var treat = CurrentUser.shared.get()!.myCart[x]
             let getter = treat.getter!
-            let key = self.ref.child("treats").child(getter).childByAutoId().key! as String
+            let key = self.ref.child("allTreats").child(getter).childByAutoId().key! as String
             treat.id = key
-            treats.append(treat)
-            self.ref.child("treats").child(getter).observeSingleEvent(of: .value) { (treatsData) in
-                var myTreats:[Treat] = []
-                if let treatsDic = treatsData.value as? [String:Any]{
-                    for key in treatsDic.keys{
-                        myTreats.append(Treat.getTreatFromDictionary(treatsDic[key] as! [String:Any]))
-                    }
-                }
+            price = price + treat.product.price
+            treats.append(treat.id)
+//            self.ref.child("treats").child(getter).observeSingleEvent(of: .value) { (treatsData) in
+//                var myTreats:[Treat] = []
+//                if let treatsDic = treatsData.value as? [String:Any]{
+//                    for key in treatsDic.keys{
+//                        myTreats.append(Treat.getTreatFromDictionary(treatsDic[key] as! [String:Any]))
+//                    }
+//                }
                 
                
                 self.ref.child("treats").child(getter).child(key).setValue(treat.toDB)
+                self.ref.child("allTreats").child(key).setValue(treat.toDB)
                 self.sendNotification(friendID: getter, notificationType : .isTreatRequest , treatID: treat.id)
                 // make sure i got here after i got the entire orders
-           
-            }
             x = x + 1
+
+            }
             if x == CurrentUser.shared.get()!.myCart.count{
                 let orderId = self.ref.child("orders").child(CurrentUser.shared.get()!.id).childByAutoId().key! as String
-                let order = Order(id: orderId, treats: treats, date: Date(), buyer: CurrentUser.shared.get()!.id)
+                let order = Order(id: orderId, treats: treats, price: price, date: Date(), buyer: CurrentUser.shared.get()!.id)
                 self.add(order: order)
             }
-            }
+        
         
         self.ref.child("myCart").child(CurrentUser.shared.get()!.id).removeValue { (Error, DatabaseReference) in
             myDelegate.update()

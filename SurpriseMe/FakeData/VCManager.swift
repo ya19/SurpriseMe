@@ -28,13 +28,16 @@ class VCManager{
     
     //CART VIEW CONTROLLER
     var cartVC:CartViewController?
-    var getters:[String]
+    var getters:[String:String]
     var cartCaller:UIViewController?
     //NOTIFICATIONS POP UP
     
     
     // ORDERS AND TREATS VIEW CONTROLLER
-    
+    var ordersAndTreatsVC:OrdersAndTreatsViewController?
+    var treatsFromOrderArray:[Treat]
+    var treatsFromOrder:Order?
+    var initTreatsFromOrdeR:Bool
     
     //USERS NOT FRIENDS POP UP
     
@@ -57,7 +60,7 @@ class VCManager{
         initRequests = true
         reloadProfileVC = nil
         //CART VIEW CONTROLLER
-        getters = []
+        getters = [:]
         cartVC = nil
         cartCaller = nil
         cellDelegate = nil
@@ -65,7 +68,10 @@ class VCManager{
         
         
         // ORDERS AND TREATS VIEW CONTROLLER
-        
+        ordersAndTreatsVC = nil
+        treatsFromOrderArray = []
+        treatsFromOrder = nil
+        initTreatsFromOrdeR = true
         
         //USERS NOT FRIENDS POP UP
         usersPopUP = nil
@@ -315,16 +321,16 @@ class VCManager{
     
     func initCartVC(caller:UIViewController){
         cartCaller = caller
-        let cartTrets = CurrentUser.shared.get()!.myCart
-        getters = []
-        for i in 0..<cartTrets.count{
-            if cartTrets[i].getter != nil{
-                self.ref.child("users").child(cartTrets[i].getter!).observeSingleEvent(of: .value) { (userData) in
+        let cartTreats = CurrentUser.shared.get()!.myCart
+        getters = [:]
+        for i in 0..<cartTreats.count{
+            if cartTreats[i].getter != nil{
+                self.ref.child("users").child(cartTreats[i].getter!).observeSingleEvent(of: .value) { (userData) in
                     let user = User.getUserFromDictionary(userData.value as! [String:Any])
-                    self.getters.append(user.fullName)
+                    self.getters[cartTreats[i].id] = user.fullName
                 }
             }else{
-                getters.append("click here ->")
+                getters[cartTreats[i].id] = "click here ->"
             }
         }
         Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.cartLoad(_:)), userInfo: nil, repeats: true)
@@ -339,9 +345,61 @@ class VCManager{
                 self.cartVC = (UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "CartVC") as! CartViewController)
             }
             cartVC!.getters = getters
-            
+            if cartVC!.cartTableView != nil{
+                cartVC!.cartTableView.reloadData()
+            }
             cartCaller!.navigationController?.pushViewController(cartVC!, animated: false)
         }
     }
+    
+    
+    
+    
+    
+    func initTreatsForOrder(order:Order,vc: OrdersAndTreatsViewController){
+        if initTreatsFromOrdeR{
+            initTreatsFromOrdeR = false
+            ordersAndTreatsVC = vc
+            treatsFromOrderArray = []
+            getters = [:]
+            treatsFromOrder = order
+            for treatId in order.treats{
+                self.ref.child("allTreats").child(treatId).observeSingleEvent(of: .value) { (treatData) in
+                    print(treatData,"data")
+                    let treat = Treat.getTreatFromDictionary(treatData.value as! [String : Any])
+                    self.treatsFromOrderArray.append(treat)
+                    
+                    
+                    self.ref.child("users").child(treat.getter!).observeSingleEvent(of: .value) { (userData) in
+                        let user = User.getUserFromDictionary(userData.value as! [String:Any])
+                        self.getters[treat.id] = user.fullName
+                    }
+                    
+                    
+                    
+                    
+                }
+            }
+        
+            Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.loadTreatsFromOrder(_:)), userInfo: nil, repeats: true)
+        }
+    }
+    @objc func loadTreatsFromOrder(_ timer:Timer){
+
+        if treatsFromOrderArray.count == treatsFromOrder?.treats.count{
+            timer.invalidate()
+            initTreatsFromOrdeR = true
+            let orderedTreatsVC = UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orderedTreatsController") as! OrderedTreatsViewController
+            orderedTreatsVC.treats = treatsFromOrderArray
+            orderedTreatsVC.getters = getters
+            let _ = PopUp.toggle(child: orderedTreatsVC, parent: self.ordersAndTreatsVC!,toggle:true)
+            
+        }
+    }
+    
+    
+    
+    
+    
 }
 

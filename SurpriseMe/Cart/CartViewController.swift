@@ -19,7 +19,7 @@ class CartViewController: UIViewController {
         return count
     }
 //    var users:[User] = []
-    var getters:[String] = []
+    var getters:[String:String] = [:]
     @IBOutlet weak var total: UILabel!
     @IBOutlet weak var cartTableView: UITableView!
     
@@ -155,8 +155,9 @@ extension CartViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cartCell", for: indexPath) as! CartProductTableViewCell
         
+        let treat = CurrentUser.shared.get()!.myCart[indexPath.row]
         
-        cell.populate(treat: CurrentUser.shared.get()!.myCart[indexPath.row],getter: getters[indexPath.row])
+        cell.populate(treat: treat,getter: getters[treat.id]!)
 //        cell.treat = CurrentUser.shared.get()!.myCart[indexPath.row]
         cell.delegate = self
         return cell
