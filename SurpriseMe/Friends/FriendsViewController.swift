@@ -28,7 +28,7 @@ class FriendsViewController: UIViewController {
 
             let usersVC = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController
 
-            usersVC.delegate = self
+//            usersVC.delegate = self
             usersVC.users = UsersManager.shared.getAllButFriends(user: CurrentUser.shared.get()!)
 //            userAddedDelegate = usersVC
 //            userAddedDelegate?.reloadMydata()
@@ -134,13 +134,13 @@ extension FriendsViewController: UITableViewDataSource{
     
 }
 
-extension FriendsViewController : deliverUserDelegate{
-    func deliver(userId: String) {
-                
-        //update in database
-//        currentUser.friends.append(user)
-//        UsersManager.shared.add(friendRequest: userId)
-//        self.friendsTableView.reloadData()
-    }
-}
+//extension FriendsViewController : deliverUserDelegate{
+//    func deliver(userId: String) {
+//
+//        //update in database
+////        currentUser.friends.append(user)
+////        UsersManager.shared.add(friendRequest: userId)
+////        self.friendsTableView.reloadData()
+//    }
+//}
 

@@ -40,6 +40,10 @@ class ProfileViewController: UIViewController {
     }
     
     
+    @IBAction func showCart(_ sender: Any) {
+        VCManager.shared.initCartVC(caller: self)
+
+    }
     
     
     
@@ -47,9 +51,9 @@ class ProfileViewController: UIViewController {
     @IBAction func addFriend(_ sender: UIButton) {
         
         //todo: Show add friend pop up
-        UsersManager.shared.initUsersPopUpFromProfile(refresh: false)
-    
-        
+//        UsersManager.shared.initUsersPopUpFromProfile(refresh: false)
+        VCManager.shared.initUsersPopUP(refresh: false, withOutFriends: true,parent: self, cellDelegate: nil)
+
         
 //        let usersVC = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController
 //        
@@ -228,15 +232,15 @@ extension ProfileViewController : UITableViewDelegate{
     }
 }
 
-extension ProfileViewController : deliverUserDelegate{
-    func deliver(userId: String) {
-        
-        //update in database
-        //        currentUser.friends.append(user)
-//        UsersManager.shared.add(friendRequest: userId)
-//        self.friendsRequestsTableView.reloadData()
-    }
-}
+//extension ProfileViewController : deliverUserDelegate{
+//    func deliver(userId: String) {
+//        
+//        //update in database
+//        //        currentUser.friends.append(user)
+////        UsersManager.shared.add(friendRequest: userId)
+////        self.friendsRequestsTableView.reloadData()
+//    }
+//}
 
 
 protocol updateList {

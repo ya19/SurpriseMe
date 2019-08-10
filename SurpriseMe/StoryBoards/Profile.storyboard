@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zsN-dp-yuo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zsN-dp-yuo">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -213,7 +213,7 @@
                         <rightBarButtonItems>
                             <barButtonItem title="cart" image="icons8-shopping_cart-6" id="4r4-BJ-lFG">
                                 <connections>
-                                    <segue destination="QgU-q8-sfA" kind="show" id="8CC-A5-5w9"/>
+                                    <action selector="showCart:" destination="zsN-dp-yuo" id="knG-1Q-SbK"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="noitification" image="icons8-notification" id="sUL-gK-qZw">
@@ -233,14 +233,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sWi-CI-XEy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="125.59999999999999" y="-37.331334332833585"/>
-        </scene>
-        <!--CartVC-->
-        <scene sceneID="b5g-jF-qhC">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Cart" referencedIdentifier="CartVC" id="QgU-q8-sfA" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yZt-EQ-XPH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1184" y="-107"/>
         </scene>
     </scenes>
     <resources>

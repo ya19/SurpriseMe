@@ -17,6 +17,10 @@ class OrdersAndTreatsViewController: UIViewController {
     @IBAction func showMenu(_ sender: UIBarButtonItem) {
         AppMenu.toggleMenu(parent: self)
     }
+    @IBAction func showCart(_ sender: Any) {
+        VCManager.shared.initCartVC(caller: self)
+
+    }
     
     @IBOutlet weak var ordersTreatsTableView: UITableView!
     

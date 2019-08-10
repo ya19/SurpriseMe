@@ -27,8 +27,9 @@ class VCManager{
     var reloadProfileVC:RefreshProfileVC?
     
     //CART VIEW CONTROLLER
-    
-    
+    var cartVC:CartViewController?
+    var getters:[String]
+    var cartCaller:UIViewController?
     //NOTIFICATIONS POP UP
     
     
@@ -37,11 +38,12 @@ class VCManager{
     
     //USERS NOT FRIENDS POP UP
     
-    var notFriendsPopUP:UsersPopUpViewController?
-    private var NotFriendsUsersNum:Int
+    var usersPopUP:UsersPopUpViewController?
+    var usersNum:Int
     var initUsersPopUpNotFriends:Bool
-    var notFriends:[User]
-    
+    var users:[User]
+    var popUpParent:UIViewController?
+    var cellDelegate:CartProductTableViewCell?
     
     private init(){
         
@@ -55,8 +57,10 @@ class VCManager{
         initRequests = true
         reloadProfileVC = nil
         //CART VIEW CONTROLLER
-        
-        
+        getters = []
+        cartVC = nil
+        cartCaller = nil
+        cellDelegate = nil
         //NOTIFICATIONS POP UP
         
         
@@ -64,10 +68,11 @@ class VCManager{
         
         
         //USERS NOT FRIENDS POP UP
-        notFriendsPopUP = nil
-        NotFriendsUsersNum = 0
-        notFriends = []
+        usersPopUP = nil
+        usersNum = 0
+        users = []
         initUsersPopUpNotFriends = true
+        popUpParent = nil
         
     }
     
@@ -202,4 +207,141 @@ class VCManager{
             initRequests = true
         }
     }
+    
+    
+    
+    //init notFriends users PopUp
+    func initUsersPopUP(refresh:Bool,withOutFriends:Bool,parent:UIViewController, cellDelegate: CartProductTableViewCell?){
+        if initUsersPopUpNotFriends{
+            self.cellDelegate = cellDelegate
+            popUpParent = parent
+            initUsersPopUpNotFriends = false
+            users = []
+            self.ref.child("users").observeSingleEvent(of: .value) { (usersData) in
+                let usersDic = usersData.value as! [String:Any]
+                if withOutFriends{
+                    self.usersNum = usersDic.keys.count - CurrentUser.shared.get()!.friends.count - CurrentUser.shared.get()!.receivedFriendRequests.count - 1
+                }else{
+                    self.usersNum = usersDic.keys.count - 1
+                }
+                for key in usersDic.keys{
+                    let someuser = User.getUserFromDictionary(usersDic[key] as! [String:Any])
+                    var ok = true
+                    if withOutFriends{
+                        for friend in CurrentUser.shared.get()!.friends{
+                            if someuser.id == friend{
+                                ok = false
+                            }
+                        }
+                    
+                        for received in CurrentUser.shared.get()!.receivedFriendRequests{
+                            if someuser.id == received{
+                                ok = false
+                            }
+                        }
+                    }
+                    if ok , someuser.id != CurrentUser.shared.get()!.id {
+                        self.users.append(someuser)
+                    }
+                }
+            }
+            
+            if !refresh{
+                Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.didNotFriendsLoaded(_:)), userInfo: nil, repeats: true)
+            }else{
+                
+                Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.refreshNotFriends(_:)), userInfo: nil, repeats: true)
+            }
+        }
+    }
+    @objc func refreshNotFriends(_ timer: Timer){
+    
+        
+        if users.count == usersNum{
+            timer.invalidate()
+            //            if self.notFriendsPopUP == nil{
+            //                self.notFriendsPopUP = (UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController)
+            //                self.notFriendsPopUP!.users = []
+            //            }                                 //new change
+            //            if self.notFriendsPopUP != nil{
+            initUsersPopUpNotFriends = true             //last change.
+            let reloadDelegate:RefreshNotFriendsVC = self.usersPopUP!
+            reloadDelegate.reloadMyData(users: self.users)
+            
+        }
+    }
+    @objc func didNotFriendsLoaded(_ timer: Timer){
+
+        if users.count == usersNum {
+            timer.invalidate()
+            
+            if self.usersPopUP != nil{
+                self.usersPopUP!.delegate = cellDelegate
+
+                //                initUsersPopUpNotFriends = true
+                let reloadDelegate:RefreshNotFriendsVC = self.usersPopUP!
+                reloadDelegate.reloadMyData(users: self.users)
+            } else{
+                self.usersPopUP = (UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController)
+                self.usersPopUP!.users = self.users
+                self.usersPopUP!.currentUsers = self.users
+                self.usersPopUP!.delegate = cellDelegate
+
+            }
+            
+            
+            //            userAddedDelegate = usersVC
+            //            userAddedDelegate?.reloadMydata()
+            initUsersPopUpNotFriends = true
+            if let _ = popUpParent as? ProfileViewController{
+//            self.usersPopUP!.delegate = VCManager.shared.profileVC!
+            if menu.toggle {
+                VCManager.shared.profileVC!.toggle = true
+            }
+           
+            VCManager.shared.profileVC!.toggle = PopUp.toggle(child: self.usersPopUP!, parent: VCManager.shared.profileVC!,toggle: VCManager.shared.profileVC!.toggle)
+            }else{
+                let _ = PopUp.toggle(child: self.usersPopUP!, parent: VCManager.shared.cartVC!, toggle: true)
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    // init CartVC
+    
+    func initCartVC(caller:UIViewController){
+        cartCaller = caller
+        let cartTrets = CurrentUser.shared.get()!.myCart
+        getters = []
+        for i in 0..<cartTrets.count{
+            if cartTrets[i].getter != nil{
+                self.ref.child("users").child(cartTrets[i].getter!).observeSingleEvent(of: .value) { (userData) in
+                    let user = User.getUserFromDictionary(userData.value as! [String:Any])
+                    self.getters.append(user.fullName)
+                }
+            }else{
+                getters.append("click here ->")
+            }
+        }
+        Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.cartLoad(_:)), userInfo: nil, repeats: true)
+    }
+    
+    @objc func cartLoad(_ timer:Timer){
+        print(CurrentUser.shared.get()!.myCart.count,"CARTC")
+        print(getters.count,"CAR")
+        if CurrentUser.shared.get()!.myCart.count == getters.count{
+            timer.invalidate()
+            if cartVC == nil{
+                self.cartVC = (UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "CartVC") as! CartViewController)
+            }
+            cartVC!.getters = getters
+            
+            cartCaller!.navigationController?.pushViewController(cartVC!, animated: false)
+        }
+    }
 }
+

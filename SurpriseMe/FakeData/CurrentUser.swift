@@ -129,11 +129,17 @@
                     if self.once{
                         self.finishAll["friends"] = friends
                     }else{
+                        if self.user!.friends.count > friends.count{
+                            //refresh sentrequests
+                            if VCManager.shared.profileVC?.toggle == false{
+//                                UsersManager.shared.initUsersPopUpFromProfile(refresh: true)
+                                VCManager.shared.initUsersPopUP(refresh: true, withOutFriends: true,parent: VCManager.shared.profileVC!, cellDelegate: nil)
+                            }
+                        }
+                        
+                        
                         self.user!.friends = friends
                         VCManager.shared.updateFriendsProfileVC()
-                        if VCManager.shared.profileVC?.toggle == false{
-                            UsersManager.shared.initUsersPopUpFromProfile(refresh: true)
-                        }
                     }
                 })
                 self.ref.child("orders").child(id).observe( .value, with: { (ordersData) in
@@ -194,7 +200,8 @@
                     }else{
                         self.user!.sentFriendRequests = sentFriendRequests
                         if VCManager.shared.profileVC?.toggle == false{
-                            UsersManager.shared.initUsersPopUpFromProfile(refresh: true)
+//                            UsersManager.shared.initUsersPopUpFromProfile(refresh: true)
+                            VCManager.shared.initUsersPopUP(refresh: true, withOutFriends: true,parent: VCManager.shared.profileVC!, cellDelegate: nil)
                         }
 
                     }

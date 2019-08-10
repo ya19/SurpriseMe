@@ -18,7 +18,8 @@ class CartViewController: UIViewController {
         }
         return count
     }
-    var users:[User] = []
+//    var users:[User] = []
+    var getters:[String] = []
     @IBOutlet weak var total: UILabel!
     @IBOutlet weak var cartTableView: UITableView!
     
@@ -80,7 +81,7 @@ class CartViewController: UIViewController {
         super.viewDidLoad()
 
         AppMenu.clearMenu()
-        users = dataFromServer()
+//        users = dataFromServer()
         cartTableView.delegate = self
         cartTableView.dataSource = self
 //        fakeProducts()
@@ -90,9 +91,9 @@ class CartViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
-    func dataFromServer() -> [User]{
-        return UsersManager.shared.getAllBut(user: CurrentUser.shared.get()!)
-    }
+//    func dataFromServer() -> [User]{
+//        return UsersManager.shared.getAllBut(user: CurrentUser.shared.get()!)
+//    }
     override func viewWillDisappear(_ animated: Bool) {
         if var navigationArray = self.navigationController?.viewControllers{
             var remember = -1;
@@ -155,7 +156,7 @@ extension CartViewController:UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "cartCell", for: indexPath) as! CartProductTableViewCell
         
         
-        cell.populate(treat: CurrentUser.shared.get()!.myCart[indexPath.row])
+        cell.populate(treat: CurrentUser.shared.get()!.myCart[indexPath.row],getter: getters[indexPath.row])
 //        cell.treat = CurrentUser.shared.get()!.myCart[indexPath.row]
         cell.delegate = self
         return cell
@@ -165,15 +166,18 @@ extension CartViewController:UITableViewDataSource{
 }
 extension CartViewController:AddUserDelegate{
     func addUserTapped(cell:UITableViewCell) {
-        let usersVC = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController
-        
-        usersVC.users = self.users
+//        let usersVC = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController
+//
+//        usersVC.users = self.users
         if let treatCell = cell as? CartProductTableViewCell{
-            usersVC.delegate = treatCell
+//            usersVC.delegate = treatCell
+            VCManager.shared.usersPopUP?.delegate = treatCell
+            VCManager.shared.initUsersPopUP(refresh: false, withOutFriends: false,parent: self, cellDelegate: nil)
+
         }
 //        usersVC.delegate =
         
-        let _ = PopUp.toggle(child: usersVC, parent: self,toggle: true)
+//        let _ = PopUp.toggle(child: usersVC, parent: self,toggle: true)
     }
     
     

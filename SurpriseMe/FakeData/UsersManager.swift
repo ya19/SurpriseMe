@@ -170,18 +170,28 @@ class UsersManager{
                     }
                     friends.append(CurrentUser.shared.get()!.id)
                     if friends.count == 1{
-                        self.ref.child("friends").child(friend).setValue(friends)
+                        self.ref.child("friends").child(friend).setValue(friends){ (Error, DatabaseReference) in
+                            sent.remove(at: remember)
+                            if sent.count > 0 {
+                                self.ref.child("sentFriendRequests").updateChildValues([friend:sent])
+                            }else{
+                                self.ref.child("sentFriendRequests").child(friend).removeValue()
+                            }
+                            
+                        }
                     }else{
-                        self.ref.child("friends").updateChildValues([friend:friends])
+                        self.ref.child("friends").updateChildValues([friend:friends]){ (Error, DatabaseReference) in
+                        sent.remove(at: remember)
+                        if sent.count > 0 {
+                            self.ref.child("sentFriendRequests").updateChildValues([friend:sent])
+                        }else{
+                            self.ref.child("sentFriendRequests").child(friend).removeValue()
+                        }
+                        }
                     }
                 }
                 
-            sent.remove(at: remember)
-            if sent.count > 0 {
-                self.ref.child("sentFriendRequests").updateChildValues([friend:sent])
-            }else{
-                self.ref.child("sentFriendRequests").child(friend).removeValue()
-                }}else{
+        }else{
                 print("Friend request has been canceled by the potential friend")
 //                Toast.show(message: "Friend request has been canceled by the potential friend", controller: self.profileVC!)
 
@@ -383,91 +393,91 @@ class UsersManager{
         self.ref.child("notifications").child(friendID).child(key).setValue(notification.toDB)
     }
     
-    func initUsersPopUpFromProfile(refresh:Bool){
-        if initUsersPopUpNotFriends{
-            initUsersPopUpNotFriends = false
-        notFriends = []
-        self.ref.child("users").observeSingleEvent(of: .value) { (usersData) in
-            let usersDic = usersData.value as! [String:Any]
-            self.NotFriendsUsersNum = usersDic.keys.count - CurrentUser.shared.get()!.friends.count - CurrentUser.shared.get()!.receivedFriendRequests.count - 1
-            print(self.NotFriendsUsersNum, "Not friends num")
-            for key in usersDic.keys{
-                let someuser = User.getUserFromDictionary(usersDic[key] as! [String:Any])
-                var ok = true
-                for friend in CurrentUser.shared.get()!.friends{
-                    if someuser.id == friend{
-                        ok = false
-                    }
-                }
-                
-                for received in CurrentUser.shared.get()!.receivedFriendRequests{
-                    if someuser.id == received{
-                        ok = false
-                    }
-                }
-                if ok , someuser.id != CurrentUser.shared.get()!.id {
-                    self.notFriends.append(someuser)
-                }
-            }
-        }
-        
-        if !refresh{
-            Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.didNotFriendsLoaded(_:)), userInfo: nil, repeats: true)
-        }else{
-            
-            Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.refreshNotFriends(_:)), userInfo: nil, repeats: true)
-        }
-        }
-    }
-    @objc func refreshNotFriends(_ timer: Timer){
-        print(self.NotFriendsUsersNum, "test notFriends num")
-        print(notFriends,"test array")
-        
-        if notFriends.count == NotFriendsUsersNum{
-            timer.invalidate()
-//            if self.notFriendsPopUP == nil{
-//                self.notFriendsPopUP = (UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController)
-//                self.notFriendsPopUP!.users = []
-//            }                                 //new change
+//    func initUsersPopUpFromProfile(refresh:Bool){
+//        if initUsersPopUpNotFriends{
+//            initUsersPopUpNotFriends = false
+//        notFriends = []
+//        self.ref.child("users").observeSingleEvent(of: .value) { (usersData) in
+//            let usersDic = usersData.value as! [String:Any]
+//            self.NotFriendsUsersNum = usersDic.keys.count - CurrentUser.shared.get()!.friends.count - CurrentUser.shared.get()!.receivedFriendRequests.count - 1
+//            print(self.NotFriendsUsersNum, "Not friends num")
+//            for key in usersDic.keys{
+//                let someuser = User.getUserFromDictionary(usersDic[key] as! [String:Any])
+//                var ok = true
+//                for friend in CurrentUser.shared.get()!.friends{
+//                    if someuser.id == friend{
+//                        ok = false
+//                    }
+//                }
+//                
+//                for received in CurrentUser.shared.get()!.receivedFriendRequests{
+//                    if someuser.id == received{
+//                        ok = false
+//                    }
+//                }
+//                if ok , someuser.id != CurrentUser.shared.get()!.id {
+//                    self.notFriends.append(someuser)
+//                }
+//            }
+//        }
+//        
+//        if !refresh{
+//            Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.didNotFriendsLoaded(_:)), userInfo: nil, repeats: true)
+//        }else{
+//            
+//            Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.refreshNotFriends(_:)), userInfo: nil, repeats: true)
+//        }
+//        }
+//    }
+//    @objc func refreshNotFriends(_ timer: Timer){
+//        print(self.NotFriendsUsersNum, "test notFriends num")
+//        print(notFriends,"test array")
+//        
+//        if notFriends.count == NotFriendsUsersNum{
+//            timer.invalidate()
+////            if self.notFriendsPopUP == nil{
+////                self.notFriendsPopUP = (UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController)
+////                self.notFriendsPopUP!.users = []
+////            }                                 //new change
+////            if self.notFriendsPopUP != nil{
+//            initUsersPopUpNotFriends = true             //last change.
+//            let reloadDelegate:RefreshNotFriendsVC = self.notFriendsPopUP!
+//            reloadDelegate.reloadMyData(notFriends: self.notFriends)
+//            
+//        }
+//    }
+//    @objc func didNotFriendsLoaded(_ timer: Timer){
+//       
+//        print(self.NotFriendsUsersNum, "test notFriends num")
+//        print(notFriends,"test array")
+//        if notFriends.count == NotFriendsUsersNum {
+//            timer.invalidate()
 //            if self.notFriendsPopUP != nil{
-            initUsersPopUpNotFriends = true             //last change.
-            let reloadDelegate:RefreshNotFriendsVC = self.notFriendsPopUP!
-            reloadDelegate.reloadMyData(notFriends: self.notFriends)
-            
-        }
-    }
-    @objc func didNotFriendsLoaded(_ timer: Timer){
-       
-        print(self.NotFriendsUsersNum, "test notFriends num")
-        print(notFriends,"test array")
-        if notFriends.count == NotFriendsUsersNum {
-            timer.invalidate()
-            if self.notFriendsPopUP != nil{
-//                initUsersPopUpNotFriends = true
-                let reloadDelegate:RefreshNotFriendsVC = self.notFriendsPopUP!
-                reloadDelegate.reloadMyData(notFriends: self.notFriends)
-            } else{
-                self.notFriendsPopUP = (UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController)
-                
-                self.notFriendsPopUP!.delegate = VCManager.shared.profileVC!
-                self.notFriendsPopUP!.users = self.notFriends
-                self.notFriendsPopUP!.currentUsers = self.notFriends
-            }
-
-            
-            //            userAddedDelegate = usersVC
-            //            userAddedDelegate?.reloadMydata()
-            initUsersPopUpNotFriends = true
-            
-            if menu.toggle {
-                VCManager.shared.profileVC!.toggle = true
-            }
-           VCManager.shared.profileVC!.toggle = PopUp.toggle(child: self.notFriendsPopUP!, parent: VCManager.shared.profileVC!,toggle: VCManager.shared.profileVC!.toggle)
-           
-        }
-    }
-    
-    
+////                initUsersPopUpNotFriends = true
+//                let reloadDelegate:RefreshNotFriendsVC = self.notFriendsPopUP!
+//                reloadDelegate.reloadMyData(notFriends: self.notFriends)
+//            } else{
+//                self.notFriendsPopUP = (UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController)
+//                
+//                self.notFriendsPopUP!.delegate = VCManager.shared.profileVC!
+//                self.notFriendsPopUP!.users = self.notFriends
+//                self.notFriendsPopUP!.currentUsers = self.notFriends
+//            }
+//
+//            
+//            //            userAddedDelegate = usersVC
+//            //            userAddedDelegate?.reloadMydata()
+//            initUsersPopUpNotFriends = true
+//            
+//            if menu.toggle {
+//                VCManager.shared.profileVC!.toggle = true
+//            }
+//           VCManager.shared.profileVC!.toggle = PopUp.toggle(child: self.notFriendsPopUP!, parent: VCManager.shared.profileVC!,toggle: VCManager.shared.profileVC!.toggle)
+//           
+//        }
+//    }
+//    
+//    
     
     
     

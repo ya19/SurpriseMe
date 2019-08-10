@@ -18,6 +18,10 @@ class ShopViewController: UICollectionViewController{
         AppMenu.toggleMenu(parent: self)
 
     }
+    @IBAction func showCart(_ sender: Any) {
+        VCManager.shared.initCartVC(caller: self)
+
+    }
     
     @IBAction func showNotifications(_ sender: UIBarButtonItem) {
         

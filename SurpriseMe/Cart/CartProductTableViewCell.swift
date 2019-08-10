@@ -11,8 +11,10 @@ import UIKit
 class CartProductTableViewCell: UITableViewCell {
     var treat:Treat?
     @IBAction func addUser(_ sender: UIButton) {
-        delegate?.addUserTapped(cell:self)
+//        delegate?.addUserTapped(cell:self)
         
+        VCManager.shared.initUsersPopUP(refresh: false, withOutFriends: false,parent: VCManager.shared.cartVC!,cellDelegate: self)
+
     }
     @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var productName: UILabel!
@@ -35,30 +37,31 @@ class CartProductTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func populate(treat: Treat){
+    func populate(treat: Treat, getter: String){
         self.treat = treat
         productImage.image = treat.product.image
         productName.text = treat.product.name
         productPrice.text = "Price: \(treat.product.price) ₪"
-        if let getter = treat.getter {
-            getterName.text = "\(getter)"
-
-        }
+//        if let getter = treat.getter {
+//            getterName.text = "\(getter)"
+//
+//        }
+         getterName.text = getter
     }
 }
 
 extension CartProductTableViewCell:deliverUserDelegate{
-    func deliver(userId: String) {
-        self.treat!.getter = userId
-        getterName.text = "\(userId)"
-    
-        UsersManager.shared.setGetterFor(treat: CurrentUser.shared.get()!.myCart[self.indexPath!.row], userId: userId)
+    func deliver(user: User) {
+        self.treat!.getter = user.id
+        getterName.text = "\(user.fullName)"
+        print("im here")
+        UsersManager.shared.setGetterFor(treat: CurrentUser.shared.get()!.myCart[self.indexPath!.row], userId: user.id)
 //        CartManager.shared.treats[self.indexPath!.row].getter = userId
         
     }
 }
 protocol deliverUserDelegate{
-    func deliver(userId:String)
+    func deliver(user:User)
 }
 
 

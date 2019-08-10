@@ -82,7 +82,8 @@ extension UsersPopUpViewController:UITableViewDelegate{
             if let _ = self.parent as? ProfileViewController{
 //                profileVC.toggle = !profileVC.toggle
             }else{
-            delegate?.deliver(userId: self.currentUsers![indexPath.row].id)
+                print("notProfile")
+            delegate!.deliver(user: self.currentUsers![indexPath.row])
 //        }
         PopUp.remove(controller: self)
         }
@@ -112,14 +113,13 @@ extension UsersPopUpViewController:UITableViewDataSource{
     
 }
 protocol RefreshNotFriendsVC {
-    func reloadMyData(notFriends:[User])
+    func reloadMyData(users:[User])
 }
 extension UsersPopUpViewController:RefreshNotFriendsVC{
-    func reloadMyData(notFriends: [User]) {
-        self.users = notFriends
-        self.currentUsers = notFriends
+    func reloadMyData(users: [User]) {
+        self.users = users
+        self.currentUsers = users
         self.table.reloadData()
-        print(notFriends)
     }
 }
 

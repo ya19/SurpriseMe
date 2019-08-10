@@ -30,6 +30,9 @@ class CategoriesViewController: UICollectionViewController {
         }
         toggle = PopUp.toggle(child: notificationsVC, parent: self, toggle: toggle)
     }
+    @IBAction func showCart(_ sender: Any) {
+        VCManager.shared.initCartVC(caller: self)
+    }
     
     
     var myShops:[[Shop]] = [[]]
