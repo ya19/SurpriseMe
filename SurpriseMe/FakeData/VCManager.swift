@@ -304,9 +304,11 @@ class VCManager{
             if menu.toggle {
                 VCManager.shared.profileVC!.toggle = true
             }
-           
+                self.usersPopUP?.removeFromParent()
+
             VCManager.shared.profileVC!.toggle = PopUp.toggle(child: self.usersPopUP!, parent: VCManager.shared.profileVC!,toggle: VCManager.shared.profileVC!.toggle)
             }else{
+                self.usersPopUP?.removeFromParent()
                 let _ = PopUp.toggle(child: self.usersPopUP!, parent: VCManager.shared.cartVC!, toggle: true)
             }
         }

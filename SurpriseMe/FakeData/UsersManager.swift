@@ -59,7 +59,12 @@ class UsersManager{
     func add(order:Order){
 //        CurrentUser.shared!.myOrders.append(order)
         
-        ref.child("orders").child(CurrentUser.shared.get()!.id).child(order.id).setValue(order.toDB)
+        ref.child("orders").child(CurrentUser.shared.get()!.id).child(order.id).setValue((order.toDB)) { (Error, DatabaseReference) in
+            let ordersAndTreatsVC = UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orders") as! OrdersAndTreatsViewController
+            VCManager.shared.cartVC!.navigationController?.pushViewController(ordersAndTreatsVC, animated: true)
+        }
+        
+        
     }
     func deny(friend:String){
         

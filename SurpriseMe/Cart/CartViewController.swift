@@ -55,8 +55,8 @@ class CartViewController: UIViewController {
 //            CartManager.shared.treats = []
             total.text = String(sum)
             Toast.show(message: "Order completed", controller: self)
-        let ordersAndTreatsVC = UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orders") as! OrdersAndTreatsViewController
-        self.navigationController?.pushViewController(ordersAndTreatsVC, animated: true)
+//        let ordersAndTreatsVC = UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orders") as! OrdersAndTreatsViewController
+//        self.navigationController?.pushViewController(ordersAndTreatsVC, animated: true)
         }else{
             Toast.show(message: "Getters arent filled", controller: self)
         }
