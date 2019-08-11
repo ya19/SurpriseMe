@@ -54,6 +54,9 @@ extension CartProductTableViewCell:deliverUserDelegate{
     func deliver(user: User) {
         self.treat!.getter = user.id
         getterName.text = "\(user.fullName)"
+        var getters = VCManager.shared.cartVC!.getters
+        getters[self.treat!.id] = user.fullName
+        VCManager.shared.cartVC?.getters = getters
         print("im here")
         UsersManager.shared.setGetterFor(treat: treat!, userId: user.id)
 //        CartManager.shared.treats[self.indexPath!.row].getter = userId

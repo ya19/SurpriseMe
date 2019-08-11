@@ -17,6 +17,8 @@
         var finishAll:[String:Any]
         var vc:UIViewController?
         var asNavigation:Bool?
+        var treatsCount:Int
+        var myTreats:[Treat] = []
         var once = true
 //        private var currentFriendsNum:Int
 //        private var currentRequestsNum:Int
@@ -28,6 +30,8 @@
             finishAll = [:]
             vc = nil
             asNavigation = nil
+            myTreats = []
+            treatsCount = 0
 //            friends = []
 //            requests = []
 //            profileVC = nil
@@ -157,18 +161,27 @@
                     }
                 })
                 self.ref.child("treats").child(id).observe( .value, with: { (treatsData) in
-      
-                    var myTreats:[Treat] = []
-                    if let treatsDic = treatsData.value as? [String:Any]{
-                        for key in treatsDic.keys{
-                            myTreats.append(Treat.getTreatFromDictionary(treatsDic[key] as! [String:Any]))
+                    if let treatsArray = treatsData.value as? [String]{
+                        self.treatsCount = treatsArray.count
+                        self.myTreats = []
+                        for t in treatsArray{
+                            self.ref.child("allTreats").child(t).observeSingleEvent(of: .value, with: { (treatFromId) in
+                                self.myTreats.append(Treat.getTreatFromDictionary(treatFromId.value as! [String:Any]))
+                            })
                         }
-                    }
-                    if self.once{
-                        self.finishAll["myTreats"] = myTreats
-                    }else{
-                        self.user!.myTreats = myTreats
-                    }
+//                            if let treatsDic = treatsData.value as? [String:Any]{
+//                                for key in treatsDic.keys{
+//                                    myTreats.append(Treat.getTreatFromDictionary(treatsDic[key] as! [String:Any]))
+//                                }
+//                            }
+//                        if self.once{
+//                            self.finishAll["myTreats"] = myTreats
+//                        }else{
+//                            self.user!.myTreats = myTreats
+//                        }
+                        
+                        }
+                    Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.didFinishMyTreats(_:)), userInfo: nil, repeats: true)
                 })
                 self.ref.child("myCart").child(id).observe(.value, with: { (cartData) in
                                 
@@ -240,7 +253,19 @@
                 }
             })
         }
-            
+        
+        
+        @objc func didFinishMyTreats(_ timer: Timer){
+            if myTreats.count == treatsCount{
+                timer.invalidate()
+                if self.once{
+                    self.finishAll["myTreats"] = myTreats
+                }else{
+                    self.user!.myTreats = myTreats
+                }
+            }
+        }
+        
             @objc func didFinishAll(_ timer: Timer){
                 //if i add address i need to count 14 keys
                 if finishAll.keys.count == 13{

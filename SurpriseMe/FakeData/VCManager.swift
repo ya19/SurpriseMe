@@ -281,13 +281,13 @@ class VCManager{
         if users.count == usersNum {
             timer.invalidate()
             
-            if self.usersPopUP != nil{
-                self.usersPopUP!.delegate = cellDelegate
+//            if self.usersPopUP != nil{
+//                self.usersPopUP!.delegate = cellDelegate
 
                 //                initUsersPopUpNotFriends = true
-                let reloadDelegate:RefreshNotFriendsVC = self.usersPopUP!
-                reloadDelegate.reloadMyData(users: self.users)
-            } else{
+//                let reloadDelegate:RefreshNotFriendsVC = self.usersPopUP!
+//                reloadDelegate.reloadMyData(users: self.users)
+//            } else{
                 self.usersPopUP = (UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController)
                 self.usersPopUP!.users = self.users
                 self.usersPopUP!.currentUsers = self.users
@@ -311,7 +311,7 @@ class VCManager{
                 self.usersPopUP?.removeFromParent()
                 let _ = PopUp.toggle(child: self.usersPopUP!, parent: VCManager.shared.cartVC!, toggle: true)
             }
-        }
+//        }`
     }
     
     
