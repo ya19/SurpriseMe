@@ -29,7 +29,8 @@ class NotificationManager{
             
         case .isFriendRequest:
             UsersManager.shared.add(friend: notification.sender)
-            
+           
+        default : return
         }
         
         //delete from notifications on server
@@ -62,6 +63,7 @@ class NotificationManager{
         case .isFriendRequest:
             UsersManager.shared.deny(friend: notification.sender)
             
+        default : return
         }
         ref.child("notifications").child(CurrentUser.shared.get()!.id).child(notification.id!).removeValue()
     }

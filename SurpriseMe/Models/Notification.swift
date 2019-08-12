@@ -63,12 +63,16 @@ struct Notification{
 }
 
 enum NotificationType: Int, CustomStringConvertible{
-    case isFriendRequest = 0 , isTreatRequest
+    case isFriendRequest = 0 , isTreatRequest , isTreatApproval , isTreatDecline , isFriendApproval , isFriendDecline
     
     var description: String{
         switch self{
         case .isFriendRequest: return "You have a new friend request!"
         case .isTreatRequest : return "You have a new treat request!"
+        case .isTreatApproval: return "Your treat has been accepted!"
+        case .isTreatDecline: return "Your treat has been declined!"
+        case .isFriendApproval: return "Your friend request has been approved!"
+        case .isFriendDecline: return "Your friend request has been declined!"
         }
     }
     
@@ -76,6 +80,10 @@ enum NotificationType: Int, CustomStringConvertible{
         switch self{
         case .isFriendRequest: return "is requesting to be your friend"
         case .isTreatRequest : return "is requesting to send you a treat"
+        case .isTreatApproval: return " has received your treat!"
+        case .isTreatDecline: return " has decided to decline your treat!"
+        case .isFriendApproval: return "and you are now friends! Congrats."
+        case .isFriendDecline: return " has decided to decline your friend request, Sorry."
         }
     }
 }
