@@ -81,8 +81,9 @@ class ProfileViewController: UIViewController {
         if menu.toggle {
             editScreenToggle = true
         }
-        
-        editScreenToggle = PopUp.toggle(child: registerVC, parent: self, toggle: editScreenToggle)
+        if editScreenToggle{
+            editScreenToggle = PopUp.toggle(child: registerVC, parent: self, toggle: editScreenToggle)
+        }
         
     }
     override func viewDidLoad() {

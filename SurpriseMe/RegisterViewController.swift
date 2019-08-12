@@ -128,6 +128,8 @@ class RegisterViewController: UIViewController {
         //it works but it looks like it happens simultaneously and not after.
         //tried animation but it won't work.
         if let parent = parent as? ProfileViewController{
+            VCManager.shared.profileVC!.editScreenToggle = true
+
             parent.navigationController?.navigationBar.isHidden = false
             
         }
@@ -212,6 +214,7 @@ class RegisterViewController: UIViewController {
         //1) check for changes, if no changes , close pop up everything normal.
         if checkForNoChanges(){
             print("no change!")
+            VCManager.shared.profileVC!.editScreenToggle = true
             PopUp.remove(controller: self)
             if let parent = parent as? ProfileViewController{
                 parent.navigationController?.navigationBar.isHidden = false
@@ -316,6 +319,8 @@ class RegisterViewController: UIViewController {
                 self.ref.child("users").child(CurrentUser.shared.get()!.id).updateChildValues(user.toDB)
                 
                 Toast.show(message: "Your details had been updated successfully!", controller: self.parent!)
+                VCManager.shared.profileVC!.editScreenToggle = true
+
                 PopUp.remove(controller: self)
                 if let parent = self.parent as? ProfileViewController{
                     parent.navigationController?.navigationBar.isHidden = false
@@ -325,6 +330,8 @@ class RegisterViewController: UIViewController {
             
             let cancelAlert = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
                 Toast.show(message: "No changes!", controller: self.parent!)
+                VCManager.shared.profileVC!.editScreenToggle = true
+
                 PopUp.remove(controller: self)
                 if let parent = self.parent as? ProfileViewController{
                     parent.navigationController?.navigationBar.isHidden = false
@@ -336,6 +343,8 @@ class RegisterViewController: UIViewController {
             self.present(alert, animated: true)
         } else {
             Toast.show(message: "No changes!", controller: self.parent!)
+            VCManager.shared.profileVC!.editScreenToggle = true
+
             PopUp.remove(controller: self)
             if let parent = self.parent as? ProfileViewController{
                 parent.navigationController?.navigationBar.isHidden = false

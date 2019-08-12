@@ -15,7 +15,6 @@ class SplashScreen: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let ref = Database.database().reference()
-
         ref.child("users").observe(.value) { (DataSnapshot) in
             self.readShops()
             if let child = DataSnapshot.value as? [String:Any]{
