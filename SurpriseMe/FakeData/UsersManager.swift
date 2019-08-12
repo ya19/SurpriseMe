@@ -15,26 +15,26 @@ class UsersManager{
     let ref = Database.database().reference()
 //    private var currentFriendsNum:Int
 //    private var currentRequestsNum:Int
-    private var NotFriendsUsersNum:Int
+//    private var NotFriendsUsersNum:Int
 //    var friends:[User]
 //    var requests:[User]
 //    var profileVC:ProfileViewController?
-    var notFriendsPopUP:UsersPopUpViewController?
-    var notFriends:[User]
+//    var notFriendsPopUP:UsersPopUpViewController?
+//    var notFriends:[User]
 //    var initFriends:Bool
-    var initUsersPopUpNotFriends:Bool
+//    var initUsersPopUpNotFriends:Bool
     private init(){
         users = []
 //        friends = []
 //        requests = []
 //        profileVC = nil
-        notFriendsPopUP = nil
+//        notFriendsPopUP = nil
 //        currentFriendsNum = 0
 //        currentRequestsNum = 0
-        NotFriendsUsersNum = 0
-        notFriends = []
+//        NotFriendsUsersNum = 0
+//        notFriends = []
 //        initFriends = true
-        initUsersPopUpNotFriends = true
+//        initUsersPopUpNotFriends = true
         //users from the server
 //        ref.child("users").observeSingleEvent(of: .value) { (DataSnapshot) in
 //            let child = DataSnapshot.value as! [String:Any]
@@ -59,7 +59,12 @@ class UsersManager{
     func add(order:Order){
 //        CurrentUser.shared!.myOrders.append(order)
         
-        ref.child("orders").child(CurrentUser.shared.get()!.id).child(order.id).setValue(order.toDB)
+        ref.child("orders").child(CurrentUser.shared.get()!.id).child(order.id).setValue((order.toDB)) { (Error, DatabaseReference) in
+            let ordersAndTreatsVC = UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orders") as! OrdersAndTreatsViewController
+            VCManager.shared.cartVC!.navigationController?.pushViewController(ordersAndTreatsVC, animated: true)
+        }
+        
+        
     }
     func deny(friend:String){
         
@@ -340,7 +345,13 @@ class UsersManager{
     
     
     func addToCart(treat: Treat){
-        ref.child("myCart").child(CurrentUser.shared.get()!.id).child(treat.id).setValue(treat.toDB)
+        VCManager.shared.canInitCart = false
+        let key = self.ref.child("myCart").child(CurrentUser.shared.get()!.id).childByAutoId().key!
+        var myTreat = treat
+        myTreat.id = key
+        ref.child("myCart").child(CurrentUser.shared.get()!.id).child(myTreat.id).setValue(myTreat.toDB) { (Error, DatabaseReference) in
+            VCManager.shared.canInitCart = true
+        }
     }
     func removeFromCart(at: Int,delegate: UIViewController){
         let myDelegate:updateCartDelegate = delegate as! updateCartDelegate
@@ -554,40 +565,81 @@ class UsersManager{
     func giveTreats(delegate: UIViewController){
         let myDelegate:updateCartDelegate = delegate as! updateCartDelegate
         var treats:[String] = []
-        var x = 0
+//        var x = 0
         var price = 0.0
         
-    
+        let orderId = self.ref.child("orders").child(CurrentUser.shared.get()!.id).childByAutoId().key! as String
+
         
-        while x < CurrentUser.shared.get()!.myCart.count {
-
-            var treat = CurrentUser.shared.get()!.myCart[x]
-            let getter = treat.getter!
-            let key = self.ref.child("allTreats").child(getter).childByAutoId().key! as String
-            treat.id = key
-            price = price + treat.product.price
-            treats.append(treat.id)
-//            self.ref.child("treats").child(getter).observeSingleEvent(of: .value) { (treatsData) in
-//                var myTreats:[Treat] = []
-//                if let treatsDic = treatsData.value as? [String:Any]{
-//                    for key in treatsDic.keys{
-//                        myTreats.append(Treat.getTreatFromDictionary(treatsDic[key] as! [String:Any]))
-//                    }
-//                }
-                
-               
-                self.ref.child("treats").child(getter).child(key).setValue(treat.toDB)
+//        while x < CurrentUser.shared.get()!.myCart.count {
+        
+            
+            
+            
+            var usersDic:[String:[String]] = [:]
+            for someTreat in CurrentUser.shared.get()!.myCart{
+                let key = self.ref.child("allTreats").child(someTreat.getter!).childByAutoId().key! as String
+                var treat = someTreat
+                treat.id = key
+                treat.orderId = orderId
+                price = price + treat.product.price
+                treats.append(treat.id)
+                if usersDic[someTreat.getter!] == nil{
+                    usersDic[someTreat.getter!] = []
+                }
+                usersDic[someTreat.getter!]!.append(treat.id)
+           
                 self.ref.child("allTreats").child(key).setValue(treat.toDB)
-                self.sendNotification(friendID: getter, notificationType : .isTreatRequest , treatID: treat.id)
-                // make sure i got here after i got the entire orders
-            x = x + 1
-
+                self.sendNotification(friendID: someTreat.getter!  , notificationType : .isTreatRequest , treatID: treat.id)
+            
+            
+            
             }
-            if x == CurrentUser.shared.get()!.myCart.count{
-                let orderId = self.ref.child("orders").child(CurrentUser.shared.get()!.id).childByAutoId().key! as String
+            
+            for key in usersDic.keys{
+                self.ref.child("treats").child(key).observeSingleEvent(of: .value) { (treatsData) in
+                    var myTreats:[String] = []
+                    if let treatsArray = treatsData.value as? [String]{
+                        myTreats = treatsArray
+                    }
+                    for treatId in usersDic[key]!{
+                        myTreats.append(treatId)
+                    }
+                    self.ref.child("treats").child(key).setValue(myTreats)
+                }
+            }
+            
+            
+            
+            
+            
+            
+            
+//            var treat = CurrentUser.shared.get()!.myCart[x]
+//            let getter = treat.getter!
+//            let key = self.ref.child("allTreats").child(getter).childByAutoId().key! as String
+//            treat.id = key
+//            price = price + treat.product.price
+//            treats.append(treat.id)
+//            self.ref.child("treats").child(getter).observeSingleEvent(of: .value) { (treatsData) in
+//                var myTreats:[String] = []
+//                if let treatsArray = treatsData.value as? [String]{
+//                    myTreats = treatsArray
+//                }
+//                myTreats.append(treat.id)
+//                self.ref.child("treats").child(getter).setValue(myTreats)
+//            }
+            
+//                self.ref.child("allTreats").child(key).setValue(treat.toDB)
+//                self.sendNotification(friendID: getter, notificationType : .isTreatRequest , treatID: treat.id)
+                // make sure i got here after i got the entire orders
+//            x = x + 1
+
+//            }
+//            if x == CurrentUser.shared.get()!.myCart.count{
                 let order = Order(id: orderId, treats: treats, price: price, date: Date(), buyer: CurrentUser.shared.get()!.id)
                 self.add(order: order)
-            }
+//            }
         
         
         self.ref.child("myCart").child(CurrentUser.shared.get()!.id).removeValue { (Error, DatabaseReference) in

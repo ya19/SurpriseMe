@@ -11,7 +11,8 @@ import UIKit
 
 class OrdersAndTreatsViewController: UIViewController {
     
-    
+    var myTreats:[Treat]?
+    var myTreatsGivers:[String:String]?
     @IBOutlet weak var ordersTreatsSegmented: UISegmentedControl!
     
     @IBAction func showMenu(_ sender: UIBarButtonItem) {
@@ -22,6 +23,10 @@ class OrdersAndTreatsViewController: UIViewController {
 
     }
     
+    @IBAction func showNotifications(_ sender: Any) {
+        VCManager.shared.initNotifications(refresh: false, caller: self)
+
+    }
     @IBOutlet weak var ordersTreatsTableView: UITableView!
     
     @IBAction func valueChange(_ sender: UISegmentedControl) {
@@ -83,7 +88,7 @@ extension OrdersAndTreatsViewController : UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch(ordersTreatsSegmented.selectedSegmentIndex){
         case 0: return  CurrentUser.shared.get()!.myOrders.count
-        case 1: return CurrentUser.shared.get()!.myTreats.count
+        case 1: return myTreats!.count
         default:
             return 1
         }
@@ -109,7 +114,8 @@ extension OrdersAndTreatsViewController : UITableViewDataSource{
             
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "treatCell") as? TreatCell else{return UITableViewCell()}
-            cell.populate(treat: CurrentUser.shared.get()!.myTreats[indexPath.row])
+            let treat = myTreats![indexPath.row]
+            cell.populate(treat:treat,giver: myTreatsGivers![treat.id]!)
             cell.delegate = self
             cell.statusDelegate = self
             return cell
@@ -156,7 +162,7 @@ extension OrdersAndTreatsViewController : ShowPopUpDelegate{
 //        let orderedTreatsVC = UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orderedTreatsController") as! OrderedTreatsViewController
 //        orderedTreatsVC.treats = treats
 //        let _ = PopUp.toggle(child: orderedTreatsVC, parent: self,toggle:true)
-        VCManager.shared.initTreatsForOrder(order: order,vc: self)
+        VCManager.shared.initTreatsForOrder(order: order)
     }
 
 }
@@ -176,9 +182,19 @@ protocol TreatStatusChangedDelegate{
     func updateStatus()
 }
 
-extension OrdersAndTreatsViewController : TreatStatusChangedDelegate{
+extension OrdersAndTreatsViewController : TreatStatusChangedDelegate,RefreshTreats{
     func updateStatus() {
         ordersTreatsTableView.reloadData()
         print("Status changed.")
     }
+    func refresh(myTreats: [Treat], myTreatsGivers: [String : String]) {
+        self.myTreatsGivers = myTreatsGivers
+        self.myTreats = myTreats
+        if ordersTreatsTableView != nil{
+            ordersTreatsTableView.reloadData()
+        }
+    }
+}
+protocol RefreshTreats{
+    func refresh(myTreats:[Treat], myTreatsGivers:[String:String])
 }

@@ -17,7 +17,9 @@ class UsersPopUpViewController: UIViewController {
         if let profileVC = self.parent as? ProfileViewController{
             profileVC.toggle = !profileVC.toggle
         }
-
+        if cellDelegate != nil{
+            cellDelegate!.releaseToggle()
+        }
         PopUp.remove(controller: self)
         
     }
@@ -26,7 +28,7 @@ class UsersPopUpViewController: UIViewController {
     
     var delegate:deliverUserDelegate?
     var currentUsers:[User]?
-    
+    var cellDelegate:CartCellDelegate?
     var searchingFriends:Bool?
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!

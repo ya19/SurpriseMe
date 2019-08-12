@@ -44,11 +44,11 @@ class NotificationsTableCell: UITableViewCell {
         // Initialization code
     }
     
-    func populate(notification : Notification?){
+    func populate(notification : Notification?,senderName: String){
         self.notification = notification
         notificationImage.image = notification!.image?.circleMasked ?? #imageLiteral(resourceName: "placeholder").circleMasked
         notificationTitle.text = notification!.title
-        notificationDescription.text = notification!.description
+        notificationDescription.text = "\(senderName) \(notification!.description)"
         notificationDate.text = "\(notification!.date!)"
     }
 

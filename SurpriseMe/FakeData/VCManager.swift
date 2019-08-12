@@ -30,15 +30,27 @@ class VCManager{
     var cartVC:CartViewController?
     var getters:[String:String]
     var cartCaller:UIViewController?
+    var canInitCart:Bool
     //NOTIFICATIONS POP UP
-    
-    
+    var notificationsVC:NotificationsViewController?
+    var notifications:[Notification]
+    var canInitNotifications:Bool
+    var notificationsNum:Int
+    var refreshNotifications:RefreshNotifications?
+    var notificationsToggle:Bool
+    var notificationsCaller:UIViewController?
+    var notificationsSenders:[String:String]
     // ORDERS AND TREATS VIEW CONTROLLER
     var ordersAndTreatsVC:OrdersAndTreatsViewController?
     var treatsFromOrderArray:[Treat]
     var treatsFromOrder:Order?
     var initTreatsFromOrdeR:Bool
     
+    var myTreats:[Treat]
+    var myTreatsGivers:[String:String]
+    var canInitTreats:Bool
+    var currentTreatsNum:Int
+    var refreshTreats:RefreshTreats?
     //USERS NOT FRIENDS POP UP
     
     var usersPopUP:UsersPopUpViewController?
@@ -64,15 +76,27 @@ class VCManager{
         cartVC = nil
         cartCaller = nil
         cellDelegate = nil
+        canInitCart = true
         //NOTIFICATIONS POP UP
-        
-        
+        notificationsVC = nil
+        notifications = []
+        canInitNotifications = true
+        notificationsNum = 0
+        refreshNotifications = nil
+        notificationsToggle = true
+        notificationsCaller = nil
+        notificationsSenders = [:]
         // ORDERS AND TREATS VIEW CONTROLLER
         ordersAndTreatsVC = nil
         treatsFromOrderArray = []
         treatsFromOrder = nil
         initTreatsFromOrdeR = true
         
+        myTreats = []
+        myTreatsGivers = [:]
+        canInitTreats = true
+        currentTreatsNum = 0
+        refreshTreats =  nil
         //USERS NOT FRIENDS POP UP
         usersPopUP = nil
         usersNum = 0
@@ -281,18 +305,18 @@ class VCManager{
         if users.count == usersNum {
             timer.invalidate()
             
-            if self.usersPopUP != nil{
-                self.usersPopUP!.delegate = cellDelegate
+//            if self.usersPopUP != nil{
+//                self.usersPopUP!.delegate = cellDelegate
 
                 //                initUsersPopUpNotFriends = true
-                let reloadDelegate:RefreshNotFriendsVC = self.usersPopUP!
-                reloadDelegate.reloadMyData(users: self.users)
-            } else{
+//                let reloadDelegate:RefreshNotFriendsVC = self.usersPopUP!
+//                reloadDelegate.reloadMyData(users: self.users)
+//            } else{
                 self.usersPopUP = (UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController)
                 self.usersPopUP!.users = self.users
                 self.usersPopUP!.currentUsers = self.users
                 self.usersPopUP!.delegate = cellDelegate
-
+                self.usersPopUP!.cellDelegate = cellDelegate
             }
             
             
@@ -304,12 +328,14 @@ class VCManager{
             if menu.toggle {
                 VCManager.shared.profileVC!.toggle = true
             }
-           
+                self.usersPopUP?.removeFromParent()
+
             VCManager.shared.profileVC!.toggle = PopUp.toggle(child: self.usersPopUP!, parent: VCManager.shared.profileVC!,toggle: VCManager.shared.profileVC!.toggle)
             }else{
+                self.usersPopUP?.removeFromParent()
                 let _ = PopUp.toggle(child: self.usersPopUP!, parent: VCManager.shared.cartVC!, toggle: true)
             }
-        }
+//        }`
     }
     
     
@@ -320,20 +346,25 @@ class VCManager{
     // init CartVC
     
     func initCartVC(caller:UIViewController){
-        cartCaller = caller
-        let cartTreats = CurrentUser.shared.get()!.myCart
-        getters = [:]
-        for i in 0..<cartTreats.count{
-            if cartTreats[i].getter != nil{
-                self.ref.child("users").child(cartTreats[i].getter!).observeSingleEvent(of: .value) { (userData) in
-                    let user = User.getUserFromDictionary(userData.value as! [String:Any])
-                    self.getters[cartTreats[i].id] = user.fullName
+        if canInitCart{
+            cartCaller = caller
+            let cartTreats = CurrentUser.shared.get()!.myCart
+            getters = [:]
+            for i in 0..<cartTreats.count{
+                if cartTreats[i].getter != nil{
+                    print(i,"ifelse")
+                    self.ref.child("users").child(cartTreats[i].getter!).observeSingleEvent(of: .value) { (userData) in
+                        let user = User.getUserFromDictionary(userData.value as! [String:Any])
+                        self.getters[cartTreats[i].id] = user.fullName
+                    }
+                }else{
+                    print(i,"else")
+                    getters[cartTreats[i].id] = "click here ->"
+                    print(getters.count,"elseCount")
                 }
-            }else{
-                getters[cartTreats[i].id] = "click here ->"
             }
+            Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.cartLoad(_:)), userInfo: nil, repeats: true)
         }
-        Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.cartLoad(_:)), userInfo: nil, repeats: true)
     }
     
     @objc func cartLoad(_ timer:Timer){
@@ -346,7 +377,9 @@ class VCManager{
             }
             cartVC!.getters = getters
             if cartVC!.cartTableView != nil{
-                cartVC!.cartTableView.reloadData()
+                let cartDelegate:updateCartDelegate = self.cartVC!
+//                cartVC!.cartTableView.reloadData()
+                cartDelegate.update()
             }
             cartCaller!.navigationController?.pushViewController(cartVC!, animated: false)
         }
@@ -356,10 +389,9 @@ class VCManager{
     
     
     
-    func initTreatsForOrder(order:Order,vc: OrdersAndTreatsViewController){
+    func initTreatsForOrder(order:Order){
         if initTreatsFromOrdeR{
             initTreatsFromOrdeR = false
-            ordersAndTreatsVC = vc
             treatsFromOrderArray = []
             getters = [:]
             treatsFromOrder = order
@@ -399,7 +431,137 @@ class VCManager{
     
     
     
+    //INIT NOTIFICATIONS
+    
+    func initNotifications(refresh:Bool,caller: UIViewController?){
+        if canInitNotifications{
+            notificationsCaller = caller
+            notifications = []
+            notificationsSenders = [:]
+            notificationsNum = CurrentUser.shared.get()!.notifications.count
+            
+            for i in 0..<notificationsNum{
+                let not = CurrentUser.shared.get()!.notifications[i]
+                notifications.append(not)
+                self.ref.child("users").child(not.sender).observeSingleEvent(of: .value) { (userData) in
+                    let user = User.getUserFromDictionary(userData.value as! [String:Any])
+                    self.notificationsSenders[not.id!] = user.fullName
+                }
+            }
+            
+            
+            
+            if refresh{
+                Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.refreshNotifications(_:)), userInfo: nil,   repeats: true)
+            }else{
+                Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.loadNotifications(_:)), userInfo: nil, repeats: true)
+            }
+        }
+    }
     
     
+    @objc func loadNotifications(_ timer:Timer){
+        if notifications.count == notificationsNum , notificationsSenders.count == notificationsNum{
+            timer.invalidate()
+            
+            //loadnot
+            if notificationsVC == nil{
+                notificationsVC = (UIStoryboard(name: "Notifications", bundle: nil).instantiateViewController(withIdentifier: "notifications") as! NotificationsViewController)
+                notificationsVC!.notifications = self.notifications
+                notificationsVC!.senders = self.notificationsSenders
+                refreshNotifications = notificationsVC!
+            }else{
+                refreshNotifications?.refresh(notifications: self.notifications, senders: self.notificationsSenders)
+            }
+            canInitNotifications = true
+            if menu.toggle {
+                notificationsToggle = true
+            }
+            self.notificationsToggle = PopUp.toggle(child: notificationsVC!, parent: notificationsCaller!, toggle: self.notificationsToggle)
+            
+        }
+    }
+    
+    @objc func refreshNotifications(_ timer:Timer){
+        if notifications.count == notificationsNum{
+            timer.invalidate()
+            
+            if notificationsVC == nil{
+                notificationsVC = (UIStoryboard(name: "Notifications", bundle: nil).instantiateViewController(withIdentifier: "notifications") as! NotificationsViewController)
+                notificationsVC!.notifications = self.notifications
+                notificationsVC!.senders = self.notificationsSenders
+                refreshNotifications = notificationsVC!
+            }else{
+                refreshNotifications?.refresh(notifications: self.notifications, senders: self.notificationsSenders)
+            }
+            canInitNotifications = true
+            //refresh not
+        }
+    }
+    
+    // INIT MY TREATS
+    
+    func initMyTreats(refresh:Bool){
+        if canInitTreats{
+            canInitTreats = false
+            myTreatsGivers = [:]
+            myTreats = []
+            currentTreatsNum = CurrentUser.shared.get()!.myTreats.count
+            
+            for i in 0..<currentTreatsNum{
+                let treat = CurrentUser.shared.get()!.myTreats[i]
+                myTreats.append(treat)
+                self.ref.child("users").child(treat.giver!).observeSingleEvent(of: .value) { (userData) in
+                    let user = User.getUserFromDictionary(userData.value as! [String:Any])
+                    self.myTreatsGivers[treat.id] = user.fullName
+                }
+            }
+            
+            if refresh{
+                Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.refreshMyTreats(_:)), userInfo: nil,   repeats: true)
+            }else{
+                Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.loadMyTreats(_:)), userInfo: nil, repeats: true)
+            }
+        }
+    }
+
+
+    @objc func loadMyTreats(_ timer:Timer){
+        if myTreats.count == currentTreatsNum , myTreatsGivers.count == currentTreatsNum{
+            timer.invalidate()
+            
+            if ordersAndTreatsVC == nil{
+                ordersAndTreatsVC = (UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orders") as! OrdersAndTreatsViewController)
+                ordersAndTreatsVC!.myTreats = myTreats
+                ordersAndTreatsVC!.myTreatsGivers = myTreatsGivers
+                refreshTreats = ordersAndTreatsVC!
+            }else{
+                refreshTreats?.refresh(myTreats: self.myTreats, myTreatsGivers: self.myTreatsGivers)
+            }
+            menu.parent?.navigationController?.pushViewController(ordersAndTreatsVC!, animated: true)
+            menu.removeFromParent()
+            canInitTreats = true
+            
+        }
+    }
+
+    @objc func refreshMyTreats(_ timer:Timer){
+        if myTreats.count == currentTreatsNum , myTreatsGivers.count == currentTreatsNum{
+
+            timer.invalidate()
+            
+            if ordersAndTreatsVC == nil{
+                ordersAndTreatsVC = (UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orders") as! OrdersAndTreatsViewController)
+                ordersAndTreatsVC!.myTreats = myTreats
+                ordersAndTreatsVC!.myTreatsGivers = myTreatsGivers
+                refreshTreats = ordersAndTreatsVC!
+            }else{
+                refreshTreats?.refresh(myTreats: self.myTreats, myTreatsGivers: self.myTreatsGivers)
+            }
+            
+
+            canInitTreats = true
+        }
+    }
 }
 

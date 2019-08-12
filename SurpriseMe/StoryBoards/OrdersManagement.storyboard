@@ -268,7 +268,11 @@
                                     <action selector="showCart:" destination="buD-LU-8IH" id="MNb-9f-YYU"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="notification" image="icons8-notification" id="u5p-Qc-GfI"/>
+                            <barButtonItem title="notification" image="icons8-notification" id="u5p-Qc-GfI">
+                                <connections>
+                                    <action selector="showNotifications:" destination="buD-LU-8IH" id="2uC-eT-uuV"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>

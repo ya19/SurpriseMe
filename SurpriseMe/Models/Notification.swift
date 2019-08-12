@@ -14,7 +14,9 @@ struct Notification{
         return notificationType.description
     }
     var description: String{
-        return "\(sender) \(notificationType.getDescription())"
+//        return "\(sender) \(notificationType.getDescription())"
+        return "\(notificationType.getDescription())"
+
     }
     let date: Date?
 

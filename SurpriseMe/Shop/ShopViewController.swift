@@ -25,12 +25,13 @@ class ShopViewController: UICollectionViewController{
     
     @IBAction func showNotifications(_ sender: UIBarButtonItem) {
         
-        let notificationsVC = UIStoryboard(name: "Notifications", bundle: nil).instantiateViewController(withIdentifier: "notifications") as! NotificationsViewController
-        
-        if menu.toggle {
-            toggle = true
-        }
-        toggle = PopUp.toggle(child: notificationsVC, parent: self, toggle: toggle)
+//        let notificationsVC = UIStoryboard(name: "Notifications", bundle: nil).instantiateViewController(withIdentifier: "notifications") as! NotificationsViewController
+//
+//        if menu.toggle {
+//            toggle = true
+//        }
+//        toggle = PopUp.toggle(child: notificationsVC, parent: self, toggle: toggle)
+        VCManager.shared.initNotifications(refresh: false, caller: self)
     }
     
     
@@ -102,7 +103,6 @@ class ShopViewController: UICollectionViewController{
         let array = Array(shop!.products["products"]!)
         
 //        cell.popoulate(productImage: array[indexPath.item].image ?? #imageLiteral(resourceName: "placeholder"), productPrice: array[indexPath.item].price)
-        
         cell.populate(product: array[indexPath.item])
 //        cell.productLogo.image = array[indexPath.item].image
 //        cell.productPrice.text = "\(array[indexPath.item].price) NIS"
@@ -113,7 +113,10 @@ class ShopViewController: UICollectionViewController{
         let itemVC = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "itemPopUp") as! ItemPopUpViewController
         itemVC.item = shop!.products["products"]![indexPath.row]
         itemVC.addToCart = true
-        let _ = PopUp.toggle(child: itemVC, parent: self,toggle: true)
+        itemVC.delegateShop = self
+        if toggle{
+            toggle = PopUp.toggle(child: itemVC, parent: self,toggle: toggle)
+        }
     }
 
     // MARK: UICollectionViewDelegate
@@ -156,5 +159,12 @@ extension ShopViewController : UICollectionViewDelegateFlowLayout{
         return CGSize(width: collectionView.frame.width * 0.3, height: collectionView.frame.height / 5.0)
     }
 }
-
+protocol ReleaseToggle{
+    func releaseToggle()
+}
+extension ShopViewController:ReleaseToggle{
+    func releaseToggle(){
+        self.toggle = true
+    }
+}
 

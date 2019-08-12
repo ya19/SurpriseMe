@@ -15,12 +15,14 @@ struct Treat{
     
     var date:Date?
     
+    var orderId:String?
+    
     var dateString: String{
         let formatter = DateFormatter()
         // initially set the format based on your datepicker date / server String
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
-        let myString = formatter.string(from: Date()) // string purpose I add here
+        let myString = formatter.string(from: date!) // string purpose I add here
         // convert your string to date
         let yourDate = formatter.date(from: myString)
         //then again set the date format whhich type of output you need
@@ -57,7 +59,7 @@ struct Treat{
         dic["giver"] = giver
         dic["getter"] = getter
         dic["status"] = treatStatus?.rawValue
-        
+        dic["orderId"] = orderId
         //i can assume that on the first purchase of the treat the status will always be pending.
 //        dic["status"] = TreatStatus.Pending.rawValue
         
@@ -74,8 +76,13 @@ struct Treat{
         if let someGetter = dic["getter"] as? String{
             getter = someGetter
         }
+        var orderId:String? = nil
+        if let order = dic["orderId"] as? String{
+            orderId = order
+        }
+      
         let status = TreatStatus(rawValue: dic["status"] as! Int)
-        return Treat(id: id, date: date, product: product, giver: giver, getter: getter, treatStatus: status)
+        return Treat(id: id, date: date, orderId: orderId, product: product, giver: giver, getter: getter, treatStatus: status)
     }
 }
 

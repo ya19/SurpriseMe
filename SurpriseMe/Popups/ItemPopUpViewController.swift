@@ -12,26 +12,39 @@ class ItemPopUpViewController: UIViewController {
     var item:Product?
     var count:Int?
     var addToCart:Bool = false
+    var delegateShop:ReleaseToggle?
+    var delegateCart:ReleaseCartToggle?
     @IBAction func popUpClose(_ sender: UIButton) {
 //        self.view.removeFromSuperview()
+        if delegateCart != nil{
+            delegateCart?.releaseCartToggle()
+        }
             self.view.removeFromSuperview()
-
+        
     }
     
     @IBAction func xBtnClose(_ sender: UIButton) {
         addToCart = false
 //        self.view.removeFromSuperview()
+        if delegateCart != nil{
+            delegateCart?.releaseCartToggle()
+        }
+        if delegateShop != nil{
+            delegateShop?.releaseToggle()
+        }
         PopUp.remove(controller: self)
         
     }
     @IBAction func addToCart(_ sender: Any) {
         Toast.show(message: "\(item?.name ?? "") added \n to cart", controller: self.parent!)
         addToCart = false
-        
+        if delegateShop != nil{
+            delegateShop?.releaseToggle()
+        }
         //UserManager.shared.addToCart(treat)
         
         
-        let treat = Treat(id: "treat\(CurrentUser.shared.get()!.myCart.count + 1)", date: nil, product: item!, giver: CurrentUser.shared.get()!.id, getter: nil, treatStatus: TreatStatus.Pending)
+        let treat = Treat(id: "", date: nil, orderId: nil, product: item!, giver: CurrentUser.shared.get()!.id, getter: nil, treatStatus: TreatStatus.Pending)
         UsersManager.shared.addToCart(treat: treat)
         
         PopUp.remove(controller: self)
