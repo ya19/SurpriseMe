@@ -30,6 +30,7 @@ class VCManager{
     var cartVC:CartViewController?
     var getters:[String:String]
     var cartCaller:UIViewController?
+    var canInitCart:Bool
     //NOTIFICATIONS POP UP
     
     
@@ -64,6 +65,7 @@ class VCManager{
         cartVC = nil
         cartCaller = nil
         cellDelegate = nil
+        canInitCart = true
         //NOTIFICATIONS POP UP
         
         
@@ -322,20 +324,25 @@ class VCManager{
     // init CartVC
     
     func initCartVC(caller:UIViewController){
-        cartCaller = caller
-        let cartTreats = CurrentUser.shared.get()!.myCart
-        getters = [:]
-        for i in 0..<cartTreats.count{
-            if cartTreats[i].getter != nil{
-                self.ref.child("users").child(cartTreats[i].getter!).observeSingleEvent(of: .value) { (userData) in
-                    let user = User.getUserFromDictionary(userData.value as! [String:Any])
-                    self.getters[cartTreats[i].id] = user.fullName
+        if canInitCart{
+            cartCaller = caller
+            let cartTreats = CurrentUser.shared.get()!.myCart
+            getters = [:]
+            for i in 0..<cartTreats.count{
+                if cartTreats[i].getter != nil{
+                    print(i,"ifelse")
+                    self.ref.child("users").child(cartTreats[i].getter!).observeSingleEvent(of: .value) { (userData) in
+                        let user = User.getUserFromDictionary(userData.value as! [String:Any])
+                        self.getters[cartTreats[i].id] = user.fullName
+                    }
+                }else{
+                    print(i,"else")
+                    getters[cartTreats[i].id] = "click here ->"
+                    print(getters.count,"elseCount")
                 }
-            }else{
-                getters[cartTreats[i].id] = "click here ->"
             }
+            Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.cartLoad(_:)), userInfo: nil, repeats: true)
         }
-        Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.cartLoad(_:)), userInfo: nil, repeats: true)
     }
     
     @objc func cartLoad(_ timer:Timer){
@@ -348,7 +355,9 @@ class VCManager{
             }
             cartVC!.getters = getters
             if cartVC!.cartTableView != nil{
-                cartVC!.cartTableView.reloadData()
+                let cartDelegate:updateCartDelegate = self.cartVC!
+//                cartVC!.cartTableView.reloadData()
+                cartDelegate.update()
             }
             cartCaller!.navigationController?.pushViewController(cartVC!, animated: false)
         }

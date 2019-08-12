@@ -192,5 +192,7 @@ protocol updateCartDelegate {
 extension CartViewController:updateCartDelegate{
     func update() {
         cartTableView.reloadData()
+        total.text = "Total: \(sum) ₪"
+
     }
 }

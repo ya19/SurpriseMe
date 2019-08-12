@@ -345,7 +345,13 @@ class UsersManager{
     
     
     func addToCart(treat: Treat){
-        ref.child("myCart").child(CurrentUser.shared.get()!.id).child(treat.id).setValue(treat.toDB)
+        VCManager.shared.canInitCart = false
+        let key = self.ref.child("myCart").child(CurrentUser.shared.get()!.id).childByAutoId().key!
+        var myTreat = treat
+        myTreat.id = key
+        ref.child("myCart").child(CurrentUser.shared.get()!.id).child(myTreat.id).setValue(myTreat.toDB) { (Error, DatabaseReference) in
+            VCManager.shared.canInitCart = true
+        }
     }
     func removeFromCart(at: Int,delegate: UIViewController){
         let myDelegate:updateCartDelegate = delegate as! updateCartDelegate
@@ -562,7 +568,8 @@ class UsersManager{
 //        var x = 0
         var price = 0.0
         
-    
+        let orderId = self.ref.child("orders").child(CurrentUser.shared.get()!.id).childByAutoId().key! as String
+
         
 //        while x < CurrentUser.shared.get()!.myCart.count {
         
@@ -574,6 +581,7 @@ class UsersManager{
                 let key = self.ref.child("allTreats").child(someTreat.getter!).childByAutoId().key! as String
                 var treat = someTreat
                 treat.id = key
+                treat.orderId = orderId
                 price = price + treat.product.price
                 treats.append(treat.id)
                 if usersDic[someTreat.getter!] == nil{
@@ -629,7 +637,6 @@ class UsersManager{
 
 //            }
 //            if x == CurrentUser.shared.get()!.myCart.count{
-                let orderId = self.ref.child("orders").child(CurrentUser.shared.get()!.id).childByAutoId().key! as String
                 let order = Order(id: orderId, treats: treats, price: price, date: Date(), buyer: CurrentUser.shared.get()!.id)
                 self.add(order: order)
 //            }

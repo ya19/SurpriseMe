@@ -17,11 +17,11 @@ var currentUser = User.init(id: "user1", email: "shahaf_t@narkis.co.il", firstNa
     ], myCart: [], sentFriendRequests: [], receivedFriendRequests: [],
           myTreats:
     [
-        Treat.init(id: "treat1", date: Date(), product: Product.init(id: "product1", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 159.00), giver: "user1", getter: "user2", treatStatus: TreatStatus.Pending),
+        Treat.init(id: "treat1", date: Date(), orderId: nil, product: Product.init(id: "product1", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 159.00), giver: "user1", getter: "user2", treatStatus: TreatStatus.Pending),
         
-          Treat.init(id: "treat1", date: Date(), product: Product.init(id: "product1", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 159.00), giver: "user1", getter: "user2", treatStatus: TreatStatus.Pending),
+        Treat.init(id: "treat1", date: Date(), orderId: nil, product: Product.init(id: "product1", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 159.00), giver: "user1", getter: "user2", treatStatus: TreatStatus.Pending),
         
-          Treat.init(id: "treat1", date: Date(), product: Product.init(id: "product1", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 159.00), giver: "user1", getter: "user2", treatStatus: TreatStatus.Pending)
+        Treat.init(id: "treat1", date: Date(), orderId: nil, product: Product.init(id: "product1", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 159.00), giver: "user1", getter: "user2", treatStatus: TreatStatus.Pending)
         
     ],
           myOrders:[], getTreatsStatus: GetTreatStatus.EVERYONE, notifications: [], address: nil)
