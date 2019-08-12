@@ -59,7 +59,7 @@ struct Treat{
         dic["giver"] = giver
         dic["getter"] = getter
         dic["status"] = treatStatus?.rawValue
-        dic["orderId"] = orderId!
+        dic["orderId"] = orderId
         //i can assume that on the first purchase of the treat the status will always be pending.
 //        dic["status"] = TreatStatus.Pending.rawValue
         
@@ -73,10 +73,14 @@ struct Treat{
         let product = Product.getProductFromDictionary(dic["product"] as! [String:Any])
         let giver = dic["giver"] as! String
         var getter:String? = nil
-        let orderId = dic["orderId"] as! String
         if let someGetter = dic["getter"] as? String{
             getter = someGetter
         }
+        var orderId:String? = nil
+        if let order = dic["orderId"] as? String{
+            orderId = order
+        }
+      
         let status = TreatStatus(rawValue: dic["status"] as! Int)
         return Treat(id: id, date: date, orderId: orderId, product: product, giver: giver, getter: getter, treatStatus: status)
     }

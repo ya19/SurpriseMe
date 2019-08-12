@@ -23,12 +23,13 @@ class CategoriesViewController: UICollectionViewController {
     }
     
     @IBAction func showNotifications(_ sender: UIBarButtonItem) {
-        let notificationsVC = UIStoryboard(name: "Notifications", bundle: nil).instantiateViewController(withIdentifier: "notifications") as! NotificationsViewController
-        
-        if menu.toggle {
-            toggle = true
-        }
-        toggle = PopUp.toggle(child: notificationsVC, parent: self, toggle: toggle)
+//        let notificationsVC = UIStoryboard(name: "Notifications", bundle: nil).instantiateViewController(withIdentifier: "notifications") as! NotificationsViewController
+//
+//        if menu.toggle {
+//            toggle = true
+//        }
+//        toggle = PopUp.toggle(child: notificationsVC, parent: self, toggle: toggle)
+        VCManager.shared.initNotifications(refresh: false, caller: self)
     }
     @IBAction func showCart(_ sender: Any) {
         VCManager.shared.initCartVC(caller: self)

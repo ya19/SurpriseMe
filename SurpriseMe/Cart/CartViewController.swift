@@ -11,6 +11,7 @@ import UIKit
 class CartViewController: UIViewController {
 
     var toggle = true
+    var itemToggle = true
     var sum:Double{
         var count = 0.0
         for item in CurrentUser.shared.get()!.myCart{
@@ -69,12 +70,13 @@ class CartViewController: UIViewController {
     }
     
     @IBAction func showNotifications(_ sender: UIBarButtonItem) {
-        let notificationsVC = UIStoryboard(name: "Notifications", bundle: nil).instantiateViewController(withIdentifier: "notifications") as! NotificationsViewController
-        
-        if menu.toggle {
-            toggle = true
-        }
-        toggle = PopUp.toggle(child: notificationsVC, parent: self, toggle: toggle)
+//        let notificationsVC = UIStoryboard(name: "Notifications", bundle: nil).instantiateViewController(withIdentifier: "notifications") as! NotificationsViewController
+//
+//        if menu.toggle {
+//            toggle = true
+//        }
+//        toggle = PopUp.toggle(child: notificationsVC, parent: self, toggle: toggle)
+        VCManager.shared.initNotifications(refresh: false, caller: self)
     }
     
     override func viewDidLoad() {
@@ -139,8 +141,10 @@ extension CartViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let itemVC = self.storyboard?.instantiateViewController(withIdentifier: "itemPopUp") as! ItemPopUpViewController
         itemVC.item = CurrentUser.shared.get()!.myCart[indexPath.row].product
-        
-        let _ = PopUp.toggle(child: itemVC, parent: self,toggle: true)
+        itemVC.delegateCart = self
+        if itemToggle{
+            itemToggle = PopUp.toggle(child: itemVC, parent: self,toggle: true)
+        }
     }
 }
 extension CartViewController:UITableViewDataSource{
@@ -189,10 +193,16 @@ protocol AddUserDelegate{
 protocol updateCartDelegate {
     func update()
 }
-extension CartViewController:updateCartDelegate{
+protocol ReleaseCartToggle {
+    func releaseCartToggle()
+}
+extension CartViewController:updateCartDelegate, ReleaseCartToggle{
     func update() {
         cartTableView.reloadData()
         total.text = "Total: \(sum) ₪"
 
+    }
+    func releaseCartToggle() {
+        itemToggle = true
     }
 }

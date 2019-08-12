@@ -95,9 +95,10 @@ extension MenuViewController:UITableViewDelegate{
             if let _ = self.parent as? OrdersAndTreatsViewController{
                 return
             }else{
-                let ordersAndTreatsVC = UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orders") as! OrdersAndTreatsViewController
-                self.parent?.navigationController?.pushViewController(ordersAndTreatsVC, animated: true)
-                menu.removeFromParent()
+//                let ordersAndTreatsVC = UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orders") as! OrdersAndTreatsViewController
+//                self.parent?.navigationController?.pushViewController(ordersAndTreatsVC, animated: true)
+//                menu.removeFromParent()
+                VCManager.shared.initMyTreats(refresh: false)
                 return
             }
         case .Logout:
@@ -113,6 +114,8 @@ extension MenuViewController:UITableViewDelegate{
                     VCManager.shared.cartVC = nil
                     VCManager.shared.usersPopUP = nil
                     VCManager.shared.ordersAndTreatsVC = nil
+                    VCManager.shared.notificationsVC = nil
+                    VCManager.shared.notificationsToggle = true
                     
                     let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "login") as! ViewController
                     Toast.show(message: "\(email!) Logged out successfully", controller: controller)

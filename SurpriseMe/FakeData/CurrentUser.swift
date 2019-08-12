@@ -161,9 +161,15 @@
                     }
                 })
                 self.ref.child("treats").child(id).observe( .value, with: { (treatsData) in
-                    if let treatsArray = treatsData.value as? [String]{
+                    var treatsArray:[String] = []
+                    self.myTreats = []
+                    self.treatsCount = treatsArray.count
+
+                    if let treatsIds = treatsData.value as? [String]{
+                        treatsArray = treatsIds
                         self.treatsCount = treatsArray.count
-                        self.myTreats = []
+
+                        print(treatsArray.count,"treatsCounthey")
                         for t in treatsArray{
                             self.ref.child("allTreats").child(t).observeSingleEvent(of: .value, with: { (treatFromId) in
                                 self.myTreats.append(Treat.getTreatFromDictionary(treatFromId.value as! [String:Any]))
@@ -181,6 +187,7 @@
 //                        }
                         
                         }
+                    print("hey")
                     Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.didFinishMyTreats(_:)), userInfo: nil, repeats: true)
                 })
                 self.ref.child("myCart").child(id).observe(.value, with: { (cartData) in
@@ -245,6 +252,7 @@
                         self.finishAll["myNotifications"] = myNotifications
                     }else{
                         self.user!.notifications = myNotifications
+                        VCManager.shared.initNotifications(refresh: true, caller: nil)
                     }
                 })
                     
@@ -256,12 +264,18 @@
         
         
         @objc func didFinishMyTreats(_ timer: Timer){
+            print("hey1")
+
             if myTreats.count == treatsCount{
                 timer.invalidate()
                 if self.once{
                     self.finishAll["myTreats"] = myTreats
                 }else{
                     self.user!.myTreats = myTreats
+                    print("hey2")
+
+                    VCManager.shared.initMyTreats(refresh: true)
+
                 }
             }
         }

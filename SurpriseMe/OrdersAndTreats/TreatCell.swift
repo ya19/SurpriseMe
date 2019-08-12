@@ -70,11 +70,11 @@ class TreatCell: UITableViewCell {
         delegate?.useTreat(treat: treat!)
     }
     
-    func populate(treat: Treat){
+    func populate(treat: Treat, giver:String){
         self.treat = treat
         treatImage.image = treat.product.image
         productName.text = treat.product.name
-        giver.text = treat.giver
+        self.giver.text = giver
         dateLabel.text = treat.dateString
         
         switch treat.getUpdatedStatus!{
