@@ -15,6 +15,9 @@ class NotificationsTableCell: UITableViewCell {
     var delegate : ChangedNotificationStateDelegate?
     var updateListDelegate : updateList?
     
+    @IBOutlet weak var declineBtn: UIButton!
+    @IBOutlet weak var acceptBtn: UIButton!
+    
     @IBOutlet weak var notificationImage: UIImageView!
     
     @IBOutlet weak var notificationTitle: UILabel!
@@ -50,6 +53,15 @@ class NotificationsTableCell: UITableViewCell {
         notificationTitle.text = notification!.title
         notificationDescription.text = "\(senderName) \(notification!.description)"
         notificationDate.text = "\(notification!.date!)"
+        
+        if notification?.notificationType == NotificationType.isTreatRequest || notification?.notificationType == NotificationType.isFriendRequest{
+            acceptBtn.isHidden = false
+            declineBtn.isHidden = false
+        } else {
+
+            acceptBtn.isHidden = true
+            declineBtn.isHidden = true
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

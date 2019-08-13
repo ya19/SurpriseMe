@@ -29,6 +29,10 @@ class FriendRequestTableViewCell: UITableViewCell {
             //send notification for friend that i approved.
             UsersManager.shared.sendNotification(friendID: user!.id, notificationType: .isFriendApproval, treatID: nil)
             
+            //delete my notification
+            NotificationManager.shared.removeFriendRequestNotification(friendID : user!.id)
+            
+            
         //todo approve request and delete from list
             delegate?.remove(at: self.indexPath!.row)
             

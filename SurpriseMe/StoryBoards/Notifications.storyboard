@@ -103,6 +103,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="acceptBtn" destination="nl0-Mq-sbm" id="obk-ZA-z5f"/>
+                                            <outlet property="declineBtn" destination="0jZ-Ol-jao" id="3ck-14-Eiu"/>
                                             <outlet property="notificationDate" destination="pOj-bQ-vkM" id="aSy-wp-Gz0"/>
                                             <outlet property="notificationDescription" destination="Hgb-3k-ip9" id="Ylu-Vv-tlX"/>
                                             <outlet property="notificationImage" destination="jhg-Ge-YZO" id="sOw-KS-esa"/>

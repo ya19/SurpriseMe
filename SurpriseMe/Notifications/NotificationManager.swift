@@ -18,6 +18,18 @@ class NotificationManager{
             ref = Database.database().reference()
         }
     
+    func removeNotification(notificationID: String){
+        ref.child("notifications").child(CurrentUser.shared.get()!.id).child(notificationID).removeValue()
+    }
+    
+    func removeFriendRequestNotification(friendID: String){
+        for notification in CurrentUser.shared.get()!.notifications{
+            if notification.sender == friendID , notification.notificationType == .isFriendRequest{
+                ref.child("notifications").child(CurrentUser.shared.get()!.id).child(notification.id!).removeValue()
+            }
+        }
+    }
+    
     
     func approveNotification(notification : Notification){
         switch notification.notificationType{
