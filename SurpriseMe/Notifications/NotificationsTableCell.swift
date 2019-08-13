@@ -32,7 +32,7 @@ class NotificationsTableCell: UITableViewCell {
         
         
         NotificationManager.shared.approveNotification(notification: notification!)
-        updateListDelegate?.remove(at: self.indexPath!.row)
+//        updateListDelegate?.remove(at: self.indexPath!.row)
 
         
     }
@@ -40,7 +40,7 @@ class NotificationsTableCell: UITableViewCell {
     @IBAction func denyTapped(_ sender: Any) {
         
         NotificationManager.shared.declineNotification(notification: notification!)
-        updateListDelegate?.remove(at: self.indexPath!.row)
+//        updateListDelegate?.remove(at: self.indexPath!.row)
 
 
     }
@@ -50,9 +50,9 @@ class NotificationsTableCell: UITableViewCell {
         // Initialization code
     }
     
-    func populate(notification : Notification?,senderName: String){
+    func populate(notification : Notification?,senderName: String,senderImage:UIImage){
         self.notification = notification
-        notificationImage.image = notification!.image?.circleMasked ?? #imageLiteral(resourceName: "placeholder").circleMasked
+        notificationImage.image = senderImage.circleMasked
         notificationTitle.text = notification!.title
         notificationDescription.text = "\(senderName) \(notification!.description)"
         notificationDate.text = "\(notification!.date!)"

@@ -40,6 +40,8 @@ struct User:Hashable,Equatable{
     
     let email:String
     
+    var image:UIImage?
+    
     let firstName:String
     
     let lastName:String
@@ -109,6 +111,6 @@ struct User:Hashable,Equatable{
 //            address = addressDic
 //        }
         
-        return User(id: id, email: email, firstName: firstName, lastName: lastName, dateOfBitrh: dateOfBirth, friends: [], myCart: [], sentFriendRequests: [], receivedFriendRequests: [], myTreats: [], myOrders: [], getTreatsStatus: getTreatStatus!, notifications: [], address: address)
+        return User(id: id, email: email, image: nil, firstName: firstName, lastName: lastName, dateOfBitrh: dateOfBirth, friends: [], myCart: [], sentFriendRequests: [], receivedFriendRequests: [], myTreats: [], myOrders: [], getTreatsStatus: getTreatStatus!, notifications: [], address: address)
     }
 }

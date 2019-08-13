@@ -11,7 +11,7 @@
     class CurrentUser{
         
         static let shared = CurrentUser()
-        
+        let storage = Storage.storage().reference()
         private var user:User?
         let ref = Database.database().reference()
         var finishAll:[String:Any]
@@ -96,6 +96,10 @@
         func get() -> User?{
             return user
         }
+        func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+            URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+        }
+        
         func configure(_ vc:UIViewController , asNavigation : Bool){
             self.vc = vc
             self.asNavigation = asNavigation
@@ -122,7 +126,18 @@
 //                let address:[String:String]? = nil // write to server and get from server in address list
                 self.finishAll["address"] = nil
 
-                
+                self.storage.child(id).downloadURL(completion: { (URL, Error) in
+                    
+                        self.getData(from: URL!) { data, response, error in
+                            guard let data = data, error == nil else { return }
+                            print(response?.suggestedFilename ?? URL!.lastPathComponent)
+                            print("Download Finished")
+                            DispatchQueue.main.async() {
+                                self.finishAll["image"] = UIImage(data: data)
+                            }
+                        }
+                    
+                })
                 self.ref.child("friends").child(id).observe(.value, with: { (friendsData) in
 
                     var friends:[String] = []
@@ -282,10 +297,10 @@
         
             @objc func didFinishAll(_ timer: Timer){
                 //if i add address i need to count 14 keys
-                if finishAll.keys.count == 13{
+                if finishAll.keys.count == 14{
                 timer.invalidate()
                 once = false
-                self.user  = User(id: self.finishAll["id"] as! String, email: self.finishAll["email"] as! String, firstName: self.finishAll["firstName"] as! String, lastName: self.finishAll["lastName"] as! String, dateOfBitrh: self.finishAll["dateOfBirth"] as! Date, friends: self.finishAll["friends"] as! [String], myCart: self.finishAll["myCart"] as! [Treat], sentFriendRequests: self.finishAll["sent"] as! [String], receivedFriendRequests: self.finishAll["received"] as! [String]
+                    self.user  = User(id: self.finishAll["id"] as! String, email: self.finishAll["email"] as! String, image: (self.finishAll["image"] as! UIImage), firstName: self.finishAll["firstName"] as! String, lastName: self.finishAll["lastName"] as! String, dateOfBitrh: self.finishAll["dateOfBirth"] as! Date, friends: self.finishAll["friends"] as! [String], myCart: self.finishAll["myCart"] as! [Treat], sentFriendRequests: self.finishAll["sent"] as! [String], receivedFriendRequests: self.finishAll["received"] as! [String]
                     , myTreats: self.finishAll["myTreats"] as! [Treat], myOrders: self.finishAll["myOrders"] as! [Order], getTreatsStatus: self.finishAll["getTreatStatus"] as! GetTreatStatus, notifications: self.finishAll["myNotifications"] as! [Notification], address: self.finishAll["address"] as? [String : String])
             
                 

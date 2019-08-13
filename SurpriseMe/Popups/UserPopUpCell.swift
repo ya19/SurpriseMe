@@ -19,6 +19,8 @@ class UserPopUpCell: UITableViewCell {
     var friend:User?
     var didFinishReceived = true
     var didFinishSent = true
+    
+    @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var friendAddBtn: SAButton!
     @IBAction func friendAddToggle(_ sender: SAButton) {
         // changing the bool
@@ -52,10 +54,12 @@ class UserPopUpCell: UITableViewCell {
     func populate(user: User){
 //        fullName.text = "\(user.firstName) \(user.lastName)"
         fullName.text = user.fullName
+        userImage.image = user.image!.circleMasked
     }
     func populate(user: User,friendAdd:Bool){
         friendAddBtn.isHidden = false
         fullName.text = user.fullName
+        userImage.image = user.image!.circleMasked
         friend = user
         self.friendAdd = friendAdd
         if friendAdd{

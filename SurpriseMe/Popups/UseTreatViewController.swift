@@ -23,8 +23,7 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
     private let idError = UILabel()
     private let streetError = UILabel()
     private let cityError = UILabel()
-    @IBOutlet weak var saveAdress: UISwitch!
-    
+
     var textFields:[SATextField] = []
     var errorMessages:[UILabel] = []
     @IBOutlet weak var closePopUpBtn: SAButton!

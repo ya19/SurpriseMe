@@ -61,7 +61,7 @@ class FriendRequestTableViewCell: UITableViewCell {
         once = true
         friendNameLabel.text = user.fullName
         friendRequestDateLabel.text = "Now"
-        friendImage.image = #imageLiteral(resourceName: "icons8-user").circleMasked
+        friendImage.image = user.image!.circleMasked
     }
     
     
