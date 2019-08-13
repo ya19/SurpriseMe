@@ -18,6 +18,16 @@ class NotificationManager{
             ref = Database.database().reference()
         }
     
+    
+    func sendNotification(friendID : String , notificationType : NotificationType , treatID: String?){
+        
+        var notification = Notification.init(date: nil, id: nil, imageName: nil, sender: CurrentUser.shared.get()!.id, notificationType: notificationType, treatID: treatID)
+        
+        let key = self.ref.child("notifications").child(friendID).childByAutoId().key! as String
+        notification.id = key
+        self.ref.child("notifications").child(friendID).child(key).setValue(notification.toDB)
+    }
+    
     func removeNotification(notificationID: String){
         ref.child("notifications").child(CurrentUser.shared.get()!.id).child(notificationID).removeValue()
     }
@@ -30,13 +40,30 @@ class NotificationManager{
         }
     }
     
+    func removeTreatRequestNotification(friendID: String , treatID : String){
+        for notification in CurrentUser.shared.get()!.notifications{
+            if notification.sender == friendID , notification.notificationType == .isTreatRequest , notification.treatID == treatID{
+                ref.child("notifications").child(CurrentUser.shared.get()!.id).child(notification.id!).removeValue()
+            }
+        }
+    }
+    
     
     func approveNotification(notification : Notification){
+        var treat:Treat?
         switch notification.notificationType{
         case .isTreatRequest:
             
             //approve the treat
-    ref.child("treats").child(CurrentUser.shared.get()!.id).child(notification.treatID!).child("status").setValue(TreatStatus.Accepted.rawValue)
+//            ref.child("treats").child(CurrentUser.shared.get()!.id).child(notification.treatID!).observeSingleEvent(of: .value) { (datasnapshot) in
+            
+                ref.child("allTreats").child(notification.treatID!).observeSingleEvent(of: .value, with: { (DataSnapshot) in
+                    treat = Treat.getTreatFromDictionary(DataSnapshot.value as! [String:Any])
+                    TreatManager.shared.acceptTreat(treat: treat , fromNotification: true)
+                })
+                
+                
+            
             
             
         case .isFriendRequest:
@@ -56,21 +83,16 @@ class NotificationManager{
         //if its a treat notification
         switch notification.notificationType{
         case .isTreatRequest:
-            //creating a treat using the ID
-            ref.child("treats").child(CurrentUser.shared.get()!.id).child(notification.treatID!).observeSingleEvent(of: .value) { (datasnapshot) in
-                
-                let dic = datasnapshot.value as! [String:Any]
-                treat = Treat.getTreatFromDictionary(dic)
-                
-                treat!.treatStatus = TreatStatus.Declined
-                
-                //write to declined
-                self.ref.child("declinedTreats").child(myNotification.sender).child(myNotification.treatID!).setValue(treat!.toDB)
-                
-                //removed from treats
-                self.ref.child("treats").child(CurrentUser.shared.get()!.id).child(myNotification.treatID!).removeValue()
-                
-            }
+            
+            
+//            //creating a treat using the ID
+            ref.child("allTreats").child(notification.treatID!).observeSingleEvent(of: .value, with: { (DataSnapshot) in
+                treat = Treat.getTreatFromDictionary(DataSnapshot.value as! [String:Any])
+                TreatManager.shared.declineTreat(treat: treat , fromNotification: true)
+            })
+
+            
+            
             
         case .isFriendRequest:
             UsersManager.shared.deny(friend: notification.sender)

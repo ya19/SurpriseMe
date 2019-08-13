@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zsN-dp-yuo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zsN-dp-yuo">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -176,6 +176,16 @@
                                     <action selector="editClicked:" destination="zsN-dp-yuo" eventType="touchUpInside" id="t7y-J2-JaB"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lWD-Lu-cZD">
+                                <rect key="frame" x="103" y="214.5" width="37.5" height="37.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="lWD-Lu-cZD" secondAttribute="height" multiplier="1:1" id="bbB-Og-ft0"/>
+                                </constraints>
+                                <state key="normal" image="icons8-camera"/>
+                                <connections>
+                                    <action selector="showImagePicker:" destination="zsN-dp-yuo" eventType="touchUpInside" id="Sls-EM-K1F"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="0.74577268835616439" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -189,9 +199,11 @@
                             <constraint firstItem="6xF-lj-9Kq" firstAttribute="width" secondItem="SxP-3g-dBs" secondAttribute="width" multiplier="0.5" id="Myi-ym-efS"/>
                             <constraint firstItem="ewV-K4-AEC" firstAttribute="width" secondItem="SxP-3g-dBs" secondAttribute="width" multiplier="0.5" id="Q1B-t8-Enz"/>
                             <constraint firstItem="6xF-lj-9Kq" firstAttribute="centerX" secondItem="SxP-3g-dBs" secondAttribute="centerX" id="Qrf-7J-RG6"/>
+                            <constraint firstItem="lWD-Lu-cZD" firstAttribute="centerY" secondItem="SxP-3g-dBs" secondAttribute="centerY" multiplier="0.7" id="RZK-f7-hX4"/>
                             <constraint firstItem="syl-E1-BNG" firstAttribute="centerX" secondItem="SxP-3g-dBs" secondAttribute="centerX" id="Teh-K1-ReB"/>
                             <constraint firstItem="eoq-4y-eef" firstAttribute="centerY" secondItem="SxP-3g-dBs" secondAttribute="centerY" multiplier="1.55" id="X5B-4F-Tyy"/>
                             <constraint firstItem="ewV-K4-AEC" firstAttribute="centerX" secondItem="SxP-3g-dBs" secondAttribute="centerX" id="X73-rJ-EeO"/>
+                            <constraint firstItem="lWD-Lu-cZD" firstAttribute="width" secondItem="SxP-3g-dBs" secondAttribute="width" multiplier="0.1" id="XQh-qG-A1z"/>
                             <constraint firstItem="eoq-4y-eef" firstAttribute="width" secondItem="SxP-3g-dBs" secondAttribute="width" id="b00-GO-EIw"/>
                             <constraint firstItem="syl-E1-BNG" firstAttribute="centerY" secondItem="SxP-3g-dBs" secondAttribute="centerY" multiplier="0.5" id="bdH-Y0-44x"/>
                             <constraint firstItem="eoq-4y-eef" firstAttribute="centerX" secondItem="SxP-3g-dBs" secondAttribute="centerX" id="cNR-fc-6Lc"/>
@@ -199,6 +211,7 @@
                             <constraint firstItem="5LG-dA-Gxe" firstAttribute="centerX" secondItem="SxP-3g-dBs" secondAttribute="centerX" multiplier="1.8" id="jEt-7S-Cff"/>
                             <constraint firstItem="ewV-K4-AEC" firstAttribute="height" secondItem="SxP-3g-dBs" secondAttribute="height" multiplier="0.05" id="lNM-ns-m4S"/>
                             <constraint firstItem="6xF-lj-9Kq" firstAttribute="height" secondItem="SxP-3g-dBs" secondAttribute="height" multiplier="0.04" id="rus-Bb-8gr"/>
+                            <constraint firstItem="lWD-Lu-cZD" firstAttribute="centerX" secondItem="SxP-3g-dBs" secondAttribute="centerX" multiplier="0.65" id="teQ-qx-t2S"/>
                             <constraint firstItem="71P-j8-YJX" firstAttribute="centerY" secondItem="SxP-3g-dBs" secondAttribute="centerY" multiplier="0.27" id="vwi-On-pvz"/>
                             <constraint firstItem="5LG-dA-Gxe" firstAttribute="height" secondItem="SxP-3g-dBs" secondAttribute="height" multiplier="0.06" id="xbQ-Bi-7NG"/>
                         </constraints>
@@ -236,6 +249,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="icons8-camera" width="32" height="32"/>
         <image name="icons8-edit" width="32" height="32"/>
         <image name="icons8-menu-2" width="25" height="25"/>
         <image name="icons8-notification" width="32" height="32"/>

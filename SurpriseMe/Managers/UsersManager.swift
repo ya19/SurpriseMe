@@ -60,8 +60,9 @@ class UsersManager{
 //        CurrentUser.shared!.myOrders.append(order)
         
         ref.child("orders").child(CurrentUser.shared.get()!.id).child(order.id).setValue((order.toDB)) { (Error, DatabaseReference) in
-            let ordersAndTreatsVC = UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orders") as! OrdersAndTreatsViewController
-            VCManager.shared.cartVC!.navigationController?.pushViewController(ordersAndTreatsVC, animated: true)
+//            let ordersAndTreatsVC = UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orders") as! OrdersAndTreatsViewController
+//            VCManager.shared.cartVC!.navigationController?.pushViewController(ordersAndTreatsVC, animated: true)
+            VCManager.shared.initMyTreats(refresh: false)
         }
         
         
@@ -395,14 +396,6 @@ class UsersManager{
     }
     
     
-    func sendNotification(friendID : String , notificationType : NotificationType , treatID: String?){
-        
-        var notification = Notification.init(date: nil, id: nil, imageName: nil, sender: CurrentUser.shared.get()!.id, notificationType: notificationType, treatID: treatID)
-        
-        let key = self.ref.child("notifications").child(friendID).childByAutoId().key! as String
-        notification.id = key
-        self.ref.child("notifications").child(friendID).child(key).setValue(notification.toDB)
-    }
     
 //    func initUsersPopUpFromProfile(refresh:Bool){
 //        if initUsersPopUpNotFriends{
@@ -590,7 +583,7 @@ class UsersManager{
                 usersDic[someTreat.getter!]!.append(treat.id)
            
                 self.ref.child("allTreats").child(key).setValue(treat.toDB)
-                self.sendNotification(friendID: someTreat.getter!  , notificationType : .isTreatRequest , treatID: treat.id)
+                NotificationManager.shared.sendNotification(friendID: someTreat.getter!  , notificationType : .isTreatRequest , treatID: treat.id)
             
             
             

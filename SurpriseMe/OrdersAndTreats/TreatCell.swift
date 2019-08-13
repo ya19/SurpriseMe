@@ -34,12 +34,8 @@ class TreatCell: UITableViewCell {
     @IBOutlet weak var useTreatBtn: UIButton!
     
     @IBAction func acceptedTreat(_ sender: UIButton) {
-//todo change treat status in server
-        
-        let ref = Database.database().reference()
-        
-        ref.child("treats").child(CurrentUser.shared.get()!.id).child(treat!.id).child("status").setValue(TreatStatus.Accepted.rawValue)
-        
+
+        TreatManager.shared.acceptTreat(treat: self.treat , fromNotification: false)
         
         // delegate to reload data.
         statusDelegate?.updateStatus()
@@ -47,19 +43,10 @@ class TreatCell: UITableViewCell {
     }
     
     @IBAction func declinedTreat(_ sender: UIButton) {
-        //todo change treat status in server
-        let ref = Database.database().reference()
-   
-   //removed from treats
-        ref.child("treats").child(CurrentUser.shared.get()!.id).child(treat!.id).removeValue()
-        //updated status
-        self.treat!.treatStatus = .Declined
         
-   //wrote to server in declined treats.
-        ref.child("declinedTreats").child(treat!.giver!).child(treat!.id).setValue(self.treat!.toDB)
+        TreatManager.shared.declineTreat(treat: treat , fromNotification: false)
         
         // delegate to reload data.
-        
         statusDelegate?.updateStatus()
         
     }

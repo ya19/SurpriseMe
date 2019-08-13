@@ -10,6 +10,8 @@ import UIKit
 
 class OrderedTreatsTableCell: UITableViewCell {
     
+    @IBOutlet weak var treatStatus: UIImageView!
+    @IBOutlet weak var treatPrice: UILabel!
     
     @IBOutlet weak var treatImage: UIImageView!
     
@@ -31,6 +33,15 @@ class OrderedTreatsTableCell: UITableViewCell {
         treatGetter.text = getter
         dateOfOrder.text = treat.dateString
         productName.text = treat.product.name
+        treatStatus.image = treat.treatStatus!.image
+        treatPrice.text = "\(treat.product.price) ₪"
+        
+        switch treat.treatStatus!{
+        case .Declined : treatPrice.textColor = UIColor.red
+            
+        default: treatPrice.textColor = UIColor(red: 0/255, green: 181/255, blue: 51/255, alpha: 1.0)
+        }
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

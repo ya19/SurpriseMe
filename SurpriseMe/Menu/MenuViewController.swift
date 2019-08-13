@@ -141,7 +141,7 @@ extension MenuViewController:UITableViewDelegate{
                     
                     Database.database().reference().child("receivedFriendRequests").child(CurrentUser.shared.get()!.id).removeAllObservers()
                     
-                    
+                    Database.database().reference().child("notifications").child(CurrentUser.shared.get()!.id).removeAllObservers()
                     
                     
                     self.parent?.navigationController?.pushViewController(controller, animated: true)

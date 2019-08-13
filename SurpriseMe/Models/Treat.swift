@@ -126,7 +126,7 @@ enum TreatStatus:Int{
             return UIImage(named: "icons8-expired")
             
         case .Declined:
-            return nil
+            return UIImage(named: "icons8-cancel")
         }
         
         

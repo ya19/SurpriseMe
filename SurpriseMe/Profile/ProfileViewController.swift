@@ -10,12 +10,19 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    @IBAction func showImagePicker(_ sender: UIButton) {
+        didOpenImagePicker = true
+        self.imagePicker.present(from: sender)
+
+    }
+
     @IBOutlet weak var friendsRequestsSegmented: UISegmentedControl!
     
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     var friends:[User] = []
     var requests:[User] = []
+    var imagePicker: ImagePicker!
     @IBOutlet weak var friendsRequestsTableView: UITableView!
     
     @IBAction func segmentedValueChanged(_ sender: UISegmentedControl) {
@@ -36,6 +43,8 @@ class ProfileViewController: UIViewController {
     }
     var toggle = true
     var editScreenToggle = true
+    var didOpenImagePicker = false
+    
     
     @IBAction func showMenu(_ sender: UIBarButtonItem) {
         AppMenu.toggleMenu(parent: self)
@@ -94,9 +103,12 @@ class ProfileViewController: UIViewController {
         AppMenu.clearMenu()
         setupViews()
         
-        // Do any additional setup after loading the view.
+        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
+
     }
     override func viewWillDisappear(_ animated: Bool) {
+        
+        if !didOpenImagePicker{
         if var navigationArray = self.navigationController?.viewControllers{
             var remember = -1;
             for i in 0..<navigationArray.count{
@@ -109,7 +121,7 @@ class ProfileViewController: UIViewController {
                 self.navigationController?.viewControllers = navigationArray
             }
         }
-        
+        }
     }
     
 //    func initList(){
@@ -273,3 +285,15 @@ protocol RefreshProfileVC {
     func reloadMyData(friends: [User]? , requests:[User]?)
 }
 
+
+extension ProfileViewController: ImagePickerDelegate {
+    
+    
+    //here you need to update the server.
+    func didSelect(image: UIImage?) {
+        didOpenImagePicker = false
+        if image != nil{
+        self.userImage.image = image?.circleMasked
+        }
+    }
+}

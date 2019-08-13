@@ -40,18 +40,21 @@ class CategoriesViewController: UICollectionViewController {
     
 
     
-    override func viewWillAppear(_ animated: Bool) {
-        if Auth.auth().currentUser != nil{
-            Toast.show(message: "\(Auth.auth().currentUser!.email!) Logged in successfully", controller: self)
-        }
-        
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        if Auth.auth().currentUser != nil{
+//            Toast.show(message: "\(Auth.auth().currentUser!.email!) Logged in successfully", controller: self)
+//        }
+//
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print(UsersManager.shared.getUsers(),"$$$$$$$$$$$$")
         AppMenu.clearMenu()
         
+        if Auth.auth().currentUser != nil{
+            Toast.show(message: "\(Auth.auth().currentUser!.email!) Logged in successfully", controller: self)
+        }
         
         
         self.collectionView.backgroundView = UIImageView(image: UIImage.init(named: "shopping-background5"))
@@ -60,7 +63,7 @@ class CategoriesViewController: UICollectionViewController {
         myShops = ShopsManager.shared.getShops()
 
 //        let ref = Database.database().reference()
-//        setTreatsObserver()
+        setTreatsObserver()
 
         
         
@@ -72,30 +75,30 @@ class CategoriesViewController: UICollectionViewController {
     }
     
     
-    //suppose to send notification whenever the user received a treat.
+    //suppose to send notification whenever the user received a treat. need to check if it works now.
     func setTreatsObserver(){
+       var count = 0
+       var currentTreatsNum = CurrentUser.shared.get()?.myTreats.count
         Database.database().reference().child("treats").child(CurrentUser.shared.get()!.id).observe(.childAdded) { (datasnapshot) in
-            UserNotificationManager.shared.createNotification(with: "Come find out from who!", delay: 0.5, notificationType: .isTreatRequest)
+            
+            if let treatId = datasnapshot.value as? String{
+                print("I'm in child observe")
+                for treat in CurrentUser.shared.get()!.myTreats{
+                    if treatId == treat.id{
+                        return
+                    }
+                }
+                
+                UserNotificationManager.shared.createNotification(with: "Come find out from who!", delay: 0.5, notificationType: .isTreatRequest)
+                
+                
+            }
+            
         }
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
-//            Toast.show(message: "\(Auth.auth().currentUser) logged in successfully", controller: self)
-//        }
-//    }
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections

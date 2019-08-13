@@ -28,6 +28,9 @@ class NotificationsTableCell: UITableViewCell {
     
     @IBAction func acceptTapped(_ sender: UIButton) {
 
+        
+        
+        
         NotificationManager.shared.approveNotification(notification: notification!)
         updateListDelegate?.remove(at: self.indexPath!.row)
 

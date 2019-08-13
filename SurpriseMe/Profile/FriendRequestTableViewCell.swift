@@ -27,7 +27,7 @@ class FriendRequestTableViewCell: UITableViewCell {
             UsersManager.shared.add(friend: user!.id)
             
             //send notification for friend that i approved.
-            UsersManager.shared.sendNotification(friendID: user!.id, notificationType: .isFriendApproval, treatID: nil)
+            NotificationManager.shared.sendNotification(friendID: user!.id, notificationType: .isFriendApproval, treatID: nil)
             
             //delete my notification
             NotificationManager.shared.removeFriendRequestNotification(friendID : user!.id)
@@ -46,7 +46,11 @@ class FriendRequestTableViewCell: UITableViewCell {
             once = false
             UsersManager.shared.deny(friend: user!.id)
             
-            UsersManager.shared.sendNotification(friendID: user!.id, notificationType: .isFriendDecline, treatID: nil)
+            NotificationManager.shared.sendNotification(friendID: user!.id, notificationType: .isFriendDecline, treatID: nil)
+            
+            //delete my notification
+            NotificationManager.shared.removeFriendRequestNotification(friendID : user!.id)
+            
             delegate?.remove(at: self.indexPath!.row)
         }
 

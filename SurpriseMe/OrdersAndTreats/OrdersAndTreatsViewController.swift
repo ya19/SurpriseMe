@@ -31,6 +31,7 @@ class OrdersAndTreatsViewController: UIViewController {
     
     @IBAction func valueChange(_ sender: UISegmentedControl) {
         ordersTreatsTableView.reloadData()
+//        ordersTreatsTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .none, animated: true)
     }
     
     

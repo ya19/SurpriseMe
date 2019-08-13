@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -307,44 +307,65 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MFo-2A-9sP">
-                                                            <rect key="frame" x="12" y="8.5" width="84" height="97.5"/>
+                                                            <rect key="frame" x="13.5" y="23.5" width="67.5" height="67.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="MFo-2A-9sP" secondAttribute="height" multiplier="1:1" id="lNI-RJ-AaG"/>
+                                                            </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="getter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDg-fY-lvV">
-                                                            <rect key="frame" x="109.5" y="43" width="202.5" height="28.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <rect key="frame" x="101.5" y="46" width="202.5" height="22.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="251" text="purchasedDate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXY-AB-ujr">
-                                                            <rect key="frame" x="109.5" y="71.5" width="135" height="28.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <rect key="frame" x="101.5" y="80" width="135" height="23"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="productName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kpl-cf-mzn">
-                                                            <rect key="frame" x="109.5" y="12.5" width="202.5" height="32"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <rect key="frame" x="101.5" y="11.5" width="202.5" height="23"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJr-pC-VWs">
+                                                            <rect key="frame" x="270" y="74.5" width="67.5" height="23"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Z6W-Id-e5s">
+                                                            <rect key="frame" x="287" y="17.5" width="33.5" height="33.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="Z6W-Id-e5s" secondAttribute="height" multiplier="1:1" id="Jhi-Cj-4Jp"/>
+                                                            </constraints>
+                                                        </imageView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="kpl-cf-mzn" firstAttribute="height" secondItem="sl2-jA-OOS" secondAttribute="height" multiplier="0.28" id="6aM-dS-lpy"/>
+                                                        <constraint firstItem="kpl-cf-mzn" firstAttribute="height" secondItem="sl2-jA-OOS" secondAttribute="height" multiplier="0.2" id="6aM-dS-lpy"/>
+                                                        <constraint firstItem="Z6W-Id-e5s" firstAttribute="centerX" secondItem="sl2-jA-OOS" secondAttribute="centerX" multiplier="1.8" id="6iV-Pf-4ID"/>
                                                         <constraint firstItem="MFo-2A-9sP" firstAttribute="centerY" secondItem="sl2-jA-OOS" secondAttribute="centerY" id="7bh-j9-2cQ"/>
                                                         <constraint firstItem="FDg-fY-lvV" firstAttribute="centerY" secondItem="sl2-jA-OOS" secondAttribute="centerY" id="7yL-K5-ez8"/>
-                                                        <constraint firstItem="MFo-2A-9sP" firstAttribute="height" secondItem="sl2-jA-OOS" secondAttribute="height" multiplier="0.85" id="Hct-86-vZ9"/>
-                                                        <constraint firstItem="hXY-AB-ujr" firstAttribute="height" secondItem="sl2-jA-OOS" secondAttribute="height" multiplier="0.25" id="LSP-I0-Y0K"/>
+                                                        <constraint firstItem="oJr-pC-VWs" firstAttribute="width" secondItem="sl2-jA-OOS" secondAttribute="width" multiplier="0.2" id="Dje-Eq-XM8"/>
+                                                        <constraint firstItem="oJr-pC-VWs" firstAttribute="centerY" secondItem="sl2-jA-OOS" secondAttribute="centerY" multiplier="1.5" id="KLc-ww-zfo"/>
+                                                        <constraint firstItem="hXY-AB-ujr" firstAttribute="height" secondItem="sl2-jA-OOS" secondAttribute="height" multiplier="0.2" id="LSP-I0-Y0K"/>
                                                         <constraint firstItem="kpl-cf-mzn" firstAttribute="width" secondItem="sl2-jA-OOS" secondAttribute="width" multiplier="0.6" id="MiK-ZE-yee"/>
-                                                        <constraint firstItem="FDg-fY-lvV" firstAttribute="height" secondItem="sl2-jA-OOS" secondAttribute="height" multiplier="0.25" id="QM0-f2-P7y"/>
-                                                        <constraint firstItem="kpl-cf-mzn" firstAttribute="centerX" secondItem="sl2-jA-OOS" secondAttribute="centerX" multiplier="1.25" id="TNK-7q-Paa"/>
-                                                        <constraint firstItem="MFo-2A-9sP" firstAttribute="width" secondItem="sl2-jA-OOS" secondAttribute="width" multiplier="0.25" id="Y9g-aA-ahC"/>
-                                                        <constraint firstItem="hXY-AB-ujr" firstAttribute="centerY" secondItem="sl2-jA-OOS" secondAttribute="centerY" multiplier="1.5" id="eHM-Q6-mdW"/>
+                                                        <constraint firstItem="oJr-pC-VWs" firstAttribute="centerX" secondItem="sl2-jA-OOS" secondAttribute="centerX" multiplier="1.8" id="Oyo-ZB-EfB"/>
+                                                        <constraint firstItem="FDg-fY-lvV" firstAttribute="height" secondItem="sl2-jA-OOS" secondAttribute="height" multiplier="0.2" id="QM0-f2-P7y"/>
+                                                        <constraint firstItem="kpl-cf-mzn" firstAttribute="centerX" secondItem="sl2-jA-OOS" secondAttribute="centerX" multiplier="1.2" id="TNK-7q-Paa"/>
+                                                        <constraint firstItem="Z6W-Id-e5s" firstAttribute="width" secondItem="sl2-jA-OOS" secondAttribute="width" multiplier="0.1" id="Y7S-6W-1Wt"/>
+                                                        <constraint firstItem="MFo-2A-9sP" firstAttribute="width" secondItem="sl2-jA-OOS" secondAttribute="width" multiplier="0.2" id="Y9g-aA-ahC"/>
+                                                        <constraint firstItem="hXY-AB-ujr" firstAttribute="centerY" secondItem="sl2-jA-OOS" secondAttribute="centerY" multiplier="1.6" id="eHM-Q6-mdW"/>
                                                         <constraint firstItem="hXY-AB-ujr" firstAttribute="width" secondItem="sl2-jA-OOS" secondAttribute="width" multiplier="0.4" id="hPQ-uH-bxu"/>
-                                                        <constraint firstItem="FDg-fY-lvV" firstAttribute="centerX" secondItem="sl2-jA-OOS" secondAttribute="centerX" multiplier="1.25" id="qJj-iF-01w"/>
+                                                        <constraint firstItem="Z6W-Id-e5s" firstAttribute="centerY" secondItem="sl2-jA-OOS" secondAttribute="centerY" multiplier="0.6" id="ljg-ii-EL5"/>
+                                                        <constraint firstItem="oJr-pC-VWs" firstAttribute="height" secondItem="sl2-jA-OOS" secondAttribute="height" multiplier="0.2" id="pW9-az-L3q"/>
+                                                        <constraint firstItem="FDg-fY-lvV" firstAttribute="centerX" secondItem="sl2-jA-OOS" secondAttribute="centerX" multiplier="1.2" id="qJj-iF-01w"/>
                                                         <constraint firstItem="FDg-fY-lvV" firstAttribute="width" secondItem="sl2-jA-OOS" secondAttribute="width" multiplier="0.6" id="r2T-An-vDt"/>
-                                                        <constraint firstItem="MFo-2A-9sP" firstAttribute="centerX" secondItem="sl2-jA-OOS" secondAttribute="centerX" multiplier="0.32" id="u42-Dg-dq8"/>
-                                                        <constraint firstItem="kpl-cf-mzn" firstAttribute="centerY" secondItem="sl2-jA-OOS" secondAttribute="centerY" multiplier="0.5" id="uX4-eg-aeq"/>
-                                                        <constraint firstItem="hXY-AB-ujr" firstAttribute="centerX" secondItem="sl2-jA-OOS" secondAttribute="centerX" multiplier="1.05" id="xpT-8X-kyM"/>
+                                                        <constraint firstItem="MFo-2A-9sP" firstAttribute="centerX" secondItem="sl2-jA-OOS" secondAttribute="centerX" multiplier="0.28" id="u42-Dg-dq8"/>
+                                                        <constraint firstItem="kpl-cf-mzn" firstAttribute="centerY" secondItem="sl2-jA-OOS" secondAttribute="centerY" multiplier="0.4" id="uX4-eg-aeq"/>
+                                                        <constraint firstItem="hXY-AB-ujr" firstAttribute="centerX" secondItem="sl2-jA-OOS" secondAttribute="centerX" id="xpT-8X-kyM"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
@@ -352,6 +373,8 @@
                                                     <outlet property="productName" destination="kpl-cf-mzn" id="d3F-DL-AnF"/>
                                                     <outlet property="treatGetter" destination="FDg-fY-lvV" id="Swe-P9-qcQ"/>
                                                     <outlet property="treatImage" destination="MFo-2A-9sP" id="wH3-Yo-GQJ"/>
+                                                    <outlet property="treatPrice" destination="oJr-pC-VWs" id="uAJ-Rk-UHn"/>
+                                                    <outlet property="treatStatus" destination="Z6W-Id-e5s" id="mpF-AO-xxs"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
