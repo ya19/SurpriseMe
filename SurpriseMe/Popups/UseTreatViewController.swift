@@ -130,11 +130,11 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
 //            print("\(currentUser.myTreats)")
             
         
-        if saveAdress.isOn == true {
-            updateAddress()
-        }else{
-            currentUser.address = nil
-        }
+//        if saveAdress.isOn == true {
+//            updateAddress()
+//        }else{
+//            currentUser.address = nil
+//        }
         
         
         self.view.removeFromSuperview()
@@ -145,7 +145,8 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
         super.viewDidLoad()
         textFields = [houseNumber , streetLabel , cityLabel, idLabel]
         errorMessages = [houseNumberError, streetError, cityError, idError]
-        fillFields()
+        //        fillFields()            VCManager.shared.profileVC!.editScreenToggle = true
+
        
         for errorMessage in errorMessages{
             self.view.addSubview(errorMessage)
@@ -158,24 +159,24 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
     }
     
     //todo save it to core data.
-    func updateAddress(){
-        if currentUser.address == nil{
-            currentUser.address = [:]
-        }
-        currentUser.address!["city"] = cityLabel.text
-        currentUser.address!["street"] = streetLabel.text
-        currentUser.address!["housenumber"] = houseNumber.text
-        currentUser.address!["id"] = idLabel.text
-    }
-    func fillFields(){
-        if currentUser.address != nil{
-            cityLabel.text = currentUser.address!["city"]
-            streetLabel.text = currentUser.address!["street"]
-            houseNumber.text = currentUser.address!["housenumber"]
-            idLabel.text = currentUser.address!["id"]
-            saveAdress.isOn = true
-        }
-    }
+//    func updateAddress(){
+//        if currentUser.address == nil{
+//            currentUser.address = [:]
+//        }
+//        currentUser.address!["city"] = cityLabel.text
+//        currentUser.address!["street"] = streetLabel.text
+//        currentUser.address!["housenumber"] = houseNumber.text
+//        currentUser.address!["id"] = idLabel.text
+//    }
+//    func fillFields(){
+//        if currentUser.address != nil{
+//            cityLabel.text = currentUser.address!["city"]
+//            streetLabel.text = currentUser.address!["street"]
+//            houseNumber.text = currentUser.address!["housenumber"]
+//            idLabel.text = currentUser.address!["id"]
+//            saveAdress.isOn = true
+//        }
+//    }
     
     
     /*
