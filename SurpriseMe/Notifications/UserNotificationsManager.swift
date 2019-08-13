@@ -33,7 +33,7 @@ class UserNotificationManager{
         func request(){
             
             let content = UNMutableNotificationContent()
-            
+
             if let url = attachmentUrl,
                 let attach = try? UNNotificationAttachment(identifier: "identifier", url: url, options: nil){
                 content.attachments = [attach]
@@ -43,6 +43,10 @@ class UserNotificationManager{
             
             content.body = text
             content.badge = 1
+            
+            
+            //can do different sound.
+            content.sound = UNNotificationSound.default
             
             //            let soundName = UNNotificationSoundName(rawValue: "horse.wav")
             //            let sound = UNNotificationSound(named: soundName)

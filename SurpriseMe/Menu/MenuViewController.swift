@@ -110,12 +110,7 @@ extension MenuViewController:UITableViewDelegate{
                 do {
                     try Auth.auth().signOut()
 //                    UsersManager.shared.profileVC = nil
-                    VCManager.shared.profileVC = nil
-                    VCManager.shared.cartVC = nil
-                    VCManager.shared.usersPopUP = nil
-                    VCManager.shared.ordersAndTreatsVC = nil
-                    VCManager.shared.notificationsVC = nil
-                    VCManager.shared.notificationsToggle = true
+                    clearVCmanagerData()
                     
                     let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "login") as! ViewController
                     Toast.show(message: "\(email!) Logged out successfully", controller: controller)
@@ -127,22 +122,7 @@ extension MenuViewController:UITableViewDelegate{
                     //tried to remove all observers in one method or remove each handler numbers that got in the first login, but the handle number changes to each re-attaching of observe. try to find out how to solve. maybe the issue is the profile initiate. while the current user is reading the last id..
           
 
-                    Database.database().reference().child("users").child(CurrentUser.shared.get()!.id).removeAllObservers()
-                    
-                    Database.database().reference().child("friends").child(CurrentUser.shared.get()!.id).removeAllObservers()
-                    
-                    Database.database().reference().child("orders").child(CurrentUser.shared.get()!.id).removeAllObservers()
-                    
-                    Database.database().reference().child("treats").child(CurrentUser.shared.get()!.id).removeAllObservers()
-                    
-                    Database.database().reference().child("myCart").child(CurrentUser.shared.get()!.id).removeAllObservers()
-                    
-                    Database.database().reference().child("sentFriendRequests").child(CurrentUser.shared.get()!.id).removeAllObservers()
-                    
-                    Database.database().reference().child("receivedFriendRequests").child(CurrentUser.shared.get()!.id).removeAllObservers()
-                    
-                    Database.database().reference().child("notifications").child(CurrentUser.shared.get()!.id).removeAllObservers()
-                    
+                    removeDatabaseObservers()
                     
                     self.parent?.navigationController?.pushViewController(controller, animated: true)
                 } catch let signOutError as NSError {
@@ -152,6 +132,34 @@ extension MenuViewController:UITableViewDelegate{
             self.view.removeFromSuperview()
             return
         }
+    }
+    
+    func clearVCmanagerData(){
+        VCManager.shared.profileVC = nil
+        VCManager.shared.cartVC = nil
+        VCManager.shared.usersPopUP = nil
+        VCManager.shared.ordersAndTreatsVC = nil
+        VCManager.shared.notificationsVC = nil
+        VCManager.shared.notificationsToggle = true
+    }
+    
+    func removeDatabaseObservers(){
+        Database.database().reference().child("users").child(CurrentUser.shared.get()!.id).removeAllObservers()
+        
+        Database.database().reference().child("friends").child(CurrentUser.shared.get()!.id).removeAllObservers()
+        
+        Database.database().reference().child("orders").child(CurrentUser.shared.get()!.id).removeAllObservers()
+        
+        Database.database().reference().child("treats").child(CurrentUser.shared.get()!.id).removeAllObservers()
+        
+        Database.database().reference().child("myCart").child(CurrentUser.shared.get()!.id).removeAllObservers()
+        
+        Database.database().reference().child("sentFriendRequests").child(CurrentUser.shared.get()!.id).removeAllObservers()
+        
+        Database.database().reference().child("receivedFriendRequests").child(CurrentUser.shared.get()!.id).removeAllObservers()
+        
+        Database.database().reference().child("notifications").child(CurrentUser.shared.get()!.id).removeAllObservers()
+        
     }
 }
 extension MenuViewController:UITableViewDataSource{

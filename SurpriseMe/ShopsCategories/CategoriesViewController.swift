@@ -89,7 +89,10 @@ class CategoriesViewController: UICollectionViewController {
                     }
                 }
                 
-                UserNotificationManager.shared.createNotification(with: "Come find out from who!", delay: 0.5, notificationType: .isTreatRequest)
+                let newUrlPath = Bundle.main.path(forResource: "surprise", ofType: "png")
+                let newUrl = URL(fileURLWithPath: newUrlPath!)
+                
+                UserNotificationManager.shared.createNotification(with: "Come find out from who!", delay: 0.5, attachmentUrl: newUrl ,notificationType: .isTreatRequest)
                 
                 
             }
