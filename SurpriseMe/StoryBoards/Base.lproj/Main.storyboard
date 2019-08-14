@@ -25,7 +25,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-mail..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eyU-wO-hd9" customClass="SATextField" customModule="SurpriseMe" customModuleProvider="target">
-                                <rect key="frame" x="41.5" y="553.5" width="331" height="58"/>
+                                <rect key="frame" x="41.5" y="544.5" width="331" height="58"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -74,7 +74,7 @@
                             <constraint firstItem="q8e-Eb-fCO" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.065" id="76P-gC-Pss"/>
                             <constraint firstItem="1Vb-uk-brH" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.45" id="EMK-Gd-l6R"/>
                             <constraint firstItem="nZC-Y1-R7g" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="If7-9T-6p2"/>
-                            <constraint firstItem="eyU-wO-hd9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.3" id="Nwq-8x-Tgg"/>
+                            <constraint firstItem="eyU-wO-hd9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.28" id="Nwq-8x-Tgg"/>
                             <constraint firstItem="eyU-wO-hd9" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.065" id="RyE-QV-3QK"/>
                             <constraint firstItem="nZC-Y1-R7g" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.62" id="Wa8-62-sUU"/>
                             <constraint firstItem="efa-DG-GsF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XSJ-dq-rsI"/>

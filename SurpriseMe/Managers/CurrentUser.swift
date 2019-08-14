@@ -128,9 +128,12 @@
 
                 self.storage.child(id).downloadURL(completion: { (URL, Error) in
                     
-                        self.getData(from: URL!) { data, response, error in
+                    guard let url = URL else {
+                        print("WTF?")
+                        return}
+                        self.getData(from: url) { data, response, error in
                             guard let data = data, error == nil else { return }
-                            print(response?.suggestedFilename ?? URL!.lastPathComponent)
+                            print(response?.suggestedFilename ?? url.lastPathComponent)
                             print("Download Finished")
                             DispatchQueue.main.async() {
                                 self.finishAll["image"] = UIImage(data: data)
