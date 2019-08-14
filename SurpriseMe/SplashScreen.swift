@@ -14,20 +14,22 @@ class SplashScreen: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let ref = Database.database().reference()
-        ref.child("users").observe(.value) { (DataSnapshot) in
-            self.readShops()
-            if let child = DataSnapshot.value as? [String:Any]{
-            var users:[User] = []
-            for key in child.keys{
-               users.append(User.getUserFromDictionary(child[key] as! [String:Any]))
-            }
-            
-            UsersManager.shared.update(users: users)
-            }
+     
+    
+        self.readShops()
 
-            
-        }
+//        ref.child("users").observe(.value) { (DataSnapshot) in
+//            if let child = DataSnapshot.value as? [String:Any]{
+//            var users:[User] = []
+//            for key in child.keys{
+//               users.append(User.getUserFromDictionary(child[key] as! [String:Any]))
+//            }
+//
+//            UsersManager.shared.update(users: users)
+//            }
+//
+//
+//        }
         ///(       }
 
         // Do any additional setup after loading the view.

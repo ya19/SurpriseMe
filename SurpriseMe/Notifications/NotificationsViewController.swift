@@ -13,7 +13,7 @@ class NotificationsViewController: UIViewController {
     @IBOutlet weak var notificationsTableView: UITableView!
 //    let notification = Notification.init(date: Date(), imageName: nil, sender: CurrentUser.shared.get()!.id, notificationType: .isFriedRequest)
     var notifications:[Notification]?
-    var senders:[String:String]?
+    var senders:[String:User]?
     override func viewDidLoad() {
         super.viewDidLoad()
 //        notifications = CurrentUser.shared.get()!.notifications
@@ -49,7 +49,7 @@ extension NotificationsViewController : UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "notificationCell") as! NotificationsTableCell
-        cell.populate(notification: notifications?[indexPath.row],senderName: senders![notifications![indexPath.row].id!]!)
+        cell.populate(notification: notifications?[indexPath.row],senderName: senders![notifications![indexPath.row].id!]!.fullName,senderImage: senders![notifications![indexPath.row].id!]!.image!)
 //        cell.delegate = self
         cell.updateListDelegate = self
         return cell
@@ -81,10 +81,10 @@ extension NotificationsViewController : updateList{
 }
 
 protocol RefreshNotifications {
-    func refresh(notifications: [Notification],senders:[String:String])
+    func refresh(notifications: [Notification],senders:[String:User])
 }
 extension NotificationsViewController:RefreshNotifications{
-    func refresh(notifications: [Notification],senders: [String:String]) {
+    func refresh(notifications: [Notification],senders: [String:User]) {
         self.notifications = notifications
         self.senders = senders
         if notificationsTableView != nil{

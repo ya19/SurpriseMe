@@ -102,7 +102,7 @@ class ProfileViewController: UIViewController {
         friendsRequestsTableView.dataSource = self
         AppMenu.clearMenu()
         setupViews()
-        
+        self.userImage.image = CurrentUser.shared.get()!.image!.circleMasked
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
 
     }

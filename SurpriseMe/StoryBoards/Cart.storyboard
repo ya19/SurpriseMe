@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xI4-91-NL0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xI4-91-NL0">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -327,7 +327,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user's name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMh-Vr-sbw">
-                                                            <rect key="frame" x="17.5" y="8.5" width="317" height="26.5"/>
+                                                            <rect key="frame" x="88" y="8.5" width="176" height="26.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -342,20 +342,28 @@
                                                                 <action selector="friendAddToggle:" destination="68L-kE-n3i" eventType="touchUpInside" id="4US-DO-M4Q"/>
                                                             </connections>
                                                         </button>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c48-py-tXc">
+                                                            <rect key="frame" x="10.5" y="2" width="49.5" height="39.5"/>
+                                                        </imageView>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="uMh-Vr-sbw" firstAttribute="centerX" secondItem="Sk7-oK-gk6" secondAttribute="centerX" id="2Gx-vq-7Zj"/>
                                                         <constraint firstItem="uMh-Vr-sbw" firstAttribute="centerY" secondItem="Sk7-oK-gk6" secondAttribute="centerY" id="8AZ-2X-OFh"/>
-                                                        <constraint firstItem="uMh-Vr-sbw" firstAttribute="width" secondItem="Sk7-oK-gk6" secondAttribute="width" multiplier="0.9" id="UuX-Sn-9Fv"/>
+                                                        <constraint firstItem="c48-py-tXc" firstAttribute="height" secondItem="Sk7-oK-gk6" secondAttribute="height" multiplier="0.9" id="A62-BF-Ets"/>
+                                                        <constraint firstItem="c48-py-tXc" firstAttribute="width" secondItem="Sk7-oK-gk6" secondAttribute="width" multiplier="0.14" id="Ab3-Mc-ETf"/>
+                                                        <constraint firstItem="uMh-Vr-sbw" firstAttribute="width" secondItem="Sk7-oK-gk6" secondAttribute="width" multiplier="0.5" id="UuX-Sn-9Fv"/>
                                                         <constraint firstItem="OBT-Em-F3A" firstAttribute="centerY" secondItem="Sk7-oK-gk6" secondAttribute="centerY" id="acH-YD-vNF"/>
                                                         <constraint firstItem="OBT-Em-F3A" firstAttribute="width" secondItem="Sk7-oK-gk6" secondAttribute="width" multiplier="0.1" id="dtu-BR-6Dd"/>
+                                                        <constraint firstItem="c48-py-tXc" firstAttribute="centerX" secondItem="Sk7-oK-gk6" secondAttribute="centerX" multiplier="0.2" id="eJ9-8Z-Xea"/>
                                                         <constraint firstItem="OBT-Em-F3A" firstAttribute="centerX" secondItem="Sk7-oK-gk6" secondAttribute="centerX" multiplier="1.8" id="eWD-Cg-NnR"/>
                                                         <constraint firstItem="uMh-Vr-sbw" firstAttribute="height" secondItem="Sk7-oK-gk6" secondAttribute="height" multiplier="0.6" id="uKz-eH-KX9"/>
+                                                        <constraint firstItem="c48-py-tXc" firstAttribute="centerY" secondItem="Sk7-oK-gk6" secondAttribute="centerY" id="vNy-hA-Y8D"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="friendAddBtn" destination="OBT-Em-F3A" id="2d0-30-Q9L"/>
                                                     <outlet property="fullName" destination="uMh-Vr-sbw" id="hfG-eI-sAY"/>
+                                                    <outlet property="userImage" destination="c48-py-tXc" id="PET-fW-hF3"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>

@@ -14,6 +14,7 @@ class VCManager{
     static let shared = VCManager()
     
     private let ref = Database.database().reference()
+    private let storage = Storage.storage().reference()
     
     //PROFILE VIEW CONTROLLER
     
@@ -39,7 +40,7 @@ class VCManager{
     var refreshNotifications:RefreshNotifications?
     var notificationsToggle:Bool
     var notificationsCaller:UIViewController?
-    var notificationsSenders:[String:String]
+    var notificationsSenders:[String:User]
     // ORDERS AND TREATS VIEW CONTROLLER
     var ordersAndTreatsVC:OrdersAndTreatsViewController?
     var treatsFromOrderArray:[Treat]
@@ -107,7 +108,9 @@ class VCManager{
     }
     
     
-    
+    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
     // init profile view controller
     // including init friends and requests arrays.(2 methods)
     
@@ -125,16 +128,35 @@ class VCManager{
         
             for friend in currentFriends{
                 self.ref.child("users").child(friend).observeSingleEvent(of: .value) { (friendData) in
-                    let user = User.getUserFromDictionary(friendData.value as! [String:Any])
-                    self.friends.append(user)
+                    var user = User.getUserFromDictionary(friendData.value as! [String:Any])
+                    self.storage.child(friend).downloadURL(completion: { (URL, Error) in
+                        self.getData(from: URL!) { data, response, error in
+                            guard let data = data, error == nil else { return }
+                        
+                            DispatchQueue.main.async() {
+                                user.image = UIImage(data: data)
+                                self.friends.append(user)
+                            }
+                        }
+                    })
+                 
+                    
                 }
             }
         
             for request in currentRequests{
                 self.ref.child("users").child(request).observeSingleEvent(of: .value) { (requestData) in
-                    let user = User.getUserFromDictionary(requestData.value as! [String:Any])
-                    self.requests.append(user)
-                }
+                    var user = User.getUserFromDictionary(requestData.value as! [String:Any])
+                    self.storage.child(request).downloadURL(completion: { (URL, Error) in
+                        self.getData(from: URL!) { data, response, error in
+                            guard let data = data, error == nil else { return }
+                       
+                            DispatchQueue.main.async() {
+                                user.image = UIImage(data: data)
+                                self.requests.append(user)
+                            }
+                        }
+                    })                }
             }
             
             Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.didFriendsAndRequestsLoaded(_:)), userInfo: nil, repeats: true)
@@ -173,8 +195,17 @@ class VCManager{
             currentFriends = CurrentUser.shared.get()!.friends
             for friend in currentFriends{
                 self.ref.child("users").child(friend).observeSingleEvent(of: .value) { (friendData) in
-                    let user = User.getUserFromDictionary(friendData.value as! [String:Any])
-                    self.friends.append(user)
+                    var user = User.getUserFromDictionary(friendData.value as! [String:Any])
+                    self.storage.child(friend).downloadURL(completion: { (URL, Error) in
+                        self.getData(from: URL!) { data, response, error in
+                            guard let data = data, error == nil else { return }
+                        
+                            DispatchQueue.main.async() {
+                                user.image = UIImage(data: data)
+                                self.friends.append(user)
+                            }
+                        }
+                    })
                 }
             }
             
@@ -211,8 +242,17 @@ class VCManager{
             currentRequests = CurrentUser.shared.get()!.receivedFriendRequests
             for request in currentRequests{
                 self.ref.child("users").child(request).observeSingleEvent(of: .value) { (requestData) in
-                    let user = User.getUserFromDictionary(requestData.value as! [String:Any])
-                    self.requests.append(user)
+                    var user = User.getUserFromDictionary(requestData.value as! [String:Any])
+                    self.storage.child(request).downloadURL(completion: { (URL, Error) in
+                        self.getData(from: URL!) { data, response, error in
+                            guard let data = data, error == nil else { return }
+                       
+                            DispatchQueue.main.async() {
+                                user.image = UIImage(data: data)
+                                self.requests.append(user)
+                            }
+                        }
+                    })
                 }
             }
             
@@ -255,7 +295,7 @@ class VCManager{
                     self.usersNum = usersDic.keys.count - 1
                 }
                 for key in usersDic.keys{
-                    let someuser = User.getUserFromDictionary(usersDic[key] as! [String:Any])
+                    var someuser = User.getUserFromDictionary(usersDic[key] as! [String:Any])
                     var ok = true
                     if withOutFriends{
                         for friend in CurrentUser.shared.get()!.friends{
@@ -271,7 +311,18 @@ class VCManager{
                         }
                     }
                     if ok , someuser.id != CurrentUser.shared.get()!.id {
-                        self.users.append(someuser)
+                        
+                        self.storage.child(someuser.id).downloadURL(completion: { (URL, Error) in
+                            self.getData(from: URL!) { data, response, error in
+                                guard let data = data, error == nil else { return }
+                                DispatchQueue.main.async() {
+                                    someuser.image = UIImage(data: data)
+                                     self.users.append(someuser)
+                                }
+                            }
+                        })
+                        
+                       
                     }
                 }
             }
@@ -317,7 +368,6 @@ class VCManager{
                 self.usersPopUP!.currentUsers = self.users
                 self.usersPopUP!.delegate = cellDelegate
                 self.usersPopUP!.cellDelegate = cellDelegate
-            }
             
             
             //            userAddedDelegate = usersVC
@@ -335,7 +385,7 @@ class VCManager{
                 self.usersPopUP?.removeFromParent()
                 let _ = PopUp.toggle(child: self.usersPopUP!, parent: VCManager.shared.cartVC!, toggle: true)
             }
-//        }`
+        }
     }
     
     
@@ -444,8 +494,17 @@ class VCManager{
                 let not = CurrentUser.shared.get()!.notifications[i]
                 notifications.append(not)
                 self.ref.child("users").child(not.sender).observeSingleEvent(of: .value) { (userData) in
-                    let user = User.getUserFromDictionary(userData.value as! [String:Any])
-                    self.notificationsSenders[not.id!] = user.fullName
+                    var user = User.getUserFromDictionary(userData.value as! [String:Any])
+                    self.storage.child(user.id).downloadURL(completion: { (URL, Error) in
+                        self.getData(from: URL!) { data, response, error in
+                            guard let data = data, error == nil else { return }
+                            DispatchQueue.main.async() {
+                                user.image = UIImage(data: data)
+                                self.notificationsSenders[not.id!] = user
+                            }
+                        }
+                    })
+                    
                 }
             }
             

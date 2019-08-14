@@ -20,7 +20,7 @@ class NewFriendTableCell: UITableViewCell {
     //todo get user details of friend
     func populate(user: User){
         friendName.text = user.fullName
-        friendImage.image = #imageLiteral(resourceName: "icons8-user").circleMasked
+        friendImage.image = user.image!.circleMasked
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
