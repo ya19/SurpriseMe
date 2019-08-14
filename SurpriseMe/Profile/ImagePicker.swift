@@ -68,8 +68,8 @@ class ImagePicker: NSObject {
         //at the moment it returns to the shops instead of the profile.. didn't find a solution cause i need to use init's 
         controller.dismiss(animated: true, completion: nil)
         self.delegate?.didSelect(image: image)
-        let ref = Storage.storage().reference()
-        ref.child(CurrentUser.shared.get()!.id).putData(image!.pngData()!, metadata: nil)
+//        let ref = Storage.storage().reference()
+//        ref.child(CurrentUser.shared.get()!.id).putData(image!.pngData()!, metadata: nil)
         
     }
 }

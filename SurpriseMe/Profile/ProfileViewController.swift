@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ProfileViewController: UIViewController {
 
@@ -294,6 +295,8 @@ extension ProfileViewController: ImagePickerDelegate {
         didOpenImagePicker = false
         if image != nil{
         self.userImage.image = image?.circleMasked
+            let ref = Storage.storage().reference()
+            ref.child(CurrentUser.shared.get()!.id).putData(image!.pngData()!, metadata: nil)
         }
     }
 }
