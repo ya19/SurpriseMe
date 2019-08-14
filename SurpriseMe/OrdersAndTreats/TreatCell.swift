@@ -38,7 +38,7 @@ class TreatCell: UITableViewCell {
         TreatManager.shared.acceptTreat(treat: self.treat , fromNotification: false)
         
         // delegate to reload data.
-        statusDelegate?.updateStatus(treatID: self.treat!.id)
+        statusDelegate?.updateStatus(treatID: self.treat!.id,status: .Accepted)
 
     }
     

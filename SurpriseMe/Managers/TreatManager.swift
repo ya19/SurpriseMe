@@ -36,7 +36,7 @@ class TreatManager{
         if VCManager.shared.ordersAndTreatsVC != nil{
             let updateDelegate : TreatStatusChangedDelegate = VCManager.shared.ordersAndTreatsVC!
             
-            updateDelegate.updateStatus(treatID: treat!.id)
+            updateDelegate.updateStatus(treatID: treat!.id,status: .Accepted)
         }
 //
 //        if fromNotification{
