@@ -107,7 +107,7 @@ extension OrdersAndTreatsViewController : UITableViewDataSource{
             cell.order = CurrentUser.shared.get()!.myOrders[indexPath.row]
             cell.idLabel.text = CurrentUser.shared.get()!.myOrders[indexPath.row].id
             //to do: don't forget to make the calculation ahead.
-            cell.priceLabel.text = "\(CurrentUser.shared.get()!.myOrders[indexPath.row].price)"
+            cell.priceLabel.text = "\(CurrentUser.shared.get()!.myOrders[indexPath.row].price) ₪"
             cell.dateLabel.text = CurrentUser.shared.get()!.myOrders[indexPath.row].dateString
             cell.delegate = self
             

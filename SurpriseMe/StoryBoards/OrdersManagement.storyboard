@@ -76,7 +76,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faq-Cr-Jec">
-                                                    <rect key="frame" x="315" y="28.5" width="64" height="29"/>
+                                                    <rect key="frame" x="315" y="31.5" width="64" height="28.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -112,7 +112,7 @@
                                                 <constraint firstItem="sbE-ZW-aBf" firstAttribute="width" secondItem="XVC-Bv-v6x" secondAttribute="width" multiplier="0.6" id="GWj-WV-nZZ"/>
                                                 <constraint firstItem="7kh-sA-pdI" firstAttribute="height" secondItem="XVC-Bv-v6x" secondAttribute="height" multiplier="0.45" id="IUG-5p-gUx"/>
                                                 <constraint firstItem="vrf-eo-Qnf" firstAttribute="width" secondItem="XVC-Bv-v6x" secondAttribute="width" multiplier="0.18" id="Nmx-8Y-RX8"/>
-                                                <constraint firstItem="faq-Cr-Jec" firstAttribute="centerY" secondItem="XVC-Bv-v6x" secondAttribute="centerY" multiplier="0.75" id="Qmj-C9-gBc"/>
+                                                <constraint firstItem="faq-Cr-Jec" firstAttribute="centerY" secondItem="XVC-Bv-v6x" secondAttribute="centerY" multiplier="0.8" id="Qmj-C9-gBc"/>
                                                 <constraint firstItem="sYg-3V-i9p" firstAttribute="width" secondItem="XVC-Bv-v6x" secondAttribute="width" multiplier="0.18" id="SfP-SC-HOy"/>
                                                 <constraint firstItem="faq-Cr-Jec" firstAttribute="centerX" secondItem="XVC-Bv-v6x" secondAttribute="centerX" multiplier="1.85" id="Tpw-fp-dZG"/>
                                                 <constraint firstItem="vrf-eo-Qnf" firstAttribute="centerY" secondItem="XVC-Bv-v6x" secondAttribute="centerY" multiplier="1.6" id="V46-Pc-s0B"/>
