@@ -13,7 +13,7 @@ class NotificationsTableCell: UITableViewCell {
 
     var notification:Notification?
     var delegate : ChangedNotificationStateDelegate?
-    var updateListDelegate : updateList?
+    
     
     @IBOutlet weak var declineBtn: UIButton!
     @IBOutlet weak var acceptBtn: UIButton!
@@ -28,11 +28,7 @@ class NotificationsTableCell: UITableViewCell {
     
     @IBAction func acceptTapped(_ sender: UIButton) {
 
-        
-        
-        
         NotificationManager.shared.approveNotification(notification: notification!)
-//        updateListDelegate?.remove(at: self.indexPath!.row)
 
         
     }
@@ -40,7 +36,7 @@ class NotificationsTableCell: UITableViewCell {
     @IBAction func denyTapped(_ sender: Any) {
         
         NotificationManager.shared.declineNotification(notification: notification!)
-//        updateListDelegate?.remove(at: self.indexPath!.row)
+
 
 
     }
@@ -55,7 +51,7 @@ class NotificationsTableCell: UITableViewCell {
         notificationImage.image = senderImage.circleMasked
         notificationTitle.text = notification!.title
         notificationDescription.text = "\(senderName) \(notification!.description)"
-        notificationDate.text = "\(notification!.date!)"
+        notificationDate.text = "\(notification!.dateString)"
         
         if notification?.notificationType == NotificationType.isTreatRequest || notification?.notificationType == NotificationType.isFriendRequest{
             acceptBtn.isHidden = false

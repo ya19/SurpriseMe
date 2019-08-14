@@ -31,13 +31,20 @@ class TreatManager{
         
         //delete my notification
         NotificationManager.shared.removeTreatRequestNotification(friendID: treat!.giver! , treatID: treat!.id)
-
-        if fromNotification{
-            if let delegate = OrdersAndTreatsViewController.self as? TreatStatusChangedDelegate{
-            delegate.updateStatus()
-                
-            }
+        
+        
+        if VCManager.shared.ordersAndTreatsVC != nil{
+            let updateDelegate : TreatStatusChangedDelegate = VCManager.shared.ordersAndTreatsVC!
+            
+            updateDelegate.updateStatus(treatID: treat!.id)
         }
+//
+//        if fromNotification{
+//            if let delegate = OrdersAndTreatsViewController.self as? TreatStatusChangedDelegate{
+//            delegate.updateStatus()
+//                
+//            }
+//        }
         
     }
     
@@ -45,7 +52,7 @@ class TreatManager{
        var myTreat = treat!
 //        ref.child("treats").child(CurrentUser.shared.get()!.id).child(treat!.id).removeValue()
         
-        var remember = 0
+        var remember = -1
         ref.child("treats").child(CurrentUser.shared.get()!.id).observeSingleEvent(of: .value) { (DataSnapshot) in
             if var array = DataSnapshot.value as? [String]{
                 
@@ -55,7 +62,7 @@ class TreatManager{
                     }
                 }
                 
-                if remember != 0{
+                if remember != -1{
                     array.remove(at: remember)
                 self.ref.child("treats").child(CurrentUser.shared.get()!.id).setValue(array)
                 }
@@ -100,10 +107,10 @@ class TreatManager{
         
         NotificationManager.shared.removeTreatRequestNotification(friendID: treat!.giver! , treatID: treat!.id)
 
-        if fromNotification{
-            statusDelegate = OrdersAndTreatsViewController.self as! TreatStatusChangedDelegate
-            statusDelegate?.updateStatus()
-        }
+//        if fromNotification{
+//            statusDelegate = OrdersAndTreatsViewController.self as? TreatStatusChangedDelegate
+//            statusDelegate?.updateStatus()
+//        }
         
     }
 

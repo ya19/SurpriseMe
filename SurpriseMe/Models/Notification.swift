@@ -32,6 +32,18 @@ struct Notification{
     let notificationType : NotificationType
     let treatID : String?
     
+    var dateString: String{
+        if date != nil{
+        let formatter = DateFormatter()
+        // initially set the format based on your datepicker date / server String
+        formatter.dateFormat = "dd/MM/yyyy HH:mm"
+        let myString = formatter.string(from: date!) // string purpose I add here
+        // convert your string to date
+        let yourDate = formatter.date(from: myString)
+        return formatter.string(from: yourDate!)
+        } else {return ""}
+    }
+    
     var toDB:[String:Any]{
         var dic:[String:Any] = [:]
         dic["id"] = id!

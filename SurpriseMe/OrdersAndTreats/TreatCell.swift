@@ -38,7 +38,7 @@ class TreatCell: UITableViewCell {
         TreatManager.shared.acceptTreat(treat: self.treat , fromNotification: false)
         
         // delegate to reload data.
-        statusDelegate?.updateStatus()
+        statusDelegate?.updateStatus(treatID: self.treat!.id)
 
     }
     
@@ -47,7 +47,7 @@ class TreatCell: UITableViewCell {
         TreatManager.shared.declineTreat(treat: treat , fromNotification: false)
         
         // delegate to reload data.
-        statusDelegate?.updateStatus()
+//        statusDelegate?.updateStatus()
         
     }
     
@@ -61,7 +61,7 @@ class TreatCell: UITableViewCell {
         self.treat = treat
         treatImage.image = treat.product.image
         productName.text = treat.product.name
-        self.giver.text = giver
+        self.giver.text = "From: \(giver)"
         dateLabel.text = treat.dateString
         
         switch treat.getUpdatedStatus!{

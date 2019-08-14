@@ -169,6 +169,11 @@
                             myOrders.append(Order.getOrderFromDictionary(ordersDic[key] as! [String:Any]))
                         }
                     }
+                    
+                    myOrders = myOrders.sorted(by: { (o1, o2) -> Bool in
+                        return o1.date > o2.date
+                    })
+                    
                     if self.once{
                         self.finishAll["myOrders"] = myOrders
                     }else{
@@ -212,11 +217,15 @@
                     if let cartDic = cartData.value as? [String:Any]{
                         for key in cartDic.keys{
                             myCart.append(Treat.getTreatFromDictionary(cartDic[key] as! [String:Any]))
-                            myCart = myCart.sorted(by: { (t1, t2) -> Bool in
-                                return Int((t1.date?.timeIntervalSince1970)!) < Int((t2.date?.timeIntervalSince1970)!)
-                            })
+
                         }
                     }
+                    
+                    myCart = myCart.sorted(by: { (t1, t2) -> Bool in
+                        //i can force because it has a date as soon as its been added to the cart and to the server
+                        return t1.date! > t2.date!
+                    })
+                    
                     if self.once{
                         self.finishAll["myCart"] = myCart
                     }else{

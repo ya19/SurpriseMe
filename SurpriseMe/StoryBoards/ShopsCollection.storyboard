@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VgP-LJ-mGs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VgP-LJ-mGs">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -158,19 +158,19 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Facebook-logo" translatesAutoresizingMaskIntoConstraints="NO" id="PAw-LC-A0Y">
-                                            <rect key="frame" x="40.5" y="4" width="118" height="118"/>
+                                            <rect key="frame" x="40.5" y="5" width="118" height="118"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="PAw-LC-A0Y" secondAttribute="height" multiplier="1:1" id="Xaa-bz-eEG"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="productName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="49z-Ry-VA3">
-                                            <rect key="frame" x="16" y="132" width="167" height="20.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="productName" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="49z-Ry-VA3">
+                                            <rect key="frame" x="20" y="133" width="159" height="29.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="highlightedColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="productPrice" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O23-OQ-uAD">
-                                            <rect key="frame" x="16" y="156.5" width="167" height="20.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="productPrice" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O23-OQ-uAD">
+                                            <rect key="frame" x="20" y="157.5" width="159" height="29.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="highlightedColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -179,15 +179,17 @@
                                 </view>
                                 <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="0.25064212331232877" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailingMargin" secondItem="49z-Ry-VA3" secondAttribute="trailing" constant="8" id="0kB-tz-Ct8"/>
-                                    <constraint firstItem="49z-Ry-VA3" firstAttribute="top" secondItem="PAw-LC-A0Y" secondAttribute="bottom" constant="10" id="AIj-uu-dhM"/>
-                                    <constraint firstItem="O23-OQ-uAD" firstAttribute="leading" secondItem="vuc-WO-vhL" secondAttribute="leadingMargin" constant="8" id="GKz-dH-E9h"/>
-                                    <constraint firstItem="49z-Ry-VA3" firstAttribute="leading" secondItem="vuc-WO-vhL" secondAttribute="leadingMargin" constant="8" id="TQq-cT-Du1"/>
-                                    <constraint firstItem="PAw-LC-A0Y" firstAttribute="centerX" secondItem="vuc-WO-vhL" secondAttribute="centerX" id="WMS-RV-zDT"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="O23-OQ-uAD" secondAttribute="trailing" constant="8" id="jbf-SO-gC8"/>
-                                    <constraint firstItem="PAw-LC-A0Y" firstAttribute="top" secondItem="vuc-WO-vhL" secondAttribute="top" constant="4" id="rVB-Cj-xCa"/>
+                                    <constraint firstItem="O23-OQ-uAD" firstAttribute="width" secondItem="vuc-WO-vhL" secondAttribute="width" multiplier="0.8" id="1PK-qc-CJd"/>
+                                    <constraint firstItem="O23-OQ-uAD" firstAttribute="centerY" secondItem="vuc-WO-vhL" secondAttribute="centerY" multiplier="1.75" id="1ed-ba-H1v"/>
+                                    <constraint firstItem="49z-Ry-VA3" firstAttribute="centerX" secondItem="vuc-WO-vhL" secondAttribute="centerX" id="3vf-hk-ISZ"/>
+                                    <constraint firstItem="PAw-LC-A0Y" firstAttribute="centerX" secondItem="vuc-WO-vhL" secondAttribute="centerX" id="Afk-KY-5Y8"/>
+                                    <constraint firstItem="O23-OQ-uAD" firstAttribute="height" secondItem="vuc-WO-vhL" secondAttribute="height" multiplier="0.15" id="B1a-2p-dUs"/>
+                                    <constraint firstItem="49z-Ry-VA3" firstAttribute="centerY" secondItem="vuc-WO-vhL" secondAttribute="centerY" multiplier="1.5" id="D9e-Qe-sOe"/>
+                                    <constraint firstItem="PAw-LC-A0Y" firstAttribute="centerY" secondItem="vuc-WO-vhL" secondAttribute="centerY" multiplier="0.65" id="OGv-ew-GbC"/>
+                                    <constraint firstItem="49z-Ry-VA3" firstAttribute="height" secondItem="vuc-WO-vhL" secondAttribute="height" multiplier="0.15" id="iba-Am-hJB"/>
+                                    <constraint firstItem="49z-Ry-VA3" firstAttribute="width" secondItem="vuc-WO-vhL" secondAttribute="width" multiplier="0.8" id="nlF-i1-6YU"/>
+                                    <constraint firstItem="O23-OQ-uAD" firstAttribute="centerX" secondItem="vuc-WO-vhL" secondAttribute="centerX" id="rIr-K9-JmM"/>
                                     <constraint firstItem="PAw-LC-A0Y" firstAttribute="height" secondItem="vuc-WO-vhL" secondAttribute="height" multiplier="0.6" id="sae-TM-aPO"/>
-                                    <constraint firstItem="O23-OQ-uAD" firstAttribute="top" secondItem="49z-Ry-VA3" secondAttribute="bottom" constant="4" id="z5f-QD-5u6"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="productLogo" destination="PAw-LC-A0Y" id="VVu-fo-c0l"/>

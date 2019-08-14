@@ -47,13 +47,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOj-bQ-vkM">
-                                                    <rect key="frame" x="94" y="71.5" width="75" height="28.5"/>
+                                                    <rect key="frame" x="94" y="71.5" width="112.5" height="28.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nl0-Mq-sbm">
-                                                    <rect key="frame" x="253" y="74.5" width="56.5" height="23"/>
+                                                    <rect key="frame" x="253" y="81.5" width="56.5" height="26"/>
                                                     <color key="backgroundColor" red="0.047289705250000001" green="0.67635628169999995" blue="0.096515774550000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <inset key="contentEdgeInsets" minX="1" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -65,7 +65,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0jZ-Ol-jao">
-                                                    <rect key="frame" x="313" y="74.5" width="56.5" height="23"/>
+                                                    <rect key="frame" x="313" y="81.5" width="56.5" height="26"/>
                                                     <color key="backgroundColor" red="0.77137531729999997" green="0.065409970019999999" blue="0.029286034369999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <state key="normal" title="Deny">
@@ -78,15 +78,15 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Hgb-3k-ip9" firstAttribute="centerX" secondItem="3zl-93-zfN" secondAttribute="centerX" multiplier="1.15" id="4Qu-E7-Ftl"/>
-                                                <constraint firstItem="pOj-bQ-vkM" firstAttribute="centerX" secondItem="3zl-93-zfN" secondAttribute="centerX" multiplier="0.7" id="61z-IV-lrr"/>
-                                                <constraint firstItem="0jZ-Ol-jao" firstAttribute="height" secondItem="3zl-93-zfN" secondAttribute="height" multiplier="0.2" id="75m-yz-UKM"/>
+                                                <constraint firstItem="pOj-bQ-vkM" firstAttribute="centerX" secondItem="3zl-93-zfN" secondAttribute="centerX" multiplier="0.8" id="61z-IV-lrr"/>
+                                                <constraint firstItem="0jZ-Ol-jao" firstAttribute="height" secondItem="3zl-93-zfN" secondAttribute="height" multiplier="0.23" id="75m-yz-UKM"/>
                                                 <constraint firstItem="P29-1z-asP" firstAttribute="centerY" secondItem="3zl-93-zfN" secondAttribute="centerY" multiplier="0.6" id="AwN-co-CQ9"/>
                                                 <constraint firstItem="jhg-Ge-YZO" firstAttribute="centerY" secondItem="3zl-93-zfN" secondAttribute="centerY" id="DOB-Ah-VK3"/>
-                                                <constraint firstItem="nl0-Mq-sbm" firstAttribute="centerY" secondItem="3zl-93-zfN" secondAttribute="centerY" multiplier="1.5" id="F1N-0N-JMn"/>
+                                                <constraint firstItem="nl0-Mq-sbm" firstAttribute="centerY" secondItem="3zl-93-zfN" secondAttribute="centerY" multiplier="1.65" id="F1N-0N-JMn"/>
                                                 <constraint firstItem="P29-1z-asP" firstAttribute="centerX" secondItem="3zl-93-zfN" secondAttribute="centerX" multiplier="1.2" id="H7v-Sq-bKw"/>
                                                 <constraint firstItem="Hgb-3k-ip9" firstAttribute="width" secondItem="3zl-93-zfN" secondAttribute="width" multiplier="0.65" id="IyC-Bq-0QM"/>
                                                 <constraint firstItem="pOj-bQ-vkM" firstAttribute="centerY" secondItem="3zl-93-zfN" secondAttribute="centerY" multiplier="1.5" id="SLW-eU-xde"/>
-                                                <constraint firstItem="pOj-bQ-vkM" firstAttribute="width" secondItem="3zl-93-zfN" secondAttribute="width" multiplier="0.2" id="V0T-Vi-bRj"/>
+                                                <constraint firstItem="pOj-bQ-vkM" firstAttribute="width" secondItem="3zl-93-zfN" secondAttribute="width" multiplier="0.3" id="V0T-Vi-bRj"/>
                                                 <constraint firstItem="nl0-Mq-sbm" firstAttribute="centerX" secondItem="3zl-93-zfN" secondAttribute="centerX" multiplier="1.5" id="XVK-Qq-N2f"/>
                                                 <constraint firstItem="P29-1z-asP" firstAttribute="width" secondItem="3zl-93-zfN" secondAttribute="width" multiplier="0.7" id="cqr-Po-Tc4"/>
                                                 <constraint firstItem="pOj-bQ-vkM" firstAttribute="height" secondItem="3zl-93-zfN" secondAttribute="height" multiplier="0.25" id="e6j-Vn-9rd"/>
@@ -98,8 +98,8 @@
                                                 <constraint firstItem="0jZ-Ol-jao" firstAttribute="centerX" secondItem="3zl-93-zfN" secondAttribute="centerX" multiplier="1.82" id="nse-4X-wzZ"/>
                                                 <constraint firstItem="jhg-Ge-YZO" firstAttribute="width" secondItem="3zl-93-zfN" secondAttribute="width" multiplier="0.15" id="qfZ-Og-1SE"/>
                                                 <constraint firstItem="Hgb-3k-ip9" firstAttribute="centerY" secondItem="3zl-93-zfN" secondAttribute="centerY" multiplier="1.05" id="sQ5-7v-ikT"/>
-                                                <constraint firstItem="nl0-Mq-sbm" firstAttribute="height" secondItem="3zl-93-zfN" secondAttribute="height" multiplier="0.2" id="vUn-OB-1s8"/>
-                                                <constraint firstItem="0jZ-Ol-jao" firstAttribute="centerY" secondItem="3zl-93-zfN" secondAttribute="centerY" multiplier="1.5" id="xal-xA-nZz"/>
+                                                <constraint firstItem="nl0-Mq-sbm" firstAttribute="height" secondItem="3zl-93-zfN" secondAttribute="height" multiplier="0.23" id="vUn-OB-1s8"/>
+                                                <constraint firstItem="0jZ-Ol-jao" firstAttribute="centerY" secondItem="3zl-93-zfN" secondAttribute="centerY" multiplier="1.65" id="xal-xA-nZz"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

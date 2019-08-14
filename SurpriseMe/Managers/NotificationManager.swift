@@ -68,6 +68,9 @@ class NotificationManager{
             
         case .isFriendRequest:
             UsersManager.shared.add(friend: notification.sender)
+            //todo change place to this function, into add function.
+            
+            self.sendNotification(friendID: notification.sender, notificationType: .isFriendApproval, treatID: nil)
            
         default : return
         }
@@ -96,6 +99,7 @@ class NotificationManager{
             
         case .isFriendRequest:
             UsersManager.shared.deny(friend: notification.sender)
+            self.sendNotification(friendID: notification.sender, notificationType: .isFriendDecline, treatID: nil)
             
         default : return
         }

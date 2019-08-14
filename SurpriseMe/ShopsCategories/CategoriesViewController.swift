@@ -77,24 +77,30 @@ class CategoriesViewController: UICollectionViewController {
     
     //suppose to send notification whenever the user received a treat. need to check if it works now.
     func setTreatsObserver(){
-       var count = 0
-       var currentTreatsNum = CurrentUser.shared.get()?.myTreats.count
+
+        var treatExist = false
         Database.database().reference().child("treats").child(CurrentUser.shared.get()!.id).observe(.childAdded) { (datasnapshot) in
             
             if let treatId = datasnapshot.value as? String{
                 print("I'm in child observe")
                 for treat in CurrentUser.shared.get()!.myTreats{
                     if treatId == treat.id{
+                        treatExist = true
                         return
                     }
                 }
                 
-                let newUrlPath = Bundle.main.path(forResource: "surprise", ofType: "png")
-                let newUrl = URL(fileURLWithPath: newUrlPath!)
+                var newUrl:URL?
+                if let newUrlPath = Bundle.main.path(forResource: "surprise", ofType: "png"){
+                newUrl = URL(fileURLWithPath: newUrlPath)
+                } else {
+                    newUrl = nil
+                }
                 
-                UserNotificationManager.shared.createNotification(with: "Come find out from who!", delay: 0.5, attachmentUrl: newUrl ,notificationType: .isTreatRequest)
-                
-                
+                if treatExist{
+                UserNotificationManager.shared.createNotification(with: "Come find out from who!", delay: 0.5 , attachmentUrl: newUrl ,notificationType: .isTreatRequest)
+                    treatExist = !treatExist
+                }
             }
             
         }

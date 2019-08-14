@@ -219,19 +219,23 @@ class UsersManager{
         ref.child("friends").updateChildValues([CurrentUser.shared.get()!.id:friends])
         
         ref.child("friends").child(friendId).observeSingleEvent(of: .value) { (DataSnapshot) in
-            var friendsArray = DataSnapshot.value as! [String]
+            if var friendsArray = DataSnapshot.value as? [String]{
             var remember = -1
             for i in 0..<friendsArray.count{
                 if friendsArray[i] == CurrentUser.shared.get()!.id{
                     remember = i
                 }
             }
+            
+            if remember != -1 {
             friendsArray.remove(at: remember)
+            }
             if friendsArray.count > 0{
                 self.ref.child("friends").updateChildValues([friendId:friendsArray])
             }else{
                 self.ref.child("friends").child(friendId).removeValue()
             }
+        }
         }
     }
     func setGetterFor(treat: Treat, userId: String){

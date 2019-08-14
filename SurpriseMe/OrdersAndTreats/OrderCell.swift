@@ -25,7 +25,13 @@ class OrderCell: UITableViewCell {
         delegate?.showTreats(order: order!)
     }
     
-    
+//    func populate (order : Order){
+//        self.order = order!
+//        idLabel.text = order.id
+//        //to do: don't forget to make the calculation ahead.
+//        priceLabel.text = "\(order.price)"
+//        dateLabel.text = order.dateString
+//    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

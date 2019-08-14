@@ -47,11 +47,13 @@ extension NotificationsViewController : UITableViewDataSource{
         return notifications?.count ?? 1
     }
     
+    
+    //crash after accepting request through notifications
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "notificationCell") as! NotificationsTableCell
         cell.populate(notification: notifications?[indexPath.row],senderName: senders![notifications![indexPath.row].id!]!.fullName,senderImage: senders![notifications![indexPath.row].id!]!.image!)
 //        cell.delegate = self
-        cell.updateListDelegate = self
+//        cell.updateListDelegate = self
         return cell
     }
 }
@@ -62,23 +64,23 @@ extension NotificationsViewController : UITableViewDelegate{
     }
 }
 
-
+//
 //extension NotificationsViewController : ChangedNotificationStateDelegate{
 //    func stateChanged() {
 //        
-//        notifications = CurrentUser.shared.get()?.notifications
+////        notifications = CurrentUser.shared.get()?.notifications
 //        self.notificationsTableView.reloadData()
 //    }
 //}
 
-extension NotificationsViewController : updateList{
-    func remove(at: Int) {
-        notifications!.remove(at: at)
-        notificationsTableView.deleteRows(at: [IndexPath(row: at, section: 0)], with: .none)
-        notificationsTableView.reloadData()
-
-    }
-}
+//extension NotificationsViewController : updateList{
+//    func remove(at: Int) {
+//        notifications!.remove(at: at)
+//        notificationsTableView.deleteRows(at: [IndexPath(row: at, section: 0)], with: .none)
+//        notificationsTableView.reloadData()
+//
+//    }
+//}
 
 protocol RefreshNotifications {
     func refresh(notifications: [Notification],senders:[String:User])

@@ -180,14 +180,25 @@ extension OrdersAndTreatsViewController : SentVoucherDelegate{
 
 
 protocol TreatStatusChangedDelegate{
-    func updateStatus()
+    func updateStatus(treatID : String)
 }
 
 extension OrdersAndTreatsViewController : TreatStatusChangedDelegate,RefreshTreats{
-    func updateStatus() {
-        ordersTreatsTableView.reloadData()
-        print("Status changed.")
+    
+    func updateStatus(treatID : String) {
+        
+        for i in 0..<myTreats!.count{
+            if myTreats![i].id == treatID{
+                myTreats![i].treatStatus = TreatStatus.Accepted
+                
+                ordersTreatsTableView.reloadData()
+                print("Status changed.")
+            }
+        }
+        
+        
     }
+    
     func refresh(myTreats: [Treat], myTreatsGivers: [String : String]) {
         self.myTreatsGivers = myTreatsGivers
         self.myTreats = myTreats

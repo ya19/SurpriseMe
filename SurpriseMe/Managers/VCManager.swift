@@ -168,6 +168,13 @@ class VCManager{
     
     @objc func didFriendsAndRequestsLoaded(_ timer: Timer){
         if friends.count == currentFriends.count , requests.count == currentRequests.count{
+            
+            //sort by full name
+            friends = friends.sorted(by: { (u1, u2) -> Bool in
+                u1.fullName < u2.fullName
+            })
+            
+            
             timer.invalidate()
             
             if self.profileVC != nil{
@@ -217,6 +224,10 @@ class VCManager{
     @objc func refreshFriends(_ timer: Timer){
         if friends.count == currentFriends.count{
             timer.invalidate()
+            //sort by full name
+            friends = friends.sorted(by: { (u1, u2) -> Bool in
+                u1.fullName < u2.fullName
+            })
 
             if self.profileVC == nil{
                 self.profileVC = (UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "profile") as! ProfileViewController)
@@ -327,6 +338,8 @@ class VCManager{
                 }
             }
             
+
+            
             if !refresh{
                 Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.didNotFriendsLoaded(_:)), userInfo: nil, repeats: true)
             }else{
@@ -340,6 +353,11 @@ class VCManager{
         
         if users.count == usersNum{
             timer.invalidate()
+            //sort by full name
+            users = users.sorted(by: { (u1, u2) -> Bool in
+                u1.fullName < u2.fullName
+            })
+
             //            if self.notFriendsPopUP == nil{
             //                self.notFriendsPopUP = (UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController)
             //                self.notFriendsPopUP!.users = []
@@ -356,6 +374,10 @@ class VCManager{
         if users.count == usersNum {
             timer.invalidate()
             
+            //sort by full name
+            users = users.sorted(by: { (u1, u2) -> Bool in
+                u1.fullName < u2.fullName
+            })
 //            if self.usersPopUP != nil{
 //                self.usersPopUP!.delegate = cellDelegate
 
@@ -422,6 +444,7 @@ class VCManager{
         print(getters.count,"CAR")
         if CurrentUser.shared.get()!.myCart.count == getters.count{
             timer.invalidate()
+            
             if cartVC == nil{
                 self.cartVC = (UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "CartVC") as! CartViewController)
             }
@@ -438,7 +461,7 @@ class VCManager{
     
     
     
-    
+    //no need to sort, its being created in the same date.
     func initTreatsForOrder(order:Order){
         if initTreatsFromOrdeR{
             initTreatsFromOrdeR = false
@@ -508,7 +531,7 @@ class VCManager{
                 }
             }
             
-            
+
             
             if refresh{
                 Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.refreshNotifications(_:)), userInfo: nil,   repeats: true)
@@ -522,6 +545,9 @@ class VCManager{
     @objc func loadNotifications(_ timer:Timer){
         if notifications.count == notificationsNum , notificationsSenders.count == notificationsNum{
             timer.invalidate()
+            notifications = notifications.sorted(by: { (n1, n2) -> Bool in
+                return n1.date! > n2.date!
+            })
             
             //loadnot
             if notificationsVC == nil{
@@ -542,8 +568,11 @@ class VCManager{
     }
     
     @objc func refreshNotifications(_ timer:Timer){
-        if notifications.count == notificationsNum{
+        if notifications.count == notificationsNum , notificationsSenders.count == notificationsNum{
             timer.invalidate()
+            notifications = notifications.sorted(by: { (n1, n2) -> Bool in
+                return n1.date! > n2.date!
+            })
             
             if notificationsVC == nil{
                 notificationsVC = (UIStoryboard(name: "Notifications", bundle: nil).instantiateViewController(withIdentifier: "notifications") as! NotificationsViewController)
@@ -576,6 +605,8 @@ class VCManager{
                 }
             }
             
+
+            
             if refresh{
                 Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.refreshMyTreats(_:)), userInfo: nil,   repeats: true)
             }else{
@@ -588,6 +619,9 @@ class VCManager{
     @objc func loadMyTreats(_ timer:Timer){
         if myTreats.count == currentTreatsNum , myTreatsGivers.count == currentTreatsNum{
             timer.invalidate()
+            myTreats = myTreats.sorted(by: { (t1, t2) -> Bool in
+                return t1.date! < t2.date!
+            })
             
             if ordersAndTreatsVC == nil{
                 ordersAndTreatsVC = (UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orders") as! OrdersAndTreatsViewController)
@@ -608,6 +642,9 @@ class VCManager{
         if myTreats.count == currentTreatsNum , myTreatsGivers.count == currentTreatsNum{
 
             timer.invalidate()
+            myTreats = myTreats.sorted(by: { (t1, t2) -> Bool in
+                return t1.date! < t2.date!
+            })
             
             if ordersAndTreatsVC == nil{
                 ordersAndTreatsVC = (UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orders") as! OrdersAndTreatsViewController)
