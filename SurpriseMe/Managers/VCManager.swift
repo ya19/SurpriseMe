@@ -130,6 +130,7 @@ class VCManager{
                 self.ref.child("users").child(friend).observeSingleEvent(of: .value) { (friendData) in
                     var user = User.getUserFromDictionary(friendData.value as! [String:Any])
                     self.storage.child(friend).downloadURL(completion: { (URL, Error) in
+                        if URL != nil{
                         self.getData(from: URL!) { data, response, error in
                             guard let data = data, error == nil else { return }
                         
@@ -137,6 +138,10 @@ class VCManager{
                                 user.image = UIImage(data: data)
                                 self.friends.append(user)
                             }
+                        }
+                        }else{
+                            user.image = UIImage(named: "icons8-user")
+                            self.friends.append(user)
                         }
                     })
                  
@@ -148,6 +153,7 @@ class VCManager{
                 self.ref.child("users").child(request).observeSingleEvent(of: .value) { (requestData) in
                     var user = User.getUserFromDictionary(requestData.value as! [String:Any])
                     self.storage.child(request).downloadURL(completion: { (URL, Error) in
+                        if URL != nil{
                         self.getData(from: URL!) { data, response, error in
                             guard let data = data, error == nil else { return }
                        
@@ -155,6 +161,10 @@ class VCManager{
                                 user.image = UIImage(data: data)
                                 self.requests.append(user)
                             }
+                        }
+                        }else{
+                            user.image = UIImage(named: "icons8-user")
+                            self.requests.append(user)
                         }
                     })                }
             }
@@ -204,6 +214,7 @@ class VCManager{
                 self.ref.child("users").child(friend).observeSingleEvent(of: .value) { (friendData) in
                     var user = User.getUserFromDictionary(friendData.value as! [String:Any])
                     self.storage.child(friend).downloadURL(completion: { (URL, Error) in
+                        if URL != nil{
                         self.getData(from: URL!) { data, response, error in
                             guard let data = data, error == nil else { return }
                         
@@ -211,6 +222,10 @@ class VCManager{
                                 user.image = UIImage(data: data)
                                 self.friends.append(user)
                             }
+                        }
+                        }else{
+                            user.image = UIImage(named: "icons8-user")
+                            self.friends.append(user)
                         }
                     })
                 }
@@ -255,6 +270,7 @@ class VCManager{
                 self.ref.child("users").child(request).observeSingleEvent(of: .value) { (requestData) in
                     var user = User.getUserFromDictionary(requestData.value as! [String:Any])
                     self.storage.child(request).downloadURL(completion: { (URL, Error) in
+                        if URL != nil{
                         self.getData(from: URL!) { data, response, error in
                             guard let data = data, error == nil else { return }
                        
@@ -262,6 +278,10 @@ class VCManager{
                                 user.image = UIImage(data: data)
                                 self.requests.append(user)
                             }
+                        }
+                        }else{
+                            user.image = UIImage(named: "icons8-user")
+                            self.requests.append(user)
                         }
                     })
                 }
@@ -324,12 +344,17 @@ class VCManager{
                     if ok , someuser.id != CurrentUser.shared.get()!.id {
                         
                         self.storage.child(someuser.id).downloadURL(completion: { (URL, Error) in
+                            if URL != nil{
                             self.getData(from: URL!) { data, response, error in
                                 guard let data = data, error == nil else { return }
                                 DispatchQueue.main.async() {
                                     someuser.image = UIImage(data: data)
                                      self.users.append(someuser)
                                 }
+                            }
+                            }else{
+                                someuser.image = UIImage(named: "icons8-user")
+                                self.users.append(someuser)
                             }
                         })
                         
@@ -519,12 +544,17 @@ class VCManager{
                 self.ref.child("users").child(not.sender).observeSingleEvent(of: .value) { (userData) in
                     var user = User.getUserFromDictionary(userData.value as! [String:Any])
                     self.storage.child(user.id).downloadURL(completion: { (URL, Error) in
+                        if URL != nil{
                         self.getData(from: URL!) { data, response, error in
                             guard let data = data, error == nil else { return }
                             DispatchQueue.main.async() {
                                 user.image = UIImage(data: data)
                                 self.notificationsSenders[not.id!] = user
                             }
+                        }
+                        }else{
+                            user.image = UIImage(named: "icons8-user")
+                            self.notificationsSenders[not.id!] = user
                         }
                     })
                     
