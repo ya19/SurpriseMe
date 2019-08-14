@@ -491,7 +491,7 @@ class VCManager{
     }
     @objc func loadTreatsFromOrder(_ timer:Timer){
 
-        if treatsFromOrderArray.count == treatsFromOrder?.treats.count{
+        if treatsFromOrderArray.count == treatsFromOrder?.treats.count , self.getters.count == treatsFromOrder?.treats.count{
             timer.invalidate()
             initTreatsFromOrdeR = true
             let orderedTreatsVC = UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orderedTreatsController") as! OrderedTreatsViewController

@@ -29,7 +29,7 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var closePopUpBtn: SAButton!
     
     var treat: Treat?
-    var delegate : SentVoucherDelegate?
+    var delegate : TreatStatusChangedDelegate?
     
     var treats:[Treat]{
         return CurrentUser.shared.get()!.myTreats
@@ -108,8 +108,8 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
         for i in 0..<CurrentUser.shared.get()!.myTreats.count{
             if treat?.id == CurrentUser.shared.get()!.myTreats[i].id{
                 
-                ref.child("treats").child(CurrentUser.shared.get()!.id).child(treat!.id).child("status").setValue(TreatStatus.Delivered.rawValue)
-                delegate?.sentVoucher()
+                ref.child("allTreats").child(treat!.id).child("status").setValue(TreatStatus.Delivered.rawValue)
+                delegate?.updateStatus(treatID: treat!.id, status: .Delivered)
                 //basically suppose to wait for approval from server and then sending.
 //                CurrentUser.shared.get()!.myTreats[i].treatStatus = TreatStatus.Delivered
                 
@@ -146,7 +146,7 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
         errorMessages = [houseNumberError, streetError, cityError, idError]
         //        fillFields()            VCManager.shared.profileVC!.editScreenToggle = true
 
-       
+       AppMenu.clearMenu()
         for errorMessage in errorMessages{
             self.view.addSubview(errorMessage)
         }
