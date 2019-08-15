@@ -76,8 +76,8 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faq-Cr-Jec">
-                                                    <rect key="frame" x="315" y="31.5" width="64" height="28.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <rect key="frame" x="309.5" y="34.5" width="75" height="28.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -106,13 +106,13 @@
                                                 <constraint firstItem="i9c-LT-yak" firstAttribute="centerX" secondItem="XVC-Bv-v6x" secondAttribute="centerX" multiplier="1.15" id="3FA-0y-PIt"/>
                                                 <constraint firstItem="q56-Tj-iux" firstAttribute="height" secondItem="XVC-Bv-v6x" secondAttribute="height" multiplier="0.32" id="6mL-8e-nd9"/>
                                                 <constraint firstItem="vfq-eW-HCe" firstAttribute="centerY" secondItem="XVC-Bv-v6x" secondAttribute="centerY" id="9uD-r9-Sh5"/>
-                                                <constraint firstItem="faq-Cr-Jec" firstAttribute="width" secondItem="XVC-Bv-v6x" secondAttribute="width" multiplier="0.17" id="AAd-KI-UiD"/>
+                                                <constraint firstItem="faq-Cr-Jec" firstAttribute="width" secondItem="XVC-Bv-v6x" secondAttribute="width" multiplier="0.2" id="AAd-KI-UiD"/>
                                                 <constraint firstItem="vrf-eo-Qnf" firstAttribute="height" secondItem="XVC-Bv-v6x" secondAttribute="height" multiplier="0.25" id="C6n-Z7-LaE"/>
                                                 <constraint firstItem="7kh-sA-pdI" firstAttribute="centerX" secondItem="XVC-Bv-v6x" secondAttribute="centerX" multiplier="1.8" id="DtO-18-9xo"/>
                                                 <constraint firstItem="sbE-ZW-aBf" firstAttribute="width" secondItem="XVC-Bv-v6x" secondAttribute="width" multiplier="0.6" id="GWj-WV-nZZ"/>
                                                 <constraint firstItem="7kh-sA-pdI" firstAttribute="height" secondItem="XVC-Bv-v6x" secondAttribute="height" multiplier="0.45" id="IUG-5p-gUx"/>
                                                 <constraint firstItem="vrf-eo-Qnf" firstAttribute="width" secondItem="XVC-Bv-v6x" secondAttribute="width" multiplier="0.18" id="Nmx-8Y-RX8"/>
-                                                <constraint firstItem="faq-Cr-Jec" firstAttribute="centerY" secondItem="XVC-Bv-v6x" secondAttribute="centerY" multiplier="0.8" id="Qmj-C9-gBc"/>
+                                                <constraint firstItem="faq-Cr-Jec" firstAttribute="centerY" secondItem="XVC-Bv-v6x" secondAttribute="centerY" multiplier="0.85" id="Qmj-C9-gBc"/>
                                                 <constraint firstItem="sYg-3V-i9p" firstAttribute="width" secondItem="XVC-Bv-v6x" secondAttribute="width" multiplier="0.18" id="SfP-SC-HOy"/>
                                                 <constraint firstItem="faq-Cr-Jec" firstAttribute="centerX" secondItem="XVC-Bv-v6x" secondAttribute="centerX" multiplier="1.85" id="Tpw-fp-dZG"/>
                                                 <constraint firstItem="vrf-eo-Qnf" firstAttribute="centerY" secondItem="XVC-Bv-v6x" secondAttribute="centerY" multiplier="1.6" id="V46-Pc-s0B"/>
