@@ -112,6 +112,11 @@
                         self.finishAll["myOrders"] = myOrders
                     }else{
                         self.user!.myOrders = myOrders
+                        if VCManager.shared.ordersAndTreatsVC != nil{
+                            if VCManager.shared.ordersAndTreatsVC!.ordersTreatsTableView != nil{
+                                VCManager.shared.ordersAndTreatsVC!.ordersTreatsTableView.reloadData()
+                            }
+                        }
                     }
                 })
                 self.ref.child("treats").child(id).observe( .value, with: { (treatsData) in
@@ -222,8 +227,7 @@
                     self.user!.myTreats = myTreats
                     print("hey2")
 
-                    VCManager.shared.initMyTreats(refresh: true)
-
+                    VCManager.shared.initMyTreats(refresh: true, fromCart: false)
                 }
             }
         }

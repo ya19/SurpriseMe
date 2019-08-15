@@ -79,7 +79,7 @@ extension MenuViewController:UITableViewDelegate{
             if let _ = self.parent as? OrdersAndTreatsViewController{
                 return
             }else{
-                VCManager.shared.initMyTreats(refresh: false)
+                VCManager.shared.initMyTreats(refresh: false , fromCart: false)
                 return
             }
         case .Logout:

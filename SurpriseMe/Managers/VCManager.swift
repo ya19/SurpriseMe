@@ -46,6 +46,7 @@ class VCManager{
     var treatsFromOrderArray:[Treat]
     var treatsFromOrder:Order?
     var initTreatsFromOrdeR:Bool
+    var fromCart:Bool
     
     var myTreats:[Treat]
     var myTreatsGivers:[String:String]
@@ -92,6 +93,7 @@ class VCManager{
         treatsFromOrderArray = []
         treatsFromOrder = nil
         initTreatsFromOrdeR = true
+        fromCart = false
         
         myTreats = []
         myTreatsGivers = [:]
@@ -611,8 +613,9 @@ class VCManager{
     
     // INIT MY TREATS
     
-    func initMyTreats(refresh:Bool){
+    func initMyTreats(refresh:Bool , fromCart : Bool){
         if canInitTreats{
+            self.fromCart = fromCart
             canInitTreats = false
             myTreatsGivers = [:]
             myTreats = []
@@ -653,8 +656,14 @@ class VCManager{
             }else{
                 refreshTreats?.refresh(myTreats: self.myTreats, myTreatsGivers: self.myTreatsGivers)
             }
-            menu.parent?.navigationController?.pushViewController(ordersAndTreatsVC!, animated: true)
-            menu.removeFromParent()
+            
+            if fromCart{
+                self.cartVC!.navigationController?.pushViewController(ordersAndTreatsVC!, animated: true)
+            } else {
+                menu.parent?.navigationController?.pushViewController(ordersAndTreatsVC!, animated: true)
+                menu.removeFromParent()
+            }
+            
             canInitTreats = true
             
         }

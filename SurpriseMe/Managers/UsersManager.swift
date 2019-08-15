@@ -27,7 +27,7 @@ class UsersManager{
         
         ref.child("orders").child(CurrentUser.shared.get()!.id).child(order.id).setValue((order.toDB)) { (Error, DatabaseReference) in
 
-            VCManager.shared.initMyTreats(refresh: false)
+            VCManager.shared.initMyTreats(refresh: false , fromCart: true)
         }
         
         
