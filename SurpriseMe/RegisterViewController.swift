@@ -122,18 +122,14 @@ class RegisterViewController: UIViewController {
     @IBAction func closePopUp(_ sender: UIButton) {
         clearData()
         
-//        self.view.removeFromSuperview()
         PopUp.remove(controller: self)
-        
-        //it works but it looks like it happens simultaneously and not after.
-        //tried animation but it won't work.
+
         if let parent = parent as? ProfileViewController{
             VCManager.shared.profileVC!.editScreenToggle = true
 
             parent.navigationController?.navigationBar.isHidden = false
             
         }
-//        toggle = PopUp.toggle(child: self, parent: parent!, toggle: toggle)
         
     }
     @IBAction func register(_ sender: SAButton) {
@@ -200,12 +196,7 @@ class RegisterViewController: UIViewController {
         }
     
 }
-        
-        
-        //todo: add to database if successful
-        
-        
-    
+
     
     @IBOutlet weak var popUpView: SAView!
    
@@ -351,54 +342,6 @@ class RegisterViewController: UIViewController {
                 parent.navigationController?.navigationBar.isHidden = false
             }
         }
-//
-//        let user = User.init(id: CurrentUser.shared.get()!.id, email: newEmail, firstName: newFirstName, lastName: newLastName, dateOfBitrh: dateOfBirth.date, friends: CurrentUser.shared.get()!.friends, myCart: CurrentUser.shared.get()!.myCart, sentFriendRequests: CurrentUser.shared.get()!.sentFriendRequests, receivedFriendRequests: CurrentUser.shared.get()!.receivedFriendRequests, myTreats: CurrentUser.shared.get()!.myTreats, myOrders: CurrentUser.shared.get()!.myOrders, getTreatsStatus: GetTreatStatus(rawValue: newSelectedGiftStatus!)!, notifications: CurrentUser.shared.get()!.notifications, address: CurrentUser.shared.get()?.address)
-        
-
-        
-        
-
-        
-        //no need to check for empty cause they are already filled
-        
-//        //check for empty text fields
-//        if checkEmptyFields(){
-//            if checkAge(){
-//                if checkPasswordValidation(){
-//                    if checkErrors(){
-//                        if checkForEmailChange() , checkForPasswordChange(){
-//                            setUpdates(isNewEmail : true , isNewPass: true)
-//                        } else if checkForEmailChange() , !checkForPasswordChange() {
-//                            setUpdates(isNewEmail : true , isNewPass: false)
-//                        } else if checkForPasswordChange(), !checkForEmailChange(){
-//                            setUpdates(isNewEmail : false, isNewPass: true)
-//                        } else {
-//                            setUpdates(isNewEmail : false , isNewPass: false)
-//
-////                            return
-//                        }
-//                    }
-//                }
-//            } else {
-//                dateOfBirth.setDate(CurrentUser.shared.get()!.dateOfBitrh, animated: true)
-//                if checkPasswordValidation(){
-//                    if checkErrors(){
-//                        if checkForEmailChange() , checkForPasswordChange(){
-//                            setUpdates(isNewEmail : false , isNewPass: false)
-////                            PopUp.remove(controller: self)
-//                            self.view.removeFromSuperview()
-//
-//                        } else {
-//                            return
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//
-//
-        
-        
     }
     
     override func viewDidLoad() {
@@ -407,33 +350,6 @@ class RegisterViewController: UIViewController {
 
     }
     
-    func setUpdates(isNewEmail : Bool , isNewPass: Bool){
-        let updatedUser:User?
-        
-        
-        if isNewEmail , isNewPass{
-            updatedUser = User.init(id: CurrentUser.shared.get()!.id, email: newEmail, image: CurrentUser.shared.get()!.image!, firstName: firstName.text!, lastName: lastName.text!, dateOfBitrh: dateOfBirth.date, friends: CurrentUser.shared.get()!.friends, myCart: CurrentUser.shared.get()!.myCart, sentFriendRequests: CurrentUser.shared.get()!.sentFriendRequests, receivedFriendRequests: CurrentUser.shared.get()!.receivedFriendRequests, myTreats: CurrentUser.shared.get()!.myTreats, myOrders: CurrentUser.shared.get()!.myOrders, getTreatsStatus: GetTreatStatus(rawValue: giftStatus!.selectedSegmentIndex)!, notifications: CurrentUser.shared.get()!.notifications, address: CurrentUser.shared.get()?.address)
-            
-            Toast.show(message: "Your email has successfully changed to \(newEmail)", controller: self.parent!)
-        } else if isNewEmail , !isNewPass{
-            updatedUser = User.init(id: CurrentUser.shared.get()!.id, email: newEmail, image: CurrentUser.shared.get()!.image!, firstName: firstName.text!, lastName: lastName.text!, dateOfBitrh: dateOfBirth.date, friends: CurrentUser.shared.get()!.friends, myCart: CurrentUser.shared.get()!.myCart, sentFriendRequests: CurrentUser.shared.get()!.sentFriendRequests, receivedFriendRequests: CurrentUser.shared.get()!.receivedFriendRequests, myTreats: CurrentUser.shared.get()!.myTreats, myOrders: CurrentUser.shared.get()!.myOrders, getTreatsStatus: GetTreatStatus(rawValue: giftStatus!.selectedSegmentIndex)!, notifications: CurrentUser.shared.get()!.notifications, address: CurrentUser.shared.get()?.address)
-                        Toast.show(message: "Your email has successfully changed to \(newEmail)", controller: self.parent!)
-        }else if isNewPass , !isNewEmail{
-            updatedUser = User.init(id: CurrentUser.shared.get()!.id, email: CurrentUser.shared.get()!.email, image: CurrentUser.shared.get()!.image!, firstName: firstName.text!, lastName: lastName.text!, dateOfBitrh: dateOfBirth.date, friends: CurrentUser.shared.get()!.friends, myCart: CurrentUser.shared.get()!.myCart, sentFriendRequests: CurrentUser.shared.get()!.sentFriendRequests, receivedFriendRequests: CurrentUser.shared.get()!.receivedFriendRequests, myTreats: CurrentUser.shared.get()!.myTreats, myOrders: CurrentUser.shared.get()!.myOrders, getTreatsStatus: GetTreatStatus(rawValue: giftStatus!.selectedSegmentIndex)!, notifications: CurrentUser.shared.get()!.notifications, address: CurrentUser.shared.get()?.address)
-            
-        } else{
-            updatedUser = User.init(id: CurrentUser.shared.get()!.id, email: CurrentUser.shared.get()!.email, image: CurrentUser.shared.get()!.image!, firstName: firstName.text!, lastName: lastName.text!, dateOfBitrh: dateOfBirth.date, friends: CurrentUser.shared.get()!.friends, myCart: CurrentUser.shared.get()!.myCart, sentFriendRequests: CurrentUser.shared.get()!.sentFriendRequests, receivedFriendRequests: CurrentUser.shared.get()!.receivedFriendRequests, myTreats: CurrentUser.shared.get()!.myTreats, myOrders: CurrentUser.shared.get()!.myOrders, getTreatsStatus: GetTreatStatus(rawValue: giftStatus!.selectedSegmentIndex)!, notifications: CurrentUser.shared.get()!.notifications, address: CurrentUser.shared.get()?.address)
-        }
-        PopUp.remove(controller: self)
-        
-        //it works but it looks like it happens simultaneously and not after.
-        //tried animation but it won't work.
-        if let parent = parent as? ProfileViewController{
-            parent.navigationController?.navigationBar.isHidden = false
-            
-        }
-        ref.child("users").child(CurrentUser.shared.get()!.id).updateChildValues(updatedUser!.toDB)
-    }
     
     func checkForPasswordChange()->Bool{
             Auth.auth().currentUser?.updateEmail(to: email.text!, completion: { (error) in
@@ -481,9 +397,7 @@ class RegisterViewController: UIViewController {
                     
                     self.emailChange = true
                     self.newEmail = self.email.text!
-                    //
-                    //                    self.ref.child("users").child(CurrentUser.shared.get()!.id).child("email").setValue(self.email.text!)
-                    //
+    
                     Toast.show(message: "Your email had changed to \(self.email.text!)", controller: self)
                 }
             })
@@ -566,25 +480,7 @@ class RegisterViewController: UIViewController {
     }
     
     
-//    func readUserFromServer(){
-//        guard let id = CurrentUser.shared.get()?.id else{return}
-//        ref.child("users").child(id).observeSingleEvent(of: .value) { (DataSnapshot) in
-//            let dic = DataSnapshot.value as! [String:Any]
-//            let user = User.getUserFromDictionary(dic)
-//            self.firstName.text = user.firstName
-//            self.lastName.text = user.lastName
-//            self.email.text = user.email
-//
-//            //password...
-//
-//            self.dateOfBirth.setDate(user.dateOfBitrh, animated: true)
-//            self.giftStatus.selectedSegmentIndex = user.getTreatsStatus.rawValue
-//            self.existingUser = user
-//        }
-//
-//
-//
-//    }
+
     
     func setup(){
         self.view.backgroundColor = UIColor(white: 0, alpha: 0.5)
@@ -650,17 +546,6 @@ class RegisterViewController: UIViewController {
         errorLabel.text = nil
         errorLabel.isHidden = true
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

@@ -50,7 +50,6 @@ struct Shop{
         var myProducts:[String:[String:Any]] = [:]
         for product in products["Products"]!{
             myProducts[product.id] = product.toDB
-//            print(product.id)
         }
         dic["products"] = myProducts
         } else {
@@ -73,12 +72,10 @@ struct Shop{
         let category = Category(rawValue: categoryRaw)
         
         let name = dic["name"] as! String
-        //                print("this is products........---->>>\(dic["products"])")
         var products:[String:[Product]] = [:]
         if dic["products"] != nil {
             let productsDic = dic["products"] as! [String:[String:Any]]
             
-            //                print("dgbkenrlgjremgmrejhe$###############################")
             
             var productsArray:[Product] = []
             
@@ -102,21 +99,3 @@ struct Shop{
     }
 }
 
-// products -> category name -> poduct id -> product
-//generic with categories
-//        if  products.count > 0{
-//
-//            var keyDic:[String:[String:[String:Any]]] = [:]
-//            for key in products.keys{
-//                var productsDic:[String:[String:Any]] = [:]
-//                if products[key]!.count > 0{
-//                    for product in products[key]!{
-//                        productsDic[product.id] = product.toDB
-//                    }
-//                    keyDic[key] = productsDic
-//                }
-//            }
-//            dic["products"] = keyDic
-//        } else {
-//            dic["products"] = products["products"]
-//        }

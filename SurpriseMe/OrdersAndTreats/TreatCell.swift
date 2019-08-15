@@ -45,9 +45,7 @@ class TreatCell: UITableViewCell {
     @IBAction func declinedTreat(_ sender: UIButton) {
         
         TreatManager.shared.declineTreat(treat: treat , fromNotification: false)
-        
-        // delegate to reload data.
-//        statusDelegate?.updateStatus()
+
         
     }
     

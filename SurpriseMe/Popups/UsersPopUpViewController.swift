@@ -44,20 +44,8 @@ class UsersPopUpViewController: UIViewController {
         
         searchBar.frame = CGRect(origin: CGPoint(x: 1, y: 0.1), size: CGSize(width: (table.frame.width * 0.8), height: (table.frame.height * 0.1)))
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-
 }
+
 extension UsersPopUpViewController:UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard !searchText.isEmpty else {
@@ -77,19 +65,12 @@ extension UsersPopUpViewController:UITableViewDelegate{
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-//        if let friendsVC = self.parent as? FriendsViewController{
-//            //update in data base.
-//
-//            friendsVC.toggle = !friendsVC.toggle
-//            delegate?.deliver(userId: self.users![indexPath.row].id)
-//
-//        }else{
+
             if let _ = self.parent as? ProfileViewController{
-//                profileVC.toggle = !profileVC.toggle
+            
             }else{
             delegate!.deliver(user: self.currentUsers![indexPath.row])
-//        }
-        PopUp.remove(controller: self)
+            PopUp.remove(controller: self)
         }
     }
 }
@@ -127,13 +108,3 @@ extension UsersPopUpViewController:RefreshNotFriendsVC{
     }
 }
 
-//protocol UserAddedDelegate {
-//    func reloadMydata()
-//}
-//extension UsersPopUpViewController:UserAddedDelegate{
-//    func reloadMydata() {
-//        if self.table != nil {
-//            self.table.reloadData()
-//        }
-//    }
-//}

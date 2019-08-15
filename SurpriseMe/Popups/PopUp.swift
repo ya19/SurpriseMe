@@ -70,11 +70,6 @@ class PopUp {
     }
     
     static func remove(controller: UIViewController){
-//        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .transitionCrossDissolve, animations: {
-//            controller.view.frame.origin.x = controller.view.frame.width - 50
-//            controller.view.removeFromSuperview()
-//
-//        }
         
         UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .transitionCrossDissolve, animations: {
             controller.view.frame.origin.x = controller.view.frame.width

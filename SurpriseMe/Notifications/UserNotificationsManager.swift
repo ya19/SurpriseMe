@@ -28,7 +28,6 @@ class UserNotificationManager{
     
     //user notifications, not regular in the bell.
     func createNotification(with text : String, delay : TimeInterval, attachmentUrl : URL? = nil, notificationType : NotificationType){
-        //-Custom sound-, -attachment-, -title-, -subtitle-, -thread id-, userInfo
         
         func request(){
             
@@ -45,17 +44,7 @@ class UserNotificationManager{
             content.badge = 1
             
             
-            //can do different sound.
             content.sound = UNNotificationSound.default
-            
-            //            let soundName = UNNotificationSoundName(rawValue: "horse.wav")
-            //            let sound = UNNotificationSound(named: soundName)
-            //            content.sound = sound
-            //            if let sound = try? UNNotificationSound(named: UNNotificationSoundName(rawValue: )){
-            //                content.sound = sound
-            //            } else {
-            //                content.sound = UNNotificationSound.default
-            //            }
             content.title = "\(notificationType.description)"
             content.subtitle = "in SurpriseMe"
             content.threadIdentifier = "\(val)"

@@ -31,14 +31,12 @@ class CartProductTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
  
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-//        initCell()
-        // Configure the view for the selected state
+
     }
     
     func populate(treat: Treat, getter: String){
@@ -46,10 +44,6 @@ class CartProductTableViewCell: UITableViewCell {
         productImage.image = treat.product.image
         productName.text = treat.product.name
         productPrice.text = "Price: \(treat.product.price) ₪"
-//        if let getter = treat.getter {
-//            getterName.text = "\(getter)"
-//
-//        }
          getterName.text = getter
     }
 }

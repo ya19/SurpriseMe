@@ -31,7 +31,6 @@ class OrdersAndTreatsViewController: UIViewController {
     
     @IBAction func valueChange(_ sender: UISegmentedControl) {
         ordersTreatsTableView.reloadData()
-//        ordersTreatsTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .none, animated: true)
     }
     
     
@@ -46,7 +45,6 @@ class OrdersAndTreatsViewController: UIViewController {
         ordersTreatsTableView.delegate = self
         ordersTreatsTableView.dataSource = self
 
-        // Do any additional setup after loading the view.
     }
     override func viewWillDisappear(_ animated: Bool) {
         if var navigationArray = self.navigationController?.viewControllers{
@@ -63,16 +61,6 @@ class OrdersAndTreatsViewController: UIViewController {
         }
         
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -142,14 +130,6 @@ extension OrdersAndTreatsViewController : ShowPopUpDelegate{
 
     
     func useTreat(treat: Treat) {
-        //        guard let controller = self.storyboard?.instantiateViewController(withIdentifier: "registerPopUp") as? RegisterViewController else {return}
-        //
-        ////        controller.shop = shop
-        //        self.navigationController?.pushViewController(controller, animated: true)
-        //        //        self.navigation?.pushViewController(controller, animated: true)
-        
-        
-        
         let useTreatVC = self.storyboard?.instantiateViewController(withIdentifier: "useTreatController") as! UseTreatViewController
             useTreatVC.treat = treat
             useTreatVC.delegate = self
@@ -160,9 +140,6 @@ extension OrdersAndTreatsViewController : ShowPopUpDelegate{
     }
     
     func showTreats(order: Order){
-//        let orderedTreatsVC = UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orderedTreatsController") as! OrderedTreatsViewController
-//        orderedTreatsVC.treats = treats
-//        let _ = PopUp.toggle(child: orderedTreatsVC, parent: self,toggle:true)
         VCManager.shared.initTreatsForOrder(order: order)
     }
 

@@ -24,13 +24,6 @@ class ShopViewController: UICollectionViewController{
     }
     
     @IBAction func showNotifications(_ sender: UIBarButtonItem) {
-        
-//        let notificationsVC = UIStoryboard(name: "Notifications", bundle: nil).instantiateViewController(withIdentifier: "notifications") as! NotificationsViewController
-//
-//        if menu.toggle {
-//            toggle = true
-//        }
-//        toggle = PopUp.toggle(child: notificationsVC, parent: self, toggle: toggle)
         VCManager.shared.initNotifications(refresh: false, caller: self)
     }
     
@@ -61,25 +54,14 @@ class ShopViewController: UICollectionViewController{
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ProductCollectionViewCell
     
-        // Configure the cell
-        
-//        cell.frame = CGSize(width: self.collectionView.frame.width / 3.0, height: <#T##Double#>)
-        //if the shop doesn't have products it shoes one empty product.
-        
-//        let array = Array(testShop.products["Products"]!)
         let array = Array(shop!.products["products"]!)
         
-//        cell.popoulate(productImage: array[indexPath.item].image ?? #imageLiteral(resourceName: "placeholder"), productPrice: array[indexPath.item].price)
         cell.populate(product: array[indexPath.item])
     
         return cell
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-//        //change color when picking.
-//
-//        for item in collectionView
-//
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.contentView.backgroundColor = UIColor.white
         
@@ -94,7 +76,7 @@ class ShopViewController: UICollectionViewController{
     
     override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
-//        cell?.contentView.backgroundColor = UIColor(red: 1, green: 145, blue: 147, alpha: 0.25)
+
         cell?.contentView.backgroundColor = cell?.selectedBackgroundView?.backgroundColor
 
     }

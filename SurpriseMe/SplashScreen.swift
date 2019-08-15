@@ -17,23 +17,8 @@ class SplashScreen: UIViewController {
      
     
         self.readShops()
-
-//        ref.child("users").observe(.value) { (DataSnapshot) in
-//            if let child = DataSnapshot.value as? [String:Any]{
-//            var users:[User] = []
-//            for key in child.keys{
-//               users.append(User.getUserFromDictionary(child[key] as! [String:Any]))
-//            }
-//
-//            UsersManager.shared.update(users: users)
-//            }
-//
-//
-//        }
-        ///(       }
-
-        // Do any additional setup after loading the view.
     }
+    
     func readShops(){
         let ref = Database.database().reference()
             var newShopsFromDB:[[Shop]] = [[],[],[]]
@@ -49,17 +34,12 @@ class SplashScreen: UIViewController {
         
                     ShopsManager.shared.update(shops: newShopsFromDB)
                 
-                //todo if loginAutomatically, do:
                 
                 
-                if Auth.auth().currentUser != nil{
-//                    if self.fetchFromCoreData(){
-                    
+                if Auth.auth().currentUser != nil{                    
                     //init currentuser
                     CurrentUser.shared.configure(self, asNavigation: false)
-//                    } else{
-//                        self.performSegue(withIdentifier: "login", sender: nil)
-//                    }
+
                 } else{
                     self.performSegue(withIdentifier: "login", sender: nil)
                 }

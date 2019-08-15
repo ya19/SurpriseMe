@@ -15,9 +15,8 @@ class NewFriendTableCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-    //todo get user details of friend
+    
     func populate(user: User){
         friendName.text = user.fullName
         friendImage.image = user.image!.circleMasked
@@ -26,7 +25,6 @@ class NewFriendTableCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     
     

@@ -55,9 +55,8 @@ class NotificationManager{
         case .isTreatRequest:
             
             //approve the treat
-//            ref.child("treats").child(CurrentUser.shared.get()!.id).child(notification.treatID!).observeSingleEvent(of: .value) { (datasnapshot) in
-            
-                ref.child("allTreats").child(notification.treatID!).observeSingleEvent(of: .value, with: { (DataSnapshot) in
+
+            ref.child("allTreats").child(notification.treatID!).observeSingleEvent(of: .value, with: { (DataSnapshot) in
                     treat = Treat.getTreatFromDictionary(DataSnapshot.value as! [String:Any])
                     TreatManager.shared.acceptTreat(treat: treat , fromNotification: true)
                 })
@@ -107,14 +106,6 @@ class NotificationManager{
     }
     
     
-    
-    
-    
-//    func approveTreatNotification(treatID : String){
-//        ref.child("treats").child(CurrentUser.shared.get()!.id).child(treatID).child("status").setValue(TreatStatus.Accepted.rawValue)
-//    }
-//
-//    func declineTreatNotification(treatID: String){}
 }
 
 

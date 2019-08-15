@@ -48,11 +48,9 @@ class UserPopUpCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     
     func populate(user: User){
-//        fullName.text = "\(user.firstName) \(user.lastName)"
         fullName.text = user.fullName
         userImage.image = user.image!.circleMasked
     }

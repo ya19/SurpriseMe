@@ -15,7 +15,6 @@ class ItemPopUpViewController: UIViewController {
     var delegateShop:ReleaseToggle?
     var delegateCart:ReleaseCartToggle?
     @IBAction func popUpClose(_ sender: UIButton) {
-//        self.view.removeFromSuperview()
         if delegateCart != nil{
             delegateCart?.releaseCartToggle()
         }
@@ -25,7 +24,6 @@ class ItemPopUpViewController: UIViewController {
     
     @IBAction func xBtnClose(_ sender: UIButton) {
         addToCart = false
-//        self.view.removeFromSuperview()
         if delegateCart != nil{
             delegateCart?.releaseCartToggle()
         }
@@ -41,14 +39,12 @@ class ItemPopUpViewController: UIViewController {
         if delegateShop != nil{
             delegateShop?.releaseToggle()
         }
-        //UserManager.shared.addToCart(treat)
         
         
         let treat = Treat(id: "", date: nil, orderId: nil, product: item!, giver: CurrentUser.shared.get()!.id, getter: nil, treatStatus: TreatStatus.Pending)
         UsersManager.shared.addToCart(treat: treat)
         
         PopUp.remove(controller: self)
-//        self.view.removeFromSuperview()
     }
     
     
@@ -66,7 +62,6 @@ class ItemPopUpViewController: UIViewController {
         self.view.backgroundColor = UIColor(white: 0, alpha: 0.5)
         initViews()
         
-        // Do any additional setup after loading the view.
     }
     
     func initViews(){
@@ -81,14 +76,5 @@ class ItemPopUpViewController: UIViewController {
             popUpClose.isHidden = false
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -13,42 +13,9 @@ class UsersManager{
     
     private var users:[User]
     let ref = Database.database().reference()
-//    private var currentFriendsNum:Int
-//    private var currentRequestsNum:Int
-//    private var NotFriendsUsersNum:Int
-//    var friends:[User]
-//    var requests:[User]
-//    var profileVC:ProfileViewController?
-//    var notFriendsPopUP:UsersPopUpViewController?
-//    var notFriends:[User]
-//    var initFriends:Bool
-//    var initUsersPopUpNotFriends:Bool
+
     private init(){
         users = []
-//        friends = []
-//        requests = []
-//        profileVC = nil
-//        notFriendsPopUP = nil
-//        currentFriendsNum = 0
-//        currentRequestsNum = 0
-//        NotFriendsUsersNum = 0
-//        notFriends = []
-//        initFriends = true
-//        initUsersPopUpNotFriends = true
-        //users from the server
-//        ref.child("users").observeSingleEvent(of: .value) { (DataSnapshot) in
-//            let child = DataSnapshot.value as! [String:Any]
-//            for key in child.keys{
-//                self.users.append(User.getUserFromDictionary(child[key] as! [String:Any]))
-//            }
-//        }
-//        ref.child("users").observeSingleEvent(of: .childAdded) { (DataSnapshot) in
-//                self.users.append(User.getUserFromDictionary(DataSnapshot.value as! [String:Any]))
-//
-//        }
-
-        //todo remove child
-//        fakeData()
     }
     
     func update(users:[User]){
@@ -57,11 +24,9 @@ class UsersManager{
     
  
     func add(order:Order){
-//        CurrentUser.shared!.myOrders.append(order)
         
         ref.child("orders").child(CurrentUser.shared.get()!.id).child(order.id).setValue((order.toDB)) { (Error, DatabaseReference) in
-//            let ordersAndTreatsVC = UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orders") as! OrdersAndTreatsViewController
-//            VCManager.shared.cartVC!.navigationController?.pushViewController(ordersAndTreatsVC, animated: true)
+
             VCManager.shared.initMyTreats(refresh: false)
         }
         
@@ -159,12 +124,10 @@ class UsersManager{
                 friends.append(friend)
                 if friends.count == 1{
                     self.ref.child("friends").child(CurrentUser.shared.get()!.id).setValue(friends) { (Error, DatabaseReference) in
-//                        UsersManager.shared.initFriendsVC(refresh: true)
 
                     }
                 }else{
                     self.ref.child("friends").updateChildValues([CurrentUser.shared.get()!.id : friends]) { (Error, DatabaseReference) in
-//                        UsersManager.shared.initFriendsVC(refresh: true)
 
                     }
                 }
@@ -305,11 +268,7 @@ class UsersManager{
         
         
         
-        
-//        var friendRequests = CurrentUser.shared.get()!.friendRequsts
-//        friendRequests.remove(at: at)
-//
-//        ref.child("friendRequests").updateChildValues([CurrentUser.shared.get()!.id:friendRequests])
+
 
     }
     func add(friendRequest:String, userCell:UserPopUpCell){
@@ -400,165 +359,6 @@ class UsersManager{
     }
     
     
-    
-//    func initUsersPopUpFromProfile(refresh:Bool){
-//        if initUsersPopUpNotFriends{
-//            initUsersPopUpNotFriends = false
-//        notFriends = []
-//        self.ref.child("users").observeSingleEvent(of: .value) { (usersData) in
-//            let usersDic = usersData.value as! [String:Any]
-//            self.NotFriendsUsersNum = usersDic.keys.count - CurrentUser.shared.get()!.friends.count - CurrentUser.shared.get()!.receivedFriendRequests.count - 1
-//            print(self.NotFriendsUsersNum, "Not friends num")
-//            for key in usersDic.keys{
-//                let someuser = User.getUserFromDictionary(usersDic[key] as! [String:Any])
-//                var ok = true
-//                for friend in CurrentUser.shared.get()!.friends{
-//                    if someuser.id == friend{
-//                        ok = false
-//                    }
-//                }
-//                
-//                for received in CurrentUser.shared.get()!.receivedFriendRequests{
-//                    if someuser.id == received{
-//                        ok = false
-//                    }
-//                }
-//                if ok , someuser.id != CurrentUser.shared.get()!.id {
-//                    self.notFriends.append(someuser)
-//                }
-//            }
-//        }
-//        
-//        if !refresh{
-//            Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.didNotFriendsLoaded(_:)), userInfo: nil, repeats: true)
-//        }else{
-//            
-//            Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.refreshNotFriends(_:)), userInfo: nil, repeats: true)
-//        }
-//        }
-//    }
-//    @objc func refreshNotFriends(_ timer: Timer){
-//        print(self.NotFriendsUsersNum, "test notFriends num")
-//        print(notFriends,"test array")
-//        
-//        if notFriends.count == NotFriendsUsersNum{
-//            timer.invalidate()
-////            if self.notFriendsPopUP == nil{
-////                self.notFriendsPopUP = (UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController)
-////                self.notFriendsPopUP!.users = []
-////            }                                 //new change
-////            if self.notFriendsPopUP != nil{
-//            initUsersPopUpNotFriends = true             //last change.
-//            let reloadDelegate:RefreshNotFriendsVC = self.notFriendsPopUP!
-//            reloadDelegate.reloadMyData(notFriends: self.notFriends)
-//            
-//        }
-//    }
-//    @objc func didNotFriendsLoaded(_ timer: Timer){
-//       
-//        print(self.NotFriendsUsersNum, "test notFriends num")
-//        print(notFriends,"test array")
-//        if notFriends.count == NotFriendsUsersNum {
-//            timer.invalidate()
-//            if self.notFriendsPopUP != nil{
-////                initUsersPopUpNotFriends = true
-//                let reloadDelegate:RefreshNotFriendsVC = self.notFriendsPopUP!
-//                reloadDelegate.reloadMyData(notFriends: self.notFriends)
-//            } else{
-//                self.notFriendsPopUP = (UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController)
-//                
-//                self.notFriendsPopUP!.delegate = VCManager.shared.profileVC!
-//                self.notFriendsPopUP!.users = self.notFriends
-//                self.notFriendsPopUP!.currentUsers = self.notFriends
-//            }
-//
-//            
-//            //            userAddedDelegate = usersVC
-//            //            userAddedDelegate?.reloadMydata()
-//            initUsersPopUpNotFriends = true
-//            
-//            if menu.toggle {
-//                VCManager.shared.profileVC!.toggle = true
-//            }
-//           VCManager.shared.profileVC!.toggle = PopUp.toggle(child: self.notFriendsPopUP!, parent: VCManager.shared.profileVC!,toggle: VCManager.shared.profileVC!.toggle)
-//           
-//        }
-//    }
-//    
-//    
-    
-    
-    
-    
-//    func initFriendsVC(refresh:Bool) {
-//        if initFriends{
-//            initFriends = false
-//        self.friends = []
-//        self.requests = []
-//        currentRequestsNum = CurrentUser.shared.get()!.receivedFriendRequests.count
-//        currentFriendsNum = CurrentUser.shared.get()!.friends.count
-//        print(currentRequestsNum,"requestNum")
-//        for friendId in CurrentUser.shared.get()!.friends{
-//            self.ref.child("users").child(friendId).observeSingleEvent(of: .value, with: { (friendData) in
-//                self.friends.append(User.getUserFromDictionary(friendData.value as! [String:Any]))
-//            })
-//        }
-//        print(requests.count,"requestNum1")
-//
-//        for friendRequestId in CurrentUser.shared.get()!.receivedFriendRequests{
-//            print(friendRequestId,"32534654745765756765")
-//            self.ref.child("users").child(friendRequestId).observeSingleEvent(of: .value, with: { (requestData) in
-//
-//                self.requests.append(User.getUserFromDictionary(requestData.value as! [String:Any]))
-//                print(self.requests.count,"requestNum3")
-//
-//            })
-//
-//        }
-//        if !refresh{
-//            Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.didFriendsLoaded(_:)), userInfo: nil, repeats: true)
-//        }else{
-//
-//            Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.refreshFriends(_:)), userInfo: nil, repeats: true)
-//        }
-//        }
-//
-//    }
-//    @objc func refreshFriends(_ timer: Timer){
-//        if friends.count == currentFriendsNum , requests.count == currentRequestsNum{
-//            timer.invalidate()
-//            if self.profileVC == nil{
-//                self.profileVC = (UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "profile") as! ProfileViewController)
-//            }else{
-//            let reloadDelegate:RefreshProfileVC = self.profileVC!
-//            print(self.friends,"MAfriends")
-//            print(self.requests,"MaREquest")
-//            reloadDelegate.reloadMyData(friends: self.friends,requests: self.requests)
-//            }
-//            initFriends = true
-//
-//        }
-//    }
-//    @objc func didFriendsLoaded(_ timer: Timer){
-//        
-//        if friends.count == currentFriendsNum , requests.count == currentRequestsNum{
-//            timer.invalidate()
-//            //                    let friendsVC = UIStoryboard(name: "Friends", bundle: nil).instantiateViewController(withIdentifier: "friends") as! FriendsViewController
-//            
-//                if self.profileVC == nil{
-//                    self.profileVC = (UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "profile") as! ProfileViewController)
-//                }
-//            
-//            self.profileVC!.friends = self.friends
-//            self.profileVC!.requests = self.requests
-//            initFriends = true
-//            menu.parent?.navigationController?.pushViewController(self.profileVC!, animated: true)
-//            menu.removeFromParent()
-//            
-//        }
-//    }
-    
-    
     func giveTreats(delegate: UIViewController){
         let myDelegate:updateCartDelegate = delegate as! updateCartDelegate
         var treats:[String] = []
@@ -568,11 +368,6 @@ class UsersManager{
         let orderId = self.ref.child("orders").child(CurrentUser.shared.get()!.id).childByAutoId().key! as String
 
         
-//        while x < CurrentUser.shared.get()!.myCart.count {
-        
-            
-            
-            
             var usersDic:[String:[String]] = [:]
             for someTreat in CurrentUser.shared.get()!.myCart{
                 let key = self.ref.child("allTreats").child(someTreat.getter!).childByAutoId().key! as String
@@ -605,63 +400,14 @@ class UsersManager{
                     self.ref.child("treats").child(key).setValue(myTreats)
                 }
             }
-            
-            
-            
-            
-            
-            
-            
-//            var treat = CurrentUser.shared.get()!.myCart[x]
-//            let getter = treat.getter!
-//            let key = self.ref.child("allTreats").child(getter).childByAutoId().key! as String
-//            treat.id = key
-//            price = price + treat.product.price
-//            treats.append(treat.id)
-//            self.ref.child("treats").child(getter).observeSingleEvent(of: .value) { (treatsData) in
-//                var myTreats:[String] = []
-//                if let treatsArray = treatsData.value as? [String]{
-//                    myTreats = treatsArray
-//                }
-//                myTreats.append(treat.id)
-//                self.ref.child("treats").child(getter).setValue(myTreats)
-//            }
-            
-//                self.ref.child("allTreats").child(key).setValue(treat.toDB)
-//                self.sendNotification(friendID: getter, notificationType : .isTreatRequest , treatID: treat.id)
-                // make sure i got here after i got the entire orders
-//            x = x + 1
-
-//            }
-//            if x == CurrentUser.shared.get()!.myCart.count{
+        
                 let order = Order(id: orderId, treats: treats, price: price, date: Date(), buyer: CurrentUser.shared.get()!.id)
                 self.add(order: order)
-//            }
         
         
         self.ref.child("myCart").child(CurrentUser.shared.get()!.id).removeValue { (Error, DatabaseReference) in
             myDelegate.update()
         }
-        
-    
-        
-        //        for i in 0..<CurrentUser.shared.get()!.myCart.count{
-        //            var treat = CurrentUser.shared.get()!.myCart[i]
-        //            let getter = treat.getter!
-        //
-        //            for i in 0..<users.count{
-        //                if users[i].id == getter{
-        //                    treat.id = "\(users[i].id)_\(users[i].myTreats.count + 1)"
-        //                    users[i].myTreats.append(treat)
-        //                    treats.append(treat)
-        //                    // we got to read updated user from server
-        //                }
-        //            }
-        //            ref.child("treats").child(getter).child(treat.id).setValue(treat.toDB)
-        //
-        //
-        //
-        //        }
         
     }
     func getAllButFriends(user:User) -> [User]{
@@ -693,15 +439,5 @@ class UsersManager{
             item.id != user.id
         })
     }
-    
-    
-//    func fakeData(){
-//        users.append(User(id: "user1", email: "email@gmail.com" ,firstName: "yarden" ,lastName: "swissa" ,dateOfBitrh: Date() , friends: [], myCart: [],myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil))
-//        users.append(User(id: "user2", email: "email@gmail.com" ,firstName: "yossi" ,lastName: "appo" ,dateOfBitrh: Date() , friends: [], myCart: [], myTreats: [], myOrders: [], getTreatsStatus: GetTreatStatus.EVERYONE, address: nil))
-//        users.append(User(id: "user3", email: "email@gmail.com" ,firstName: "shahaf" ,lastName: "tepler" ,dateOfBitrh: Date() , friends: [], myCart: [],myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil))
-//        users.append(User(id: "user4", email: "email@gmail.com" ,firstName: "yair" ,lastName: "frid" ,dateOfBitrh: Date() , friends: [], myCart: [] ,myTreats: [], myOrders: [],  getTreatsStatus: GetTreatStatus.EVERYONE, address: nil))
-//        users.append(User(id: "user5", email: "email@gmail.com" ,firstName: "iam" ,lastName: "someone" ,dateOfBitrh: Date() , friends: [], myCart: [], friendRequsts: [] ,myTreats: [], myOrders: [], getTreatsStatus: GetTreatStatus.EVERYONE, address: nil))
-//        users.append(User(id: "user6", email: "email@gmail.com" ,firstName: "daniel" ,lastName: "daniel" ,dateOfBitrh: Date() , friends: [], myCart: [], friendRequsts: [] ,myTreats: [], myOrders: [], getTreatsStatus: GetTreatStatus.EVERYONE, address: nil))
-//    }
     
 }

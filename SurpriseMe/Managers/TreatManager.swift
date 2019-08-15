@@ -38,19 +38,11 @@ class TreatManager{
             
             updateDelegate.updateStatus(treatID: treat!.id,status: .Accepted)
         }
-//
-//        if fromNotification{
-//            if let delegate = OrdersAndTreatsViewController.self as? TreatStatusChangedDelegate{
-//            delegate.updateStatus()
-//                
-//            }
-//        }
         
     }
     
     func declineTreat(treat: Treat? , fromNotification : Bool){
        var myTreat = treat!
-//        ref.child("treats").child(CurrentUser.shared.get()!.id).child(treat!.id).removeValue()
         
         var remember = -1
         ref.child("treats").child(CurrentUser.shared.get()!.id).observeSingleEvent(of: .value) { (DataSnapshot) in
@@ -77,8 +69,7 @@ class TreatManager{
         ref.child("allTreats").child(treat!.id).updateChildValues(myTreat.toDB)
         
         //wrote to server in declined treats.
-        //        ref.child("declinedTreats").child(treat!.giver!).child(treat!.id).setValue(self.treat!.toDB)
-        
+
         ref.child("declinedTreats").child(CurrentUser.shared.get()!.id).observeSingleEvent(of: .value) { (DataSnapshot) in
             
             var newArray:[String] = []
@@ -107,10 +98,6 @@ class TreatManager{
         
         NotificationManager.shared.removeTreatRequestNotification(friendID: treat!.giver! , treatID: treat!.id)
 
-//        if fromNotification{
-//            statusDelegate = OrdersAndTreatsViewController.self as? TreatStatusChangedDelegate
-//            statusDelegate?.updateStatus()
-//        }
         
     }
 

@@ -19,9 +19,6 @@ class ViewController: BaseViewController {
     
     var textFields:[SATextField] = []
     var errorMessages:[UILabel] = []
-    
-//    let ref = Database.database().reference()
-    
     var emailError = UILabel()
     var passwordError = UILabel()
     

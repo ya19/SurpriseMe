@@ -57,10 +57,7 @@ class SATextField: UITextField{
     }
     
     func setupErrorMessage(textField : SATextField , errorLabel : UILabel, textFieldType : TextFieldType, message: String) {
-        
-        
-//        print(textField.text)
-//        print("------>This is from THE NEW setuperror function<------")
+
         textField.layer.borderColor = UIColor.red.cgColor
 
         /* Here, I am using AutoLayout to lay out the errorMessage on the screen.
@@ -72,14 +69,6 @@ class SATextField: UITextField{
         errorLabel.text = message
         
         errorLabel.textColor = .red
-        //        errorMessage.isHidden = true
-        //        self.addSubView(errorMessage)
-        
-//        errorLabel.leadingAnchor.constraint(equalTo: textField.leadingAnchor , constant: 16)
-//
-//        errorLabel.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 4)
-        
-        
         NSLayoutConstraint.activate([
             errorLabel.leadingAnchor.constraint(equalTo: textField.leadingAnchor , constant: 16),
             errorLabel.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 4)
@@ -91,18 +80,12 @@ class SATextField: UITextField{
         
         errorLabel.text = nil
         errorLabel.isHidden = true
-        
-//        NSLayoutConstraint.deactivate([
-//            errorLabel.leadingAnchor.constraint(equalTo: sender.leadingAnchor , constant: 16),
-//            errorLabel.topAnchor.constraint(equalTo: sender.bottomAnchor, constant: 4)
-//            ])
+
     }
 }
 
 enum TextFieldType{
     case isEmail , isPassword , isID , isGeneral
-    
-    //todo check if to do isconfirmationpassword enum too.
     
     func checkPattern(text: String)-> Bool{
         switch self{
@@ -153,4 +136,3 @@ enum TextFieldType{
     
 }
 
-//maybe do it in one easier function...

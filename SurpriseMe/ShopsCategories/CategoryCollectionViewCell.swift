@@ -52,14 +52,12 @@ extension CategoryCollectionViewCell : UICollectionViewDataSource {
         return 1
     }
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return shops[section].count
         return shopsData.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "shopCell", for: indexPath) as! ShopCollectionViewCell
         
-//        cell.shopLogo.image = shopsData[indexPath.item].logo
         
         cell.populate(image: shopsData[indexPath.item].logo ?? #imageLiteral(resourceName: "placeholder"))
         
@@ -73,11 +71,8 @@ extension CategoryCollectionViewCell : UICollectionViewDataSource {
 extension CategoryCollectionViewCell : UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-//        let windowFrame = UIApplication.shared.keyWindow?.frame
-//        let screen = UIScreen.main.bounds
-        
         return CGSize(width: collectionView.frame.width * 0.3, height: collectionView.frame.height)
-//        return CGSize(width: UIScreen.main.bounds.width * 0.2, height: collectionView.frame.height)
+
 
     }
     
@@ -93,10 +88,4 @@ protocol TappedDelegate {
     func doIt(shop:Shop)
 }
 
-//extension CategoryCollectionViewCell:DoneReadingDBDelegate{
-//    func dbREAD() {
-//        self.shopsCollectionView.reloadData()
-//    }
-//    
-//    
-//}
+

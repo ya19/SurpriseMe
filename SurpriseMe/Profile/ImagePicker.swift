@@ -65,7 +65,6 @@ class ImagePicker: NSObject {
     
     //after choosing the photo, activating the delegate
     private func pickerController(_ controller: UIImagePickerController, didSelect image: UIImage?) {
-        //at the moment it returns to the shops instead of the profile.. didn't find a solution cause i need to use init's 
         controller.dismiss(animated: true, completion: nil)
         self.delegate?.didSelect(image: image)
         let ref = Storage.storage().reference()

@@ -12,13 +12,6 @@ import Firebase
 struct Order{
     let id:String
     let treats:[String]
-//    var price:Double{
-//        var count = 0.0
-//        for treat in treats{
-//            count += treat.product.price
-//        }
-//        return count
-//    }
     var price:Double
     let date:Date
     let buyer:String
@@ -39,10 +32,6 @@ struct Order{
         var dic:[String:Any] = [:]
         
         dic["id"] = id
-//        var myTreats:[String:[String:Any]] = [:]
-//        for treat in treats{
-//            myTreats[treat.id] = treat.toDB
-//        }
         dic["treats"] = treats
         dic["date"] =  ServerValue.timestamp()
         dic["buyer"] = buyer
@@ -52,12 +41,6 @@ struct Order{
     
     static func getOrderFromDictionary(_ dic: [String:Any]) -> Order{
         let id = dic["id"] as! String
-
-//        let treats = dic["treats"] as! [String:[String:Any]]
-//        var allTreats:[Treat] = []
-//        for key in treats.keys{
-//            allTreats.append(Treat.getTreatFromDictionary(treats[key]!))
-//        }
         let price = dic["price"] as! Double
         let allTreats = dic["treats"] as! [String]
         let t = dic["date"] as! TimeInterval

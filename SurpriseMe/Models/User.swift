@@ -9,30 +9,10 @@
 import UIKit
 import Firebase
 
-//var currentUser = User.init(id: "user1", email: "shahaf_t@narkis.co.il", firstName: "David", lastName: "Tikva", dateOfBitrh: Date(),
-//          
-//          friends: [
-//            "user2"
-//            
-//    ], myCart: [], sentFriendRequests: [], receivedFriendRequests: [],
-//          myTreats:
-//    [
-//        Treat.init(id: "treat1", date: Date(), orderId: nil, product: Product.init(id: "product1", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 159.00), giver: "user1", getter: "user2", treatStatus: TreatStatus.Pending),
-//        
-//        Treat.init(id: "treat1", date: Date(), orderId: nil, product: Product.init(id: "product1", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 159.00), giver: "user1", getter: "user2", treatStatus: TreatStatus.Pending),
-//        
-//        Treat.init(id: "treat1", date: Date(), orderId: nil, product: Product.init(id: "product1", name: "Nike Green Shoes", desc: "Running shoes with good quality", imageName: "nike-shoes", category: "Shoes", price: 159.00), giver: "user1", getter: "user2", treatStatus: TreatStatus.Pending)
-//        
-//    ],
-//          myOrders:[], getTreatsStatus: GetTreatStatus.EVERYONE, notifications: [], address: nil)
-//consider using cartmanager object or to use mycart from the user. cartmanager will display ui cart only and will not save it in any data, while if u have myCart in the user u can save it and update the current user's cart. well you can also use coredata to store the current cart data there and to use it only from the users device without storing cart data in our DB , well i think thats the best option instead of updating anymoment the cart in the server.
-// using CartManager means to delete myCart attribute from user,
-// using myCart attribute on current user means to delete CartManager object.
 struct User:Hashable,Equatable{
     static func == (lhs: User, rhs: User) -> Bool {
         return lhs.id == rhs.id
-//            && lhs.email == rhs.email && lhs.firstName == rhs.firstName && lhs.lastName == rhs.lastName
-//                lhs.dateOfBitrh == rhs.dateOfBitrh && lhs.friends == rhs.friends
+
     }
     
     
@@ -102,7 +82,6 @@ struct User:Hashable,Equatable{
         let lastName = dic["lastName"] as! String
         let myTimeInterval = TimeInterval(dic["dateOfBirth"] as! Double)
         let dateOfBirth = Date(timeIntervalSince1970: TimeInterval(myTimeInterval))
-//        let dateOfBirth = Date()
 
         
         let getTreatStatus = GetTreatStatus(rawValue: dic["getTreatStatus"] as! Int)

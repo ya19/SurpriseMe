@@ -38,26 +38,13 @@ class CartViewController: UIViewController {
             Toast.show(message: "Your cart is empty", controller: self)
             return
         }
-        //create new order , add it to current user orders array
-        //create a treat for each tread in the order, add it to the "getter" treats array
-        // figure out how to create specific id for each order / treat
+
         
         if filled {
-//        let order = Order(id: "order\(CurrentUser.shared!.myOrders.count + 1)", treats: CartManager.shared.treats, date: Date(), buyer: CurrentUser.shared)
-            //updating current
-//            UsersManager.shared.add(order: order)
-        
-//        for treat in CartManager.shared.treats{
-//            var updatedTreat = treat
-//            updatedTreat.date = Date()
-//            UsersManager.shared.addd()
-//        }
+
             UsersManager.shared.giveTreats(delegate: self)
-//            CartManager.shared.treats = []
             total.text = String(sum)
             Toast.show(message: "Order completed", controller: self)
-//        let ordersAndTreatsVC = UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orders") as! OrdersAndTreatsViewController
-//        self.navigationController?.pushViewController(ordersAndTreatsVC, animated: true)
         }else{
             Toast.show(message: "Getters arent filled", controller: self)
         }
@@ -70,12 +57,6 @@ class CartViewController: UIViewController {
     }
     
     @IBAction func showNotifications(_ sender: UIBarButtonItem) {
-//        let notificationsVC = UIStoryboard(name: "Notifications", bundle: nil).instantiateViewController(withIdentifier: "notifications") as! NotificationsViewController
-//
-//        if menu.toggle {
-//            toggle = true
-//        }
-//        toggle = PopUp.toggle(child: notificationsVC, parent: self, toggle: toggle)
         VCManager.shared.initNotifications(refresh: false, caller: self)
     }
     
@@ -83,19 +64,13 @@ class CartViewController: UIViewController {
         super.viewDidLoad()
 
         AppMenu.clearMenu()
-//        users = dataFromServer()
         cartTableView.delegate = self
         cartTableView.dataSource = self
-//        fakeProducts()
-//        print(CartManager.shared.treats)
         total.text = "Total: \(sum) ₪"
         
         
-        // Do any additional setup after loading the view.
     }
-//    func dataFromServer() -> [User]{
-//        return UsersManager.shared.getAllBut(user: CurrentUser.shared.get()!)
-//    }
+
     override func viewWillDisappear(_ animated: Bool) {
         if var navigationArray = self.navigationController?.viewControllers{
             var remember = -1;
@@ -126,10 +101,8 @@ extension CartViewController:UITableViewDelegate{
     }
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let removeAction = UITableViewRowAction(style: .destructive, title: "Remove") { (action, indexPath) in
-//            self.products.remove(at: indexPath.row)
             UsersManager.shared.removeFromCart(at: indexPath.row, delegate: self)
-//            CartManager.shared.treats.remove(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .fade)
+
     
             self.total.text = "Total: \(self.sum) ₪"
         }
@@ -162,7 +135,6 @@ extension CartViewController:UITableViewDataSource{
         let treat = CurrentUser.shared.get()!.myCart[indexPath.row]
         
         cell.populate(treat: treat,getter: getters[treat.id]!)
-//        cell.treat = CurrentUser.shared.get()!.myCart[indexPath.row]
         cell.delegate = self
         return cell
     }
@@ -171,18 +143,12 @@ extension CartViewController:UITableViewDataSource{
 }
 extension CartViewController:AddUserDelegate{
     func addUserTapped(cell:UITableViewCell) {
-//        let usersVC = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController
-//
-//        usersVC.users = self.users
+
         if let treatCell = cell as? CartProductTableViewCell{
-//            usersVC.delegate = treatCell
             VCManager.shared.usersPopUP?.delegate = treatCell
             VCManager.shared.initUsersPopUP(refresh: false, withOutFriends: false,parent: self, cellDelegate: nil)
 
         }
-//        usersVC.delegate =
-        
-//        let _ = PopUp.toggle(child: usersVC, parent: self,toggle: true)
     }
     
     

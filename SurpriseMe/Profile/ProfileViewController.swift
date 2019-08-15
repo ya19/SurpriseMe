@@ -32,16 +32,9 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func showNotifications(_ sender: UIBarButtonItem) {
-//        let notificationsVC = UIStoryboard(name: "Notifications", bundle: nil).instantiateViewController(withIdentifier: "notifications") as! NotificationsViewController
-//
-//        if menu.toggle {
-//            toggle = true
-//        }
-//        toggle = PopUp.toggle(child: notificationsVC, parent: self, toggle: toggle)
-//
         VCManager.shared.initNotifications(refresh: false, caller: self)
-
     }
+    
     var toggle = true
     var editScreenToggle = true
     var didOpenImagePicker = false
@@ -61,24 +54,11 @@ class ProfileViewController: UIViewController {
     
     
     @IBAction func addFriend(_ sender: UIButton) {
-        
-        //todo: Show add friend pop up
-//        UsersManager.shared.initUsersPopUpFromProfile(refresh: false)
+
         VCManager.shared.initUsersPopUP(refresh: false, withOutFriends: true,parent: self, cellDelegate: nil)
 
         
-//        let usersVC = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController
-//        
-//        usersVC.delegate = self
-//        usersVC.users = UsersManager.shared.getAllButFriends(user: CurrentUser.shared.get()!)
-//        //            userAddedDelegate = usersVC
-//        //            userAddedDelegate?.reloadMydata()
-//        
-//        
-//        if menu.toggle {
-//            toggle = true
-//        }
-//        toggle = PopUp.toggle(child: usersVC, parent: self,toggle: toggle)
+
     }
     
     @IBAction func editClicked(_ sender: UIButton) {
@@ -124,20 +104,14 @@ class ProfileViewController: UIViewController {
         }
         }
     }
-    
-//    func initList(){
-//        UsersManager.shared.initFriendsVC(refresh: true)
-//    }
+
     func setupViews(){
         userImage.image = #imageLiteral(resourceName: "icons8-user").circleMasked//CurrentUser...image
         nameLabel.text = "\(CurrentUser.shared.get()!.fullName)"
     }
     
     func deleteFriend(indexPath:IndexPath){
-        //            self.products.remove(at: indexPath.row)
-        //            CartManager.shared.treats.remove(at: indexPath.row)
-        //            tableView.deleteRows(at: [indexPath], with: .fade)
-        //            self.total.text = "Total: \(self.sum) NIS"
+
         UsersManager.shared.removeFriend(friendId: friends[indexPath.row].id)
         friends.remove(at: indexPath.row)
         friendsRequestsTableView.deleteRows(at: [indexPath],with: .fade)
@@ -148,17 +122,6 @@ class ProfileViewController: UIViewController {
         self.present(dialogMessage, animated: true, completion: nil)
         
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -247,16 +210,6 @@ extension ProfileViewController : UITableViewDelegate{
         return UIScreen.main.bounds.height / 8
     }
 }
-
-//extension ProfileViewController : deliverUserDelegate{
-//    func deliver(userId: String) {
-//        
-//        //update in database
-//        //        currentUser.friends.append(user)
-////        UsersManager.shared.add(friendRequest: userId)
-////        self.friendsRequestsTableView.reloadData()
-//    }
-//}
 
 
 protocol updateList {

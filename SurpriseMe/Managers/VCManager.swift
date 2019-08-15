@@ -403,22 +403,14 @@ class VCManager{
             users = users.sorted(by: { (u1, u2) -> Bool in
                 u1.fullName < u2.fullName
             })
-//            if self.usersPopUP != nil{
-//                self.usersPopUP!.delegate = cellDelegate
 
-                //                initUsersPopUpNotFriends = true
-//                let reloadDelegate:RefreshNotFriendsVC = self.usersPopUP!
-//                reloadDelegate.reloadMyData(users: self.users)
-//            } else{
                 self.usersPopUP = (UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "usersPopUp") as! UsersPopUpViewController)
                 self.usersPopUP!.users = self.users
                 self.usersPopUP!.currentUsers = self.users
                 self.usersPopUP!.delegate = cellDelegate
                 self.usersPopUP!.cellDelegate = cellDelegate
             
-            
-            //            userAddedDelegate = usersVC
-            //            userAddedDelegate?.reloadMydata()
+
             initUsersPopUpNotFriends = true
             if let _ = popUpParent as? ProfileViewController{
 //            self.usersPopUP!.delegate = VCManager.shared.profileVC!

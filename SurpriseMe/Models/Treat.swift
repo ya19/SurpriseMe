@@ -43,11 +43,7 @@ struct Treat{
         
         
         return treatStatus
-        //todo change it to date.
-//        if dateString == "Now"{
-//            return TreatStatus.Expired
-//        }
-//        else {return treatStatus}
+
     }
     
     var toDB:[String:Any]{
@@ -60,8 +56,7 @@ struct Treat{
         dic["getter"] = getter
         dic["status"] = treatStatus?.rawValue
         dic["orderId"] = orderId
-        //i can assume that on the first purchase of the treat the status will always be pending.
-//        dic["status"] = TreatStatus.Pending.rawValue
+
         
         return dic
     }
@@ -87,7 +82,6 @@ struct Treat{
 }
 
 enum TreatStatus:Int{
-//    case Expired = 0, Delivered , Used , NotUsed , Pending , Declined
     
     case Pending = 0, Accepted , Used, Delivered, Declined
     
@@ -112,8 +106,7 @@ enum TreatStatus:Int{
     
     var image: UIImage?{
         switch self{
-//        case .Expired:
-//            return UIImage(named: "icons8-expired")
+
         case .Delivered:
             return UIImage(named: "icons8-shipped")
         case .Used:

@@ -16,17 +16,9 @@ class ProductCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var productPriceText: UILabel!
     
-//    func popoulate(productName: String , productImage: UIImage , productPrice: Double){
-//        productName.text = productName
-//        productLogo.image = productImage
-//        productPriceText.text = "\(productPrice) NIS"
-//    }
-    
     
     func populate(product: Product){
         
-//        productName.layer.cornerRadius = 15.0
-//        productPriceText.layer.cornerRadius = 15.0
         self.layer.cornerRadius = 20.0
         productName.text = product.name
         productLogo.image = product.image

@@ -110,31 +110,10 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
                 
                 ref.child("allTreats").child(treat!.id).child("status").setValue(TreatStatus.Delivered.rawValue)
                 delegate?.updateStatus(treatID: treat!.id, status: .Delivered)
-                //basically suppose to wait for approval from server and then sending.
-//                CurrentUser.shared.get()!.myTreats[i].treatStatus = TreatStatus.Delivered
                 
             }
             
         }
-        
-        
-//        for i in 0..<currentUser.myTreats.count{
-//            if treat?.id == currentUser.myTreats[i].id{
-////                treat?.treatStatus = TreatStatus.Delivered
-////                currentUser.myTreats[i] = treat!
-//                currentUser.myTreats[i].treatStatus = TreatStatus.Delivered
-//                delegate?.sentVoucher()
-//            }
-        
-//            print("\(currentUser.myTreats)")
-            
-        
-//        if saveAdress.isOn == true {
-//            updateAddress()
-//        }else{
-//            currentUser.address = nil
-//        }
-        
         
         self.view.removeFromSuperview()
     }
@@ -144,7 +123,7 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
         super.viewDidLoad()
         textFields = [houseNumber , streetLabel , cityLabel, idLabel]
         errorMessages = [houseNumberError, streetError, cityError, idError]
-        //        fillFields()            VCManager.shared.profileVC!.editScreenToggle = true
+
 
        AppMenu.clearMenu()
         for errorMessage in errorMessages{
@@ -156,37 +135,6 @@ class UseTreatViewController: UIViewController, UITextFieldDelegate{
         
         
     }
-    
-    //todo save it to core data.
-//    func updateAddress(){
-//        if currentUser.address == nil{
-//            currentUser.address = [:]
-//        }
-//        currentUser.address!["city"] = cityLabel.text
-//        currentUser.address!["street"] = streetLabel.text
-//        currentUser.address!["housenumber"] = houseNumber.text
-//        currentUser.address!["id"] = idLabel.text
-//    }
-//    func fillFields(){
-//        if currentUser.address != nil{
-//            cityLabel.text = currentUser.address!["city"]
-//            streetLabel.text = currentUser.address!["street"]
-//            houseNumber.text = currentUser.address!["housenumber"]
-//            idLabel.text = currentUser.address!["id"]
-//            saveAdress.isOn = true
-//        }
-//    }
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     func clearData(){
         houseNumber.text = nil

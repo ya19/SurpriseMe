@@ -14,7 +14,6 @@ struct Notification{
         return notificationType.description
     }
     var description: String{
-//        return "\(sender) \(notificationType.getDescription())"
         return "\(notificationType.getDescription())"
 
     }
@@ -35,10 +34,8 @@ struct Notification{
     var dateString: String{
         if date != nil{
         let formatter = DateFormatter()
-        // initially set the format based on your datepicker date / server String
         formatter.dateFormat = "dd/MM/yyyy HH:mm"
         let myString = formatter.string(from: date!) // string purpose I add here
-        // convert your string to date
         let yourDate = formatter.date(from: myString)
         return formatter.string(from: yourDate!)
         } else {return ""}
@@ -62,8 +59,6 @@ struct Notification{
     
     static func getNotificationFromDictionary(_ dic:[String:Any]) -> Notification{
         
-//        let title = dic["title"] as! String
-//        let description = dic["description"] as! String
         let id = dic["id"] as! String
         let t = dic["date"] as! TimeInterval
         let date = Date(timeIntervalSince1970: t/1000)
@@ -102,7 +97,3 @@ enum NotificationType: Int, CustomStringConvertible{
     }
 }
 
-
-//todo improve the date appearance.
-//todo make the name of the sender appear in the notification
-//todo make the accept and decline work for both types of notifications

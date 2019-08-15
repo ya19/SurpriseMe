@@ -25,25 +25,11 @@ class MenuViewController: UIViewController {
         view.sendSubviewToBack(screenBtn)
         table.backgroundColor = UIColor(red: 0/255.0, green: 128.0/255.0, blue: 128.0/255.0, alpha: 0.75)
         self.view.backgroundColor = UIColor(white: 0, alpha: 0.5)
-//        table.scrollToRow(at: IndexPath(row: 3, section: 0), at: .none, animated: true)
-        // Do any additional setup after loading the view.
-
         
         //to do set the current presented view controller, and maybe change the way the menu works so it will work fine. cause if you choose friends and then back to the main its still focused on friends.
         table.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .none)
-//        table.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .none)
-//        table.reloadData()
  
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get th`e new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 extension MenuViewController:UITableViewDelegate{
@@ -81,9 +67,7 @@ extension MenuViewController:UITableViewDelegate{
             if let _ = self.parent as? ProfileViewController{
                 return
             }else{
-//                let friendsVC = UIStoryboard(name: "Friends", bundle: nil).instantiateViewController(withIdentifier: "friends") as! FriendsViewController
-//                self.parent?.navigationController?.pushViewController(friendsVC, animated: true)
-//                UsersManager.shared.initFriendsVC(refresh: false)
+
                 VCManager.shared.initProfileVC()
 
                 return
@@ -95,9 +79,6 @@ extension MenuViewController:UITableViewDelegate{
             if let _ = self.parent as? OrdersAndTreatsViewController{
                 return
             }else{
-//                let ordersAndTreatsVC = UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orders") as! OrdersAndTreatsViewController
-//                self.parent?.navigationController?.pushViewController(ordersAndTreatsVC, animated: true)
-//                menu.removeFromParent()
                 VCManager.shared.initMyTreats(refresh: false)
                 return
             }
@@ -115,13 +96,8 @@ extension MenuViewController:UITableViewDelegate{
                     let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "login") as! ViewController
                     Toast.show(message: "\(email!) Logged out successfully", controller: controller)
                     
+                    
                     //todo add an alert asking if the user is sure he wants to log out
-                    //todo check if to delete the navigation from the login screen, cause it appears again. it doesn't concern the view did load hidden navigation...
-                    
-                    
-                    //tried to remove all observers in one method or remove each handler numbers that got in the first login, but the handle number changes to each re-attaching of observe. try to find out how to solve. maybe the issue is the profile initiate. while the current user is reading the last id..
-          
-
                     removeDatabaseObservers()
                     
                     self.parent?.navigationController?.pushViewController(controller, animated: true)
@@ -172,11 +148,6 @@ extension MenuViewController:UITableViewDataSource{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell") as! MenuTableViewCell
         
-//        if indexPath.row == 0 {
-//            cell.setSelected(true, animated: true)
-//            print(indexPath.row)
-//        }
-        
 
         let itemTitle = Screens(rawValue: indexPath.row)!.description
         let menuItemsImages = [#imageLiteral(resourceName: "icons8-a_home"),#imageLiteral(resourceName: "icons8-profile"),#imageLiteral(resourceName: "icons8-wish_list") ,#imageLiteral(resourceName: "icons8-logout") ]
@@ -187,7 +158,7 @@ extension MenuViewController:UITableViewDataSource{
     func checkFocusedCell() -> Int{
         if let _ = self.parent as? CategoriesViewController{
             return Screens.Main.rawVaule
-        }else if let _ = self.parent as? FriendsViewController{
+        }else if let _ = self.parent as? ProfileViewController{
             return Screens.MyProfile.rawVaule
         }else if let _ = self.parent as? OrdersAndTreatsViewController{
             return Screens.OrdersAndTreats.rawVaule
@@ -195,22 +166,5 @@ extension MenuViewController:UITableViewDataSource{
         return -1
     }
     
-//    func checkFocused()-> Int{
-//        
-//
-//        switch UIApplication.shared.keyWindow?.rootViewController {
-//            
-//        case is MenuViewController:
-//            return 0
-//
-//        case UIViewController(nibName: "FriendsViewController", bundle: nil):
-//            return 1
-//
-//        case UIViewController(nibName: "OrdersAndTreatsViewController", bundle: nil):
-//            return 2
-//
-//        default:
-//            return -1
-//        }
-//    }
+
 }

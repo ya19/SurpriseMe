@@ -54,9 +54,7 @@ class FriendRequestTableViewCell: UITableViewCell {
             delegate?.remove(at: self.indexPath!.row)
         }
 
-        //todo decline request and delete from list (in database)
     }
-    //todo: parameter friend request.
     func populate(user:User){
         once = true
         friendNameLabel.text = user.fullName

@@ -18,17 +18,11 @@ class CategoriesViewController: UICollectionViewController {
     
     
     @IBAction func showMenu(_ sender: UIBarButtonItem) {
-//        PopUp.show(storyBoardName: "Menu", vcIdentifer: "menuVC", parent: self)
             AppMenu.toggleMenu(parent: self)
     }
     
     @IBAction func showNotifications(_ sender: UIBarButtonItem) {
-//        let notificationsVC = UIStoryboard(name: "Notifications", bundle: nil).instantiateViewController(withIdentifier: "notifications") as! NotificationsViewController
-//
-//        if menu.toggle {
-//            toggle = true
-//        }
-//        toggle = PopUp.toggle(child: notificationsVC, parent: self, toggle: toggle)
+
         VCManager.shared.initNotifications(refresh: false, caller: self)
     }
     @IBAction func showCart(_ sender: Any) {
@@ -39,13 +33,6 @@ class CategoriesViewController: UICollectionViewController {
     var myShops:[[Shop]] = [[]]
     
 
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        if Auth.auth().currentUser != nil{
-//            Toast.show(message: "\(Auth.auth().currentUser!.email!) Logged in successfully", controller: self)
-//        }
-//
-//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,16 +49,8 @@ class CategoriesViewController: UICollectionViewController {
         
         myShops = ShopsManager.shared.getShops()
 
-//        let ref = Database.database().reference()
         setTreatsObserver()
 
-        
-        
- 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Do any additional setup after loading the view.
     }
     
     
@@ -110,23 +89,17 @@ class CategoriesViewController: UICollectionViewController {
 
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-//        return ShopsManager.shared.getShops().count
+
         return myShops.count
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         return 1
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CategoryCollectionViewCell
-        
-        // Configure the cell
-//        cell.categoryLabel.text = categories[indexPath.item]
-//        cell.shopsData = shops[indexPath.section]
         
         cell.populate(shopsArray: myShops[indexPath.section])
         //set the delegate
@@ -161,7 +134,6 @@ extension CategoriesViewController: TappedDelegate{
         
         controller.shop = shop
         self.navigationController?.pushViewController(controller, animated: true)
-//        self.navigation?.pushViewController(controller, animated: true)
     }
 }
 protocol DoneReadingDBDelegate{
