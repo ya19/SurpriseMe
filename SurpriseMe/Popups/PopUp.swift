@@ -22,6 +22,7 @@ class PopUp {
         }
         
             let popUpOverVC = UIStoryboard(name: storyBoardName, bundle: nil).instantiateViewController(withIdentifier: vcIdentifer) //as! RegisterViewController
+        popUpOverVC.modalPresentationStyle = .fullScreen
         if(toggle){
             parent.addChild(popUpOverVC)
             popUpOverVC.view.frame = parent.view.frame
@@ -46,6 +47,7 @@ class PopUp {
             }
         }
         if(toggle){
+            child.modalPresentationStyle = .fullScreen
             parent.addChild(child)
             child.view.frame = parent.view.frame
             parent.view.addSubview(child.view)

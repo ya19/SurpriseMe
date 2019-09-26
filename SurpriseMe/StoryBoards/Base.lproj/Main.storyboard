@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="n1G-1k-vRN">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="n1G-1k-vRN">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,7 +25,6 @@
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-mail..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eyU-wO-hd9" customClass="SATextField" customModule="SurpriseMe" customModuleProvider="target">
                                 <rect key="frame" x="41.5" y="544.5" width="331" height="58"/>
-                                <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -54,7 +52,6 @@
                             </stackView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="efa-DG-GsF" customClass="SATextField" customModule="SurpriseMe" customModuleProvider="target">
                                 <rect key="frame" x="41.5" y="625" width="331" height="58"/>
-                                <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <connections>
@@ -97,7 +94,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="eyU-wO-hd9" id="AVU-4A-V9Z"/>
                         <outlet property="passwordTextField" destination="efa-DG-GsF" id="FPW-yH-Pmq"/>
-                        <segue destination="mxJ-mB-Ult" kind="show" identifier="loginToShops" id="71O-cP-wbz"/>
+                        <segue destination="mxJ-mB-Ult" kind="presentation" identifier="loginToShops" modalPresentationStyle="fullScreen" id="71O-cP-wbz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -107,7 +104,9 @@
         <!--ShopsCollection-->
         <scene sceneID="AL1-7X-Nsy">
             <objects>
-                <viewControllerPlaceholder storyboardName="ShopsCollection" id="mxJ-mB-Ult" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="ShopsCollection" id="mxJ-mB-Ult" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="dtT-WU-9kh"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xx6-SZ-Gbx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2551.449275362319" y="201.5625"/>
@@ -134,8 +133,8 @@
                         <viewLayoutGuide key="safeArea" id="cbx-Zw-UkD"/>
                     </view>
                     <connections>
-                        <segue destination="mxJ-mB-Ult" kind="show" identifier="toShops" id="YmU-f9-yCv"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="login" id="8nH-iQ-3WT"/>
+                        <segue destination="mxJ-mB-Ult" kind="presentation" identifier="toShops" modalPresentationStyle="fullScreen" id="YmU-f9-yCv"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="login" modalPresentationStyle="fullScreen" id="8nH-iQ-3WT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bx1-l1-eI8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -147,6 +146,6 @@
         <image name="surprise" width="800" height="600"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="71O-cP-wbz"/>
+        <segue reference="YmU-f9-yCv"/>
     </inferredMetricsTieBreakers>
 </document>

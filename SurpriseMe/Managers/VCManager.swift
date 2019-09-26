@@ -193,6 +193,7 @@ class VCManager{
                 reloadProfileVC?.reloadMyData(friends: friends, requests: requests)
             }else{
                 self.profileVC = (UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "profile") as! ProfileViewController)
+                self.profileVC!.modalPresentationStyle = .fullScreen
                 reloadProfileVC = self.profileVC
                 
                 self.profileVC!.friends = friends
@@ -248,6 +249,7 @@ class VCManager{
 
             if self.profileVC == nil{
                 self.profileVC = (UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "profile") as! ProfileViewController)
+                self.profileVC!.modalPresentationStyle = .fullScreen
                 reloadProfileVC = self.profileVC
             }else{
                 reloadProfileVC?.reloadMyData(friends: friends, requests: nil)
@@ -301,6 +303,7 @@ class VCManager{
             
             if self.profileVC == nil{
                 self.profileVC = (UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "profile") as! ProfileViewController)
+                self.profileVC!.modalPresentationStyle = .fullScreen
                 reloadProfileVC = self.profileVC
             }else{
                 reloadProfileVC?.reloadMyData(friends: nil, requests: requests)
@@ -466,6 +469,7 @@ class VCManager{
             
             if cartVC == nil{
                 self.cartVC = (UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "CartVC") as! CartViewController)
+                self.cartVC!.modalPresentationStyle = .fullScreen
             }
             cartVC!.getters = getters
             if cartVC!.cartTableView != nil{
@@ -650,6 +654,7 @@ class VCManager{
             
             if ordersAndTreatsVC == nil{
                 ordersAndTreatsVC = (UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orders") as! OrdersAndTreatsViewController)
+                ordersAndTreatsVC!.modalPresentationStyle = .fullScreen
                 ordersAndTreatsVC!.myTreats = myTreats
                 ordersAndTreatsVC!.myTreatsGivers = myTreatsGivers
                 refreshTreats = ordersAndTreatsVC!
@@ -679,6 +684,7 @@ class VCManager{
             
             if ordersAndTreatsVC == nil{
                 ordersAndTreatsVC = (UIStoryboard(name: "OrdersManagement", bundle: nil).instantiateViewController(withIdentifier: "orders") as! OrdersAndTreatsViewController)
+                ordersAndTreatsVC!.modalPresentationStyle = .fullScreen
                 ordersAndTreatsVC!.myTreats = myTreats
                 ordersAndTreatsVC!.myTreatsGivers = myTreatsGivers
                 refreshTreats = ordersAndTreatsVC!
